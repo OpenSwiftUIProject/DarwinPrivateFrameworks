@@ -12,7 +12,7 @@ let platforms: [SupportedPlatform] = switch releaseVersion {
 }
 
 let package = Package(
-    name: "PrivateFrameworks",
+    name: "DarwinPrivateFrameworks",
     platforms: platforms,
     products: [
         .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
