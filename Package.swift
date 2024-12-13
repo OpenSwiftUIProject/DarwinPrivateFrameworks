@@ -18,7 +18,6 @@ let package = Package(
         .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
     ],
     targets: [
-        .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
         .plugin(
             name: "UpdateModule",
             capability: .command(
@@ -29,3 +28,13 @@ let package = Package(
     ],
     cxxLanguageStandard: .cxx17
 )
+
+if FileManager.default.fileExists(atPath: Context.packageDirectory.appending("AG/\(releaseVersion)/AttributeGraph.xcframework")) {
+    package.targets.append(
+        .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework")
+    )
+} else {
+    package.targets.append(
+        .target(name: "AttributeGraph")
+    )
+}
