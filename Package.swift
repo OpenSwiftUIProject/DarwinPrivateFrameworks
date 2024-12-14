@@ -1,7 +1,5 @@
 // swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
 
-import Foundation
 import PackageDescription
 
 let releaseVersion = Context.environment["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE"].flatMap { Int($0) } ?? 2024
@@ -20,12 +18,12 @@ let package = Package(
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
-        .binaryTarget(name: "RenderBox", path: "RB/\(releaseVersion)/RenderBox.xcframework"),
+        .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .plugin(
-            name: "UpdateModule",
+            name: "UpdateXCFrameworks",
             capability: .command(
-                intent: .custom(verb: "update-module", description: "Update xcframework"),
-                permissions: [.writeToPackageDirectory(reason: "Update xcframework")]
+                intent: .custom(verb: "update-xcframeworks", description: "Update xcframeworks"),
+                permissions: [.writeToPackageDirectory(reason: "Update xcframeworks")]
             )
         ),
     ],

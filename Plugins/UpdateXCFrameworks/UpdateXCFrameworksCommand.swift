@@ -1,12 +1,12 @@
 //
-//  UpdateModuleCommand.swift
-//  PrivateFrameworks
+//  UpdateXCFrameworksCommand.swift
+//  DarwinPrivateFrameworks
 
 import PackagePlugin
 import Foundation
 
 @main
-struct UpdateModuleCommand: CommandPlugin {
+struct UpdateXCFrameworksCommand: CommandPlugin {
     func performCommand(context: PackagePlugin.PluginContext, arguments: [String]) async throws {
         // AttributeGraph
         try run(context: context, command: "AG/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2021"])
