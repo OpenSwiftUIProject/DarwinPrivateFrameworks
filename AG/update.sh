@@ -8,7 +8,7 @@ filepath() {
 }
 
 VERSION=${DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:-2024}
-AG_ROOT="$(dirname $(filepath $0))/$VERSION"
+FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
 framework_name=AttributeGraph
 
@@ -34,7 +34,7 @@ generate_framework() {
     local framework_name=$1
     local arch_name=$2
 
-    local path="${AG_ROOT}/${framework_name}.xcframework/${arch_name}/${framework_name}.framework"
+    local path="${FRAMEWORK_ROOT}/${framework_name}.xcframework/${arch_name}/${framework_name}.framework"
     mkdir -p ${path}
 
     rm -rf ${path}/${framework_name}.tbd
@@ -42,10 +42,10 @@ generate_framework() {
     rm -rf ${path}/Modules
     rm -rf ${path}/Info.plist
 
-    cp ${AG_ROOT}/tbds/${arch_name}/${framework_name}.tbd ${path}/
-    cp -rf ${AG_ROOT}/Sources/Headers ${path}/
-    cp -rf ${AG_ROOT}/Sources/Modules ${path}/
-    cp -rf ${AG_ROOT}/Sources/Info.plist ${path}/
+    cp ${FRAMEWORK_ROOT}/tbds/${arch_name}/${framework_name}.tbd ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
 
     cd ${path}/Modules/${framework_name}.swiftmodule
 }
@@ -53,9 +53,9 @@ generate_framework() {
 generate_xcframework() {
     local framework_name=$1
 
-    local path="${AG_ROOT}/${framework_name}.xcframework"
+    local path="${FRAMEWORK_ROOT}/${framework_name}.xcframework"
     mkdir -p ${path}
-    cp ${AG_ROOT}/Info.plist ${path}/
+    cp ${FRAMEWORK_ROOT}/Info.plist ${path}/
 }
 
 generate_xcframework $framework_name

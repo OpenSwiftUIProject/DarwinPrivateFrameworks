@@ -8,10 +8,14 @@ import Foundation
 @main
 struct UpdateModuleCommand: CommandPlugin {
     func performCommand(context: PackagePlugin.PluginContext, arguments: [String]) async throws {
+        // AttributeGraph
         try run(context: context, command: "AG/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2021"])
-        try run(context: context, command: "AG/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "AG/update.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2021"])
+        try run(context: context, command: "AG/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "AG/update.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
+        // RenderBox
+        try run(context: context, command: "RB/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
+        try run(context: context, command: "RB/update.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
     }
     
     private func run(context: PackagePlugin.PluginContext, command: String, environment: [String: String]) throws {

@@ -16,9 +16,11 @@ let package = Package(
     platforms: platforms,
     products: [
         .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
+        .library(name: "RenderBox", targets: ["RenderBox"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
+        .binaryTarget(name: "RenderBox", path: "RB/\(releaseVersion)/RenderBox.xcframework"),
         .plugin(
             name: "UpdateModule",
             capability: .command(

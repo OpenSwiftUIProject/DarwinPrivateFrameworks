@@ -8,6 +8,6 @@ filepath() {
 VERSION=${DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
-framework_name=AttributeGraph
+framework_name=RenderBox
 
 rm -rf ${FRAMEWORK_ROOT}/${framework_name}.xcframework

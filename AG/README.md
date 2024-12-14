@@ -22,6 +22,6 @@ After making change to Sources, run `update.sh` to update the xcframework.
     - `xcrun tapi stubify ./AttributeGraph.framework`
 
 - macOS's tbd is from macOS 15.0 SDK (bundled with Xcode 16.0)
-    - `/Applications/Xcode-16.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX-15.0.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework`
+    - `/Applications/Xcode-16.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework`
     - `xcrun tapi stubify ./AttributeGraph.framework`
 
