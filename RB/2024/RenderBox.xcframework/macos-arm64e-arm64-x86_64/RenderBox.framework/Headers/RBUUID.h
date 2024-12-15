@@ -20,7 +20,7 @@ RBUUID RBUUIDInitFromNSUUID(NSUUID *uuid) RB_SWIFT_NAME(RBUUID.init(uuid:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-RBUUID RBUUIDInitFromHash(uint64_t words0, uint64_t words1, uint32_t words2) RB_SWIFT_NAME(RBUUID.init(hash:_:_:));
+RBUUID RBUUIDInitFromHash(uint64_t words0, uint64_t words1, uint32_t words2) RB_SWIFT_NAME(RBUUID.init(_:_:_:));
 
 RB_EXTERN_C_END
 
