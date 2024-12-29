@@ -22,7 +22,7 @@ struct AGGraphStorage;
 struct AGGraphContextStorage;
 struct AGSubgraphStorage;
 
-typedef uint32_t AGAttribute __attribute((swift_newtype(struct)));
+typedef uint32_t AGAttribute AG_SWIFT_STRUCT AG_SWIFT_NAME(AnyAttribute);
 
 AG_ASSUME_NONNULL_BEGIN
 
