@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27156D102D1C667400484E52 /* AttributeGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 27156D0F2D1C667400484E52 /* AttributeGraph */; };
-		27156D122D1C667400484E52 /* RenderBox in Frameworks */ = {isa = PBXBuildFile; productRef = 27156D112D1C667400484E52 /* RenderBox */; };
+		273CA58F2D21498300DCBEF9 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */; };
+		273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273CA5902D21499300DCBEF9 /* RenderBox.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2024/AttributeGraph.xcframework; sourceTree = SOURCE_ROOT; };
+		273CA5902D21499300DCBEF9 /* RenderBox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RenderBox.xcframework; path = ../RB/2024/RenderBox.xcframework; sourceTree = SOURCE_ROOT; };
 		27CB459D2D1C6498008338DF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -28,18 +30,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27156D122D1C667400484E52 /* RenderBox in Frameworks */,
-				27156D102D1C667400484E52 /* AttributeGraph in Frameworks */,
+				273CA58F2D21498300DCBEF9 /* AttributeGraph.xcframework in Frameworks */,
+				273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */,
+				273CA5902D21499300DCBEF9 /* RenderBox.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		27CB45942D1C6498008338DF = {
 			isa = PBXGroup;
 			children = (
 				27CB459F2D1C6498008338DF /* Example */,
+				273CA58B2D21496D00DCBEF9 /* Frameworks */,
 				27CB459E2D1C6498008338DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,8 +84,6 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				27156D0F2D1C667400484E52 /* AttributeGraph */,
-				27156D112D1C667400484E52 /* RenderBox */,
 			);
 			productName = Example;
 			productReference = 27CB459D2D1C6498008338DF /* Example.app */;
@@ -358,17 +368,6 @@
 			relativePath = ../../DarwinPrivateFrameworks;
 		};
 /* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		27156D0F2D1C667400484E52 /* AttributeGraph */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AttributeGraph;
-		};
-		27156D112D1C667400484E52 /* RenderBox */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RenderBox;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27CB45952D1C6498008338DF /* Project object */;
 }
