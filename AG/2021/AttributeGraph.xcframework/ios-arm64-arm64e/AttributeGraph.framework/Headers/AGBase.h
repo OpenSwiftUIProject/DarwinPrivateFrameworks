@@ -8,6 +8,8 @@
 #ifndef AGBase_h
 #define AGBase_h
 
+#define ATTRIBUTEGRAPH_RELEASE 2021
+
 #if DEBUG
 #define AG_ASSERTION
 #else

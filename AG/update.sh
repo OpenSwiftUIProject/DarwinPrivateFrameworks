@@ -30,6 +30,14 @@ generate_swiftinterface() {
   cat template.swiftinterface >> $name
 }
 
+update_version_in_header() {
+    local file="$1"
+    local version="$2"
+    
+    # Use sed to perform in-place replacement on the given file
+    sed -i '' "s/#define ATTRIBUTEGRAPH_RELEASE [0-9]\{4\}/#define ATTRIBUTEGRAPH_RELEASE ${version}/g" "$file"
+}
+
 generate_framework() {
     local framework_name=$1
     local arch_name=$2
@@ -46,6 +54,8 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
+
+    update_version_in_header "${path}/Headers/AGBase.h" "${VERSION}"
 
     cd ${path}/Modules/${framework_name}.swiftmodule
 }

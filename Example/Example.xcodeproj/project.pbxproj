@@ -7,20 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273CA5902D21499300DCBEF9 /* RenderBox.xcframework */; };
-		27F0A4F12D21BDFF00361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */; };
+		27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; };
+		27F0A5092D21C40600361C42 /* AttributeGraph.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; };
+		27F0A50D2D21C41100361C42 /* AttributeGraph.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		27F0A5232D21C51E00361C42 /* RenderBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5222D21C51E00361C42 /* RenderBox.xcframework */; };
+		27F0A5242D21C51E00361C42 /* RenderBox.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5222D21C51E00361C42 /* RenderBox.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		27F0A50A2D21C40600361C42 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27F0A5092D21C40600361C42 /* AttributeGraph.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A50E2D21C41100361C42 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27F0A50D2D21C41100361C42 /* AttributeGraph.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A5252D21C51E00361C42 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				27F0A5242D21C51E00361C42 /* RenderBox.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		273CA5902D21499300DCBEF9 /* RenderBox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RenderBox.xcframework; path = ../RB/2024/RenderBox.xcframework; sourceTree = SOURCE_ROOT; };
-		27CB459D2D1C6498008338DF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2024/AttributeGraph.xcframework; sourceTree = "<group>"; };
+		27CB459D2D1C6498008338DF /* AGExample_2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2021.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F0A4F82D21C33200361C42 /* AGExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2021/AttributeGraph.xcframework; sourceTree = "<group>"; };
+		27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2024/AttributeGraph.xcframework; sourceTree = "<group>"; };
+		27F0A5132D21C4A300361C42 /* RBExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F0A5222D21C51E00361C42 /* RenderBox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RenderBox.xcframework; path = ../RB/2024/RenderBox.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		27CB459F2D1C6498008338DF /* Example */ = {
+		27CB459F2D1C6498008338DF /* AGExample_2021 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Example;
+			path = AGExample_2021;
+			sourceTree = "<group>";
+		};
+		27F0A4F92D21C33200361C42 /* AGExample_2024 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AGExample_2024;
+			sourceTree = "<group>";
+		};
+		27F0A5142D21C4A300361C42 /* RBExample_2024 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RBExample_2024;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -30,8 +83,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */,
-				27F0A4F12D21BDFF00361C42 /* AttributeGraph.xcframework in Frameworks */,
+				27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A4F52D21C33200361C42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A5102D21C4A300361C42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27F0A5232D21C51E00361C42 /* RenderBox.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,8 +109,9 @@
 		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */,
-				273CA5902D21499300DCBEF9 /* RenderBox.xcframework */,
+				27F0A5222D21C51E00361C42 /* RenderBox.xcframework */,
+				27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */,
+				27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -50,7 +119,9 @@
 		27CB45942D1C6498008338DF = {
 			isa = PBXGroup;
 			children = (
-				27CB459F2D1C6498008338DF /* Example */,
+				27CB459F2D1C6498008338DF /* AGExample_2021 */,
+				27F0A4F92D21C33200361C42 /* AGExample_2024 */,
+				27F0A5142D21C4A300361C42 /* RBExample_2024 */,
 				273CA58B2D21496D00DCBEF9 /* Frameworks */,
 				27CB459E2D1C6498008338DF /* Products */,
 			);
@@ -59,7 +130,9 @@
 		27CB459E2D1C6498008338DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				27CB459D2D1C6498008338DF /* Example.app */,
+				27CB459D2D1C6498008338DF /* AGExample_2021.app */,
+				27F0A4F82D21C33200361C42 /* AGExample_2024.app */,
+				27F0A5132D21C4A300361C42 /* RBExample_2024.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,26 +140,73 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		27CB459C2D1C6498008338DF /* Example */ = {
+		27CB459C2D1C6498008338DF /* AGExample_2021 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27CB45AC2D1C6499008338DF /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = 27CB45AC2D1C6499008338DF /* Build configuration list for PBXNativeTarget "AGExample_2021" */;
 			buildPhases = (
 				27CB45992D1C6498008338DF /* Sources */,
 				27CB459A2D1C6498008338DF /* Frameworks */,
 				27CB459B2D1C6498008338DF /* Resources */,
+				27F0A50A2D21C40600361C42 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				27CB459F2D1C6498008338DF /* Example */,
+				27CB459F2D1C6498008338DF /* AGExample_2021 */,
 			);
-			name = Example;
+			name = AGExample_2021;
 			packageProductDependencies = (
 			);
 			productName = Example;
-			productReference = 27CB459D2D1C6498008338DF /* Example.app */;
+			productReference = 27CB459D2D1C6498008338DF /* AGExample_2021.app */;
+			productType = "com.apple.product-type.application";
+		};
+		27F0A4F72D21C33200361C42 /* AGExample_2024 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27F0A5042D21C33300361C42 /* Build configuration list for PBXNativeTarget "AGExample_2024" */;
+			buildPhases = (
+				27F0A4F42D21C33200361C42 /* Sources */,
+				27F0A4F52D21C33200361C42 /* Frameworks */,
+				27F0A4F62D21C33200361C42 /* Resources */,
+				27F0A50E2D21C41100361C42 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				27F0A4F92D21C33200361C42 /* AGExample_2024 */,
+			);
+			name = AGExample_2024;
+			packageProductDependencies = (
+			);
+			productName = Example_2024;
+			productReference = 27F0A4F82D21C33200361C42 /* AGExample_2024.app */;
+			productType = "com.apple.product-type.application";
+		};
+		27F0A5122D21C4A300361C42 /* RBExample_2024 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27F0A51F2D21C4A300361C42 /* Build configuration list for PBXNativeTarget "RBExample_2024" */;
+			buildPhases = (
+				27F0A50F2D21C4A300361C42 /* Sources */,
+				27F0A5102D21C4A300361C42 /* Frameworks */,
+				27F0A5112D21C4A300361C42 /* Resources */,
+				27F0A5252D21C51E00361C42 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				27F0A5142D21C4A300361C42 /* RBExample_2024 */,
+			);
+			name = RBExample_2024;
+			packageProductDependencies = (
+			);
+			productName = Example;
+			productReference = 27F0A5132D21C4A300361C42 /* RBExample_2024.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -96,11 +216,17 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					27CB459C2D1C6498008338DF = {
 						CreatedOnToolsVersion = 16.2;
+					};
+					27F0A4F72D21C33200361C42 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					27F0A5122D21C4A300361C42 = {
+						CreatedOnToolsVersion = 16.0;
 					};
 				};
 			};
@@ -121,7 +247,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				27CB459C2D1C6498008338DF /* Example */,
+				27CB459C2D1C6498008338DF /* AGExample_2021 */,
+				27F0A4F72D21C33200361C42 /* AGExample_2024 */,
+				27F0A5122D21C4A300361C42 /* RBExample_2024 */,
 			);
 		};
 /* End PBXProject section */
@@ -134,10 +262,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27F0A4F62D21C33200361C42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A5112D21C4A300361C42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27CB45992D1C6498008338DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A4F42D21C33200361C42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27F0A50F2D21C4A300361C42 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -266,10 +422,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -288,7 +442,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.AGExample-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -305,10 +459,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Example/Example.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -327,7 +479,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.Example;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.AGExample-2021";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -336,6 +488,150 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		27F0A5052D21C33300361C42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.AGExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		27F0A5062D21C33300361C42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.AGExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		27F0A5202D21C4A300361C42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.RBExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		27F0A5212D21C4A300361C42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.RBExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -351,11 +647,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27CB45AC2D1C6499008338DF /* Build configuration list for PBXNativeTarget "Example" */ = {
+		27CB45AC2D1C6499008338DF /* Build configuration list for PBXNativeTarget "AGExample_2021" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27CB45AD2D1C6499008338DF /* Debug */,
 				27CB45AE2D1C6499008338DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27F0A5042D21C33300361C42 /* Build configuration list for PBXNativeTarget "AGExample_2024" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27F0A5052D21C33300361C42 /* Debug */,
+				27F0A5062D21C33300361C42 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27F0A51F2D21C4A300361C42 /* Build configuration list for PBXNativeTarget "RBExample_2024" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27F0A5202D21C4A300361C42 /* Debug */,
+				27F0A5212D21C4A300361C42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

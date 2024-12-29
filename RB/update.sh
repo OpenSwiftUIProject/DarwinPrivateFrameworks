@@ -12,6 +12,14 @@ FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
 framework_name=RenderBox
 
+update_version_in_header() {
+    local file="$1"
+    local version="$2"
+    
+    # Use sed to perform in-place replacement on the given file
+    sed -i '' "s/#define RENDERBOX_RELEASE [0-9]\{4\}/#define RENDERBOX_RELEASE ${version}/g" "$file"
+}
+
 generate_framework() {
     local framework_name=$1
     local arch_name=$2
@@ -28,6 +36,8 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
+
+    update_version_in_header "${path}/Headers/RBBase.h" "${VERSION}"
 }
 
 generate_xcframework() {
