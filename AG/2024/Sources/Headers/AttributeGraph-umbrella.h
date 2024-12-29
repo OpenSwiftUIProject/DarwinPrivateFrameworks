@@ -16,19 +16,16 @@
 #include "AGInputOptions.h"
 #include "AGSearchOptions.h"
 #include "AGSubgraph.h"
-#include "AGSwiftMetadata.h"
 #include "AGTupleType.h"
 #include "AGTypeApplyEnumData.h"
 #include "AGTypeApplyField.h"
 #include "AGTypeApplyOptions.h"
-#include "AGTypeDescription.h"
 #include "AGTypeID.h"
-#include "AGTypeKind.h"
 #include "AGUniqueID.h"
 #include "AGValue.h"
 #include "AGValueOptions.h"
 #include "AGValueState.h"
 #include "AGWeakAttribute.h"
 
-AG_EXPORT double AGAttributeVersionNumber;
-AG_EXPORT const unsigned char AGAttributeVersionString[];
+AG_EXPORT double AttributeGraphVersionNumber;
+AG_EXPORT const unsigned char AttributeGraphVersionString[];

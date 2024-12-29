@@ -9,7 +9,6 @@
 #define AGTupleType_h
 
 #include "AGBase.h"
-#include "AGSwiftMetadata.h"
 #include "AGTypeID.h"
 
 typedef const AGSwiftMetadata *AGTupleType AG_SWIFT_STRUCT;

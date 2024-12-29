@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		273CA58F2D21498300DCBEF9 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */; };
 		273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 273CA5902D21499300DCBEF9 /* RenderBox.xcframework */; };
+		27F0A4F12D21BDFF00361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2024/AttributeGraph.xcframework; sourceTree = SOURCE_ROOT; };
 		273CA5902D21499300DCBEF9 /* RenderBox.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RenderBox.xcframework; path = ../RB/2024/RenderBox.xcframework; sourceTree = SOURCE_ROOT; };
 		27CB459D2D1C6498008338DF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2024/AttributeGraph.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -30,8 +30,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				273CA58F2D21498300DCBEF9 /* AttributeGraph.xcframework in Frameworks */,
 				273CA5912D21499300DCBEF9 /* RenderBox.xcframework in Frameworks */,
+				27F0A4F12D21BDFF00361C42 /* AttributeGraph.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,7 +41,7 @@
 		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				273CA58E2D21498300DCBEF9 /* AttributeGraph.xcframework */,
+				27F0A4F02D21BDFF00361C42 /* AttributeGraph.xcframework */,
 				273CA5902D21499300DCBEF9 /* RenderBox.xcframework */,
 			);
 			name = Frameworks;
@@ -283,10 +283,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -322,10 +322,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";

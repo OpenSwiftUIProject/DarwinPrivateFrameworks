@@ -11,9 +11,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Button("Test") {
-            AGSubgraph.beginTreeElement(value: Attribute<Int>(identifier: .nil), flags: 0)
-        }
+        MetadataView()
+    }
+}
+
+struct MetadataView: View {
+    var body: some View {
+        Text("nominalDescriptorName \(String(cString: Metadata(Self.self).nominalDescriptorName!))")
+        Text("description \(Metadata(Self.self).description)")
     }
 }
 
