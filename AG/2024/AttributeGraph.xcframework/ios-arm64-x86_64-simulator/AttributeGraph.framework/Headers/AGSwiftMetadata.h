@@ -1,9 +1,6 @@
 //
 //  AGSwiftMetadata.h
-//  
-//
-//  Created by Kyle on 2024/1/8.
-//
+//  AttributeGraph
 
 #ifndef AGSwiftMetadata_h
 #define AGSwiftMetadata_h

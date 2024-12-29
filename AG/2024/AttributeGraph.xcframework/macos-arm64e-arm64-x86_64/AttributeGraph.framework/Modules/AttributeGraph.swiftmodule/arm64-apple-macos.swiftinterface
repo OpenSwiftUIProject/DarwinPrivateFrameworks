@@ -368,7 +368,7 @@ extension AttributeGraph.AGGraph {
 	public static func typeIndex(
 		ctx: AGGraphContext,
 		body: AttributeGraph._AttributeBody.Type,
-		valueType: AGTypeID,
+		valueType: Metadata,
 		flags: AGAttributeTypeFlags,
 		update: AttributeUpdateBlock
 	) -> Int
@@ -527,9 +527,9 @@ public struct AnyRuleContext {
 public func compareValues<A>(_ lhs: A, _ rhs: A, mode: AGComparisonMode = ._3) -> Swift.Bool
 public func compareValues<A>(_ lhs: A, _ rhs: A, options: AGComparisonOptions) -> Swift.Bool
 
-// MARK: - AGTypeID
+// MARK: - Metadata
 
-extension AGTypeID: Swift.CustomStringConvertible {
+extension Metadata: Swift.CustomStringConvertible {
     public init(_ type: Any.Type)
     public var type: Any.Type { get }
     public var description: String { get }

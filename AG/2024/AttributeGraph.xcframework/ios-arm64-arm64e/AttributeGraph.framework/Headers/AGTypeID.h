@@ -1,9 +1,6 @@
 //
 //  AGTypeID.h
-//  
-//
-//  Created by Kyle on 2024/1/8.
-//
+//  AttributeGraph
 
 #ifndef AGTypeID_h
 #define AGTypeID_h
@@ -12,7 +9,7 @@
 #include "AGSwiftMetadata.h"
 #include "AGTypeKind.h"
 
-typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT;
+typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
 
 AG_EXTERN_C_BEGIN
 
