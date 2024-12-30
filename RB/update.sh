@@ -37,7 +37,7 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
 
-    update_version_in_header "${path}/Headers/RBBase.h" "${VERSION}"
+    update_version_in_header "${path}/Headers/RBVersion.h" "${VERSION}"
 }
 
 generate_xcframework() {

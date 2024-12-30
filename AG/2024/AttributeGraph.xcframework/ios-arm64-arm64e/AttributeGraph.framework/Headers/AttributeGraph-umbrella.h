@@ -25,6 +25,7 @@
 #include "AGValue.h"
 #include "AGValueOptions.h"
 #include "AGValueState.h"
+#include "AGVersion.h"
 #include "AGWeakAttribute.h"
 
 AG_EXPORT double AttributeGraphVersionNumber;

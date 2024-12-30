@@ -55,7 +55,7 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
 
-    update_version_in_header "${path}/Headers/AGBase.h" "${VERSION}"
+    update_version_in_header "${path}/Headers/AGVersion.h" "${VERSION}"
 
     cd ${path}/Modules/${framework_name}.swiftmodule
 }

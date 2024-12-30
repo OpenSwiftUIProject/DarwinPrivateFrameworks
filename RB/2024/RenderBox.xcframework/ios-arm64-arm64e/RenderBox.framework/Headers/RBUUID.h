@@ -1,9 +1,9 @@
 //
-//  RBUUID.hpp
+//  RBUUID.h
 //  RenderBox
 
-#ifndef RBUUID_hpp
-#define RBUUID_hpp
+#ifndef RBUUID_h
+#define RBUUID_h
 
 #include "RBBase.h"
 #include <Foundation/Foundation.h>
@@ -24,4 +24,4 @@ RBUUID RBUUIDInitFromHash(uint64_t words0, uint64_t words1, uint32_t words2) RB_
 
 RB_EXTERN_C_END
 
-#endif /* RBUUID_hpp */
+#endif /* RBUUID_h */

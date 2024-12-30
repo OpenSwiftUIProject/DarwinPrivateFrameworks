@@ -1,14 +1,9 @@
 //
 //  AGBase.h
-//
-//
-//  Created by Kyle on 2024/1/16.
-//
+//  AttributeGraph
 
 #ifndef AGBase_h
 #define AGBase_h
-
-#define ATTRIBUTEGRAPH_RELEASE 2021
 
 #if DEBUG
 #define AG_ASSERTION

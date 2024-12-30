@@ -1,4 +1,5 @@
 #include "RBBase.h"
+#include "RBVersion.h"
 #include "RBUUID.h"
 
 RB_EXPORT double RenderBoxVersionNumber;

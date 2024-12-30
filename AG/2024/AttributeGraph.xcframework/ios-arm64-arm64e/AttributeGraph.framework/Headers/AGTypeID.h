@@ -6,6 +6,7 @@
 #define AGTypeID_h
 
 #include "AGBase.h"
+#include "AGVersion.h"
 
 AG_ASSUME_NONNULL_BEGIN
 

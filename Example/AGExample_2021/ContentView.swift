@@ -10,7 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MetadataView()
+        VStack {
+            MetadataView()
+            VersionView()
+        }
     }
 }
 
@@ -21,6 +24,14 @@ struct MetadataView: View {
             Text("description \(Metadata(Self.self).description)")
         }.onAppear {
             // _ = Metadata(Self.self).descriptor
+        }
+    }
+}
+
+struct VersionView: View {
+    var body: some View {
+        VStack {
+            Text("AGVersion \(AGVersion)")
         }
     }
 }
