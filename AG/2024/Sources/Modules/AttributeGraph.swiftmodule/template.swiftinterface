@@ -640,12 +640,12 @@ extension UnsafeMutableTuple {
 
 	@_transparent
     public func deinitialize() {
-        type.destory(value)
+        type.destroy(value)
     }
 
 	@_transparent
     public func deinitialize(at index: Int) {
-        type.destory(value, at: index)
+        type.destroy(value, at: index)
     }
 
 	@_transparent

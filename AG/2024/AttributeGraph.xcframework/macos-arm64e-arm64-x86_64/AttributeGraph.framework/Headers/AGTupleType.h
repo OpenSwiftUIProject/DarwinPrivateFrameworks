@@ -69,11 +69,11 @@ void *AGTupleGetElement(AGTupleType tuple_type, void* tuple_value, size_t index,
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void AGTupleDestory(AGTupleType tuple_type, void *buffer) AG_SWIFT_NAME(TupleType.destory(self:_:));
+void AGTupleDestroy(AGTupleType tuple_type, void *buffer) AG_SWIFT_NAME(TupleType.destroy(self:_:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void AGTupleDestoryElement(AGTupleType tuple_type, void *buffer, size_t index) AG_SWIFT_NAME(TupleType.destory(self:_:at:));
+void AGTupleDestroyElement(AGTupleType tuple_type, void *buffer, size_t index) AG_SWIFT_NAME(TupleType.destroy(self:_:at:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
