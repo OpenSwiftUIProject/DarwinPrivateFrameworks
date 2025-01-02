@@ -25,3 +25,4 @@ After making change to Sources, run `update.sh` to update the xcframework.
     - `/Applications/Xcode-16.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework`
     - `xcrun tapi stubify ./AttributeGraph.framework`
 
+@_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.

@@ -10,12 +10,12 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
-typedef struct AGSwiftMetadata {
+typedef struct AG_SWIFT_NAME(_Metadata) AGSwiftMetadata {
 } AGSwiftMetadata;
 
 typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
 
-typedef AG_ENUM(uint32_t, AGTypeKind) {
+typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
     AGTypeKindNone,
     AGTypeKindClass,
     AGTypeKindStruct,
