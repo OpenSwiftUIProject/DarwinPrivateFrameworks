@@ -18,12 +18,14 @@ struct ContentView: View {
 }
 
 struct MetadataView: View {
+    var metadata: Metadata { Metadata(Self.self) }
+    
     var body: some View {
         VStack {
-            Text("nominalDescriptorName \(String(cString: Metadata(Self.self).nominalDescriptorName!))")
-            Text("description \(Metadata(Self.self).description)")
-        }.onAppear {
-            _ = Metadata(Self.self).descriptor
+            Text("nominalDescriptorName \(String(cString: metadata.nominalDescriptorName!))")
+            Text("description \(metadata.description)")
+            Text("descriptor \(metadata.descriptor!)")
+            Text("signature \(metadata.signature.bytes)")
         }
     }
 }
