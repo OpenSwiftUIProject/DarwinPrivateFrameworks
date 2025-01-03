@@ -15,6 +15,14 @@ typedef struct AG_SWIFT_NAME(_Metadata) AGSwiftMetadata {
 
 typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
 
+#if ATTRIBUTEGRAPH_RELEASE >= 2024
+
+typedef struct AG_SWIFT_NAME(TypeSignature) AGTypeSignature {
+    uint32_t bytes[5];
+} AGTypeSignature;
+
+#endif /* ATTRIBUTEGRAPH_RELEASE */
+
 typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
     AGTypeKindNone,
     AGTypeKindClass,
@@ -37,13 +45,13 @@ AGTypeKind AGTypeGetKind(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.kind(sel
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void const* _Nullable AGTypeGetSignature(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.signature(self:));
+AGTypeSignature const AGTypeGetSignature(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.signature(self:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 void const* _Nullable AGTypeGetDescriptor(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.descriptor(self:));
 
-#endif /* ATTRIBUTEGRAPH */
+#endif /* ATTRIBUTEGRAPH_RELEASE */
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
