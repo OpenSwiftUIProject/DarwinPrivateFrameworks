@@ -102,6 +102,10 @@ AG_EXPORT
 AG_REFINED_FOR_SWIFT
 const void * _Nullable AGGraphClearUpdate(void) AG_SWIFT_NAME(AGGraphRef.clearUpdate());
 
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGGraphSetNeedsUpdate(AGGraphRef graph) AG_SWIFT_NAME(AGGraphRef.setNeedsUpdate(self:));
+
 AG_EXTERN_C_END
 
 AG_ASSUME_NONNULL_END
