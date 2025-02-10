@@ -35,13 +35,57 @@ typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
     AGTypeKindMetatype,
 } AG_SWIFT_NAME(Metadata.Kind);
 
+typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions) {
+    AGTypeApplyOptions_0 = 0,
+    AGTypeApplyOptions_1 = 1 << 0,
+    AGTypeApplyOptions_2 = 1 << 1,
+    AGTypeApplyOptions_4 = 1 << 2,
+};
+
 AG_EXTERN_C_BEGIN
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 AGTypeKind AGTypeGetKind(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.kind(self:));
 
-#if ATTRIBUTEGRAPH_RELEASE >= 2024
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGTypeApplyFields(const void *type, const void *block, void *context);
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGTypeApplyFields2(const void *type, AGTypeApplyOptions options, const void *block, void *context);
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+uint32_t AGTypeGetEnumTag(AGTypeID typeID, const void *value) AG_SWIFT_NAME(Metadata.enumTag(self:_:));
+
+#if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGTypeProjectEnumData(AGTypeID typeID, void *value) AG_SWIFT_NAME(Metadata.projectEnumData(self:_:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGTypeInjectEnumTag(AGTypeID typeID, uint32_t tag, void *value) AG_SWIFT_NAME(Metadata.injectEnumTag(self:tag:_:));
+
+#endif /* ATTRIBUTEGRAPH_RELEASE */
+
+// TODO
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGTypeApplyEnumData();
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGTypeApplyMutableEnumData();
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+CFStringRef AGTypeDescription(AGTypeID type);
+
+#if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
@@ -52,10 +96,6 @@ AG_REFINED_FOR_SWIFT
 void const* _Nullable AGTypeGetDescriptor(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.descriptor(self:));
 
 #endif /* ATTRIBUTEGRAPH_RELEASE */
-
-AG_EXPORT
-AG_REFINED_FOR_SWIFT
-CFStringRef AGTypeDescription(AGTypeID type);
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT

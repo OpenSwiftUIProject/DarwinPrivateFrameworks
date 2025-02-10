@@ -20,7 +20,7 @@
 
 AG_EXTERN_C_BEGIN
 
-AG_EXPORT uint64_t AGVersion;
+AG_EXPORT const uint64_t AGVersion;
 
 AG_EXTERN_C_END
 
