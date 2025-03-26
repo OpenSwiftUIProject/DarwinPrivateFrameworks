@@ -18,15 +18,15 @@ RB_EXTERN_C_BEGIN
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageInit(RBPathStorage* dst, uint32_t capacity, RBPathStorage* _Nullable source);
+void RBPathStorageInit(RBPathStorageRef dst, uint32_t capacity, RBPathStorageRef _Nullable source);
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageDestroy(RBPathStorage storage) RB_SWIFT_NAME(RBPathStorage.destroy(self:));
+void RBPathStorageDestroy(RBPathStorageRef storage) RB_SWIFT_NAME(RBPathStorage.destroy(self:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageClear(RBPathStorage storage) RB_SWIFT_NAME(RBPathStorage.clear(self:));
+void RBPathStorageClear(RBPathStorageRef storage) RB_SWIFT_NAME(RBPathStorage.clear(self:));
 
 //RB_EXPORT
 //RB_REFINED_FOR_SWIFT
@@ -34,28 +34,28 @@ void RBPathStorageClear(RBPathStorage storage) RB_SWIFT_NAME(RBPathStorage.clear
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-bool RBPathStorageIsEmpty(RBPathStorage storage) RB_SWIFT_NAME(getter:RBPathStorage.isEmpty(self:));
+bool RBPathStorageIsEmpty(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorage.isEmpty(self:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-bool RBPathStorageEqualToStorage(RBPathStorage lhs, RBPathStorage rhs) RB_SWIFT_NAME(RBPathStorage.isEqualTo(self:_:));
+bool RBPathStorageEqualToStorage(RBPathStorageRef lhs, RBPathStorageRef rhs) RB_SWIFT_NAME(RBPathStorage.isEqualTo(self:_:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-bool RBPathStorageIsSingleElement(RBPathStorage storage) RB_SWIFT_NAME(getter:RBPathStorage.isSingleElement(self:));
+bool RBPathStorageIsSingleElement(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorage.isSingleElement(self:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-uint32_t RBPathStorageGetBezierOrder(RBPathStorage storage) RB_SWIFT_NAME(getter:RBPathStorage.bezierOrder(self:));
+uint32_t RBPathStorageGetBezierOrder(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorage.bezierOrder(self:));
 
 #if RB_TARGET_OS_DARWIN
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-CGRect RBPathStorageGetBoundingRect(RBPathStorage storage) RB_SWIFT_NAME(getter:RBPathStorage.boundingRect(self:));
+CGRect RBPathStorageGetBoundingRect(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorage.boundingRect(self:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-CGPathRef RBPathStorageGetCGPath(RBPathStorage storage) RB_SWIFT_NAME(getter:RBPathStorage.cgPath(self:));
+CGPathRef RBPathStorageGetCGPath(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorage.cgPath(self:));
 #endif
 
 RB_EXTERN_C_END
