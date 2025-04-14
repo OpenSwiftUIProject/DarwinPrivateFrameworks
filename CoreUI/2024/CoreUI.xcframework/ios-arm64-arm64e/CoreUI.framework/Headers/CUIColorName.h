@@ -7,6 +7,7 @@
 
 #import <CoreFoundation/CoreFoundation.h>
 
+// TODO: 29 cases
 typedef CF_CLOSED_ENUM(uint64_t, CUIColorName) {
     CUIColorNameRed = 0,
     CUIColorNameOrange = 1,
