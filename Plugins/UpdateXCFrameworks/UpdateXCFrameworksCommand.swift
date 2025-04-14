@@ -16,6 +16,9 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // RenderBox
         try run(context: context, command: "RB/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "RB/update.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
+        // CoreUI
+        try run(context: context, command: "CoreUI/reset.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
+        try run(context: context, command: "CoreUI/update.sh", environment: ["DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE": "2024"])
     }
     
     private func run(context: PackagePlugin.PluginContext, command: String, environment: [String: String]) throws {

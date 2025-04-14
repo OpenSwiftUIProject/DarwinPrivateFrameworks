@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2777DFE32DAD03A700E614B9 /* CoreUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */; };
 		27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; };
 		27F0A5092D21C40600361C42 /* AttributeGraph.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; };
@@ -52,6 +53,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreUIExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoreUI.xcframework; path = ../CoreUI/2024/CoreUI.xcframework; sourceTree = SOURCE_ROOT; };
 		27CB459D2D1C6498008338DF /* AGExample_2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2021.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A4F82D21C33200361C42 /* AGExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2021/AttributeGraph.xcframework; sourceTree = "<group>"; };
@@ -61,6 +64,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2777DFD22DAD035A00E614B9 /* CoreUIExample_2024 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CoreUIExample_2024;
+			sourceTree = "<group>";
+		};
 		27CB459F2D1C6498008338DF /* AGExample_2021 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AGExample_2021;
@@ -79,6 +87,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2777DFCE2DAD035A00E614B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2777DFE32DAD03A700E614B9 /* CoreUI.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27CB459A2D1C6498008338DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,6 +125,7 @@
 		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */,
 				27F0A5222D21C51E00361C42 /* RenderBox.xcframework */,
 				27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */,
 				27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */,
@@ -122,6 +139,7 @@
 				27CB459F2D1C6498008338DF /* AGExample_2021 */,
 				27F0A4F92D21C33200361C42 /* AGExample_2024 */,
 				27F0A5142D21C4A300361C42 /* RBExample_2024 */,
+				2777DFD22DAD035A00E614B9 /* CoreUIExample_2024 */,
 				273CA58B2D21496D00DCBEF9 /* Frameworks */,
 				27CB459E2D1C6498008338DF /* Products */,
 			);
@@ -133,6 +151,7 @@
 				27CB459D2D1C6498008338DF /* AGExample_2021.app */,
 				27F0A4F82D21C33200361C42 /* AGExample_2024.app */,
 				27F0A5132D21C4A300361C42 /* RBExample_2024.app */,
+				2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,6 +159,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2777DFD02DAD035A00E614B9 /* CoreUIExample_2024 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2777DFDF2DAD035B00E614B9 /* Build configuration list for PBXNativeTarget "CoreUIExample_2024" */;
+			buildPhases = (
+				2777DFCD2DAD035A00E614B9 /* Sources */,
+				2777DFCE2DAD035A00E614B9 /* Frameworks */,
+				2777DFCF2DAD035A00E614B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2777DFD22DAD035A00E614B9 /* CoreUIExample_2024 */,
+			);
+			name = CoreUIExample_2024;
+			packageProductDependencies = (
+			);
+			productName = CoreUIExample_2024;
+			productReference = 2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */;
+			productType = "com.apple.product-type.application";
+		};
 		27CB459C2D1C6498008338DF /* AGExample_2021 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27CB45AC2D1C6499008338DF /* Build configuration list for PBXNativeTarget "AGExample_2021" */;
@@ -219,6 +260,9 @@
 				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					2777DFD02DAD035A00E614B9 = {
+						CreatedOnToolsVersion = 16.0;
+					};
 					27CB459C2D1C6498008338DF = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -250,11 +294,19 @@
 				27CB459C2D1C6498008338DF /* AGExample_2021 */,
 				27F0A4F72D21C33200361C42 /* AGExample_2024 */,
 				27F0A5122D21C4A300361C42 /* RBExample_2024 */,
+				2777DFD02DAD035A00E614B9 /* CoreUIExample_2024 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2777DFCF2DAD035A00E614B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27CB459B2D1C6498008338DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -279,6 +331,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2777DFCD2DAD035A00E614B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27CB45992D1C6498008338DF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,6 +362,78 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		2777DFDD2DAD035B00E614B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.CoreUIExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		2777DFDE2DAD035B00E614B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.CoreUIExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
 		27CB45AA2D1C6499008338DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -424,7 +555,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -461,7 +592,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -498,6 +629,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -534,6 +666,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -570,6 +703,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -606,6 +740,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -638,6 +773,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2777DFDF2DAD035B00E614B9 /* Build configuration list for PBXNativeTarget "CoreUIExample_2024" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2777DFDD2DAD035B00E614B9 /* Debug */,
+				2777DFDE2DAD035B00E614B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		27CB45982D1C6498008338DF /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

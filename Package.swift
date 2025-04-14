@@ -15,10 +15,12 @@ let package = Package(
     products: [
         .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
         .library(name: "RenderBox", targets: ["RenderBox"]),
+        .library(name: "CoreUI", targets: ["CoreUI"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
+        .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(

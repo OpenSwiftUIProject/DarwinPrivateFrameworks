@@ -1,0 +1,6 @@
+framework module CoreUI {
+  umbrella "."
+
+  export *
+  module * { export * }
+}
