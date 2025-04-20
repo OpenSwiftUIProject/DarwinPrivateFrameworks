@@ -1,26 +1,30 @@
 //
 //  CUIDesignLibrary.h
 //  CoreUI
+//
+//  Audited for macOS 15.0
+//  Status: WIP
 
 #ifndef CUIDesignLibrary_h
 #define CUIDesignLibrary_h
 
-#include "CUIColorName.h"
-#include "CUIColorScheme.h"
-#include "CUIColorSchemeContrast.h"
-#include "CUIDesignColor.h"
-#include "CUIDesignStyling.h"
-#include "CUIDisplayGamut.h"
+#import <CoreUI/CUIBase.h>
+#import <CoreUI/CUIColorName.h>
+#import <CoreUI/CUIColorScheme.h>
+#import <CoreUI/CUIColorSchemeContrast.h>
+#import <CoreUI/CUIDesignColor.h>
+#import <CoreUI/CUIDesignStyling.h>
+#import <CoreUI/CUIDisplayGamut.h>
 
 #import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
 
-CF_ASSUME_NONNULL_BEGIN
+CUI_ASSUME_NONNULL_BEGIN
 
 typedef struct CUIDesignColorTraits {
     CUIColorName name;
-    uint64_t designSystem;
-    uint64_t palette;
+    NSUInteger designSystem;
+    NSUInteger palette;
     CUIColorScheme colorScheme;
     CUIColorSchemeContrast contrast;
     CUIDesignStyling styling;
@@ -33,6 +37,6 @@ typedef struct CUIDesignColorTraits {
 
 @end
 
-CF_ASSUME_NONNULL_END
+CUI_ASSUME_NONNULL_END
 
 #endif /* CUIDesignLibrary_h */
