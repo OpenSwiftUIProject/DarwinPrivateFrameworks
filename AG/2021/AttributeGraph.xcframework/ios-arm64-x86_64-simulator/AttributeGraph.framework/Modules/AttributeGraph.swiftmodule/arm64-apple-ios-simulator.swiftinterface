@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
-// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AttributeGraph
+// swift-compiler-version: Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -module-name AttributeGraph
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 @_exported import AttributeGraph
 import Foundation
@@ -379,7 +379,7 @@ extension AttributeGraph.ObservedAttribute {
 
 extension AttributeGraph.AGGraph {
     public static func typeIndex(
-        ctx: AGGraphContext,
+        ctx: AGUnownedGraphRef,
         body: AttributeGraph._AttributeBody.Type,
         valueType: Metadata,
         flags: AGAttributeTypeFlags,
@@ -406,7 +406,7 @@ extension AttributeGraph.AGGraph {
 extension AttributeGraph.AGGraph {
     @_transparent
     @inline(__always)
-    public var mainUpdates: Swift.Int { Swift.numericCast(counter(for: ._10)) }
+    public var mainUpdates: Swift.Int { Swift.numericCast(counter(for: .mainThreadUpdateCount)) }
 }
 
 extension AttributeGraph.AGGraph {
@@ -549,10 +549,19 @@ public struct AnyRuleContext {
 
 // MARK: - CompareValues
 
-public func compareValues<A>(_ lhs: A, _ rhs: A, mode: AGComparisonMode = ._3) -> Swift.Bool
+extension AGComparisonOptions {
+    public init(mode: AGComparisonMode)
+}
+
+public func compareValues<A>(_ lhs: A, _ rhs: A, mode: AGComparisonMode = .equatableAlways) -> Swift.Bool
 public func compareValues<A>(_ lhs: A, _ rhs: A, options: AGComparisonOptions) -> Swift.Bool
 
 // MARK: - Metadata
+
+public func forEachField(
+    of type: Any.Type,
+    do body: (UnsafePointer<Int8>, Int, Any.Type) -> Void
+)
 
 extension Metadata: Swift.CustomStringConvertible {
     public init(_ type: Any.Type)
@@ -564,6 +573,10 @@ extension Metadata: Swift.CustomStringConvertible {
     ) -> Bool
 }
 
+// MARK: - Signature
+
+extension Signature: Swift.Equatable {}
+
 // MARK: - TupleType
 
 extension TupleType {
@@ -574,7 +587,7 @@ extension TupleType {
 
     @_transparent
     public init(_ type: Any.Type) {
-        self.init(rawValue: unsafeBitCast(type, to: UnsafePointer<_Metadata>.self))
+        self.init(rawValue: unsafeBitCast(type, to: OpaquePointer.self))
     }
 
     @_transparent

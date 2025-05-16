@@ -10,10 +10,7 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
-typedef struct AG_SWIFT_NAME(_Metadata) AGSwiftMetadata {
-} AGSwiftMetadata;
-
-typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
+typedef const struct AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
 
 #if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
 
@@ -35,11 +32,11 @@ typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
     AGTypeKindMetatype,
 } AG_SWIFT_NAME(Metadata.Kind);
 
-typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions) {
-    AGTypeApplyOptions_0 = 0,
-    AGTypeApplyOptions_1 = 1 << 0,
-    AGTypeApplyOptions_2 = 1 << 1,
-    AGTypeApplyOptions_4 = 1 << 2,
+typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions){
+    AGTypeApplyOptionsEnumerateStructFields = 0,
+    AGTypeApplyOptionsEnumerateClassFields = 1 << 0,
+    AGTypeApplyOptionsContinueAfterUnknownField = 1 << 1,
+    AGTypeApplyOptionsEnumerateEnumCases = 1 << 2,
 };
 
 AG_EXTERN_C_BEGIN

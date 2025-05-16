@@ -10,19 +10,19 @@
 
 #include "AGBase.h"
 
-typedef AG_OPTIONS(uint32_t, AGComparisonMode) {
-    AGComparisonMode_0 = 0,
-    AGComparisonMode_1 = 1 << 0,
-    AGComparisonMode_2 = 1 << 1,
-    AGComparisonMode_3 = AGComparisonMode_1 | AGComparisonMode_2,
+typedef AG_ENUM(uint8_t, AGComparisonMode){
+    AGComparisonModeBitwise = 0,
+    AGComparisonModeIndirect = 1,
+    AGComparisonModeEquatableUnlessPOD = 2,
+    AGComparisonModeEquatableAlways = 3,
 };
 
-typedef AG_OPTIONS(uint32_t, AGComparisonOptions) {
-    AGComparisonOptions_0 = 0,
-    AGComparisonOptions_1 = 1 << 0,
-    AGComparisonOptions_2 = 1 << 1,
-    AGComparisonOptions_3 = AGComparisonOptions_1 | AGComparisonOptions_2,
+typedef AG_OPTIONS(uint32_t, AGComparisonOptions){
+    AGComparisonOptionsComparisonModeMask = 0xff,
+
+    AGComparisonOptionsCopyOnWrite = 1 << 8,
+    AGComparisonOptionsFetchLayoutsSynchronously = 1 << 9,
+    AGComparisonOptionsReportFailures = 1ul << 31, // -1 signed int
 };
 
 #endif /* AGComparisonMode_h */
-
