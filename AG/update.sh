@@ -16,8 +16,8 @@ generate_swiftinterface_header() {
     local target="$1"
     local result=""
     result+="// swift-interface-format-version: 1.0\n"
-    result+="// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)\n"
-    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AttributeGraph\n"
+    result+="// swift-compiler-version: Apple Swift version 6.1 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)\n"
+    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -module-name AttributeGraph\n"
     result+="// swift-module-flags-ignorable: -enable-bare-slash-regex"
 
     echo -e $result

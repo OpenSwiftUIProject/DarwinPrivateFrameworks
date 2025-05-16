@@ -12,9 +12,15 @@
 #include "AGComparisonMode.h"
 
 AG_EXTERN_C_BEGIN
+
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 bool AGCompareValues(const void *lhs, const void *rhs, const void *type, const AGComparisonMode comparisonMode);
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+const unsigned char *_Nullable AGPrefetchCompareValues(AGTypeID type, AGComparisonOptions options, uint32_t priority);
+
 AG_EXTERN_C_END
 
 #endif /* AGCompareValues_h */

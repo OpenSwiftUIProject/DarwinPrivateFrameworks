@@ -19,7 +19,7 @@ AG_EXTERN_C_BEGIN
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGGraphRef AGGraphContextGetGraph(AGGraphContextRef context) AG_SWIFT_NAME(getter:AGGraphContextRef.graph(self:));
+AGGraphRef AGGraphContextGetGraph(AGUnownedGraphContextRef context) AG_SWIFT_NAME(getter:AGUnownedGraphContextRef.graph(self:));
 
 AG_EXTERN_C_END
 

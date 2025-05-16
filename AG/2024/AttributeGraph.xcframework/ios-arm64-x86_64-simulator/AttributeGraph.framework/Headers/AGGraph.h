@@ -10,17 +10,19 @@
 
 #include "AGBase.h"
 #include "CFRuntime.h"
-#include "AGCounterQueryType.h"
+#include "AGGraphCounterQuery.h"
 
 // Note: Place all structure declaration in a single place to avoid header cycle dependency
 
 typedef struct AG_BRIDGED_TYPE(id) AGGraphStorage * AGGraphRef;
-typedef struct AG_BRIDGED_TYPE(id) AGGraphContextStorage * AGGraphContextRef;
 typedef struct AG_BRIDGED_TYPE(id) AGSubgraphStorage * AGSubgraphRef;
 
+typedef void * AGUnownedGraphRef;
+typedef struct AGGraphContextStorage * AGUnownedGraphContextRef;
+
 struct AGGraphStorage;
-struct AGGraphContextStorage;
 struct AGSubgraphStorage;
+struct AGGraphContextStorage;
 
 typedef uint32_t AGAttribute AG_SWIFT_STRUCT AG_SWIFT_NAME(AnyAttribute);
 
@@ -68,7 +70,7 @@ void AGGraphSetContext(AGGraphRef graph, const void * _Nullable context) AG_SWIF
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGGraphContextRef AGGraphGetGraphContext(AGGraphRef graph) AG_SWIFT_NAME(getter:AGGraphRef.graphContext(self:));
+AGUnownedGraphRef AGGraphGetGraphContext(AGGraphRef graph) AG_SWIFT_NAME(getter:AGGraphRef.graphContext(self:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
@@ -92,7 +94,7 @@ void AGGraphSetUpdateCallback(AGGraphRef graph,
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-uint64_t AGGraphGetCounter(AGGraphRef graph, AGCounterQueryType query) AG_SWIFT_NAME(AGGraphRef.counter(self:for:));
+uint64_t AGGraphGetCounter(AGGraphRef graph, AGGraphCounterQuery query) AG_SWIFT_NAME(AGGraphRef.counter(self:for:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
