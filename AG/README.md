@@ -26,3 +26,7 @@ After making change to Sources, run `update.sh` to update the xcframework.
     - `xcrun tapi stubify ./AttributeGraph.framework`
 
 @_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.
+
+### Updating the template.swiftinterface
+
+See https://github.com/OpenSwiftUIProject/OpenGraph/blob/main/Scripts/gen_ag_interface_template.sh
