@@ -11,8 +11,8 @@
 #include "AGBase.h"
 
 typedef AG_OPTIONS(uint32_t, AGChangedValueFlags) {
-    AGChangedValueFlags_0 = 0,
     AGChangedValueFlags_1 = 1 << 0,
+    AGChangedValueFlagsRequiresMainThread = 1 << 1,
 };
 
 #endif /* AGChangedValueFlags_h */
