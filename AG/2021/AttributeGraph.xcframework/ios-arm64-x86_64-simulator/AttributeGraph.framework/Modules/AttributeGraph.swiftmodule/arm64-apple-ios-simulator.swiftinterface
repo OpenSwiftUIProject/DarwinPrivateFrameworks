@@ -1,7 +1,8 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
-// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph
 // swift-module-flags-ignorable: -interface-compiler-version 6.1
+public import Foundation
 @_exported public import AttributeGraph
 public import Swift
 public import _Concurrency
@@ -323,7 +324,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
     get
   }
 }
-@frozen public struct AnyRuleContext {
+@frozen public struct AnyRuleContext : Swift.Equatable {
   public var attribute: AnyAttribute
   public init(attribute: AnyAttribute)
   public init<V>(_ context: AttributeGraph.RuleContext<V>)
@@ -340,6 +341,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
   public func changedValue<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, changed: Swift.Bool)
   public func update(body: () -> Swift.Void)
   public func unsafeCast<V>(to _: V.Type) -> AttributeGraph.RuleContext<V>
+  public static func == (a: AttributeGraph.AnyRuleContext, b: AttributeGraph.AnyRuleContext) -> Swift.Bool
 }
 public protocol Rule : AttributeGraph._AttributeBody {
   associatedtype Value
@@ -366,7 +368,7 @@ extension AttributeGraph.Rule where Self : Swift.Hashable {
   public func cachedValueIfExists(options: AGCachedValueOptions = [], owner: AnyAttribute?) -> Self.Value?
   public static func _cachedValue(options: AGCachedValueOptions = [], owner: AnyAttribute?, hashValue: Swift.Int, bodyPtr: Swift.UnsafeRawPointer, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.UnsafePointer<Self.Value>
 }
-@frozen public struct RuleContext<Value> {
+@frozen public struct RuleContext<Value> : Swift.Equatable {
   public var attribute: AttributeGraph.Attribute<Value>
   public init(attribute: AttributeGraph.Attribute<Value>)
   public subscript<V>(attribute: AttributeGraph.Attribute<V>) -> V {
@@ -388,6 +390,7 @@ extension AttributeGraph.Rule where Self : Swift.Hashable {
   public func valueAndFlags<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, flags: AGChangedValueFlags)
   public func changedValue<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, changed: Swift.Bool)
   public func update(body: () -> Swift.Void)
+  public static func == (a: AttributeGraph.RuleContext<Value>, b: AttributeGraph.RuleContext<Value>) -> Swift.Bool
 }
 @_silgen_name("AGGraphGetInputValue")
 @inline(__always) @inlinable internal func AGGraphGetInputValue<Value>(_ attribute: AnyAttribute, input: AnyAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
@@ -563,7 +566,7 @@ extension Metadata : Swift.Hashable, Swift.CustomStringConvertible {
   }
   @inlinable @inline(__always) public var description: Swift.String {
     get {
-        __AGTypeDescription(self).takeUnretainedValue() as String
+        __AGTypeDescription(self).takeUnretainedValue() as NSString as String
     }
   }
   @inlinable @inline(__always) internal func forEachField(do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void) {

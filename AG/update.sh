@@ -29,7 +29,7 @@ generate_swiftinterface_header() {
     local result=""
     result+="// swift-interface-format-version: 1.0\n"
     result+="// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)\n"
-    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph\n"
+    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph\n"
     result+="// swift-module-flags-ignorable:  -interface-compiler-version 6.1"
 
     echo -e $result
