@@ -577,67 +577,118 @@ public func withUnsafePointerToEnumCase<T>(of value: Swift.UnsafeMutablePointer<
 @discardableResult
 public func withUnsafeMutablePointerToEnumCase<T>(of value: Swift.UnsafeMutablePointer<T>, do body: (Swift.Int, any Any.Type, Swift.UnsafeMutableRawPointer) -> ()) -> Swift.Bool
 extension TupleType {
-  public init(_ types: [any Any.Type])
-  public init(_ type: any Any.Type)
-  public var isEmpty: Swift.Bool {
-    get
+  @_transparent public init(_ types: [any Any.Type]) {
+        self.init(count: types.count, elements: types.map(Metadata.init))
+    }
+  @_transparent public init(_ type: any Any.Type) {
+        self.init(rawValue: unsafeBitCast(type, to: UnsafePointer<_Metadata>.self))
+    }
+  @_transparent public var isEmpty: Swift.Bool {
+    @_transparent get { count == 0 }
   }
-  public var indices: Swift.Range<Swift.Int> {
-    get
+  @_transparent public var indices: Swift.Range<Swift.Int> {
+    @_transparent get { 0 ..< count }
   }
-  public var type: any Any.Type {
-    get
+  @_transparent public var type: any Any.Type {
+    @_transparent get {
+        unsafeBitCast(rawValue, to: Any.Type.self)
+    }
   }
-  public func type(at index: Swift.Int) -> any Any.Type
-  public func offset<T>(at index: Swift.Int, as type: T.Type) -> Swift.Int
-  public func setElement<T>(in tupleValue: Swift.UnsafeMutableRawPointer, at index: Swift.Int, from srcValue: Swift.UnsafePointer<T>, options: TupleType.CopyOptions)
-  public func getElement<T>(in tupleValue: Swift.UnsafeMutableRawPointer, at index: Swift.Int, to dstValue: Swift.UnsafeMutablePointer<T>, options: TupleType.CopyOptions)
+  @_transparent public func type(at index: Swift.Int) -> any Any.Type {
+        elementType(at: index).type
+    }
+  @_transparent public func offset<T>(at index: Swift.Int, as type: T.Type) -> Swift.Int {
+        elementOffset(at: index, type: Metadata(type))
+    }
+  @_transparent public func setElement<T>(in tupleValue: Swift.UnsafeMutableRawPointer, at index: Swift.Int, from srcValue: Swift.UnsafePointer<T>, options: TupleType.CopyOptions) {
+        __AGTupleSetElement(self, tupleValue, index, srcValue, Metadata(T.self), options)
+    }
+  @_transparent public func getElement<T>(in tupleValue: Swift.UnsafeMutableRawPointer, at index: Swift.Int, to dstValue: Swift.UnsafeMutablePointer<T>, options: TupleType.CopyOptions) {
+        __AGTupleGetElement(self, tupleValue, index, dstValue, Metadata(T.self), options)
+    }
 }
 @_silgen_name("AGTupleWithBuffer")
-public func withUnsafeTuple(of type: TupleType, count: Swift.Int, _ body: (UnsafeMutableTuple) -> ())
+public func withUnsafeTuple(of type: TupleType, count: Swift.Int, _ body: (UnsafeMutableTuple) -> Swift.Void)
 extension UnsafeTuple {
-  public var count: Swift.Int {
-    get
+  @_transparent public var count: Swift.Int {
+    @_transparent get { type.count }
   }
-  public var isEmpty: Swift.Bool {
-    get
+  @_transparent public var isEmpty: Swift.Bool {
+    @_transparent get { type.isEmpty }
   }
-  public var indices: Swift.Range<Swift.Int> {
-    get
+  @_transparent public var indices: Swift.Range<Swift.Int> {
+    @_transparent get { type.indices }
   }
-  public func address<T>(as _: T.Type = T.self) -> Swift.UnsafePointer<T>
-  public func address<T>(of index: Swift.Int, as _: T.Type = T.self) -> Swift.UnsafePointer<T>
+  @_transparent public func address<T>(as _: T.Type = T.self) -> Swift.UnsafePointer<T> {
+        guard type.type == T.self else {
+            preconditionFailure()
+        }
+        return value.assumingMemoryBound(to: T.self)
+    }
+  @_transparent public func address<T>(of index: Swift.Int, as _: T.Type = T.self) -> Swift.UnsafePointer<T> {
+        value.advanced(by: type.elementOffset(at: index, type: Metadata(T.self)))
+            .assumingMemoryBound(to: T.self)
+    }
   public subscript<T>() -> T {
-    unsafeAddress
+    @_transparent unsafeAddress { address(as: T.self) }
   }
   public subscript<T>(index: Swift.Int) -> T {
-    unsafeAddress
+    @_transparent unsafeAddress { address(of: index, as: T.self) }
   }
 }
 extension UnsafeMutableTuple {
-  public init(with tupleType: TupleType)
-  public func initialize<T>(at index: Swift.Int, to element: T)
-  public func deinitialize()
-  public func deinitialize(at index: Swift.Int)
-  public func deallocate(initialized: Swift.Bool)
-  public var count: Swift.Int {
-    get
+  @_transparent public init(with tupleType: TupleType) {
+        self.init(
+            type: tupleType,
+            value: UnsafeMutableRawPointer.allocate(
+                byteCount: tupleType.size,
+                alignment: -1
+            )
+        )
+    }
+  @_transparent public func initialize<T>(at index: Swift.Int, to element: T) {
+        withUnsafePointer(to: element) { elementPointer in
+            type.setElement(in: value, at: index, from: elementPointer, options: .initCopy)
+        }
+    }
+  @_transparent public func deinitialize() {
+        type.destroy(value)
+    }
+  @_transparent public func deinitialize(at index: Swift.Int) {
+        type.destroy(value, at: index)
+    }
+  @_transparent public func deallocate(initialized: Swift.Bool) {
+        if initialized {
+            deinitialize()
+        }
+        value.deallocate()
+    }
+  @_transparent public var count: Swift.Int {
+    @_transparent get { type.count }
   }
-  public var isEmpty: Swift.Bool {
-    get
+  @_transparent public var isEmpty: Swift.Bool {
+    @_transparent get { type.isEmpty }
   }
-  public var indices: Swift.Range<Swift.Int> {
-    get
+  @_transparent public var indices: Swift.Range<Swift.Int> {
+    @_transparent get { type.indices }
   }
-  public func address<T>(as _: T.Type = T.self) -> Swift.UnsafeMutablePointer<T>
-  public func address<T>(of index: Swift.Int, as _: T.Type = T.self) -> Swift.UnsafeMutablePointer<T>
+  @_transparent public func address<T>(as _: T.Type = T.self) -> Swift.UnsafeMutablePointer<T> {
+        guard type.type == T.self else {
+            preconditionFailure()
+        }
+        return value.assumingMemoryBound(to: T.self)
+    }
+  @_transparent public func address<T>(of index: Swift.Int, as _: T.Type = T.self) -> Swift.UnsafeMutablePointer<T> {
+        value.advanced(by: type.elementOffset(at: index, type: Metadata(T.self)))
+            .assumingMemoryBound(to: T.self)
+    }
   public subscript<T>() -> T {
-    unsafeAddress
-    nonmutating unsafeMutableAddress
+    @_transparent unsafeAddress { UnsafePointer(address(as: T.self)) }
+    @_transparent nonmutating unsafeMutableAddress { address(as: T.self) }
   }
   public subscript<T>(index: Swift.Int) -> T {
-    unsafeAddress
-    nonmutating unsafeMutableAddress
+    @_transparent unsafeAddress { UnsafePointer(address(of: index, as: T.self)) }
+    @_transparent nonmutating unsafeMutableAddress { address(of: index, as: T.self) }
   }
 }
 extension AttributeGraph.Attribute : Swift.Sendable {}
