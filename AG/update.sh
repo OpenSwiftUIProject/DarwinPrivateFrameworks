@@ -10,15 +10,27 @@ filepath() {
 VERSION=${DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
+# Version mapping logic
+if [ "$VERSION" = "2021" ]; then
+    IOS_VERSION="15.0"
+    MACOS_VERSION="12.0"
+elif [ "$VERSION" = "2024" ]; then
+    IOS_VERSION="18.0"
+    MACOS_VERSION="15.0"
+else
+    IOS_VERSION="18.0"
+    MACOS_VERSION="15.0"
+fi
+
 framework_name=AttributeGraph
 
 generate_swiftinterface_header() {
     local target="$1"
     local result=""
     result+="// swift-interface-format-version: 1.0\n"
-    result+="// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)\n"
-    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AttributeGraph\n"
-    result+="// swift-module-flags-ignorable: -enable-bare-slash-regex"
+    result+="// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)\n"
+    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Onone -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph\n"
+    result+="// swift-module-flags-ignorable:  -interface-compiler-version 6.1"
 
     echo -e $result
 }
@@ -71,17 +83,17 @@ generate_xcframework() {
 generate_xcframework $framework_name
 
 generate_framework $framework_name ios-arm64-x86_64-simulator
-generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios11.0-simulator
-generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios11.0-simulator
+generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
+generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
 rm template.swiftinterface
 
 generate_framework $framework_name ios-arm64-arm64e
-generate_swiftinterface arm64-apple-ios arm64e-apple-ios11.0 
-generate_swiftinterface arm64e-apple-ios arm64e-apple-ios11.0 
+generate_swiftinterface arm64-apple-ios arm64e-apple-ios${IOS_VERSION}
+generate_swiftinterface arm64e-apple-ios arm64e-apple-ios${IOS_VERSION}
 rm template.swiftinterface
 
 generate_framework $framework_name macos-arm64e-arm64-x86_64
-generate_swiftinterface x86_64-apple-macos x86_64-apple-macos12.0
-generate_swiftinterface arm64-apple-macos arm64-apple-macos12.0
-generate_swiftinterface arm64e-apple-macos arm64e-apple-macos12.0
+generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
+generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
+generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
 rm template.swiftinterface
