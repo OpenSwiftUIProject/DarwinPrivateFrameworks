@@ -208,7 +208,7 @@ public protocol AttributeBodyVisitor {
   func visit<Body>(body: Swift.UnsafePointer<Body>) where Body : AttributeGraph._AttributeBody
 }
 public protocol ObservedAttribute : AttributeGraph._AttributeBody {
-  func destroy()
+  mutating func destroy()
 }
 extension AttributeGraph.ObservedAttribute {
   public static func _destroySelf(_ pointer: Swift.UnsafeMutableRawPointer)
