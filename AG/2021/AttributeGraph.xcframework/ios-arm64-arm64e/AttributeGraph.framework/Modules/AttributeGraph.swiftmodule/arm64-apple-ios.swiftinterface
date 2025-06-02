@@ -142,24 +142,6 @@ extension AttributeGraph.External : Swift.CustomStringConvertible {
     get
   }
 }
-public struct Focus<Root, Value> {
-  public var root: AttributeGraph.Attribute<Root>
-  public var keyPath: Swift.KeyPath<Root, Value>
-  public init(root: AttributeGraph.Attribute<Root>, keyPath: Swift.KeyPath<Root, Value>)
-}
-extension AttributeGraph.Focus : AttributeGraph.Rule {
-  public var value: Value {
-    get
-  }
-  public static var flags: AGAttributeTypeFlags {
-    get
-  }
-}
-extension AttributeGraph.Focus : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
 @frozen public struct PointerOffset<Base, Member> {
   public var byteOffset: Swift.Int
   public init(byteOffset: Swift.Int)
@@ -324,24 +306,33 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
     get
   }
 }
-@frozen public struct AnyRuleContext : Swift.Equatable {
-  public var attribute: AnyAttribute
-  public init(attribute: AnyAttribute)
-  public init<V>(_ context: AttributeGraph.RuleContext<V>)
-  public subscript<V>(attribute: AttributeGraph.Attribute<V>) -> V {
-    unsafeAddress
-  }
-  public subscript<V>(weakAttribute: AttributeGraph.WeakAttribute<V>) -> V? {
+@frozen public struct Focus<Root, Value> : AttributeGraph.Rule, Swift.CustomStringConvertible {
+  public var root: AttributeGraph.Attribute<Root>
+  public var keyPath: Swift.KeyPath<Root, Value>
+  public init(root: AttributeGraph.Attribute<Root>, keyPath: Swift.KeyPath<Root, Value>)
+  public var value: Value {
     get
   }
-  public subscript<V>(optionalAttribute: AttributeGraph.OptionalAttribute<V>) -> V? {
+  public static var flags: AGAttributeTypeFlags {
     get
   }
-  public func valueAndFlags<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, flags: AGChangedValueFlags)
-  public func changedValue<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, changed: Swift.Bool)
-  public func update(body: () -> Swift.Void)
-  public func unsafeCast<V>(to _: V.Type) -> AttributeGraph.RuleContext<V>
-  public static func == (a: AttributeGraph.AnyRuleContext, b: AttributeGraph.AnyRuleContext) -> Swift.Bool
+  public var description: Swift.String {
+    get
+  }
+}
+@frozen public struct Map<Source, Value> : AttributeGraph.Rule, Swift.CustomStringConvertible {
+  public var arg: AttributeGraph.Attribute<Source>
+  public let body: (Source) -> Value
+  public init(_ arg: AttributeGraph.Attribute<Source>, _ body: @escaping (Source) -> Value)
+  public var value: Value {
+    get
+  }
+  public static var flags: AGAttributeTypeFlags {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
 }
 public protocol Rule : AttributeGraph._AttributeBody {
   associatedtype Value
@@ -367,6 +358,52 @@ extension AttributeGraph.Rule where Self : Swift.Hashable {
   public func cachedValue(options: AGCachedValueOptions = [], owner: AnyAttribute?) -> Self.Value
   public func cachedValueIfExists(options: AGCachedValueOptions = [], owner: AnyAttribute?) -> Self.Value?
   public static func _cachedValue(options: AGCachedValueOptions = [], owner: AnyAttribute?, hashValue: Swift.Int, bodyPtr: Swift.UnsafeRawPointer, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.UnsafePointer<Self.Value>
+}
+public protocol StatefulRule : AttributeGraph._AttributeBody {
+  associatedtype Value
+  static var initialValue: Self.Value? { get }
+  mutating func updateValue()
+}
+extension AttributeGraph.StatefulRule {
+  public static var initialValue: Self.Value? {
+    get
+  }
+  public static func _update(_ pointer: Swift.UnsafeMutableRawPointer, attribute _: AnyAttribute)
+  public static func _updateDefault(_: Swift.UnsafeMutableRawPointer)
+}
+extension AttributeGraph.StatefulRule {
+  public var attribute: AttributeGraph.Attribute<Self.Value> {
+    get
+  }
+  public var context: AttributeGraph.RuleContext<Self.Value> {
+    get
+  }
+  public var value: Self.Value {
+    unsafeAddress
+    nonmutating set
+  }
+  public var hasValue: Swift.Bool {
+    get
+  }
+}
+@frozen public struct AnyRuleContext : Swift.Equatable {
+  public var attribute: AnyAttribute
+  public init(attribute: AnyAttribute)
+  public init<V>(_ context: AttributeGraph.RuleContext<V>)
+  public subscript<V>(attribute: AttributeGraph.Attribute<V>) -> V {
+    unsafeAddress
+  }
+  public subscript<V>(weakAttribute: AttributeGraph.WeakAttribute<V>) -> V? {
+    get
+  }
+  public subscript<V>(optionalAttribute: AttributeGraph.OptionalAttribute<V>) -> V? {
+    get
+  }
+  public func valueAndFlags<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, flags: AGChangedValueFlags)
+  public func changedValue<V>(of input: AttributeGraph.Attribute<V>, options: AGValueOptions = []) -> (value: V, changed: Swift.Bool)
+  public func update(body: () -> Swift.Void)
+  public func unsafeCast<V>(to _: V.Type) -> AttributeGraph.RuleContext<V>
+  public static func == (a: AttributeGraph.AnyRuleContext, b: AttributeGraph.AnyRuleContext) -> Swift.Bool
 }
 @frozen public struct RuleContext<Value> : Swift.Equatable {
   public var attribute: AttributeGraph.Attribute<Value>
@@ -396,33 +433,6 @@ extension AttributeGraph.Rule where Self : Swift.Hashable {
 @inline(__always) @inlinable internal func AGGraphGetInputValue<Value>(_ attribute: AnyAttribute, input: AnyAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
 @_silgen_name("AGGraphWithUpdate")
 @inline(__always) @inlinable internal func AGGraphWithUpdate(_ attribute: AnyAttribute, body: () -> Swift.Void)
-public protocol StatefulRule : AttributeGraph._AttributeBody {
-  associatedtype Value
-  static var initialValue: Self.Value? { get }
-  mutating func updateValue()
-}
-extension AttributeGraph.StatefulRule {
-  public static var initialValue: Self.Value? {
-    get
-  }
-  public static func _update(_ pointer: Swift.UnsafeMutableRawPointer, attribute _: AnyAttribute)
-  public static func _updateDefault(_: Swift.UnsafeMutableRawPointer)
-}
-extension AttributeGraph.StatefulRule {
-  public var attribute: AttributeGraph.Attribute<Self.Value> {
-    get
-  }
-  public var context: AttributeGraph.RuleContext<Self.Value> {
-    get
-  }
-  public var value: Self.Value {
-    unsafeAddress
-    nonmutating set
-  }
-  public var hasValue: Swift.Bool {
-    get
-  }
-}
 public typealias AnyWeakAttribute = AGWeakAttribute
 extension AGWeakAttribute {
   @_alwaysEmitIntoClient public init(_ attribute: AnyAttribute?) {
