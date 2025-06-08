@@ -5,9 +5,10 @@
 //  Audited for macOS 15.0
 //  Status: Complete
 
-#import <Foundation/Foundation.h>
-#import <CoreUI/CUIRenditionKey.h>
 #import <CoreUI/CUIBase.h>
+#import <CoreUI/CUIDisplayGamut.h>
+#import <CoreUI/CUIRenditionKey.h>
+#import <Foundation/Foundation.h>
 
 CUI_ASSUME_NONNULL_BEGIN
 
@@ -28,7 +29,7 @@ CUI_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) NSString *renditionName;
 @property (readonly, nonatomic) BOOL representsOnDemandContent;
 @property (readonly, nonatomic) NSInteger idiom;
-@property (readonly, nonatomic) NSInteger displayGamut;
+@property (readonly, nonatomic) CUIDisplayGamut displayGamut;
 @property (readonly, nonatomic) NSInteger layoutDirection;
 @property (readonly, nonatomic) NSInteger localization;
 @property (readonly, nonatomic) NSString *appearance;
