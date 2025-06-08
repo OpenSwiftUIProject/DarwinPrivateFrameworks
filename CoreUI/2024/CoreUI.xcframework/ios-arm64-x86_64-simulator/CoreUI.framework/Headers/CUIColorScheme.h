@@ -2,7 +2,7 @@
 //  CUIColorScheme.h
 //  CoreUI
 //
-//  Audited for macOS 15.0
+//  Audited for 918.3
 //  Status: Complete
 
 #ifndef CUIColorScheme_h

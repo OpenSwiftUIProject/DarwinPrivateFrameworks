@@ -2,7 +2,7 @@
 //  CUIStructuredThemeStore.h
 //  CoreUI
 //
-//  Audited for macOS 15.0
+//  Audited for 918.3
 //  Status: WIP
 
 #import <Foundation/Foundation.h>
