@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <CoreUI/CUIBase.h>
+#import <CoreUI/CUITypes.h>
 
 CUI_ASSUME_NONNULL_BEGIN
 
@@ -23,10 +24,10 @@ typedef CUI_ENUM(NSInteger, CUIRenditionType) {
 
 @interface CUIThemeRendition : NSObject
 
-@property (nonatomic) NSInteger type;
-@property (nonatomic) uint32_t subtype;
+@property (nonatomic) CUIRenditionType type;
+@property (nonatomic) CUISubtype subtype;
 @property (nonatomic) uint32_t internalScale;
-@property (nonatomic) NSInteger internalTemplateRenderingMode;
+@property (nonatomic) CUIRenderMode internalTemplateRenderingMode;
 @property (strong, nonatomic) NSString *internalName;
 @property (readonly, nonatomic) NSData *srcData;
 @property (nonatomic) double opacity;

@@ -8,6 +8,7 @@
 #import <CoreUI/CUIBase.h>
 #import <CoreUI/CUIDisplayGamut.h>
 #import <CoreUI/CUIRenditionKey.h>
+#import <CoreUI/CUITypes.h>
 #import <Foundation/Foundation.h>
 
 CUI_ASSUME_NONNULL_BEGIN
@@ -20,15 +21,15 @@ CUI_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) CUIRenditionKey *renditionKey;
 @property (readonly, nonatomic) NSString *keySignature;
-@property (readonly, nonatomic) NSUInteger subtype;
-@property (readonly, nonatomic) NSInteger sizeClassHorizontal;
-@property (readonly, nonatomic) NSInteger sizeClassVertical;
-@property (readonly, nonatomic) NSInteger memoryClass;
-@property (readonly, nonatomic) NSInteger graphicsClass;
+@property (readonly, nonatomic) CUISubtype subtype;
+@property (readonly, nonatomic) CUIUserInterfaceSizeClass sizeClassHorizontal;
+@property (readonly, nonatomic) CUIUserInterfaceSizeClass sizeClassVertical;
+@property (readonly, nonatomic) CUIMemoryClass memoryClass;
+@property (readonly, nonatomic) CUIGraphicalClass graphicsClass;
 @property (readonly, nonatomic) NSInteger appearanceIdentifier;
 @property (readonly, nonatomic) NSString *renditionName;
 @property (readonly, nonatomic) BOOL representsOnDemandContent;
-@property (readonly, nonatomic) NSInteger idiom;
+@property (readonly, nonatomic) CUIDeviceIdiom idiom;
 @property (readonly, nonatomic) CUIDisplayGamut displayGamut;
 @property (readonly, nonatomic) NSInteger layoutDirection;
 @property (readonly, nonatomic) NSInteger localization;
