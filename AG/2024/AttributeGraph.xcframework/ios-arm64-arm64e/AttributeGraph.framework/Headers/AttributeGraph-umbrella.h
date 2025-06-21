@@ -13,6 +13,7 @@
 #include "AGGraph.h"
 #include "AGGraphContext.h"
 #include "AGGraphDescription.h"
+#include "AGGraphTracing.h"
 #include "AGInputOptions.h"
 #include "AGSearchOptions.h"
 #include "AGSubgraph.h"
