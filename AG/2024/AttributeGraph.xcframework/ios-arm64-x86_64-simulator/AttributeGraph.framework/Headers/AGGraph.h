@@ -1,9 +1,6 @@
 //
 //  AGGraph.h
-//
-//
-//  Created by Kyle on 2024/2/5.
-//
+//  AttributeGraph
 
 #ifndef AGGraph_h
 #define AGGraph_h
@@ -14,9 +11,9 @@
 
 // Note: Place all structure declaration in a single place to avoid header cycle dependency
 
-typedef struct AG_BRIDGED_TYPE(id) AGGraphStorage * AGGraphRef;
-typedef struct AG_BRIDGED_TYPE(id) AGGraphContextStorage * AGGraphContextRef;
-typedef struct AG_BRIDGED_TYPE(id) AGSubgraphStorage * AGSubgraphRef;
+typedef struct AG_BRIDGED_TYPE(id) AGGraphStorage * AGGraphRef AG_SWIFT_NAME(Graph);
+typedef struct AG_BRIDGED_TYPE(id) AGSubgraphStorage * AGSubgraphRef AG_SWIFT_NAME(Subgraph);
+typedef struct AG_BRIDGED_TYPE(id) AGGraphContextStorage * AGGraphContextRef AG_SWIFT_NAME(GraphContext);
 
 struct AGGraphStorage;
 struct AGGraphContextStorage;
