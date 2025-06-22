@@ -103,6 +103,10 @@ AG_EXPORT
 AG_REFINED_FOR_SWIFT
 void AGGraphSetNeedsUpdate(AGGraphRef graph) AG_SWIFT_NAME(AGGraphRef.setNeedsUpdate(self:));
 
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGGraphAnyInputsChanged(const AGAttribute *inputs AG_COUNTED_BY(count), size_t count);
+
 AG_EXTERN_C_END
 
 AG_ASSUME_NONNULL_END

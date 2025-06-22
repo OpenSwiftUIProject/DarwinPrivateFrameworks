@@ -42,6 +42,13 @@ extension AnyAttribute : Swift.CustomStringConvertible {
   }
 }
 public typealias AttributeUpdateBlock = () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void
+extension Swift.Array where Element == AnyAttribute {
+  @_transparent public var anyInputsChanged: Swift.Bool {
+    @_transparent get {
+        __AGGraphAnyInputsChanged(self, count)
+    }
+  }
+}
 @frozen @propertyWrapper @dynamicMemberLookup public struct Attribute<Value> {
   public var identifier: AnyAttribute
   public init(identifier: AnyAttribute)

@@ -43,6 +43,8 @@
 #define AG_CONSTEXPR
 #endif
 
+#define AG_COUNTED_BY(N) __counted_by(N)
+
 #include <CoreFoundation/CoreFoundation.h>
 #include <TargetConditionals.h>
 #ifndef TARGET_OS_DARWIN
