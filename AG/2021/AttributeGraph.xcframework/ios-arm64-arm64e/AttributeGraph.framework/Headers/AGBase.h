@@ -43,6 +43,14 @@
 #define AG_CONSTEXPR
 #endif
 
+#if !defined(__counted_by)
+#if __has_attribute(__counted_by__)
+#define __counted_by(N) __attribute__((__counted_by__(N)))
+#else
+#define __counted_by(N)
+#endif
+#endif
+
 #define AG_COUNTED_BY(N) __counted_by(N)
 
 #include <CoreFoundation/CoreFoundation.h>
