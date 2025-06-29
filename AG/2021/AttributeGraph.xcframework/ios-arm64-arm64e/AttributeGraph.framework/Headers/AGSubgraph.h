@@ -63,6 +63,10 @@ void AGSubgraphAddChild(AGSubgraphRef parent, AGSubgraphRef child) AG_SWIFT_NAME
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
+void AGSubgraphAddChild2(AGSubgraphRef parent, AGSubgraphRef child, uint8_t tag) AG_SWIFT_NAME(AGSubgraphRef.addChild(self:_:tag:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
 void AGSubgraphRemoveChild(AGSubgraphRef parent, AGSubgraphRef child) AG_SWIFT_NAME(AGSubgraphRef.removeChild(self:_:));
 
 AG_EXPORT
