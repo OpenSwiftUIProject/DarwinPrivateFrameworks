@@ -15,25 +15,25 @@ AG_EXTERN_C_BEGIN
 typedef struct AGFieldRange {
     size_t offset;
     size_t size;
-} AGFieldRange;
+} AGFieldRange AG_SWIFT_STRUCT AG_SWIFT_NAME(FieldRange);
 
-typedef struct AGComparisonStateStorage *AGComparisonState;
-
-AG_EXPORT
-AG_REFINED_FOR_SWIFT
-const void *AGComparisonStateGetDestination(AGComparisonState state);
+typedef const void *AGComparisonState AG_SWIFT_STRUCT AG_SWIFT_NAME(ComparisonState);
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-const void *AGComparisonStateGetSource(AGComparisonState state);
+const void *AGComparisonStateGetDestination(AGComparisonState state) AG_SWIFT_NAME(getter:AGComparisonState.destination(self:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGFieldRange AGComparisonStateGetFieldRange(AGComparisonState state);
+const void *AGComparisonStateGetSource(AGComparisonState state) AG_SWIFT_NAME(getter:AGComparisonState.source(self:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGTypeID AGComparisonStateGetFieldType(AGComparisonState state);
+AGFieldRange AGComparisonStateGetFieldRange(AGComparisonState state) AG_SWIFT_NAME(getter:AGComparisonState.fieldRange(self:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+AGTypeID AGComparisonStateGetFieldType(AGComparisonState state) AG_SWIFT_NAME(getter:AGComparisonState.fieldType(self:));
 
 typedef AG_ENUM(uint8_t, AGComparisonMode) {
     AGComparisonModeBitwise = 0,
