@@ -132,7 +132,7 @@ extension AttributeGraph.Attribute {
   public init()
 }
 extension AttributeGraph.External : AttributeGraph._AttributeBody {
-  public static var comparisonMode: AGComparisonMode {
+  public static var comparisonMode: ComparisonMode {
     get
   }
   public static var flags: AGAttributeTypeFlags {
@@ -177,7 +177,7 @@ public protocol _AttributeBody {
   static func _destroySelf(_ pointer: Swift.UnsafeMutableRawPointer)
   static var _hasDestroySelf: Swift.Bool { get }
   static func _updateDefault(_ pointer: Swift.UnsafeMutableRawPointer)
-  static var comparisonMode: AGComparisonMode { get }
+  static var comparisonMode: ComparisonMode { get }
   static var flags: AGAttributeTypeFlags { get }
 }
 extension AttributeGraph._AttributeBody {
@@ -186,7 +186,7 @@ extension AttributeGraph._AttributeBody {
     get
   }
   public static func _updateDefault(_ pointer: Swift.UnsafeMutableRawPointer)
-  public static var comparisonMode: AGComparisonMode {
+  public static var comparisonMode: ComparisonMode {
     get
   }
   public static var flags: AGAttributeTypeFlags {
@@ -559,10 +559,10 @@ extension Subgraph {
   public static func addTreeValue<Value>(_ value: AttributeGraph.Attribute<Value>, forKey key: Swift.UnsafePointer<Swift.Int8>, flags: Swift.UInt32)
   public static func endTreeElement<Value>(value: AttributeGraph.Attribute<Value>)
 }
-public func compareValues<Value>(_ lhs: Value, _ rhs: Value, mode: AGComparisonMode = ._3) -> Swift.Bool
-public func compareValues<Value>(_ lhs: Value, _ rhs: Value, options: AGComparisonOptions) -> Swift.Bool
-extension AGComparisonOptions {
-  public init(mode: AGComparisonMode)
+public func compareValues<Value>(_ lhs: Value, _ rhs: Value, mode: ComparisonMode = .equatableAlways) -> Swift.Bool
+public func compareValues<Value>(_ lhs: Value, _ rhs: Value, options: ComparisonOptions) -> Swift.Bool
+extension ComparisonOptions {
+  public init(mode: ComparisonMode)
 }
 @_silgen_name("AGTypeApplyFields")
 public func AGTypeApplyFields(_ type: any Any.Type, body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void)
