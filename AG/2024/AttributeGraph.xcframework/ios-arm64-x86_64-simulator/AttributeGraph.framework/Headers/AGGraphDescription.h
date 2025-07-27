@@ -6,6 +6,7 @@
 #define AGGraphDescription_h
 
 #include "AGBase.h"
+#include "AGGraph.h"
 
 AG_ASSUME_NONNULL_BEGIN
 
@@ -23,11 +24,23 @@ const CFStringRef AGDescriptionIncludeValues AG_SWIFT_NAME(AGGraphRef.descriptio
 
 static const CFStringRef AGDescriptionFormatDot AG_SWIFT_NAME(AGGraphRef.descriptionFormatDot) = CFSTR("graph/dot");
 
-static const CFStringRef AGDescriptionFormatDictionary AG_SWIFT_NAME(AGGraphRef.descriptionFormatDictionary) = CFSTR("graph/dictionary");
+static const CFStringRef AGDescriptionFormatDictionary AG_SWIFT_NAME(AGGraphRef.descriptionFormatDictionary) = CFSTR("graph/dict");
 
 static const CFStringRef AGDescriptionAllGraphs AG_SWIFT_NAME(AGGraphRef.descriptionAllGraphs) = CFSTR("all_graphs");
 
 #endif
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGGraphArchiveJSON(char const * _Nullable name) AG_SWIFT_NAME(AGGraphRef.archiveJSON(name:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGGraphArchiveJSON2(char const * _Nullable name, uint8_t options) AG_SWIFT_NAME(AGGraphRef.archiveJSON(name:options:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+_Nullable CFTypeRef AGGraphDescription(_Nullable AGGraphRef graph, CFDictionaryRef options) AG_SWIFT_NAME(AGGraphRef.description(_:options:));
 
 AG_EXTERN_C_END
 
