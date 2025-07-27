@@ -18,6 +18,15 @@ AG_EXTERN_C_BEGIN
 AG_EXPORT
 const CFStringRef AGDescriptionFormat AG_SWIFT_NAME(AGGraphRef.descriptionFormat);
 
+AG_EXPORT
+const CFStringRef AGDescriptionIncludeValues AG_SWIFT_NAME(AGGraphRef.descriptionIncludeValues);
+
+static const CFStringRef AGDescriptionFormatDot AG_SWIFT_NAME(AGGraphRef.descriptionFormatDot) = CFSTR("graph/dot");
+
+static const CFStringRef AGDescriptionFormatDictionary AG_SWIFT_NAME(AGGraphRef.descriptionFormatDictionary) = CFSTR("graph/dictionary");
+
+static const CFStringRef AGDescriptionAllGraphs AG_SWIFT_NAME(AGGraphRef.descriptionAllGraphs) = CFSTR("all_graphs");
+
 #endif
 
 AG_EXTERN_C_END

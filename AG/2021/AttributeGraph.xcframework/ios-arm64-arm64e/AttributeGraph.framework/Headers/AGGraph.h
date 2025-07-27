@@ -43,6 +43,10 @@ void AGGraphArchiveJSON(char const * _Nullable name) AG_SWIFT_NAME(AGGraphRef.ar
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
+void AGGraphArchiveJSON2(char const * _Nullable name, uint8_t options) AG_SWIFT_NAME(AGGraphRef.archiveJSON(name:options:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
 _Nullable CFTypeRef AGGraphDescription(_Nullable AGGraphRef graph, CFDictionaryRef options) AG_SWIFT_NAME(AGGraphRef.description(_:options:));
 
 AG_EXPORT
