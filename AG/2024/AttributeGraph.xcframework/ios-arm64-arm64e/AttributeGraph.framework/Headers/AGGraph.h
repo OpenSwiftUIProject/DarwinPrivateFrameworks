@@ -23,6 +23,8 @@ typedef uint32_t AGAttribute AG_SWIFT_STRUCT AG_SWIFT_NAME(AnyAttribute);
 
 AG_ASSUME_NONNULL_BEGIN
 
+AG_IMPLICIT_BRIDGING_ENABLED
+
 // MARK: - Exported C functions
 
 AG_EXTERN_C_BEGIN
@@ -108,6 +110,8 @@ AG_REFINED_FOR_SWIFT
 bool AGGraphAnyInputsChanged(const AGAttribute *inputs AG_COUNTED_BY(count), size_t count);
 
 AG_EXTERN_C_END
+
+AG_IMPLICIT_BRIDGING_DISABLED
 
 AG_ASSUME_NONNULL_END
 

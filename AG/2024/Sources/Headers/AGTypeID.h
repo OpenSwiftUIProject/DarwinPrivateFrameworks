@@ -10,6 +10,8 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
+AG_IMPLICIT_BRIDGING_ENABLED
+
 typedef struct AG_SWIFT_NAME(_Metadata) AGSwiftMetadata {
 } AGSwiftMetadata;
 
@@ -106,6 +108,8 @@ AG_REFINED_FOR_SWIFT
 char const* _Nullable AGTypeNominalDescriptorName(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.nominalDescriptorName(self:));
 
 AG_EXTERN_C_END
+
+AG_IMPLICIT_BRIDGING_DISABLED
 
 AG_ASSUME_NONNULL_END
 

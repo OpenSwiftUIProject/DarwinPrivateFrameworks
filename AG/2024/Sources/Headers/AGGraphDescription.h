@@ -1,9 +1,6 @@
 //
 //  AGGraphDescription.h
-//
-//
-//  Created by Kyle on 2024/1/21.
-//
+//  AttributeGraph
 
 #ifndef AGGraphDescription_h
 #define AGGraphDescription_h
@@ -12,12 +9,20 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
-#if AG_OBJC_FOUNDATION
+AG_IMPLICIT_BRIDGING_ENABLED
+
 AG_EXTERN_C_BEGIN
+
+#if AG_OBJC_FOUNDATION
+
 AG_EXPORT
-CFStringRef AGDescriptionFormat AG_SWIFT_NAME(AGGraphRef.descriptionFormat);
-AG_EXTERN_C_END
+const CFStringRef AGDescriptionFormat AG_SWIFT_NAME(AGGraphRef.descriptionFormat);
+
 #endif
+
+AG_EXTERN_C_END
+
+AG_IMPLICIT_BRIDGING_DISABLED
 
 AG_ASSUME_NONNULL_END
 

@@ -579,7 +579,7 @@ extension Metadata : Swift.Hashable, Swift.CustomStringConvertible {
   }
   @inlinable @inline(__always) public var description: Swift.String {
     get {
-        __AGTypeDescription(self).takeUnretainedValue() as NSString as String
+        __AGTypeDescription(self) as NSString as String
     }
   }
   @inlinable @inline(__always) internal func forEachField(do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void) {

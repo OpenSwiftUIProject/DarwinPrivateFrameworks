@@ -1,9 +1,6 @@
 //
 //  AGDebugServer.h
-//  
-//
-//  Created by Kyle on 2024/2/17.
-//
+//  AttributeGraph
 
 #ifndef AGDebugServer_h
 #define AGDebugServer_h
@@ -13,6 +10,8 @@
 #if TARGET_OS_DARWIN
 
 AG_ASSUME_NONNULL_BEGIN
+
+AG_IMPLICIT_BRIDGING_ENABLED
 
 typedef struct AGDebugServerStorage AGDebugServerStorage;
 
@@ -30,6 +29,8 @@ CFURLRef _Nullable AGDebugServerCopyURL(void) AG_SWIFT_NAME(AGDebugServer.copyUR
 AG_EXPORT
 void AGDebugServerRun(int timeout) AG_SWIFT_NAME(AGDebugServer.run(timeout:));
 AG_EXTERN_C_END
+
+AG_IMPLICIT_BRIDGING_DISABLED
 
 AG_ASSUME_NONNULL_END
 

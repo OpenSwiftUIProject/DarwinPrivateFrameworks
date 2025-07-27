@@ -1,9 +1,6 @@
 //
 //  AGSubgraph.h
-//  
-//
-//  Created by Kyle on 2024/2/15.
-//
+//  AttributeGraph.h
 
 #ifndef AGSubgraph_h
 #define AGSubgraph_h
@@ -16,6 +13,8 @@
 #include "CFRuntime.h"
 
 AG_ASSUME_NONNULL_BEGIN
+
+AG_IMPLICIT_BRIDGING_ENABLED
 
 // MARK: - Exported C functions
 
@@ -112,7 +111,8 @@ void AGSubgraphEndTreeElement(AGAttribute attribute);
 
 AG_EXTERN_C_END
 
-AG_ASSUME_NONNULL_END
+AG_IMPLICIT_BRIDGING_DISABLED
 
+AG_ASSUME_NONNULL_END
 
 #endif /* AGSubgraph_h */

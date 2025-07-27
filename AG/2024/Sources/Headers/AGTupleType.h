@@ -10,6 +10,8 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
+AG_IMPLICIT_BRIDGING_ENABLED
+
 typedef const AGSwiftMetadata *AGTupleType AG_SWIFT_STRUCT AG_SWIFT_NAME(TupleType);
 
 typedef AG_CLOSED_ENUM(uint32_t, AGTupleCopyOptions) {
@@ -80,6 +82,8 @@ AG_REFINED_FOR_SWIFT
 void AGTupleWithBuffer(AGTupleType tuple_type, size_t count, const void (* function)(const AGUnsafeMutableTuple mutableTuple, const void * context AG_SWIFT_CONTEXT) AG_SWIFT_CC(swift), const void *context);
 
 AG_EXTERN_C_END
+
+AG_IMPLICIT_BRIDGING_DISABLED
 
 AG_ASSUME_NONNULL_END
 
