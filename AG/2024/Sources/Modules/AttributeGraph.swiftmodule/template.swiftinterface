@@ -549,6 +549,9 @@ extension Graph {
   @_silgen_name("AGGraphSetOutputValue")
   @inline(__always) @inlinable public static func setOutputValue<Value>(_ value: Swift.UnsafePointer<Value>)
 }
+extension Graph {
+  public func archiveJSON(name: Swift.String?)
+}
 extension Subgraph {
   public func addObserver(_ observer: () -> Swift.Void) -> Swift.Int
   public func apply<Value>(_ body: () -> Value) -> Value
