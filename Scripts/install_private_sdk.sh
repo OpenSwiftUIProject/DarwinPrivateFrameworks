@@ -149,3 +149,5 @@ echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
 # Install AG frameworks
 echo "Installing AttributeGraph frameworks..."
 "$REPO_ROOT/Scripts/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+# TODO: Only support install AG for now as other frameworks are not ready yet
