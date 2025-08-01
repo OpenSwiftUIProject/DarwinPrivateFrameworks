@@ -2,6 +2,14 @@
 
 set -e
 
+# Function to get absolute path
+filepath() {
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
+# Define repository root
+REPO_ROOT=$(filepath "$(dirname "$0")/..")
+
 # Function to display usage
 usage() {
     echo "Usage: $0 <platform> [xcode_path] [-f]"
@@ -42,9 +50,14 @@ if [ "$PLATFORM" != "MacOSX" ] && [ "$PLATFORM" != "iPhoneSimulator" ]; then
     exit 1
 fi
 
+# FIXME: Traced by #4
+if [ "$PLATFORM" == "iPhoneSimulator" ]; then
+    echo "[TODO]: iPhoneSimulator has not been implemented yet"
+    exit 1
+fi
+
 # Validate Xcode path
-if [ ! -d "$XCODE_PATH" ]; then
-    echo "Error: Xcode path does not exist: $XCODE_PATH"
+if [ ! -d "$XCODE_PATH" ]; then    echo "Error: Xcode path does not exist: $XCODE_PATH"
     exit 1
 fi
 
@@ -101,8 +114,38 @@ if [ -f "$PLIST_PATH" ]; then
         plutil -replace CanonicalName -string "$NEW_CANONICAL_NAME" "$PLIST_PATH"
         echo "  Updated CanonicalName: $CURRENT_CANONICAL_NAME -> $NEW_CANONICAL_NAME"
     fi
+    
+    # Get version number for soft links
+    VERSION=$(plutil -extract Version raw "$PLIST_PATH" 2>/dev/null || echo "")
+    
+    # Create version-based soft links
+    if [ -n "$VERSION" ]; then
+        SDK_DIR="$XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs"
+        cd "$SDK_DIR"
+        
+        if [ "$PLATFORM" = "MacOSX" ]; then
+            # Extract major and minor version (e.g., 15.5 from 15.5.0)
+            MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
+            MAJOR=$(echo "$VERSION" | cut -d. -f1)
+            
+            ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
+            ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR.Internal.sdk"
+            echo "  Created soft links: $PLATFORM$MAJOR_MINOR.Internal.sdk and $PLATFORM$MAJOR.Internal.sdk"
+            
+        else
+            # Extract major and minor version
+            MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
+            
+            ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
+            echo "  Created soft link: $PLATFORM$MAJOR_MINOR.Internal.sdk"
+        fi
+    fi
 else
     echo "Warning: SDKSettings.plist not found at: $PLIST_PATH"
 fi
 
 echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
+
+# Install AG frameworks
+echo "Installing AttributeGraph frameworks..."
+"$REPO_ROOT/Scripts/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
