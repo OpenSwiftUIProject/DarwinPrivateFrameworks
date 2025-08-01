@@ -8,6 +8,16 @@ This project contains private frameworks for Darwin platforms, including `Attrib
 - `RB/`: Contains the `RenderBox` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
 
+## Update
+
+After editing the sources, you need to update the xcframeworks to reflect the changes.
+
+To update the xcframework, run the following commands:
+
+```shell
+swift package update-xcframeworks
+```
+
 ## Usage
 
 There are three ways supported to integrate and use these private frameworks:
@@ -37,20 +47,26 @@ For Xcode projects, first add the dependency as above and then manually drag the
 >
 > In the future, once the project is stable, we may consider publishing a complete xcframework on GitHub for direct dependency.
 
-### 3. Globally use
+### 3. Globally use via Internal SDK
 
-Use the provided installation script to set up an internal SDK to use the private frameworks globally:
-
-```shell
-Scripts/install_private_sdk.sh
-```
-
-## Update
-
-After editing the sources, you need to update the xcframeworks to reflect the changes.
-
-To update the xcframework, run the following commands:
+1. Use the following installation script to set up an internal SDK to use the private frameworks globally:
 
 ```shell
-swift package update-xcframeworks
+Scripts/install_private_sdk.sh MacOSX
 ```
+
+2. Choose the corresponding Internal SDK as the Base SDK in your Xcode project settings.
+
+![](Screenshots/base_sdk.png)
+
+3. in your target's General tab, add the corresponding private framework shown in Apple SDKs part to the "Frameworks, Libraries, and Embedded Content" section.
+
+![](Screenshots/add_framework.png)
+
+4. In your Swift code, import the frameworks as needed:
+
+```swift
+import AttributeGraph
+```
+
+![](Screenshots/import_framework.png)
