@@ -4,12 +4,17 @@ This project contains private frameworks for Darwin platforms, including `Attrib
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, and iOS[^1] platform.
 
-> [!WARNING]
+> [!CAUTION]
 > These private frameworks are **ONLY** for research and educational purposes.
 >
-> **DO NOT** use them in App Store submissions or ship them to production/release environments. Using private frameworks in App Store apps will 
+> **DO NOT** use them in App Store submissions or ship them to production/release environments.
 >
-> result in rejection and may violate Apple's developer agreement.
+> Using private frameworks in App Store apps will result in rejection and will crash your app in future OS update.
+
+> [!WARNING]
+> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**. Other system versions are not guaranteed to work.
+>
+> Please resolve any compatibility issues yourself. Contributions are welcome!
 
 ## Structure
 
