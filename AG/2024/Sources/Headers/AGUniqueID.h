@@ -1,15 +1,15 @@
 //
 //  AGUniqueID.h
-//  
+//  AttributeGraph
 //
-//  Created by Kyle on 2023/10/9.
-//
+//  Audited for iOS 18.0
+//  Status: Complete
 
 #ifndef AGUniqueID_h
 #define AGUniqueID_h
 
-#include "AGBase.h"
-typedef long long AGUniqueID;
+#include <AttributeGraph/AGBase.h>
+typedef long AGUniqueID;
 
 AG_EXTERN_C_BEGIN
 AG_EXPORT
