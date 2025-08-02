@@ -91,22 +91,51 @@ cp -R "$ORIGINAL_SDK_PATH" "$INTERNAL_SDK_PATH"
 PLIST_PATH="$INTERNAL_SDK_PATH/SDKSettings.plist"
 
 if [ -f "$PLIST_PATH" ]; then
-    echo "Updating SDKSettings.plist..."
-    
-    # Get current DisplayName and add " Internal"
-    CURRENT_DISPLAY_NAME=$(plutil -extract DisplayName raw "$PLIST_PATH" 2>/dev/null || echo "")
-    if [ -n "$CURRENT_DISPLAY_NAME" ]; then
-        NEW_DISPLAY_NAME="$CURRENT_DISPLAY_NAME Internal"
-        plutil -replace DisplayName -string "$NEW_DISPLAY_NAME" "$PLIST_PATH"
-        echo "  Updated DisplayName: $CURRENT_DISPLAY_NAME -> $NEW_DISPLAY_NAME"
+    # Update SDKSettings.plist if it exists
+    PLIST_PATH="$INTERNAL_SDK_PATH/SDKSettings.plist"
+    if [ -f "$PLIST_PATH" ]; then
+        echo "Updating SDKSettings.plist..."
+
+        # Get current DisplayName and add " Internal"
+        CURRENT_DISPLAY_NAME=$(plutil -extract DisplayName raw "$PLIST_PATH" 2>/dev/null || echo "")
+        if [ -n "$CURRENT_DISPLAY_NAME" ]; then
+            NEW_DISPLAY_NAME="$CURRENT_DISPLAY_NAME Internal"
+            plutil -replace DisplayName -string "$NEW_DISPLAY_NAME" "$PLIST_PATH"
+            echo "  Updated DisplayName: $CURRENT_DISPLAY_NAME -> $NEW_DISPLAY_NAME"
+        fi
+
+          # Get current CanonicalName and add ".internal"
+        CURRENT_CANONICAL_NAME=$(plutil -extract CanonicalName raw "$PLIST_PATH" 2>/dev/null || echo "")
+        if [ -n "$CURRENT_CANONICAL_NAME" ]; then
+            NEW_CANONICAL_NAME="$CURRENT_CANONICAL_NAME.internal"
+            plutil -replace CanonicalName -string "$NEW_CANONICAL_NAME" "$PLIST_PATH"
+            echo "  Updated CanonicalName: $CURRENT_CANONICAL_NAME -> $NEW_CANONICAL_NAME"
+        fi
+    else
+        echo "Warning: SDKSettings.plist not found at: $PLIST_PATH"
     fi
+
     
-    # Get current CanonicalName and add ".internal"
-    CURRENT_CANONICAL_NAME=$(plutil -extract CanonicalName raw "$PLIST_PATH" 2>/dev/null || echo "")
-    if [ -n "$CURRENT_CANONICAL_NAME" ]; then
-        NEW_CANONICAL_NAME="$CURRENT_CANONICAL_NAME.internal"
-        plutil -replace CanonicalName -string "$NEW_CANONICAL_NAME" "$PLIST_PATH"
-        echo "  Updated CanonicalName: $CURRENT_CANONICAL_NAME -> $NEW_CANONICAL_NAME"
+    # Update SDKSettings.json if it exists
+    JSON_PATH="$INTERNAL_SDK_PATH/SDKSettings.json"
+    if [ -f "$JSON_PATH" ]; then
+        echo "Updating SDKSettings.json..."
+        
+        # Get current DisplayName and add " Internal"
+        if [ -n "$CURRENT_DISPLAY_NAME" ]; then
+            NEW_DISPLAY_NAME="$CURRENT_DISPLAY_NAME Internal"
+            plutil -replace DisplayName -string "$NEW_DISPLAY_NAME" "$JSON_PATH"
+            echo "  Updated DisplayName in JSON: $CURRENT_DISPLAY_NAME -> $NEW_DISPLAY_NAME"
+        fi
+        
+        # Get current CanonicalName and add ".internal"
+        if [ -n "$CURRENT_CANONICAL_NAME" ]; then
+            NEW_CANONICAL_NAME="$CURRENT_CANONICAL_NAME.internal"
+            plutil -replace CanonicalName -string "$NEW_CANONICAL_NAME" "$JSON_PATH"
+            echo "  Updated CanonicalName in JSON: $CURRENT_CANONICAL_NAME -> $NEW_CANONICAL_NAME"
+        fi
+    else
+        echo "Warning: SDKSettings.json not found at: $JSON_PATH"
     fi
     
     # Get version number for soft links

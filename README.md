@@ -75,7 +75,7 @@ Scripts/install_private_sdk.sh MacOSX
 
 ![](Screenshots/base_sdk.png)
 
-> For MacOSX platform, you can use the autodetected macOS Internal SDK (corresponding to `macosx.internal`), or choose other... and enter the canonical name of the internal SDK (e.g. `macosx.15.5.internal`).
+> For MacOSX platform, choose other... and enter the canonical name of the internal SDK (e.g. `macosx.15.5.internal`).
 >
 > For iPhoneSimulator platform, choose other... and enter the canonical name of the internal SDK (e.g. `iphonesimulator.18.5.internal`).
 >
