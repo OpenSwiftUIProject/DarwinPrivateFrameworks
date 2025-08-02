@@ -92,9 +92,6 @@ generate_framework $framework_name ios-arm64-arm64e
 cd ../
 rm -r ./$framework_name.swiftmodule
 
-# Remove Swift module from module.modulemap for iOS
-sed -i '' '/module AttributeGraph\.Swift {/,/}/d' ./module.modulemap
-
 generate_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
