@@ -519,7 +519,6 @@ extension AttributeGraph.WeakAttribute : Swift.CustomStringConvertible {
 }
 @_silgen_name("AGGraphGetWeakValue")
 @inline(__always) @inlinable internal func AGGraphGetWeakValue<Value>(_ attribute: AttributeGraph.AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
-public let ATTRIBUTEGRAPH_RELEASE: Swift.Int32
 extension Graph {
   public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: AGAttributeTypeFlags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
 }
