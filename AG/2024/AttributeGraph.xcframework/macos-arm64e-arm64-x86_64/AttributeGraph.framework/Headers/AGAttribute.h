@@ -1,23 +1,20 @@
 //
 //  AGAttribute.h
-//
-//
-//  Created by Kyle on 2023/8/30.
-//
+//  AttributeGraph
 
 #ifndef AGAttribute_h
 #define AGAttribute_h
 
-#include "AGBase.h"
-#include "AGAttributeInfo.h"
-#include "AGAttributeFlags.h"
-#include "AGCachedValueOptions.h"
-#include "AGGraph.h"
-#include "AGInputOptions.h"
-#include "AGTypeID.h"
-#include "AGValue.h"
-#include "AGValueOptions.h"
-#include "AGValueState.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGAttributeInfo.h>
+#include <AttributeGraph/AGAttributeFlags.h>
+#include <AttributeGraph/AGCachedValueOptions.h>
+#include <AttributeGraph/AGGraph.h>
+#include <AttributeGraph/AGInputOptions.h>
+#include <AttributeGraph/AGTypeID.h>
+#include <AttributeGraph/AGValue.h>
+#include <AttributeGraph/AGValueOptions.h>
+#include <AttributeGraph/AGValueState.h>
 
 AG_ASSUME_NONNULL_BEGIN
 
@@ -163,3 +160,4 @@ AG_EXTERN_C_END
 AG_ASSUME_NONNULL_END
 
 #endif /* AGAttribute_h */
+

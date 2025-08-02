@@ -1,14 +1,11 @@
 //
 //  AGCachedValueOptions.h
-//
-//
-//  Created by Kyle on 2024/2/23.
-//
+//  AttributeGraph
 
 #ifndef AGCachedValueOptions_h
 #define AGCachedValueOptions_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGCachedValueOptions) {
     AGCachedValueOptions_0 = 0,

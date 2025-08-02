@@ -5,8 +5,8 @@
 #ifndef AGGraphDescription_h
 #define AGGraphDescription_h
 
-#include "AGBase.h"
-#include "AGGraph.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGGraph.h>
 
 AG_ASSUME_NONNULL_BEGIN
 

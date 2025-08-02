@@ -1,14 +1,11 @@
 //
 //  AGValue.h
-//
-//
-//  Created by Kyle on 2024/2/19.
-//
+//  AttributeGraph
 
 #ifndef AGValue_h
 #define AGValue_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
 AG_ASSUME_NONNULL_BEGIN
 

@@ -1,14 +1,11 @@
 //
 //  AGAttributeTypeFlags.h
-//
-//
-//  Created by Kyle on 2023/9/25.
-//
+//  AttributeGraph
 
 #ifndef AGAttributeTypeFlags_h
 #define AGAttributeTypeFlags_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGAttributeTypeFlags) {
     AGAttributeTypeFlagsDefault = 0,

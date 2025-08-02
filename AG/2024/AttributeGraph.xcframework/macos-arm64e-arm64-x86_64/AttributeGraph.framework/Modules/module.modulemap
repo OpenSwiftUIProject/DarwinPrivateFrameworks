@@ -4,8 +4,3 @@ framework module AttributeGraph [system] {
   export *
   module * { export * }
 }
-
-module AttributeGraph.Swift {
-  header "AttributeGraph-Swift.h"
-  requires objc
-}

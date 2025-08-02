@@ -1,14 +1,11 @@
 //
 //  AGChangedValueFlags.h
-//
-//
-//  Created by Kyle on 2024/2/21.
-//
+//  AttributeGraph
 
 #ifndef AGChangedValueFlags_h
 #define AGChangedValueFlags_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGChangedValueFlags) {
     AGChangedValueFlags_1 = 1 << 0,
