@@ -5,11 +5,7 @@
 #ifndef AGVersion_h
 #define AGVersion_h
 
-#include "AGBase.h"
-
-/* UPDATE_BEGIN */
-#define ATTRIBUTEGRAPH_RELEASE 2021
-/* UPDATE_END */
+#include <AttributeGraph/AGBase.h>
 
 #define ATTRIBUTEGRAPH_RELEASE_2021 2021
 #define ATTRIBUTEGRAPH_RELEASE_2024 2024

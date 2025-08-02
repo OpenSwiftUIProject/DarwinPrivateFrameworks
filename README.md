@@ -31,7 +31,7 @@ After editing the sources, you need to update the xcframeworks to reflect the ch
 To update the xcframework, run the following commands:
 
 ```shell
-swift package update-xcframeworks
+swift package update-xcframeworks --allow-writing-to-package-directory
 ```
 
 ## Usage

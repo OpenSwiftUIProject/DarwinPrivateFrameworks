@@ -1,14 +1,11 @@
 //
 //  AGCounterQueryType.h
-//
-//
-//  Created by Kyle on 2024/3/8.
-//
+//  AttributeGraph
 
 #ifndef AGCounterQueryType_h
 #define AGCounterQueryType_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
 typedef AG_ENUM(uint32_t, AGCounterQueryType) {
     AGCounterQueryType_0,

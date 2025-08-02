@@ -1,15 +1,12 @@
 //
 //  AGWeakAttribute.h
-//  
-//
-//  Created by Kyle on 2024/2/27.
-//
+//  AttributeGraph
 
 #ifndef AGWeakAttribute_hpp
 #define AGWeakAttribute_hpp
 
-#include "AGBase.h"
-#include "AGAttribute.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGAttribute.h>
 
 AG_ASSUME_NONNULL_BEGIN
 

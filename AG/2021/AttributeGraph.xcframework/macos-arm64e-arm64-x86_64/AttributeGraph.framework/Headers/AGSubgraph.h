@@ -1,16 +1,16 @@
 //
 //  AGSubgraph.h
-//  AttributeGraph.h
+//  AttributeGraph
 
 #ifndef AGSubgraph_h
 #define AGSubgraph_h
 
-#include "AGBase.h"
-#include "AGGraph.h"
-#include "AGAttribute.h"
-#include "AGAttributeFlags.h"
-#include "AGUniqueID.h"
-#include "CFRuntime.h"
+#include <AttributeGraph/AGAttribute.h>
+#include <AttributeGraph/AGAttributeFlags.h>
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGGraph.h>
+#include <AttributeGraph/AGUniqueID.h>
+#include <AttributeGraph/Private/CFRuntime.h>
 
 AG_ASSUME_NONNULL_BEGIN
 

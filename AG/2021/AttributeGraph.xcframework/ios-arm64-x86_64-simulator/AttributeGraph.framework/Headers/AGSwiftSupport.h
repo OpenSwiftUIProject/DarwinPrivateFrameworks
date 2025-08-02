@@ -1,9 +1,6 @@
 //
 //  AGSwiftSupport.h
-//
-//
-//  Created by Kyle on 2024/2/25.
-//
+//  AttributeGraph
 
 #ifndef AGSwiftSupport_h
 #define AGSwiftSupport_h

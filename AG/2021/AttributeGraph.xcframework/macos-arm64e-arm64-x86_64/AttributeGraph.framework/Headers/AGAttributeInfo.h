@@ -1,15 +1,12 @@
 //
 //  AGAttributeInfo.h
-//  
-//
-//  Created by Kyle on 2024/2/17.
-//
+//  AttributeGraph
 
 #ifndef AGAttributeInfo_h
 #define AGAttributeInfo_h
 
-#include "AGBase.h"
-#include "AGAttributeType.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGAttributeType.h>
 
 AG_ASSUME_NONNULL_BEGIN
 

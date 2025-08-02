@@ -1,12 +1,15 @@
 //
 //  AGTupleType.h
 //  AttributeGraph
+//
+//  Audited for iOS 18.0
+//  Status: Complete
 
 #ifndef AGTupleType_h
 #define AGTupleType_h
 
-#include "AGBase.h"
-#include "AGTypeID.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGTypeID.h>
 
 AG_ASSUME_NONNULL_BEGIN
 
