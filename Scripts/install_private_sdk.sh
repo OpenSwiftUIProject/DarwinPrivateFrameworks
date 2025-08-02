@@ -13,7 +13,7 @@ REPO_ROOT=$(filepath "$(dirname "$0")/..")
 # Function to display usage
 usage() {
     echo "Usage: $0 <platform> [xcode_path] [-f]"
-    echo "  platform: MacOSX or iPhoneSimulator"
+    echo "  platform: MacOSX, iPhoneSimulator or iPhoneOS"
     echo "  xcode_path: Path to Xcode developer directory (optional, defaults to xcode-select -p)"
     echo "  -f: Force installation (backup existing Internal SDK)"
     echo ""
@@ -45,14 +45,8 @@ else
 fi
 
 # Validate platform
-if [ "$PLATFORM" != "MacOSX" ] && [ "$PLATFORM" != "iPhoneSimulator" ]; then
-    echo "Error: Only MacOSX and iPhoneSimulator platforms are supported"
-    exit 1
-fi
-
-# FIXME: Traced by #4
-if [ "$PLATFORM" == "iPhoneSimulator" ]; then
-    echo "[TODO]: iPhoneSimulator has not been implemented yet"
+if [ "$PLATFORM" != "MacOSX" ] && [ "$PLATFORM" != "iPhoneSimulator" ] && [ "$PLATFORM" != "iPhoneOS" ]; then
+    echo "Error: Only MacOSX, iPhoneSimulator and iPhoneOS platforms are supported"
     exit 1
 fi
 
