@@ -527,24 +527,22 @@ extension Graph {
   public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: AGAttributeTypeFlags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
 }
 extension Graph {
-  @_silgen_name("AGGraphStartProfiling")
-  public static func startProfiling(_ graph: Graph? = nil)
-  @_silgen_name("AGGraphStopProfiling")
-  public static func stopProfiling(_ graph: Graph? = nil)
+  public static func withoutUpdate<V>(_ body: () -> V) -> V
+  public func withoutSubgraphInvalidation<V>(_ body: () -> V) -> V
+  public func withDeadline<V>(_: Swift.UInt64, _: () -> V) -> V
+  public func onInvalidation(_ callback: @escaping (AnyAttribute) -> Swift.Void)
+  public func onUpdate(_ callback: @escaping () -> Swift.Void)
+  public func withMainThreadHandler(_: (() -> Swift.Void) -> Swift.Void, do: () -> Swift.Void)
 }
 extension Graph {
-  @_silgen_name("AGGraphSetInvalidationCallback")
-  public static func setInvalidationCallback(_ graph: Graph, callback: ((AnyAttribute) -> Swift.Void)?)
-  @_silgen_name("AGGraphSetUpdateCallback")
-  public static func setUpdateCallback(_ graph: Graph, callback: (() -> Swift.Void)?)
+  public static func startProfiling()
+  public static func stopProfiling()
+  public static func resetProfile()
 }
 extension Graph {
   @_transparent @inline(__always) public var mainUpdates: Swift.Int {
     @_transparent get { numericCast(counter(for: ._10)) }
   }
-}
-extension Graph {
-  public static func withoutUpdate<Value>(_ body: () -> Value) -> Value
 }
 extension Graph {
   @_silgen_name("AGGraphGetOutputValue")
