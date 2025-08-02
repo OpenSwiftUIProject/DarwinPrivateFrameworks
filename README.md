@@ -75,13 +75,21 @@ Scripts/install_private_sdk.sh MacOSX
 
 ![](Screenshots/base_sdk.png)
 
-> For MacOSX platform, choose other... and enter the canonical name of the internal SDK (e.g. `macosx.15.5.internal`).
+> **SDK Selection Guidelines:**
 >
-> For iPhoneSimulator platform, choose other... and enter the canonical name of the internal SDK (e.g. `iphonesimulator.18.5.internal`).
+> - **Xcode < 16.3**: You can use the auto-detected "Internal SDK" (eg. macOS Internal SDK which corresponds to `macosx.internal`), or manually enter the full canonical name (e.g. `macosx15.5.internal`).
+> - **Xcode ≥ 16.3**: You must use the full canonical name for all platforms due to Xcode's stricter SDK detection:
 >
-> For iPhoneOS platform, choose other... and enter the canonical name of the internal SDK (e.g. `iphoneos.18.5.internal`).
+> For example:
+> - macOS: `macosx15.5.internal`
+> - iOS Simulator: `iphonesimulator18.5.internal`
+> - iOS Device: `iphoneos18.5.internal`
+>
+> **Note**: Command-line `xcodebuild` with `-sdk macosx.internal` works regardless of Xcode version.
+>
+> Similar report: https://github.com/insidegui/researchsdk/commit/71259b0a0e8c92ba31131acbe024096fbe096844
 
-3. in your target's General tab, add the corresponding private framework shown in Apple SDKs part to the "Frameworks, Libraries, and Embedded Content" section.
+3. In your target's General tab, add the corresponding private framework shown in Apple SDKs part to the "Frameworks, Libraries, and Embedded Content" section.
 
 ![](Screenshots/add_framework.png)
 
