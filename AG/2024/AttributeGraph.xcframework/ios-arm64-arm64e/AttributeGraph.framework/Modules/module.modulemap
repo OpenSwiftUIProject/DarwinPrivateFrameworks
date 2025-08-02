@@ -4,4 +4,3 @@ framework module AttributeGraph [system] {
   export *
   module * { export * }
 }
-

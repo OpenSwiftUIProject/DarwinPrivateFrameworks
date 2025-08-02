@@ -12,13 +12,13 @@
 #endif
 
 #if __has_attribute(cold)
-#define __cold          __attribute__((__cold__))
+#define __cold __attribute__((__cold__))
 #else
 #define __cold
 #endif
 
 #if __has_attribute(noreturn)
-#define __dead2         __attribute__((__noreturn__))
+#define __dead2 __attribute__((__noreturn__))
 #else
 #define __dead2
 #endif
@@ -57,12 +57,11 @@
 #define AG_COUNTED_BY(N) __counted_by(N)
 #endif
 
-#include <CoreFoundation/CoreFoundation.h>
-#include <TargetConditionals.h>
-#ifndef TARGET_OS_DARWIN
-#define TARGET_OS_DARWIN TARGET_OS_MAC
-#endif
 #include "AGSwiftSupport.h"
+#include "AGTargetConditionals.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 #define AG_ENUM CF_ENUM
 #define AG_CLOSED_ENUM CF_CLOSED_ENUM
@@ -75,8 +74,6 @@
 #define AG_IMPLICIT_BRIDGING_DISABLED CF_IMPLICIT_BRIDGING_DISABLED
 #define AG_EXPORT CF_EXPORT
 #define AG_BRIDGED_TYPE CF_BRIDGED_TYPE
-
-#define AG_TARGET_OS_DARWIN       1
 
 #if AG_TARGET_OS_DARWIN && __OBJC__
 #define AG_OBJC_FOUNDATION 1

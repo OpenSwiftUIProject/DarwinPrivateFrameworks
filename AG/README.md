@@ -27,6 +27,6 @@ After making change to Sources, run `update.sh` to update the xcframework.
 
 @_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.
 
-### Updating the template.swiftinterface
+### Updating the template.swiftinterface and Headers
 
-See https://github.com/OpenSwiftUIProject/OpenGraph/blob/main/Scripts/gen_ag_interface_template.sh
+See https://github.com/OpenSwiftUIProject/OpenGraph/blob/main/Scripts/gen_ag_template.sh

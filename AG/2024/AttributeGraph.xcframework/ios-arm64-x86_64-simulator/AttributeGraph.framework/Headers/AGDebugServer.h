@@ -5,9 +5,9 @@
 #ifndef AGDebugServer_h
 #define AGDebugServer_h
 
-#include "AGBase.h"
+#include <AttributeGraph/AGBase.h>
 
-#if TARGET_OS_DARWIN
+#if AG_TARGET_OS_DARWIN
 
 AG_ASSUME_NONNULL_BEGIN
 

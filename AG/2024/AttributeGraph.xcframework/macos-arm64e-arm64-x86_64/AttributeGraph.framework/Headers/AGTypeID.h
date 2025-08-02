@@ -1,12 +1,15 @@
 //
 //  AGTypeID.h
 //  AttributeGraph
+//
+//  Audited for iOS 18.0
+//  Status: Complete
 
 #ifndef AGTypeID_h
 #define AGTypeID_h
 
-#include "AGBase.h"
-#include "AGVersion.h"
+#include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGVersion.h>
 
 AG_ASSUME_NONNULL_BEGIN
 
@@ -16,14 +19,6 @@ typedef struct AG_SWIFT_NAME(_Metadata) AGSwiftMetadata {
 } AGSwiftMetadata;
 
 typedef const AGSwiftMetadata *AGTypeID AG_SWIFT_STRUCT AG_SWIFT_NAME(Metadata);
-
-#if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
-
-typedef struct AG_SWIFT_NAME(TypeSignature) AGTypeSignature {
-    uint32_t bytes[5];
-} AGTypeSignature;
-
-#endif /* ATTRIBUTEGRAPH_RELEASE */
 
 typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
     AGTypeKindNone,
@@ -44,11 +39,22 @@ typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions) {
     AGTypeApplyOptions_4 = 1 << 2,
 };
 
+#if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
+
+typedef struct AG_SWIFT_NAME(Signature) AGTypeSignature {
+    uint32_t bytes[5];
+} AGTypeSignature;
+
+#endif
+
 AG_EXTERN_C_BEGIN
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 AGTypeKind AGTypeGetKind(AGTypeID typeID) AG_SWIFT_NAME(getter:Metadata.kind(self:));
+
+// TODO
+// AGOverrideComparisonForTypeDescriptor();
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
@@ -79,13 +85,14 @@ AG_EXPORT
 AG_REFINED_FOR_SWIFT
 bool AGTypeApplyEnumData();
 
+// TODO
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 bool AGTypeApplyMutableEnumData();
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-CFStringRef AGTypeDescription(AGTypeID type);
+CFStringRef AGTypeDescription(AGTypeID typeID);
 
 #if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
 
