@@ -75,6 +75,12 @@ Scripts/install_private_sdk.sh MacOSX
 
 ![](Screenshots/base_sdk.png)
 
+> For MacOSX platform, you can use the autodetected macOS Internal SDK (corresponding to `macosx.internal`), or choose other... and enter the canonical name of the internal SDK (e.g. `macosx.15.5.internal`).
+>
+> For iPhoneSimulator platform, choose other... and enter the canonical name of the internal SDK (e.g. `iphonesimulator.18.5.internal`).
+>
+> For iPhoneOS platform, choose other... and enter the canonical name of the internal SDK (e.g. `iphoneos.18.5.internal`).
+
 3. in your target's General tab, add the corresponding private framework shown in Apple SDKs part to the "Frameworks, Libraries, and Embedded Content" section.
 
 ![](Screenshots/add_framework.png)
