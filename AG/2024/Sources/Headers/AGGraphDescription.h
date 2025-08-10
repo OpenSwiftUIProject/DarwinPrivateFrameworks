@@ -16,11 +16,19 @@ AG_EXTERN_C_BEGIN
 
 #if AG_OBJC_FOUNDATION
 
-AG_EXPORT
-const CFStringRef AGDescriptionFormat AG_SWIFT_NAME(AGGraphRef.descriptionFormat);
+typedef CFStringRef AGDescriptionOption AG_SWIFT_STRUCT AG_SWIFT_NAME(DescriptionOption);
 
 AG_EXPORT
-const CFStringRef AGDescriptionIncludeValues AG_SWIFT_NAME(AGGraphRef.descriptionIncludeValues);
+const AGDescriptionOption AGDescriptionFormat AG_SWIFT_NAME(DescriptionOption.format);
+
+AG_EXPORT
+const AGDescriptionOption AGDescriptionIncludeValues AG_SWIFT_NAME(DescriptionOption.includeValues);
+
+AG_EXPORT
+const AGDescriptionOption AGDescriptionTruncationLimit AG_SWIFT_NAME(DescriptionOption.truncationLimit);
+
+AG_EXPORT
+const AGDescriptionOption AGDescriptionMaxFrames AG_SWIFT_NAME(DescriptionOption.maxFrames);
 
 static const CFStringRef AGDescriptionFormatDot AG_SWIFT_NAME(AGGraphRef.descriptionFormatDot) = CFSTR("graph/dot");
 
@@ -36,7 +44,7 @@ void AGGraphArchiveJSON(char const * _Nullable name) AG_SWIFT_NAME(AGGraphRef.ar
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void AGGraphArchiveJSON2(char const * _Nullable name, uint8_t options) AG_SWIFT_NAME(AGGraphRef.archiveJSON(name:options:));
+void AGGraphArchiveJSON2(char const * _Nullable name, bool exclude_values) AG_SWIFT_NAME(AGGraphRef.archiveJSON(name:excludeValues:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT

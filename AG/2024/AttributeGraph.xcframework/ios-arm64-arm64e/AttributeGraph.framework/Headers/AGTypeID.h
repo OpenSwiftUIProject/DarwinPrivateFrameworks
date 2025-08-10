@@ -33,16 +33,16 @@ typedef AG_CLOSED_ENUM(uint32_t, AGTypeKind) {
 } AG_SWIFT_NAME(Metadata.Kind);
 
 typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions) {
-    AGTypeApplyOptions_0 = 0,
-    AGTypeApplyOptions_1 = 1 << 0,
-    AGTypeApplyOptions_2 = 1 << 1,
-    AGTypeApplyOptions_4 = 1 << 2,
+    AGTypeApplyOptionsEnumerateStructFields = 0,
+    AGTypeApplyOptionsEnumerateClassFields = 1 << 0,
+    AGTypeApplyOptionsContinueAfterUnknownField = 1 << 1,
+    AGTypeApplyOptionsEnumerateEnumCases = 1 << 2,
 };
 
 #if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
 
 typedef struct AG_SWIFT_NAME(Signature) AGTypeSignature {
-    uint32_t bytes[5];
+    uint8_t bytes[20];
 } AGTypeSignature;
 
 #endif

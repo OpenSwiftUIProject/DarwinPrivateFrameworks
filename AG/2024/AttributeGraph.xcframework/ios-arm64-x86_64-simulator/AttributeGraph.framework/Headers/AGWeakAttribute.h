@@ -7,13 +7,16 @@
 
 #include <AttributeGraph/AGBase.h>
 #include <AttributeGraph/AGAttribute.h>
+#include <AttributeGraph/AGWeakValue.h>
 
 AG_ASSUME_NONNULL_BEGIN
 
 typedef struct AGWeakAttribute {
-    const AGAttribute raw_attribute;
-    const uint32_t subgraph_id;
-} AGWeakAttribute;
+    struct {
+        AGAttribute identifier;
+        uint32_t seed;
+    } _details;
+} AGWeakAttribute AG_SWIFT_NAME(AnyWeakAttribute);
 
 AG_EXTERN_C_BEGIN
 
@@ -27,7 +30,7 @@ AGAttribute AGWeakAttributeGetAttribute(AGWeakAttribute weakAttribute);
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGValue AGGraphGetWeakValue(AGWeakAttribute weakAttribute, AGValueOptions options, AGTypeID type);
+AGWeakValue AGGraphGetWeakValue(AGWeakAttribute weakAttribute, AGValueOptions options, AGTypeID type);
 
 AG_EXTERN_C_END
 

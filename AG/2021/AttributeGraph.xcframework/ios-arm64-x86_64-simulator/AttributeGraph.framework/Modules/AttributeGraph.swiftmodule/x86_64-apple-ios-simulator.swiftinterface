@@ -9,19 +9,18 @@ public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
 extension AnyAttribute {
-  public typealias Flags = AGAttributeTypeFlags
   public init<Value>(_ attribute: AttributeGraph.Attribute<Value>)
   public func unsafeCast<Value>(to _: Value.Type) -> AttributeGraph.Attribute<Value>
   public static var current: AnyAttribute? {
     get
   }
   public func unsafeOffset(at offset: Swift.Int) -> AnyAttribute
-  public func setFlags(_ newFlags: AGAttributeFlags, mask: AGAttributeFlags)
+  public func setFlags(_ newFlags: Subgraph.Flags, mask: Subgraph.Flags)
   public func addInput(_ attribute: AnyAttribute, options: AGInputOptions = [], token: Swift.Int)
   public func addInput<Value>(_ attribute: AttributeGraph.Attribute<Value>, options: AGInputOptions = [], token: Swift.Int)
   public func visitBody<Body>(_ visitor: inout Body) where Body : AttributeGraph.AttributeBodyVisitor
   public func mutateBody<Value>(as type: Value.Type, invalidating: Swift.Bool, _ body: (inout Value) -> Swift.Void)
-  public func breadthFirstSearch(options _: AGSearchOptions = [], _: (AnyAttribute) -> Swift.Bool) -> Swift.Bool
+  public func breadthFirstSearch(options _: SearchOptions = [], _: (AnyAttribute) -> Swift.Bool) -> Swift.Bool
   public var _bodyType: any Any.Type {
     get
   }
@@ -42,20 +41,13 @@ extension AnyAttribute : Swift.CustomStringConvertible {
   }
 }
 public typealias AttributeUpdateBlock = () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void
-extension Swift.Array where Element == AnyAttribute {
-  @_transparent public var anyInputsChanged: Swift.Bool {
-    @_transparent get {
-        __AGGraphAnyInputsChanged(self, count)
-    }
-  }
-}
 @frozen @propertyWrapper @dynamicMemberLookup public struct Attribute<Value> {
   public var identifier: AnyAttribute
   public init(identifier: AnyAttribute)
   public init(_ attribute: AttributeGraph.Attribute<Value>)
   public init(value: Value)
   public init(type _: Value.Type)
-  public init<Body>(body: Swift.UnsafePointer<Body>, value: Swift.UnsafePointer<Value>?, flags: AGAttributeTypeFlags = [], update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) where Body : AttributeGraph._AttributeBody
+  public init<Body>(body: Swift.UnsafePointer<Body>, value: Swift.UnsafePointer<Value>?, flags: _AttributeType.Flags = [], update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) where Body : AttributeGraph._AttributeBody
   public var wrappedValue: Value {
     unsafeAddress
     nonmutating set
@@ -78,7 +70,7 @@ extension Swift.Array where Element == AnyAttribute {
   public func applying<Member>(offset: AttributeGraph.PointerOffset<Value, Member>) -> AttributeGraph.Attribute<Member>
   public func visitBody<Body>(_ visitor: inout Body) where Body : AttributeGraph.AttributeBodyVisitor
   public func mutateBody<V>(as type: V.Type, invalidating: Swift.Bool, _ body: (inout V) -> Swift.Void)
-  public func breadthFirstSearch(options: AGSearchOptions = [], _ body: (AnyAttribute) -> Swift.Bool) -> Swift.Bool
+  public func breadthFirstSearch(options: SearchOptions = [], _ body: (AnyAttribute) -> Swift.Bool) -> Swift.Bool
   public var graph: Graph {
     get
   }
@@ -89,7 +81,7 @@ extension Swift.Array where Element == AnyAttribute {
     unsafeAddress
     nonmutating set
   }
-  public var valueState: AGValueState {
+  public var valueState: ValueState {
     get
   }
   public func valueAndFlags(options: AGValueOptions = []) -> (value: Value, flags: AGChangedValueFlags)
@@ -104,11 +96,11 @@ extension Swift.Array where Element == AnyAttribute {
   public func validate()
   public func addInput(_ attribute: AnyAttribute, options: AGInputOptions = [], token: Swift.Int)
   public func addInput<V>(_ attribute: AttributeGraph.Attribute<V>, options: AGInputOptions = [], token: Swift.Int)
-  public var flags: AGAttributeFlags {
+  public var flags: Subgraph.Flags {
     get
     nonmutating set
   }
-  public func setFlags(_ newFlags: AGAttributeFlags, mask: AGAttributeFlags)
+  public func setFlags(_ newFlags: Subgraph.Flags, mask: Subgraph.Flags)
 }
 extension AttributeGraph.Attribute : Swift.Hashable {
   public static func == (a: AttributeGraph.Attribute<Value>, b: AttributeGraph.Attribute<Value>) -> Swift.Bool
@@ -139,7 +131,7 @@ extension AttributeGraph.External : AttributeGraph._AttributeBody {
   public static var comparisonMode: ComparisonMode {
     get
   }
-  public static var flags: AGAttributeTypeFlags {
+  public static var flags: _AttributeType.Flags {
     get
   }
   public static func _update(_: Swift.UnsafeMutableRawPointer, attribute _: AnyAttribute)
@@ -182,7 +174,7 @@ public protocol _AttributeBody {
   static var _hasDestroySelf: Swift.Bool { get }
   static func _updateDefault(_ pointer: Swift.UnsafeMutableRawPointer)
   static var comparisonMode: ComparisonMode { get }
-  static var flags: AGAttributeTypeFlags { get }
+  static var flags: _AttributeType.Flags { get }
 }
 extension AttributeGraph._AttributeBody {
   public static func _destroySelf(_ pointer: Swift.UnsafeMutableRawPointer)
@@ -193,7 +185,7 @@ extension AttributeGraph._AttributeBody {
   public static var comparisonMode: ComparisonMode {
     get
   }
-  public static var flags: AGAttributeTypeFlags {
+  public static var flags: _AttributeType.Flags {
     get
   }
 }
@@ -320,7 +312,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
   public var value: Value {
     get
   }
-  public static var flags: AGAttributeTypeFlags {
+  public static var flags: _AttributeType.Flags {
     get
   }
   public var description: Swift.String {
@@ -334,7 +326,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
   public var value: Value {
     get
   }
-  public static var flags: AGAttributeTypeFlags {
+  public static var flags: _AttributeType.Flags {
     get
   }
   public var description: Swift.String {
@@ -463,11 +455,11 @@ extension AGWeakAttribute {
 }
 extension AGWeakAttribute : Swift.Hashable {
   @_alwaysEmitIntoClient public static func == (lhs: AttributeGraph.AnyWeakAttribute, rhs: AttributeGraph.AnyWeakAttribute) -> Swift.Bool {
-        lhs.raw_attribute == rhs.raw_attribute && lhs.subgraph_id == rhs.subgraph_id
+        lhs._details.identifier == rhs._details.identifier && lhs._details.seed == rhs._details.seed
     }
   @_alwaysEmitIntoClient public func hash(into hasher: inout Swift.Hasher) {
-        hasher.combine(raw_attribute)
-        hasher.combine(subgraph_id)
+        hasher.combine(_details.identifier)
+        hasher.combine(_details.seed)
     }
   @_alwaysEmitIntoClient public var hashValue: Swift.Int {
     get {
@@ -524,7 +516,7 @@ extension AttributeGraph.WeakAttribute : Swift.CustomStringConvertible {
 @_silgen_name("AGGraphGetWeakValue")
 @inline(__always) @inlinable internal func AGGraphGetWeakValue<Value>(_ attribute: AttributeGraph.AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
 extension Graph {
-  public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: AGAttributeTypeFlags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
+  public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: _AttributeType.Flags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
 }
 extension Graph {
   public static func withoutUpdate<V>(_ body: () -> V) -> V
@@ -541,7 +533,7 @@ extension Graph {
 }
 extension Graph {
   @_transparent @inline(__always) public var mainUpdates: Swift.Int {
-    @_transparent get { numericCast(counter(for: ._10)) }
+    @_transparent get { numericCast(counter(for: .mainThreadUpdates)) }
   }
 }
 extension Graph {
@@ -551,12 +543,17 @@ extension Graph {
   @inline(__always) @inlinable public static func setOutputValue<Value>(_ value: Swift.UnsafePointer<Value>)
 }
 extension Graph {
+  @_transparent public static func anyInputsChanged(excluding excludedInputs: [AnyAttribute]) -> Swift.Bool {
+        return __AGGraphAnyInputsChanged(excludedInputs, excludedInputs.count)
+    }
+}
+extension Graph {
   public func archiveJSON(name: Swift.String?)
 }
 extension Subgraph {
   public func addObserver(_ observer: () -> Swift.Void) -> Swift.Int
   public func apply<Value>(_ body: () -> Value) -> Value
-  public func forEach(_ flags: AGAttributeFlags, _ callback: (AnyAttribute) -> Swift.Void)
+  public func forEach(_ flags: Subgraph.Flags, _ callback: (AnyAttribute) -> Swift.Void)
 }
 extension Subgraph {
   public static func beginTreeElement<Value>(value: AttributeGraph.Attribute<Value>, flags: Swift.UInt32)
