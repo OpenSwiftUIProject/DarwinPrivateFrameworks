@@ -70,6 +70,10 @@ void AGSubgraphRemoveChild(AGSubgraphRef parent, AGSubgraphRef child) AG_SWIFT_N
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
+bool AGSubgraphIntersects(AGSubgraphRef subgraph, AGAttributeFlags flags) AG_SWIFT_NAME(AGSubgraphRef.intersects(self:flags:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
 void AGSubgraphApply(AGSubgraphRef cf_subgraph,
                      AGAttributeFlags flags,
                      const void (*function)(const void * _Nullable context AG_SWIFT_CONTEXT, AGAttribute attribute) AG_SWIFT_CC(swift),
@@ -81,7 +85,7 @@ void AGSubgraphUpdate(AGSubgraphRef cf_subgraph, AGAttributeFlags flags) AG_SWIF
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-bool AGSubgraphIsDirty(AGSubgraphRef cf_subgraph, uint32_t unknown) AG_SWIFT_NAME(AGSubgraphRef.isDirty(self:_:));
+bool AGSubgraphIsDirty(AGSubgraphRef cf_subgraph, AGAttributeFlags flags) AG_SWIFT_NAME(AGSubgraphRef.isDirty(self:flags:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT

@@ -8,14 +8,17 @@
 #include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGAttributeTypeFlags) {
-    AGAttributeTypeFlagsDefault = 0,
-    AGAttributeTypeFlags_1 = 1 << 0,
-    AGAttributeTypeFlags_2 = 1 << 1,
-    AGAttributeTypeFlags_4 = 1 << 2,
+    AGAttributeTypeFlagsComparisonModeBitwise = 0,
+    AGAttributeTypeFlagsComparisonModeIndirect = 1,
+    AGAttributeTypeFlagsComparisonModeEquatableUnlessPOD = 2,
+    AGAttributeTypeFlagsComparisonModeEquatableAlways = 3,
+    AGAttributeTypeFlagsComparisonModeMask = 0x03,
+
+    AGAttributeTypeFlagsHasDestroySelf = 1 << 2,
     AGAttributeTypeFlagsMainThread = 1 << 3,
-    AGAttributeTypeFlags_16 = 1 << 4,
+    AGAttributeTypeFlagsExternal = 1 << 4,
     AGAttributeTypeFlagsAsyncThread = 1 << 5,
-};
+} AG_SWIFT_NAME(AGAttributeType.Flags);
 
 #endif /* AGAttributeTypeFlags_h */
 

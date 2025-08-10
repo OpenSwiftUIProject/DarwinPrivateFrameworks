@@ -17,10 +17,10 @@ AG_IMPLICIT_BRIDGING_ENABLED
 
 AG_EXTERN_C_BEGIN
 
-typedef struct AGFieldRange {
+typedef struct AG_SWIFT_NAME(FieldRange) AGFieldRange {
     size_t offset;
     size_t size;
-} AGFieldRange AG_SWIFT_STRUCT AG_SWIFT_NAME(FieldRange);
+} AGFieldRange;
 
 typedef const void *AGComparisonState AG_SWIFT_STRUCT AG_SWIFT_NAME(ComparisonState);
 
@@ -56,7 +56,7 @@ typedef AG_OPTIONS(uint32_t, AGComparisonOptions) {
 
     AGComparisonOptionsCopyOnWrite = 1 << 8,
     AGComparisonOptionsFetchLayoutsSynchronously = 1 << 9,
-    AGComparisonOptionsReportFailures = 1ul << 31, // -1 signed int
+    AGComparisonOptionsTraceCompareFailed = 1ul << 31, // -1 signed int
 } AG_SWIFT_NAME(ComparisonOptions);
 
 AG_EXPORT

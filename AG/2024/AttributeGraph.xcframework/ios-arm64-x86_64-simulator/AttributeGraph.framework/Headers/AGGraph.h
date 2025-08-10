@@ -7,7 +7,7 @@
 
 #include <AttributeGraph/AGBase.h>
 #include <AttributeGraph/Private/CFRuntime.h>
-#include <AttributeGraph/AGCounterQueryType.h>
+#include <AttributeGraph/AGGraphCounterQueryType.h>
 
 // Note: Place all structure declaration in a single place to avoid header cycle dependency
 
@@ -87,7 +87,7 @@ void AGGraphSetUpdateCallback(AGGraphRef graph,
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-uint64_t AGGraphGetCounter(AGGraphRef graph, AGCounterQueryType query) AG_SWIFT_NAME(AGGraphRef.counter(self:for:));
+uint64_t AGGraphGetCounter(AGGraphRef graph, AGGraphCounterQueryType query) AG_SWIFT_NAME(AGGraphRef.counter(self:for:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
@@ -104,14 +104,14 @@ void AGGraphSetNeedsUpdate(AGGraphRef graph) AG_SWIFT_NAME(AGGraphRef.setNeedsUp
 #if AG_TARGET_OS_DARWIN
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-bool AGGraphAnyInputsChanged(const AGAttribute *inputs AG_COUNTED_BY(count), size_t count);
+bool AGGraphAnyInputsChanged(const AGAttribute *excluded_inputs AG_COUNTED_BY(count), size_t count);
 #else
 // __counted_by__ is supported with Swift 6.1+ toolchain's clang on Linux.
 // But it required the count to be declared first which is not required on Apple clang.
 // See https://github.com/OpenSwiftUIProject/AttributeGraph/issues/130
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-bool AGGraphAnyInputsChanged(const AGAttribute *inputs, size_t count);
+bool AGGraphAnyInputsChanged(const AGAttribute *excluded_inputs, size_t count);
 #endif
 
 AG_EXTERN_C_END

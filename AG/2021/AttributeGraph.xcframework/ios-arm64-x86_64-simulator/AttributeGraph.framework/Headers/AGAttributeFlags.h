@@ -9,14 +9,11 @@
 #define AGAttributeFlags_h
 
 #include <AttributeGraph/AGBase.h>
+#include <AttributeGraph/AGGraph.h>
 
-typedef AG_OPTIONS(uint32_t, AGAttributeFlags) {
-    AGAttributeFlagsDefault = 0,
-    AGAttributeFlagsActive = 1 << 0,
-    AGAttributeFlagsRemovable = 1 << 1,
-    AGAttributeFlagsInvalidatable = 1 << 2,
-    
-    AGAttributeFlagsMask = 0xFF,
-};
+typedef AG_OPTIONS(uint8_t, AGAttributeFlags) {
+    AGAttributeFlagsNone = 0,
+    AGAttributeFlagsAll = 0xFF,
+} AG_SWIFT_NAME(AGSubgraphRef.Flags);
 
 #endif /* AGAttributeFlags_h */

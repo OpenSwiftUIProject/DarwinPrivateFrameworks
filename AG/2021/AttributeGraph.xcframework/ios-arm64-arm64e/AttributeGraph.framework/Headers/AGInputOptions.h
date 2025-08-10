@@ -8,8 +8,9 @@
 #include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGInputOptions) {
-    AGInputOptions_0 = 0,
-    AGInputOptions_1 = 1,
+    AGInputOptionsNone = 0,
+    AGInputOptionsUnprefetched = 1 << 0,
+    AGInputOptionsSyncMainRef = 1 << 1,
 };
 
 #endif /* AGInputOptions_h */

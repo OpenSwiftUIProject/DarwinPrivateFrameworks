@@ -8,8 +8,9 @@
 #include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGSearchOptions) {
-    AGSearchOptions_0 = 0,
-    AGSearchOptions_1 = 1,
-};
+    AGSearchOptionsSearchInputs = 1 << 0,
+    AGSearchOptionsSearchOutputs = 1 << 1,
+    AGSearchOptionsTraverseGraphContexts = 1 << 2,
+} AG_SWIFT_NAME(SearchOptions);
 
 #endif /* Header_h */
