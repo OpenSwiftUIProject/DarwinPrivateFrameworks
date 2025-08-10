@@ -8,9 +8,12 @@
 #include <AttributeGraph/AGBase.h>
 
 typedef AG_OPTIONS(uint32_t, AGValueOptions) {
-    AGValueOptions_0 = 0,
-    AGValueOptions_1 = 1,
-    AGValueOptions_2 = 2,
+    AGValueOptionsNone = 0,
+    AGValueOptionsInputOptionsUnprefetched = 1 << 0,
+    AGValueOptionsInputOptionsSyncMainRef = 1 << 1,
+    AGValueOptionsInputOptionsMask = 0x03,
+
+    AGValueOptionsIncrementGraphVersion = 1 << 2, // AsTopLevelOutput
 };
 
 #endif /* AGValueOptions_h */

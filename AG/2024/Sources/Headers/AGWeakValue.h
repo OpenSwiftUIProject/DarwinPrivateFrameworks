@@ -1,20 +1,20 @@
 //
-//  AGValue.h
+//  AGWeakValue.h
 //  AttributeGraph
 
-#ifndef AGValue_h
-#define AGValue_h
+#ifndef AGWeakValue_h
+#define AGWeakValue_h
 
 #include <AttributeGraph/AGBase.h>
 #include <AttributeGraph/AGChangedValueFlags.h>
 
 AG_ASSUME_NONNULL_BEGIN
 
-typedef struct AGValue {
-    const void *value;
+typedef struct AGWeakValue {
+    const void * _Nullable value;
     AGChangedValueFlags flags;
-} AGValue;
+} AGWeakValue;
 
 AG_ASSUME_NONNULL_END
 
-#endif /* AGValue_h */
+#endif /* AGWeakValue_h */
