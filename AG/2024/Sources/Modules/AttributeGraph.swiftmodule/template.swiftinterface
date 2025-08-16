@@ -11,7 +11,7 @@ extension AnyAttribute {
     get
   }
   public func unsafeOffset(at offset: Swift.Int) -> AnyAttribute
-  public func setFlags(_ newFlags: Subgraph.Flags, mask: Subgraph.Flags)
+  public func setFlags(_ newFlags: AnyAttribute.Flags, mask: AnyAttribute.Flags)
   public func addInput(_ attribute: AnyAttribute, options: AGInputOptions = [], token: Swift.Int)
   public func addInput<Value>(_ attribute: AttributeGraph.Attribute<Value>, options: AGInputOptions = [], token: Swift.Int)
   public func visitBody<Body>(_ visitor: inout Body) where Body : AttributeGraph.AttributeBodyVisitor
@@ -92,11 +92,12 @@ public typealias AttributeUpdateBlock = () -> (Swift.UnsafeMutableRawPointer, An
   public func validate()
   public func addInput(_ attribute: AnyAttribute, options: AGInputOptions = [], token: Swift.Int)
   public func addInput<V>(_ attribute: AttributeGraph.Attribute<V>, options: AGInputOptions = [], token: Swift.Int)
-  public var flags: Subgraph.Flags {
+  public typealias Flags = AnyAttribute.Flags
+  public var flags: AttributeGraph.Attribute<Value>.Flags {
     get
     nonmutating set
   }
-  public func setFlags(_ newFlags: Subgraph.Flags, mask: Subgraph.Flags)
+  public func setFlags(_ newFlags: AttributeGraph.Attribute<Value>.Flags, mask: AttributeGraph.Attribute<Value>.Flags)
 }
 extension AttributeGraph.Attribute : Swift.Hashable {
   public static func == (a: AttributeGraph.Attribute<Value>, b: AttributeGraph.Attribute<Value>) -> Swift.Bool
