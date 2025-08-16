@@ -127,7 +127,7 @@ extension AttributeGraph.External : AttributeGraph._AttributeBody {
   public static var comparisonMode: ComparisonMode {
     get
   }
-  public static var flags: _AttributeType.Flags {
+  public static var flags: AttributeGraph.External<Value>.Flags {
     get
   }
   public static func _update(_: Swift.UnsafeMutableRawPointer, attribute _: AnyAttribute)
@@ -170,7 +170,8 @@ public protocol _AttributeBody {
   static var _hasDestroySelf: Swift.Bool { get }
   static func _updateDefault(_ pointer: Swift.UnsafeMutableRawPointer)
   static var comparisonMode: ComparisonMode { get }
-  static var flags: _AttributeType.Flags { get }
+  typealias Flags = _AttributeType.Flags
+  static var flags: Self.Flags { get }
 }
 extension AttributeGraph._AttributeBody {
   public static func _destroySelf(_ pointer: Swift.UnsafeMutableRawPointer)
@@ -181,7 +182,7 @@ extension AttributeGraph._AttributeBody {
   public static var comparisonMode: ComparisonMode {
     get
   }
-  public static var flags: _AttributeType.Flags {
+  public static var flags: Self.Flags {
     get
   }
 }
@@ -308,7 +309,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
   public var value: Value {
     get
   }
-  public static var flags: _AttributeType.Flags {
+  public static var flags: AttributeGraph.Focus<Root, Value>.Flags {
     get
   }
   public var description: Swift.String {
@@ -322,7 +323,7 @@ extension AttributeGraph.OptionalAttribute : Swift.CustomStringConvertible {
   public var value: Value {
     get
   }
-  public static var flags: _AttributeType.Flags {
+  public static var flags: AttributeGraph.Map<Source, Value>.Flags {
     get
   }
   public var description: Swift.String {
@@ -523,12 +524,21 @@ extension Graph {
   public func withMainThreadHandler(_: (() -> Swift.Void) -> Swift.Void, do: () -> Swift.Void)
 }
 extension Graph {
+  @_transparent public func startProfiling() {
+        __AGGraphStartProfiling(self)
+    }
+  @_transparent public func stopProfiling() {
+        __AGGraphStopProfiling(self)
+    }
+  @_transparent public func resetProfile() {
+        __AGGraphResetProfile(self)
+    }
   public static func startProfiling()
   public static func stopProfiling()
   public static func resetProfile()
 }
 extension Graph {
-  @_transparent @inline(__always) public var mainUpdates: Swift.Int {
+  @_transparent public var mainUpdates: Swift.Int {
     @_transparent get { numericCast(counter(for: .mainThreadUpdates)) }
   }
 }
@@ -545,6 +555,10 @@ extension Graph {
 }
 extension Graph {
   public func archiveJSON(name: Swift.String?)
+}
+extension Subgraph {
+  public typealias Flags = AnyAttribute.Flags
+  public typealias ChildFlags = AnyAttribute.Flags
 }
 extension Subgraph {
   public func addObserver(_ observer: () -> Swift.Void) -> Swift.Int
