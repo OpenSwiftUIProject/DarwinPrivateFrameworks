@@ -9,14 +9,14 @@
 #include <AttributeGraph/AGGraph.h>
 #include <AttributeGraph/AGUniqueID.h>
 
-typedef AG_OPTIONS(uint32_t, AGGraphTraceFlags) {
-    AGGraphTraceFlagsEnabled = 1 << 0,
-    AGGraphTraceFlagsFull = 1 << 1,
-    AGGraphTraceFlagsBacktrace = 1 << 2,
-    AGGraphTraceFlagsPrepare = 1 << 3,
-    AGGraphTraceFlagsCustom = 1 << 4,
-    AGGraphTraceFlagsAll = 1 << 5,
-} AG_SWIFT_NAME(AGGraphRef.TraceFlags);
+typedef AG_OPTIONS(uint32_t, AGGraphTraceOptions) {
+    AGGraphTraceOptionsEnabled = 1 << 0,
+    AGGraphTraceOptionsFull = 1 << 1,
+    AGGraphTraceOptionsBacktrace = 1 << 2,
+    AGGraphTraceOptionsPrepare = 1 << 3,
+    AGGraphTraceOptionsCustom = 1 << 4,
+    AGGraphTraceOptionsAll = 1 << 5,
+} AG_SWIFT_NAME(AGGraphRef.TraceOptions);
 
 typedef struct AGTrace *AGTraceRef;
 
@@ -28,11 +28,11 @@ AG_EXTERN_C_BEGIN
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void AGGraphStartTracing(_Nullable AGGraphRef graph, AGGraphTraceFlags flags) AG_SWIFT_NAME(AGGraphRef.startTracing(_:flags:));
+void AGGraphStartTracing(_Nullable AGGraphRef graph, AGGraphTraceOptions options) AG_SWIFT_NAME(AGGraphRef.startTracing(_:options:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-void AGGraphStartTracing2(_Nullable AGGraphRef graph, AGGraphTraceFlags flags, _Nullable CFArrayRef subsystems) AG_SWIFT_NAME(AGGraphRef.startTracing(_:flags:subsystems:));
+void AGGraphStartTracing2(_Nullable AGGraphRef graph, AGGraphTraceOptions options, _Nullable CFArrayRef subsystems) AG_SWIFT_NAME(AGGraphRef.startTracing(_:flags:subsystems:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
