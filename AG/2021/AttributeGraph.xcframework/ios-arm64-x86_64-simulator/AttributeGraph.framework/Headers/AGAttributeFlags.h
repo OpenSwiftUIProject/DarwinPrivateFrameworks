@@ -14,6 +14,6 @@
 typedef AG_OPTIONS(uint8_t, AGAttributeFlags) {
     AGAttributeFlagsNone = 0,
     AGAttributeFlagsAll = 0xFF,
-} AG_SWIFT_NAME(AGSubgraphRef.Flags);
+} AG_SWIFT_NAME(AGAttribute.Flags);
 
 #endif /* AGAttributeFlags_h */
