@@ -2,7 +2,6 @@
 // swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
 // swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name AttributeGraph -package-name OpenGraph
 // swift-module-flags-ignorable: -interface-compiler-version 6.1
-public import Foundation
 @_exported public import AttributeGraph
 public import Swift
 public import _Concurrency
@@ -580,30 +579,19 @@ public func compareValues<Value>(_ lhs: Value, _ rhs: Value, options: Comparison
 extension ComparisonOptions {
   public init(mode: ComparisonMode)
 }
-@_silgen_name("AGTypeApplyFields")
-public func AGTypeApplyFields(_ type: any Any.Type, body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void)
-@_silgen_name("AGTypeApplyFields2")
-public func AGTypeApplyFields2(_ type: any Any.Type, options: AGTypeApplyOptions, body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Bool) -> Swift.Bool
+public func forEachField(of type: any Any.Type, do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void)
 extension Metadata : Swift.Hashable, Swift.CustomStringConvertible {
-  @inlinable @inline(__always) public init(_ type: any Any.Type) {
-        self.init(rawValue: unsafeBitCast(type, to: UnsafePointer<_Metadata>.self))
-    }
-  @inlinable @inline(__always) public var type: any Any.Type {
-    get {
-        unsafeBitCast(rawValue, to: Any.Type.self)
-    }
+  public init(_ type: any Any.Type)
+  public var type: any Any.Type {
+    get
   }
-  @inlinable @inline(__always) public var description: Swift.String {
-    get {
-        __AGTypeDescription(self) as NSString as String
-    }
+  public var description: Swift.String {
+    get
   }
-  @inlinable @inline(__always) internal func forEachField(do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Void) {
-        AGTypeApplyFields(type, body: body)
-    }
-  @inlinable @inline(__always) public func forEachField(options: AGTypeApplyOptions, do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Bool) -> Swift.Bool {
-        AGTypeApplyFields2(type, options: options, body: body)
-    }
+  public func forEachField(options: Metadata.ApplyOptions, do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Bool) -> Swift.Bool
+}
+extension Signature : Swift.Equatable {
+  public static func == (lhs: Signature, rhs: Signature) -> Swift.Bool
 }
 @discardableResult
 public func withUnsafePointerToEnumCase<T>(of value: Swift.UnsafeMutablePointer<T>, do body: (Swift.Int, any Any.Type, Swift.UnsafeRawPointer) -> ()) -> Swift.Bool

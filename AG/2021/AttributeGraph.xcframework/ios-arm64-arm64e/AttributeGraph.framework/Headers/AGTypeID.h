@@ -37,7 +37,7 @@ typedef AG_OPTIONS(uint32_t, AGTypeApplyOptions) {
     AGTypeApplyOptionsEnumerateClassFields = 1 << 0,
     AGTypeApplyOptionsContinueAfterUnknownField = 1 << 1,
     AGTypeApplyOptionsEnumerateEnumCases = 1 << 2,
-};
+} AG_SWIFT_NAME(Metadata.ApplyOptions);
 
 #if ATTRIBUTEGRAPH_RELEASE >= ATTRIBUTEGRAPH_RELEASE_2024
 
