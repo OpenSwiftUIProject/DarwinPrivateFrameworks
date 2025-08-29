@@ -29,4 +29,4 @@ After making change to Sources, run `update.sh` to update the xcframework.
 
 ### Updating the template.swiftinterface and Headers
 
-See https://github.com/OpenSwiftUIProject/OpenGraph/blob/main/Scripts/gen_ag_template.sh
+See https://github.com/OpenSwiftUIProject/OpenAttributeGraph/blob/main/Scripts/gen_ag_template.sh
