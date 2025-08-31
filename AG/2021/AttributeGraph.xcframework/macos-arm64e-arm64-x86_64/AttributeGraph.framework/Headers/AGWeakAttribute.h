@@ -11,7 +11,7 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
-typedef struct AGWeakAttribute {
+typedef AG_SWIFT_STRUCT struct {
     struct {
         AGAttribute identifier;
         uint32_t seed;

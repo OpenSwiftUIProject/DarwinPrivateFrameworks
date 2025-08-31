@@ -429,52 +429,30 @@ extension AttributeGraph.StatefulRule {
 @inline(__always) @inlinable internal func AGGraphGetInputValue<Value>(_ attribute: AnyAttribute, input: AnyAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
 @_silgen_name("AGGraphWithUpdate")
 @inline(__always) @inlinable internal func AGGraphWithUpdate(_ attribute: AnyAttribute, body: () -> Swift.Void)
-public typealias AnyWeakAttribute = AGWeakAttribute
-extension AGWeakAttribute {
-  @_alwaysEmitIntoClient public init(_ attribute: AnyAttribute?) {
-        self = __AGCreateWeakAttribute(attribute ?? .nil)
-    }
-  @_alwaysEmitIntoClient public init<Value>(_ weakAttribute: AttributeGraph.WeakAttribute<Value>) {
-        self = weakAttribute.base
-    }
-  @_alwaysEmitIntoClient public func unsafeCast<Value>(to _: Value.Type) -> AttributeGraph.WeakAttribute<Value> {
-        WeakAttribute(base: self)
-    }
-  @_alwaysEmitIntoClient public var attribute: AnyAttribute? {
-    get {
-            let attribute = __AGWeakAttributeGetAttribute(self)
-            return attribute == .nil ? nil : attribute
-        }
-    set {
-            self = AnyWeakAttribute(newValue)
-        }
+extension AnyWeakAttribute {
+  public init(_ attribute: AnyAttribute?)
+  public init<Value>(_ weakAttribute: AttributeGraph.WeakAttribute<Value>)
+  public func unsafeCast<Value>(to _: Value.Type) -> AttributeGraph.WeakAttribute<Value>
+  public var attribute: AnyAttribute? {
+    get
+    set
   }
 }
-extension AGWeakAttribute : Swift.Hashable {
-  @_alwaysEmitIntoClient public static func == (lhs: AttributeGraph.AnyWeakAttribute, rhs: AttributeGraph.AnyWeakAttribute) -> Swift.Bool {
-        lhs._details.identifier == rhs._details.identifier && lhs._details.seed == rhs._details.seed
-    }
-  @_alwaysEmitIntoClient public func hash(into hasher: inout Swift.Hasher) {
-        hasher.combine(_details.identifier)
-        hasher.combine(_details.seed)
-    }
-  @_alwaysEmitIntoClient public var hashValue: Swift.Int {
-    get {
-        _hashValue(for: self)
-    }
+extension AnyWeakAttribute : Swift.Hashable {
+  public static func == (lhs: AnyWeakAttribute, rhs: AnyWeakAttribute) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
   }
 }
-extension AGWeakAttribute : Swift.CustomStringConvertible {
+extension AnyWeakAttribute : Swift.CustomStringConvertible {
   @_alwaysEmitIntoClient public var description: Swift.String {
     get { attribute?.description ?? "nil" }
   }
 }
 @frozen @propertyWrapper @dynamicMemberLookup public struct WeakAttribute<Value> {
-  @usableFromInline
-  internal var base: AttributeGraph.AnyWeakAttribute
-  @_alwaysEmitIntoClient public init(base: AttributeGraph.AnyWeakAttribute) {
-        self.base = base
-    }
+  internal var base: AnyWeakAttribute
+  public init(base: AnyWeakAttribute)
   public init()
   public init(_ attribute: AttributeGraph.Attribute<Value>)
   public init(_ attribute: AttributeGraph.Attribute<Value>?)
@@ -496,7 +474,7 @@ extension AGWeakAttribute : Swift.CustomStringConvertible {
   public var value: Value? {
     get
   }
-  public func changedValue(options: AGValueOptions = []) -> (value: Value, changed: Swift.Bool)?
+  public func changedValue(options: AGValueOptions) -> (value: Value, changed: Swift.Bool)?
 }
 extension AttributeGraph.WeakAttribute : Swift.Hashable {
   public static func == (a: AttributeGraph.WeakAttribute<Value>, b: AttributeGraph.WeakAttribute<Value>) -> Swift.Bool
@@ -510,8 +488,6 @@ extension AttributeGraph.WeakAttribute : Swift.CustomStringConvertible {
     get
   }
 }
-@_silgen_name("AGGraphGetWeakValue")
-@inline(__always) @inlinable internal func AGGraphGetWeakValue<Value>(_ attribute: AttributeGraph.AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
 extension Graph {
   public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: _AttributeType.Flags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
 }
