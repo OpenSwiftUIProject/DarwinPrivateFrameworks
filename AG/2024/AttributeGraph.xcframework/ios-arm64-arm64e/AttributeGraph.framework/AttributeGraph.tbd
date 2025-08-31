@@ -1,20 +1,23 @@
---- !tapi-tbd
-tbd-version:           4
-targets:               [ armv7-ios, armv7s-ios, arm64-ios, arm64e-ios ]
+--- !tapi-tbd-v3
+archs:                 [ armv7, armv7s, arm64, arm64e ]
+platform:              ios
 flags:                 [ flat_namespace ]
 install-name:          /System/Library/PrivateFrameworks/AttributeGraph.framework/AttributeGraph
-current-version:       6.0.87
+current-version:       6.5.1
 compatibility-version: 1
+objc-constraint:       retain_release
 exports:
-  - targets:              [ armv7-ios, armv7s-ios, arm64-ios, arm64e-ios ]
+  - archs:                [ armv7, armv7s, arm64, arm64e ]
     symbols:              [ _AGAttributeNil, _AGAttributeNullType,
                             _AGAttributeNullVTable, _AGCompareValues,
+                            _AGComparisonStateGetDestination,
                             _AGComparisonStateGetFieldRange,
                             _AGComparisonStateGetFieldType,
-                            _AGCreateWeakAttribute, _AGDebugServerCopyURL,
-                            _AGDebugServerRun, _AGDebugServerStart,
-                            _AGDebugServerStop, _AGDescriptionFormat,
-                            _AGDescriptionIncludeValues, _AGDescriptionMaxFrames,
+                            _AGComparisonStateGetSource, _AGCreateWeakAttribute,
+                            _AGDebugServerCopyURL, _AGDebugServerRun,
+                            _AGDebugServerStart, _AGDebugServerStop,
+                            _AGDescriptionFormat, _AGDescriptionIncludeValues,
+                            _AGDescriptionMaxFrames,
                             _AGDescriptionTruncationLimit, _AGGraphAddInput,
                             _AGGraphAddNamedTraceEvent, _AGGraphAddTrace,
                             _AGGraphAddTraceEvent, _AGGraphAnyInputsChanged,
@@ -33,7 +36,8 @@ exports:
                             _AGGraphEndDeferringSubgraphInvalidation,
                             _AGGraphEndProfileEvent, _AGGraphGetAttributeGraph,
                             _AGGraphGetAttributeInfo,
-                            _AGGraphGetAttributeSubgraph, _AGGraphGetContext,
+                            _AGGraphGetAttributeSubgraph,
+                            _AGGraphGetAttributeSubgraph2, _AGGraphGetContext,
                             _AGGraphGetCounter, _AGGraphGetCurrentAttribute,
                             _AGGraphGetDeadline, _AGGraphGetFlags,
                             _AGGraphGetGraphContext,
@@ -91,6 +95,7 @@ exports:
                             _AGSubgraphSetTreeOwner, _AGSubgraphShouldRecordTree,
                             _AGSubgraphUpdate, _AGTreeElementGetFlags,
                             _AGTreeElementGetNextChild,
+                            _AGTreeElementGetNextChild2,
                             _AGTreeElementGetNextNode,
                             _AGTreeElementGetNextValue, _AGTreeElementGetParent,
                             _AGTreeElementGetType, _AGTreeElementGetValue,
