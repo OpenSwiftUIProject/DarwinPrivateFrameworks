@@ -87,11 +87,17 @@ AG_EXPORT
 AG_REFINED_FOR_SWIFT
 bool AGSubgraphIsDirty(AGSubgraphRef cf_subgraph, AGAttributeFlags flags) AG_SWIFT_NAME(AGSubgraphRef.isDirty(self:flags:));
 
+typedef long AGObserverID AG_SWIFT_NAME(ObserverID);
+
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-AGUniqueID AGSubgraphAddObserver(AGSubgraphRef cf_subgraph,
+AGObserverID AGSubgraphAddObserver(AGSubgraphRef cf_subgraph,
                            const void (*function)(const void * _Nullable context AG_SWIFT_CONTEXT) AG_SWIFT_CC(swift),
                            const void * _Nullable context);
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGSubgraphRemoveObserver(AGSubgraphRef cf_subgraph, AGObserverID observerID) AG_SWIFT_NAME(AGSubgraphRef.removeObserver(self:_:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT

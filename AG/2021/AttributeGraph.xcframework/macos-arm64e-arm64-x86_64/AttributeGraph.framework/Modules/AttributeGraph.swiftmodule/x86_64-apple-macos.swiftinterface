@@ -565,7 +565,7 @@ extension Subgraph {
   public typealias ChildFlags = AnyAttribute.Flags
 }
 extension Subgraph {
-  public func addObserver(_ observer: () -> Swift.Void) -> Swift.Int
+  public func addObserver(_ observer: @escaping () -> Swift.Void) -> Swift.Int
   public func apply<Value>(_ body: () -> Value) -> Value
   public func forEach(_ flags: Subgraph.Flags, _ callback: (AnyAttribute) -> Swift.Void)
 }

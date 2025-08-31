@@ -2,14 +2,14 @@
 //  AGUniqueID.h
 //  AttributeGraph
 //
-//  Audited for iOS 18.0
+//  Audited for 6.5.1
 //  Status: Complete
 
 #ifndef AGUniqueID_h
 #define AGUniqueID_h
 
 #include <AttributeGraph/AGBase.h>
-typedef long AGUniqueID;
+typedef u_long AGUniqueID AG_SWIFT_NAME(UniqueID);
 
 AG_EXTERN_C_BEGIN
 AG_EXPORT
