@@ -429,8 +429,7 @@ extension AttributeGraph.StatefulRule {
 @inline(__always) @inlinable internal func AGGraphGetInputValue<Value>(_ attribute: AnyAttribute, input: AnyAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
 @_silgen_name("AGGraphWithUpdate")
 @inline(__always) @inlinable internal func AGGraphWithUpdate(_ attribute: AnyAttribute, body: () -> Swift.Void)
-public typealias AnyWeakAttribute = AGWeakAttribute
-extension AGWeakAttribute {
+extension AnyWeakAttribute {
   @_alwaysEmitIntoClient public init(_ attribute: AnyAttribute?) {
         self = __AGCreateWeakAttribute(attribute ?? .nil)
     }
@@ -450,8 +449,8 @@ extension AGWeakAttribute {
         }
   }
 }
-extension AGWeakAttribute : Swift.Hashable {
-  @_alwaysEmitIntoClient public static func == (lhs: AttributeGraph.AnyWeakAttribute, rhs: AttributeGraph.AnyWeakAttribute) -> Swift.Bool {
+extension AnyWeakAttribute : Swift.Hashable {
+  @_alwaysEmitIntoClient public static func == (lhs: AnyWeakAttribute, rhs: AnyWeakAttribute) -> Swift.Bool {
         lhs._details.identifier == rhs._details.identifier && lhs._details.seed == rhs._details.seed
     }
   @_alwaysEmitIntoClient public func hash(into hasher: inout Swift.Hasher) {
@@ -464,39 +463,61 @@ extension AGWeakAttribute : Swift.Hashable {
     }
   }
 }
-extension AGWeakAttribute : Swift.CustomStringConvertible {
+extension AnyWeakAttribute : Swift.CustomStringConvertible {
   @_alwaysEmitIntoClient public var description: Swift.String {
     get { attribute?.description ?? "nil" }
   }
 }
 @frozen @propertyWrapper @dynamicMemberLookup public struct WeakAttribute<Value> {
   @usableFromInline
-  internal var base: AttributeGraph.AnyWeakAttribute
-  @_alwaysEmitIntoClient public init(base: AttributeGraph.AnyWeakAttribute) {
+  internal var base: AnyWeakAttribute
+  @_alwaysEmitIntoClient public init(base: AnyWeakAttribute) {
         self.base = base
     }
-  public init()
-  public init(_ attribute: AttributeGraph.Attribute<Value>)
-  public init(_ attribute: AttributeGraph.Attribute<Value>?)
-  public var wrappedValue: Value? {
-    get
+  @_alwaysEmitIntoClient public init() {
+        base = AnyWeakAttribute(_details: .init(identifier: .init(rawValue: 0), seed: 0))
+    }
+  @_alwaysEmitIntoClient public init(_ attribute: AttributeGraph.Attribute<Value>) {
+        base = AnyWeakAttribute(attribute.identifier)
+    }
+  @_alwaysEmitIntoClient public init(_ attribute: AttributeGraph.Attribute<Value>?) {
+        base = AnyWeakAttribute(attribute?.identifier)
+    }
+  @_alwaysEmitIntoClient public var wrappedValue: Value? {
+    get {
+        AGGraphGetWeakValue(base, type: Value.self)
+            .value?
+            .assumingMemoryBound(to: Value.self)
+            .pointee
+    }
   }
-  public var projectedValue: AttributeGraph.Attribute<Value>? {
-    get
-    set
-    _modify
+  @_alwaysEmitIntoClient public var projectedValue: AttributeGraph.Attribute<Value>? {
+    get { attribute }
+    set { attribute = newValue }
+    _modify { yield &attribute }
   }
-  public subscript<Member>(dynamicMember keyPath: Swift.KeyPath<Value, Member>) -> AttributeGraph.Attribute<Member>? {
-    get
+  @_alwaysEmitIntoClient public subscript<Member>(dynamicMember keyPath: Swift.KeyPath<Value, Member>) -> AttributeGraph.Attribute<Member>? {
+    get {
+        attribute?[keyPath: keyPath]
+    }
   }
-  public var attribute: AttributeGraph.Attribute<Value>? {
-    get
-    set
+  @_alwaysEmitIntoClient public var attribute: AttributeGraph.Attribute<Value>? {
+    get { base.attribute?.unsafeCast(to: Value.self) }
+    set { base.attribute = newValue?.identifier }
   }
-  public var value: Value? {
-    get
+  @_alwaysEmitIntoClient public var value: Value? {
+    get { wrappedValue }
   }
-  public func changedValue(options: AGValueOptions = []) -> (value: Value, changed: Swift.Bool)?
+  @_alwaysEmitIntoClient public func changedValue(options: AGValueOptions) -> (value: Value, changed: Swift.Bool)? {
+        let value = AGGraphGetWeakValue(base, options: options, type: Value.self)
+        guard let ptr = value.value else {
+            return nil
+        }
+        return (
+            ptr.assumingMemoryBound(to: Value.self).pointee,
+            value.flags.contains(.changed)
+        )
+    }
 }
 extension AttributeGraph.WeakAttribute : Swift.Hashable {
   public static func == (a: AttributeGraph.WeakAttribute<Value>, b: AttributeGraph.WeakAttribute<Value>) -> Swift.Bool
@@ -511,7 +532,7 @@ extension AttributeGraph.WeakAttribute : Swift.CustomStringConvertible {
   }
 }
 @_silgen_name("AGGraphGetWeakValue")
-@inline(__always) @inlinable internal func AGGraphGetWeakValue<Value>(_ attribute: AttributeGraph.AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGValue
+@_alwaysEmitIntoClient private func AGGraphGetWeakValue<Value>(_ attribute: AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGWeakValue
 extension Graph {
   public static func typeIndex(ctx: GraphContext, body: any AttributeGraph._AttributeBody.Type, valueType: Metadata, flags: _AttributeType.Flags, update: () -> (Swift.UnsafeMutableRawPointer, AnyAttribute) -> Swift.Void) -> Swift.Int
 }
