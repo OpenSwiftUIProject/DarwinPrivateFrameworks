@@ -141,6 +141,10 @@ AGSubgraphRef AGGraphGetAttributeSubgraph(AGAttribute attribute) AG_SWIFT_NAME(g
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
+_Nullable AGSubgraphRef AGGraphGetAttributeSubgraph2(AGAttribute attribute) AG_SWIFT_NAME(getter:AGAttribute.subgraph2(self:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
 const void * AGGraphReadCachedAttribute(long hashValue, AGTypeID bodyType, const void *bodyPointer, AGTypeID valueType, AGCachedValueOptions options, AGAttribute attribute, bool unknown/*, ...*/);
 
 AG_EXPORT
