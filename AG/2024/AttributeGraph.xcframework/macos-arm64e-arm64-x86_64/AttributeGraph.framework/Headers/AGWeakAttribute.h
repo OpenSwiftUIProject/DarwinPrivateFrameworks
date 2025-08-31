@@ -11,12 +11,12 @@
 
 AG_ASSUME_NONNULL_BEGIN
 
-typedef struct AG_SWIFT_NAME(AnyWeakAttribute) AGWeakAttribute {
+typedef AG_SWIFT_STRUCT struct {
     struct {
         AGAttribute identifier;
         uint32_t seed;
     } _details;
-} AGWeakAttribute;
+} AGWeakAttribute AG_SWIFT_NAME(AnyWeakAttribute);
 
 AG_EXTERN_C_BEGIN
 
