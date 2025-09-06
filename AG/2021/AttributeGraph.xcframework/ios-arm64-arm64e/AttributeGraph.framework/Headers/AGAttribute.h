@@ -31,7 +31,7 @@ AGAttribute AGGraphGetCurrentAttribute(void);
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-bool AGGraphCurrentAttributeWasModified(void);
+bool AGGraphCurrentAttributeWasModified(void) AG_SWIFT_NAME(getter:AGAttribute.currentWasModified());
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
