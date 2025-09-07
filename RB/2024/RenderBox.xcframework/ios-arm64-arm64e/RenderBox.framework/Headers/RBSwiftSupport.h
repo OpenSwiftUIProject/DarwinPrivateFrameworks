@@ -2,8 +2,7 @@
 //  RBSwiftSupport.h
 //  RenderBox
 
-#ifndef RBSwiftSupport_h
-#define RBSwiftSupport_h
+#pragma once
 
 #if __has_attribute(swift_name)
 #define RB_SWIFT_NAME(_name) __attribute__((swift_name(#_name)))
@@ -42,4 +41,3 @@
 #define RB_SWIFT_INDIRECT_RESULT
 #endif
 
-#endif /* RBSwiftSupport_h */
