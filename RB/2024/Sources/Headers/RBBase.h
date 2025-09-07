@@ -2,8 +2,7 @@
 //  RBBase.h
 //  RenderBox
 
-#ifndef RBBase_h
-#define RBBase_h
+#pragma once
 
 #if DEBUG
 #define RB_ASSERTION
@@ -44,11 +43,10 @@
 #endif
 
 #include <CoreFoundation/CoreFoundation.h>
-#include <TargetConditionals.h>
-#ifndef TARGET_OS_DARWIN
-#define TARGET_OS_DARWIN TARGET_OS_MAC
-#endif
+#include <stdint.h>
+#include <stdbool.h>
 #include "RBSwiftSupport.h"
+#include "RBTargetConditionals.h"
 
 #define RB_ENUM CF_ENUM
 #define RB_CLOSED_ENUM CF_CLOSED_ENUM
@@ -62,10 +60,9 @@
 #define RB_EXPORT CF_EXPORT
 #define RB_BRIDGED_TYPE CF_BRIDGED_TYPE
 
-#if TARGET_OS_DARWIN && __OBJC__
-#define RB_OBJC_FOUNDATION 1
+#if RB_TARGET_OS_DARWIN && __RBJC__
+#define RB_RBJC_FOUNDATION 1
 #else
-#define RB_OBJC_FOUNDATION 0
-#endif /* TARGET_OS_DARWIN && __OBJC__ */
+#define RB_RBJC_FOUNDATION 0
+#endif /* TARGET_OS_DARWIN && __RBJC__ */
 
-#endif /* RBBase_h */

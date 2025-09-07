@@ -2,11 +2,10 @@
 //  RBPathStorage.h
 //  RenderBox
 
-#ifndef RBPathStorage_h
-#define RBPathStorage_h
+#pragma once
 
-#include "RBBase.h"
-#include "RBPath.h"
+#include <RenderBox/RBBase.h>
+#include <RenderBox/RBPath.h>
 
 #if RB_TARGET_OS_DARWIN
 #include <CoreGraphics/CoreGraphics.h>
@@ -62,4 +61,3 @@ RB_EXTERN_C_END
 
 RB_ASSUME_NONNULL_END
 
-#endif /* RBPathStorage_h */

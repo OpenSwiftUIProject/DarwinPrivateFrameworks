@@ -2,10 +2,9 @@
 //  RBPath.h
 //  RenderBox
 
-#ifndef RBPath_h
-#define RBPath_h
+#pragma once
 
-#include "RBBase.h"
+#include <RenderBox/RBBase.h>
 
 RB_ASSUME_NONNULL_BEGIN
 
@@ -32,4 +31,3 @@ RB_EXTERN_C_END
 
 RB_ASSUME_NONNULL_END
 
-#endif /* RBPath_h */

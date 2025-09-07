@@ -18,3 +18,6 @@ After making change to Sources, run `update.sh` to update the xcframework.
     - `/Applications/Xcode-16.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/PrivateFrameworks/RenderBox.framework`
     - `xcrun tapi stubify ./RenderBox.framework`
 
+### Update RenderBox
+
+See https://github.com/OpenSwiftUIProject/OpenRenderBox/blob/main/Scripts/gen_rb_template.sh
