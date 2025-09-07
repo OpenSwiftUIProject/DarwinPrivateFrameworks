@@ -114,6 +114,14 @@ AG_REFINED_FOR_SWIFT
 bool AGGraphAnyInputsChanged(const AGAttribute *excluded_inputs, size_t count);
 #endif
 
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGGraphBeginDeferringSubgraphInvalidation(AGGraphRef graph) AG_SWIFT_NAME(AGGraphRef.beginDeferringSubgraphInvalidation(self:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+void AGGraphEndDeferringSubgraphInvalidation(AGGraphRef graph, bool was_deferring) AG_SWIFT_NAME(AGGraphRef.endDeferringSubgraphInvalidation(self:wasDeferring:));
+
 AG_EXTERN_C_END
 
 AG_IMPLICIT_BRIDGING_DISABLED
