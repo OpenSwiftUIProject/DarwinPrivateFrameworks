@@ -22,7 +22,7 @@ AG_EXTERN_C_BEGIN
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-CFTypeID AGSubgraphGetTypeID();
+CFTypeID AGSubgraphGetTypeID(void) AG_SWIFT_NAME(getter:AGSubgraphRef.typeID());
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
@@ -67,6 +67,26 @@ void AGSubgraphAddChild2(AGSubgraphRef parent, AGSubgraphRef child, uint8_t tag)
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
 void AGSubgraphRemoveChild(AGSubgraphRef parent, AGSubgraphRef child) AG_SWIFT_NAME(AGSubgraphRef.removeChild(self:_:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+AGSubgraphRef AGSubgraphGetChild(AGSubgraphRef cf_subgraph, uint32_t index, uint8_t *_Nullable tag_out) AG_SWIFT_NAME(AGSubgraphRef.child(self:at:tag:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+uint32_t AGSubgraphGetChildCount(AGSubgraphRef cf_subgraph) AG_SWIFT_NAME(getter:AGSubgraphRef.childCount(self:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+AGSubgraphRef AGSubgraphGetParent(AGSubgraphRef cf_subgraph, int64_t index) AG_SWIFT_NAME(AGSubgraphRef.parent(self:at:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+uint64_t AGSubgraphGetParentCount(AGSubgraphRef cf_subgraph) AG_SWIFT_NAME(getter:AGSubgraphRef.parentCount(self:));
+
+AG_EXPORT
+AG_REFINED_FOR_SWIFT
+bool AGSubgraphIsAncestor(AGSubgraphRef cf_subgraph, AGSubgraphRef other) AG_SWIFT_NAME(AGSubgraphRef.isAncestor(self:of:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
