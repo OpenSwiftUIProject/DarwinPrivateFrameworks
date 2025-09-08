@@ -14,12 +14,15 @@ FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 if [ "$VERSION" = "2021" ]; then
     IOS_VERSION="15.0"
     MACOS_VERSION="12.0"
+    XROS_VERSION=""  # visionOS not available in 2021
 elif [ "$VERSION" = "2024" ]; then
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"
+    XROS_VERSION="2.0"
 else
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"
+    XROS_VERSION="2.0"
 fi
 
 framework_name=AttributeGraph
@@ -97,3 +100,11 @@ generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
 rm template.swiftinterface
+
+# Add visionOS support if available
+if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
+    generate_framework $framework_name xros-arm64-x86_64-simulator
+    generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
+    generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
+    rm template.swiftinterface
+fi

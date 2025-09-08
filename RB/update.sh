@@ -53,3 +53,8 @@ generate_xcframework $framework_name
 generate_framework $framework_name ios-arm64-x86_64-simulator
 generate_framework $framework_name ios-arm64-arm64e
 generate_framework $framework_name macos-arm64e-arm64-x86_64
+
+# Add visionOS support if available
+if [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
+    generate_framework $framework_name xros-arm64-x86_64-simulator
+fi
