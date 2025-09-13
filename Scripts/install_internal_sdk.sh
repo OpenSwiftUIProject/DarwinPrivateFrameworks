@@ -109,7 +109,13 @@ echo "Copying SDK from:"
 echo "  Source: $ORIGINAL_SDK_PATH"
 echo "  Target: $INTERNAL_SDK_PATH"
 
-cp -R "$ORIGINAL_SDK_PATH" "$INTERNAL_SDK_PATH"
+cp -RH "$ORIGINAL_SDK_PATH" "$INTERNAL_SDK_PATH"
+
+# Clean up any potential circular symlinks inside the Internal SDK
+if [ -L "$INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk" ]; then
+    echo "Removing circular symlink: $INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk"
+    rm -f "$INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk"
+fi
 
 # Update SDKSettings.plist in the Internal SDK
 PLIST_PATH="$INTERNAL_SDK_PATH/SDKSettings.plist"
@@ -175,6 +181,9 @@ if [ -f "$PLIST_PATH" ]; then
             MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
             MAJOR=$(echo "$VERSION" | cut -d. -f1)
 
+            # Remove existing symlinks if they exist to avoid creating symlink inside directory
+            rm -f "$PLATFORM$MAJOR_MINOR.Internal.sdk"
+            rm -f "$PLATFORM$MAJOR.Internal.sdk"
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR.Internal.sdk"
             echo "  Created soft links: $PLATFORM$MAJOR_MINOR.Internal.sdk and $PLATFORM$MAJOR.Internal.sdk"
@@ -212,8 +221,16 @@ if [ -f "$PLIST_PATH" ]; then
             # Extract major and minor version
             MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
 
+            # Remove existing symlink if it exists to avoid creating symlink inside directory
+            rm -f "$PLATFORM$MAJOR_MINOR.Internal.sdk"
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
             echo "  Created soft link: $PLATFORM$MAJOR_MINOR.Internal.sdk"
+
+            # Clean up any circular symlinks that might have been created
+            if [ -L "$INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk" ]; then
+                echo "  Removing circular symlink: $INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk"
+                rm -f "$INTERNAL_SDK_PATH/$PLATFORM.Internal.sdk"
+            fi
 
             # Handle -d flag: redirect versioned SDK symlink to Internal SDK
             if [ "$SET_DEFAULT" = true ]; then
