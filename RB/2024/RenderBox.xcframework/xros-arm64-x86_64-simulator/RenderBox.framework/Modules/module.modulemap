@@ -1,0 +1,6 @@
+framework module RenderBox {
+  umbrella header "RenderBox-umbrella.h"
+
+  export *
+  module * { export * }
+}

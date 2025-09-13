@@ -24,6 +24,10 @@ After making change to Sources, run `update.sh` to update the xcframework.
 - macOS's tbd is from macOS 15.5 SDK (bundled with Xcode 16.4)
     - `/Applications/Xcode-16.4.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework/AttributeGraph.tbd`
 
+- visionOS Simulator:
+    - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AttributeGraph.framework`
+    - `xcrun tapi stubify ./AttributeGraph.framework`
+
 @_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.
 
 ### Update AttributeGraph

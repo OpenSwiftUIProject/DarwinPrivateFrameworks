@@ -2,7 +2,7 @@
 
 This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox` and `CoreUI`.
 
-The frameworks are provided as xcframeworks available for macOS, iOS Simulator, and iOS[^1] platform.
+The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], and visionOS Simulator platforms.
 
 > [!CAUTION]
 > These private frameworks are **ONLY** for research and educational purposes.
@@ -68,7 +68,17 @@ For Xcode projects, first add the dependency as above and then manually drag the
 1. Use the following installation script to set up an internal SDK to use these private frameworks[^2] globally:
 
 ```shell
-Scripts/install_private_sdk.sh MacOSX
+# For macOS
+Scripts/install_internal_sdk.sh MacOSX
+
+# For iOS Simulator
+Scripts/install_internal_sdk.sh iPhoneSimulator
+
+# For iOS Device
+Scripts/install_internal_sdk.sh iPhoneOS
+
+# For visionOS Simulator
+Scripts/install_internal_sdk.sh XRSimulator
 ```
 
 2. Choose the corresponding Internal SDK as the Base SDK in your Xcode project settings.
@@ -84,6 +94,7 @@ Scripts/install_private_sdk.sh MacOSX
 > - macOS: `macosx15.5.internal`
 > - iOS Simulator: `iphonesimulator18.5.internal`
 > - iOS Device: `iphoneos18.5.internal`
+> - visionOS Simulator: `xrsimulator2.0.internal`
 >
 > **Note**: Command-line `xcodebuild` with `-sdk macosx.internal` works regardless of Xcode version.
 >
@@ -103,4 +114,4 @@ import AttributeGraph
 
 [^1]: The Swift API of AttributeGraph is not available on iOS platform.
 
-[^2]: Only AttributeGraph is currently installed to the Internal SDK. Other frameworks are not ready yet.
+[^2]: Only AttributeGraph is currently installed to the Internal SDK. Other frameworks are not ready yet. For visionOS, the script also enables UIScreen support by removing API availability restrictions.
