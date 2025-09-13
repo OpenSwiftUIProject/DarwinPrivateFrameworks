@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (id)entryForPresentationTime:(id)time animated:(_Bool)animated userObject:(id)object;
 
 /* instance methods */
-- (id)initWithPresentationTime:(id)time requestedFidelity:(BLSUpdateFidelity)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
+- (instancetype)initWithPresentationTime:(id)time requestedFidelity:(BLSUpdateFidelity)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
 
 @end
 

@@ -21,16 +21,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /* class methods */
 + (id)emptyTimelineWithIdentifier:(id)identifier;
-+ (id)timelineWithPerMinuteUpdateFrequency:(long long)frequency identifier:(id)identifier configure:(id /* block */)configure;
-+ (id)everyMinuteTimelineWithIdentifier:(id)identifier configure:(id /* block */)configure;
-+ (id)timelineWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(id /* block */)configure;
-+ (id)timelineWithEntries:(id)entries identifier:(id)identifier configure:(id /* block */)configure;
-+ (NSRange)rangeOfEntries:(id)entries forDateInterval:(id)interval shouldIncludePrevious:(_Bool)previous;
-+ (id)constructFrameSpecifiersForTimelines:(id)timelines dateInterval:(id)interval shouldConstructStartSpecifier:(_Bool)specifier framesPerSecond:(double)second previousSpecifier:(id)specifier;
++ (id)timelineWithPerMinuteUpdateFrequency:(long long)frequency identifier:(id)identifier configure:(nullable id /* block */)configure;
++ (id)everyMinuteTimelineWithIdentifier:(id)identifier configure:(nullable id /* block */)configure;
++ (id)timelineWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(nullable id /* block */)configure;
++ (id)timelineWithEntries:(id)entries identifier:(id)identifier configure:(nullable id /* block */)configure;
++ (NSRange)rangeOfEntries:(id)entries forDateInterval:(id)interval shouldIncludePrevious:(BOOL)previous;
++ (id)constructFrameSpecifiersForTimelines:(id)timelines dateInterval:(id)interval shouldConstructStartSpecifier:(BOOL)specifier framesPerSecond:(double)second previousSpecifier:(id)specifier;
 + (BLSUpdateFidelity)requestedFidelityForTimelines:(id)timelines inDateInterval:(id)interval;
 
 /* instance methods */
-- (id)initWithIdentifier:(id)identifier configure:(id /* block */)configure;
+- (instancetype)initWithIdentifier:(id)identifier configure:(nullable id /* block */)configure;
 - (NSString *)description;
 - (id)configureEntry:(id)entry previousEntry:(id)entry;
 - (id)configureEntries:(id)entries previousEntry:(id)entry;

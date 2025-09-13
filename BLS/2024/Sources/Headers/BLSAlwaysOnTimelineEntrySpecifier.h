@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BLSAlwaysOnTimelineEntry *previousTimelineEntry;
 
 /* instance methods */
-- (id)initWithTimelineEntry:(id)entry percentComplete:(double)complete previousTimelineEntry:(id)entry didChange:(_Bool)change;
+- (instancetype)initWithTimelineEntry:(id)entry percentComplete:(double)complete previousTimelineEntry:(id)entry didChange:(_Bool)change;
 - (long long)compare:(id)compare;
 - (NSString *)description;
 - (void)appendFidelityToTarget:(id)target;

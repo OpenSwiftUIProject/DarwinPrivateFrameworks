@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (id)shortLoggingStringForPresentationInterval:(id)interval;
 
 /* instance methods */
-- (id)initWithTimelineEntrySpecifiers:(id)specifiers presentationInterval:(id)interval;
+- (instancetype)initWithTimelineEntrySpecifiers:(id)specifiers presentationInterval:(id)interval;
 - (id)entrySpecifierForTimelineIdentifier:(id)identifier;
 - (long long)compare:(id)compare;
 - (id)correctedSpecifierWithNextSpecifier:(id)specifier;

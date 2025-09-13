@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /* instance methods */
-- (id)initWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(id /* block */)configure;
+- (instancetype)initWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(nullable id /* block */)configure;
 - (NSString *)description;
 - (BLSUpdateFidelity)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
 - (id)unconfiguredEntriesForDateInterval:(id)interval previousEntry:(id)entry;
