@@ -4,25 +4,26 @@
 //    - LC_BUILD_VERSION:  Platform: iOsSimulator, MinOS: 18.5, SDK: 18.5, Tool: ld (1167.3)
 //    - LC_SOURCE_VERSION: 4.5.3.0.0
 //
-#ifndef BLSAlwaysOnExplicitEntriesTimeline_h
-#define BLSAlwaysOnExplicitEntriesTimeline_h
+#ifndef BLSAlwaysOnPeriodicTimeline_h
+#define BLSAlwaysOnPeriodicTimeline_h
 @import Foundation;
 
 #include "BLSAlwaysOnTimeline.h"
 
-@class NSArray;
+@class NSDate;
 
-@interface BLSAlwaysOnExplicitEntriesTimeline : BLSAlwaysOnTimeline {
+@interface BLSAlwaysOnPeriodicTimeline : BLSAlwaysOnTimeline {
     /* instance variables */
-    NSArray *_explicitEntries;
+    double _periodicInterval;
+    NSDate *_periodicStart;
 }
 
 /* instance methods */
-- (id)initWithEntries:(id)entries identifier:(id)identifier configure:(id /* block */)configure;
+- (id)initWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(id /* block */)configure;
 - (id)description;
 - (long long)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
 - (id)unconfiguredEntriesForDateInterval:(id)interval previousEntry:(id)entry;
 
 @end
 
-#endif /* BLSAlwaysOnExplicitEntriesTimeline_h */
+#endif /* BLSAlwaysOnPeriodicTimeline_h */

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import BacklightServices
 
 struct ContentView: View {
     var body: some View {
