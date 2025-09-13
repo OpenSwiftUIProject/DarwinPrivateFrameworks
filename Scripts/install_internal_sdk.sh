@@ -174,4 +174,10 @@ echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
 echo "Installing AttributeGraph frameworks..."
 "$REPO_ROOT/Scripts/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
+# Enable UIScreen support for XRSimulator
+if [ "$PLATFORM" = "XRSimulator" ]; then
+    echo "Enabling UIScreen support for visionOS SDK..."
+    "$REPO_ROOT/Scripts/XR/enable_uiscreen_support.sh" "$INTERNAL_SDK_PATH"
+fi
+
 # TODO: Only support install AG for now as other frameworks are not ready yet
