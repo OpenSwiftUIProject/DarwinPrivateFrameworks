@@ -18,12 +18,18 @@ generate_framework() {
     mkdir -p ${path}
 
     rm -rf ${path}/${framework_name}.tbd
+    rm -rf ${path}/Headers
+    rm -rf ${path}/Modules
     rm -rf ${path}/Info.plist
 
     cp ${FRAMEWORK_ROOT}/tbds/${arch_name}/${framework_name}.tbd ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/ 2>/dev/null || true
 
-    # Create minimal Info.plist for framework
-    cat > ${path}/Info.plist << EOF
+    # Create minimal Info.plist for framework if not exists
+    if [ ! -f ${path}/Info.plist ]; then
+        cat > ${path}/Info.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -37,6 +43,7 @@ generate_framework() {
 </dict>
 </plist>
 EOF
+    fi
 }
 
 generate_xcframework() {
