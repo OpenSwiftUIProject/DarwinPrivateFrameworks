@@ -6,21 +6,20 @@
 //
 #ifndef BLSAlwaysOnFrameSpecifier_h
 #define BLSAlwaysOnFrameSpecifier_h
-@import Foundation;
 
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-
-@class NSArray, NSDateInterval, NSObject;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnFrameSpecifier : NSObject <NSCopying> {
-    /* instance variables */
     os_unfair_lock _lock;
 }
 
-@property long long grantedFidelity;
+@property BLSUpdateFidelity grantedFidelity;
 @property (readonly) NSArray *entrySpecifiers;
 @property (readonly) NSDateInterval *presentationInterval;
-@property (readonly) long long requestedFidelity;
+@property (readonly) BLSUpdateFidelity requestedFidelity;
 
 /* class methods */
 + (id)loggingStringForPresentationInterval:(id)interval;
@@ -31,12 +30,14 @@
 - (id)entrySpecifierForTimelineIdentifier:(id)identifier;
 - (long long)compare:(id)compare;
 - (id)correctedSpecifierWithNextSpecifier:(id)specifier;
-- (id)description;
-- (id)debugDescription;
-- (_Bool)isEqual:(id)equal;
+- (NSString *)description;
+- (NSString *)debugDescription;
+- (BOOL)isEqual:(id)equal;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)zone;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnFrameSpecifier_h */

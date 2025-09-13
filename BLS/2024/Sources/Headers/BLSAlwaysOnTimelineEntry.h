@@ -6,17 +6,15 @@
 //
 #ifndef BLSAlwaysOnTimelineEntry_h
 #define BLSAlwaysOnTimelineEntry_h
-@import Foundation;
 
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-
-
-
-@class NSDate, NSObject;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnTimelineEntry : NSObject <NSCopying, NSMutableCopying>
 
-@property (nonatomic) long long requestedFidelity;
+@property (nonatomic) BLSUpdateFidelity requestedFidelity;
 @property (nonatomic) _Bool animated;
 @property (nonatomic) double duration;
 @property (retain, nonatomic) id <NSObject> userObject;
@@ -28,10 +26,10 @@
 + (id)shortLoggingStringForPresentationTime:(id)time;
 
 /* instance methods */
-- (id)initWithPresentationTime:(id)time requestedFidelity:(long long)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
+- (id)initWithPresentationTime:(id)time requestedFidelity:(BLSUpdateFidelity)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
 - (long long)compare:(id)compare;
-- (id)description;
-- (id)debugDescription;
+- (NSString *)description;
+- (NSString *)debugDescription;
 - (_Bool)isEqual:(id)equal;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)zone;
@@ -39,5 +37,7 @@
 - (_Bool)isAnimated;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnTimelineEntry_h */

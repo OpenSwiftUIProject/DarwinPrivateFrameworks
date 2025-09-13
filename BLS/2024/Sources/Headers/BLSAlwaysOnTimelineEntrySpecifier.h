@@ -6,21 +6,21 @@
 //
 #ifndef BLSAlwaysOnTimelineEntrySpecifier_h
 #define BLSAlwaysOnTimelineEntrySpecifier_h
-@import Foundation;
 
 #include "BLSAlwaysOnTimelineEntry.h"
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-
-@class NSObject;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnTimelineEntrySpecifier : NSObject <NSCopying> {
     /* instance variables */
     os_unfair_lock _lock;
 }
 
-@property _Bool didChange;
-@property long long grantedFidelity;
-@property long long requestedFidelity;
+@property BOOL didChange;
+@property BLSUpdateFidelity grantedFidelity;
+@property BLSUpdateFidelity requestedFidelity;
 @property (readonly) BLSAlwaysOnTimelineEntry *timelineEntry;
 @property (readonly) double percentComplete;
 @property (readonly) BLSAlwaysOnTimelineEntry *previousTimelineEntry;
@@ -28,13 +28,15 @@
 /* instance methods */
 - (id)initWithTimelineEntry:(id)entry percentComplete:(double)complete previousTimelineEntry:(id)entry didChange:(_Bool)change;
 - (long long)compare:(id)compare;
-- (id)description;
+- (NSString *)description;
 - (void)appendFidelityToTarget:(id)target;
-- (id)debugDescription;
-- (_Bool)isEqual:(id)equal;
+- (NSString *)debugDescription;
+- (BOOL)isEqual:(id)equal;
 - (unsigned long long)hash;
 - (id)copyWithZone:(struct _NSZone *)zone;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnTimelineEntrySpecifier_h */

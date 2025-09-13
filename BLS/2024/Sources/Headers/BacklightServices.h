@@ -7,15 +7,16 @@
 #ifndef BacklightServices_h
 #define BacklightServices_h
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import <os/lock.h>
+#include <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
+#include <os/lock.h>
 
-#import "BLSAlwaysOnFrameSpecifier.h"
-#import "BLSAlwaysOnPeriodicTimeline.h"
-#import "BLSAlwaysOnTimeline.h"
-#import "BLSAlwaysOnTimelineEntry.h"
-#import "BLSAlwaysOnTimelineEntrySpecifier.h"
-#import "BLSAlwaysOnTimelineUnconfiguredEntry.h"
+#include "BLSUpdateFidelity.h"
+#include "BLSAlwaysOnFrameSpecifier.h"
+#include "BLSAlwaysOnPeriodicTimeline.h"
+#include "BLSAlwaysOnTimeline.h"
+#include "BLSAlwaysOnTimelineEntry.h"
+#include "BLSAlwaysOnTimelineEntrySpecifier.h"
+#include "BLSAlwaysOnTimelineUnconfiguredEntry.h"
 
 #endif /* BacklightServices_h */

@@ -6,11 +6,12 @@
 //
 #ifndef BLSAlwaysOnPeriodicTimeline_h
 #define BLSAlwaysOnPeriodicTimeline_h
-@import Foundation;
 
 #include "BLSAlwaysOnTimeline.h"
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-@class NSDate;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnPeriodicTimeline : BLSAlwaysOnTimeline {
     /* instance variables */
@@ -20,10 +21,12 @@
 
 /* instance methods */
 - (id)initWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(id /* block */)configure;
-- (id)description;
-- (long long)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
+- (NSString *)description;
+- (BLSUpdateFidelity)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
 - (id)unconfiguredEntriesForDateInterval:(id)interval previousEntry:(id)entry;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnPeriodicTimeline_h */

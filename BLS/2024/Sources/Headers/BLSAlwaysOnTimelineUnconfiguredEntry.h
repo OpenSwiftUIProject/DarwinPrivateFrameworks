@@ -6,29 +6,32 @@
 //
 #ifndef BLSAlwaysOnTimelineUnconfiguredEntry_h
 #define BLSAlwaysOnTimelineUnconfiguredEntry_h
-@import Foundation;
 
 #include "BLSAlwaysOnTimelineEntry.h"
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnTimelineUnconfiguredEntry : BLSAlwaysOnTimelineEntry
 
-@property (nonatomic) long long requestedFidelity;
+@property (nonatomic) BLSUpdateFidelity requestedFidelity;
 @property (retain, nonatomic) id <NSObject, NSCopying> timelineIdentifier;
 @property (nonatomic) _Bool animated;
 @property (nonatomic) double duration;
 @property (retain, nonatomic) id <NSObject> userObject;
 
 /* class methods */
-+ (id)entryForPresentationTime:(id)time withRequestedFidelity:(long long)fidelity;
++ (id)entryForPresentationTime:(id)time withRequestedFidelity:(BLSUpdateFidelity)fidelity;
 + (id)entryForPresentationTime:(id)time;
-+ (id)entryForPresentationTime:(id)time withRequestedFidelity:(long long)fidelity animated:(_Bool)animated userObject:(id)object;
++ (id)entryForPresentationTime:(id)time withRequestedFidelity:(BLSUpdateFidelity)fidelity animated:(_Bool)animated userObject:(id)object;
 + (id)entryForPresentationTime:(id)time animated:(_Bool)animated userObject:(id)object;
 
 /* instance methods */
-- (id)initWithPresentationTime:(id)time requestedFidelity:(long long)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
+- (id)initWithPresentationTime:(id)time requestedFidelity:(BLSUpdateFidelity)fidelity animated:(_Bool)animated duration:(double)duration timelineIdentifier:(id)identifier userObject:(id)object;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnTimelineUnconfiguredEntry_h */

@@ -6,12 +6,11 @@
 //
 #ifndef BLSAlwaysOnTimeline_h
 #define BLSAlwaysOnTimeline_h
-@import Foundation;
 
+#include "BLSUpdateFidelity.h"
+#include <Foundation/Foundation.h>
 
-
-
-@class NSObject;
+NS_ASSUME_NONNULL_BEGIN
 
 @interface BLSAlwaysOnTimeline : NSObject {
     /* instance variables */
@@ -28,17 +27,19 @@
 + (id)timelineWithEntries:(id)entries identifier:(id)identifier configure:(id /* block */)configure;
 + (NSRange)rangeOfEntries:(id)entries forDateInterval:(id)interval shouldIncludePrevious:(_Bool)previous;
 + (id)constructFrameSpecifiersForTimelines:(id)timelines dateInterval:(id)interval shouldConstructStartSpecifier:(_Bool)specifier framesPerSecond:(double)second previousSpecifier:(id)specifier;
-+ (long long)requestedFidelityForTimelines:(id)timelines inDateInterval:(id)interval;
++ (BLSUpdateFidelity)requestedFidelityForTimelines:(id)timelines inDateInterval:(id)interval;
 
 /* instance methods */
 - (id)initWithIdentifier:(id)identifier configure:(id /* block */)configure;
-- (id)description;
+- (NSString *)description;
 - (id)configureEntry:(id)entry previousEntry:(id)entry;
 - (id)configureEntries:(id)entries previousEntry:(id)entry;
-- (long long)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
+- (BLSUpdateFidelity)requestedFidelityForStartEntryInDateInterval:(id)interval withPreviousEntry:(id)entry;
 - (id)unconfiguredEntriesForDateInterval:(id)interval previousEntry:(id)entry;
-- (long long)estimatedFidelityForPresentationTime:(id)time nextPresentationTime:(id)time;
+- (BLSUpdateFidelity)estimatedFidelityForPresentationTime:(id)time nextPresentationTime:(id)time;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif /* BLSAlwaysOnTimeline_h */
