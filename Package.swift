@@ -16,11 +16,13 @@ let package = Package(
         .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
         .library(name: "RenderBox", targets: ["RenderBox"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
+        .library(name: "BacklightServices", targets: ["BacklightServices"])
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
+        .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(

@@ -1,0 +1,6 @@
+framework module BacklightServices {
+  umbrella header "BacklightServices.h"
+
+  export *
+  module * { export * }
+}
