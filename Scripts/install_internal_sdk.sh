@@ -187,6 +187,8 @@ if [ -f "$PLIST_PATH" ]; then
                 # Backup original symlinks if they exist
                 if [ -L "$PLATFORM$MAJOR_MINOR.sdk" ]; then
                     ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR_MINOR.sdk")
+                    # Normalize the target path (remove ./ prefix if present)
+                    ORIGINAL_TARGET="${ORIGINAL_TARGET#./}"
                     echo "  Backing up $PLATFORM$MAJOR_MINOR.sdk -> $ORIGINAL_TARGET"
                     echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR_MINOR.sdk.original"
                     rm -f "$PLATFORM$MAJOR_MINOR.sdk"
@@ -196,6 +198,8 @@ if [ -f "$PLIST_PATH" ]; then
 
                 if [ -L "$PLATFORM$MAJOR.sdk" ]; then
                     ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR.sdk")
+                    # Normalize the target path (remove ./ prefix if present)
+                    ORIGINAL_TARGET="${ORIGINAL_TARGET#./}"
                     echo "  Backing up $PLATFORM$MAJOR.sdk -> $ORIGINAL_TARGET"
                     echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR.sdk.original"
                     rm -f "$PLATFORM$MAJOR.sdk"
@@ -219,6 +223,8 @@ if [ -f "$PLIST_PATH" ]; then
                 # Backup original symlink if it exists
                 if [ -L "$PLATFORM$MAJOR_MINOR.sdk" ]; then
                     ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR_MINOR.sdk")
+                    # Normalize the target path (remove ./ prefix if present)
+                    ORIGINAL_TARGET="${ORIGINAL_TARGET#./}"
                     echo "  Backing up $PLATFORM$MAJOR_MINOR.sdk -> $ORIGINAL_TARGET"
                     echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR_MINOR.sdk.original"
                     rm -f "$PLATFORM$MAJOR_MINOR.sdk"
@@ -250,7 +256,11 @@ if [ "$SET_DEFAULT" = true ]; then
     echo "========================================="
     echo "Internal SDK is now set as the default SDK."
     echo "The versioned SDK symlinks now point to the Internal SDK."
-    echo "To restore original configuration, use the .original files in:"
+    echo ""
+    echo "To restore original configuration, run:"
+    echo "  $REPO_ROOT/Scripts/restore_original_sdk.sh $PLATFORM"
+    echo ""
+    echo "Or manually use the .original files in:"
     echo "  $XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs/"
     echo "========================================="
 fi
