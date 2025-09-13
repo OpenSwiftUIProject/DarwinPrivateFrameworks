@@ -8,7 +8,7 @@
 #define BLSBacklightChangeRequestable_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSBacklightChangeRequestable <NSObject>
 

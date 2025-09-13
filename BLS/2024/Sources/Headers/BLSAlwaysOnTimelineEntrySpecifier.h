@@ -9,13 +9,13 @@
 @import Foundation;
 
 #include "BLSAlwaysOnTimelineEntry.h"
-#include "NSCopying-Protocol.h"
+
 
 @class NSObject;
 
 @interface BLSAlwaysOnTimelineEntrySpecifier : NSObject <NSCopying> {
     /* instance variables */
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
 }
 
 @property _Bool didChange;

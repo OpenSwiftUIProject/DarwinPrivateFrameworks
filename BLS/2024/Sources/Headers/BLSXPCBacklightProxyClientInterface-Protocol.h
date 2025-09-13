@@ -8,7 +8,7 @@
 #define BLSXPCBacklightProxyClientInterface_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSXPCBacklightProxyClientInterface <NSObject>
 

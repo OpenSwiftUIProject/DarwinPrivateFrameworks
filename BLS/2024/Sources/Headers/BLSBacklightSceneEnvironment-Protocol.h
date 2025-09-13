@@ -11,7 +11,7 @@
 #include "BLSAlwaysOnFrameSpecifier.h"
 #include "BLSAlwaysOnSession.h"
 #include "BLSBacklightSceneVisualState.h"
-#include "NSObject-Protocol.h"
+
 
 @class NSString;
 @protocol BLSBacklightSceneEnvironmentDelegate;

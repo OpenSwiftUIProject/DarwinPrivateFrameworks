@@ -8,7 +8,7 @@
 #define BLSBacklightSceneClientSettings_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSBacklightSceneClientSettings <NSObject>
 

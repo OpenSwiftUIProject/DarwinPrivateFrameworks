@@ -8,7 +8,7 @@
 #define BLSXPCAssertionServiceClientInterface_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSXPCAssertionServiceClientInterface <NSObject>
 

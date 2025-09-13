@@ -8,7 +8,7 @@
 #define BLSAssertionService_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSAssertionService <NSObject>
 

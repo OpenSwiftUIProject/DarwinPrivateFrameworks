@@ -10,7 +10,7 @@
 
 #include "BLSDiagnosticFlipbookFrameSurfaceProvider-Protocol.h"
 #include "BLSFlipbookDiagnosticsProviding-Protocol.h"
-#include "BSInvalidatable-Protocol.h"
+
 
 @class BSServiceConnection, NSObject, NSString;
 @protocol OS_dispatch_queue;
@@ -21,7 +21,7 @@
     BSServiceConnection *_connection;
 }
 
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

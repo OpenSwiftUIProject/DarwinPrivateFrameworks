@@ -9,7 +9,7 @@
 @import Foundation;
 
 #include "BLSBacklightSceneVisualState.h"
-#include "NSObject-Protocol.h"
+
 
 @class NSDate;
 

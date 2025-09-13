@@ -18,7 +18,7 @@
     id /* block */ _sceneContentsUpdatedBlock;
     id /* block */ _performBacklightRampBlock;
     id /* block */ _sceneContentsAnimationCompleteBlock;
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     _Bool _lock_sceneContentsUpdated;
     _Bool _lock_didStartBacklightRamp;
     _Bool _lock_animationComplete;

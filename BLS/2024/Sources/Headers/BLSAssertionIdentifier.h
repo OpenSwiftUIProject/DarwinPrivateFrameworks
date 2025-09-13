@@ -8,9 +8,9 @@
 #define BLSAssertionIdentifier_h
 @import Foundation;
 
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSObject, NSString;
 
@@ -19,7 +19,7 @@
 @property (readonly, nonatomic) int hostPid;
 @property (readonly, nonatomic) int clientPid;
 @property (readonly, nonatomic) unsigned long long count;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

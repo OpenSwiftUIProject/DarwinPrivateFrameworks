@@ -10,7 +10,7 @@
 
 #include "BLSAssertionDescriptor.h"
 #include "BLSAssertionIdentifier.h"
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSAsserting <NSObject>
 

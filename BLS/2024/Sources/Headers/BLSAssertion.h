@@ -13,8 +13,8 @@
 #include "BLSAssertionIdentifier.h"
 #include "BLSAssertionService-Protocol.h"
 #include "BLSAssertionServiceResponding-Protocol.h"
-#include "BSCancellable-Protocol.h"
-#include "BSInvalidatable-Protocol.h"
+
+
 
 @class NSArray, NSHashTable, NSObject, NSString;
 
@@ -22,7 +22,7 @@
     /* instance variables */
     BLSAssertionAcquisitionObserver *_acquisitionObserver;
     NSHashTable *_observers;
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     _Bool _lock_acquired;
     _Bool _lock_paused;
     _Bool _lock_everPaused;
@@ -45,7 +45,7 @@
 @property (retain, nonatomic) BLSAssertionIdentifier *identifier;
 @property (readonly, nonatomic) unsigned long long acquisitionState;
 @property (readonly, nonatomic) double activeDuration;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

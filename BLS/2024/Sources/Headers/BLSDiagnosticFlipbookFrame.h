@@ -12,8 +12,8 @@
 #include "BLSDiagnosticPresentationDateSpecifier.h"
 #include "BLSPresentationDateSpecifying-Protocol.h"
 #include "BLSRenderedFlipbookFrame-Protocol.h"
-#include "BSXPCCoding-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
 
 @class NSObject, NSString, NSUUID;
 
@@ -32,10 +32,10 @@
 @property (readonly, nonatomic) id <BLSPresentationDateSpecifying> bls_specifier;
 @property (readonly, nonatomic) struct __IOSurface * surface;
 @property (readonly, nonatomic) struct __IOSurface * rawSurface;
-@property (readonly, nonatomic) struct CGRect { struct CGPoint { double x0; double x1; } x0; struct CGSize { double x0; double x1; } x1; } rawSurfaceFrame;
+@property (readonly, nonatomic) CGRect rawSurfaceFrame;
 @property (readonly, nonatomic) _Bool inverted;
 @property (readonly, nonatomic) NSUUID *bls_uuid;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;
@@ -46,7 +46,7 @@
 
 /* instance methods */
 - (id)initWithFrame:(id)frame;
-- (id)initWithPresentationTime:(unsigned long long)time frameId:(unsigned long long)id apl:(float)apl aplDimming:(float)dimming memoryUsage:(unsigned long long)usage rawSurfaceFrameRect:(struct CGRect { struct CGPoint { double x0; double x1; } x0; struct CGSize { double x0; double x1; } x1; })rect inverted:(_Bool)inverted specifier:(id)specifier uuid:(id)uuid;
+- (id)initWithPresentationTime:(unsigned long long)time frameId:(unsigned long long)id apl:(float)apl aplDimming:(float)dimming memoryUsage:(unsigned long long)usage rawSurfaceFrameRect:(CGRect)rect inverted:(_Bool)inverted specifier:(id)specifier uuid:(id)uuid;
 - (id)bls_loggingString;
 - (id)bls_shortLoggingString;
 - (_Bool)isEqual:(id)equal;

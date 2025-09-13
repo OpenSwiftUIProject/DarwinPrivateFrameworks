@@ -10,7 +10,7 @@
 
 #include "BLSAssertionService-Protocol.h"
 #include "BLSXPCAssertionServiceClientInterface-Protocol.h"
-#include "BSInvalidatable-Protocol.h"
+
 
 @class BSServiceConnection, NSMapTable, NSMutableSet, NSObject, NSString;
 @protocol OS_dispatch_queue;
@@ -21,11 +21,11 @@
     BSServiceConnection *_connection;
     NSMapTable *_queue_assertions;
     NSMutableSet *_queue_assertionsToReacquire;
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     _Bool _lock_invalidated;
 }
 
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

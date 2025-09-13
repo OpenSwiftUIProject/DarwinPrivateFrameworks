@@ -8,15 +8,15 @@
 #define BLSAttribute_h
 @import Foundation;
 
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSObject, NSString;
 
 @interface BLSAttribute : NSObject <BSXPCCoding, NSCopying, NSSecureCoding>
 
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

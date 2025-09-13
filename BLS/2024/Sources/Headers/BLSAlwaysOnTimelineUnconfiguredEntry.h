@@ -9,8 +9,8 @@
 @import Foundation;
 
 #include "BLSAlwaysOnTimelineEntry.h"
-#include "NSCopying-Protocol.h"
-#include "NSObject-Protocol.h"
+
+
 
 @interface BLSAlwaysOnTimelineUnconfiguredEntry : BLSAlwaysOnTimelineEntry
 

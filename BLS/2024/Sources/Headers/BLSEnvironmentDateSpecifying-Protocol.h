@@ -9,7 +9,7 @@
 @import Foundation;
 
 #include "BLSAlwaysOnDateSpecifier.h"
-#include "NSObject-Protocol.h"
+
 
 @class NSString;
 

@@ -12,7 +12,7 @@
 
 @interface BLSFrameSpecifierModel : NSObject {
     /* instance variables */
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     unsigned long long _stateHandler;
 }
 

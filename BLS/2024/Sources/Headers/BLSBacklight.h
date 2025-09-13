@@ -24,7 +24,7 @@
 @property (readonly, nonatomic) _Bool transitioning;
 @property (readonly, nonatomic) _Bool alwaysOnEnabled;
 @property (readonly, nonatomic) _Bool deviceSupportsAlwaysOn;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

@@ -8,9 +8,9 @@
 #define BLSAssertionDescriptor_h
 @import Foundation;
 
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSArray, NSObject, NSString;
 
@@ -18,7 +18,7 @@
 
 @property (readonly, copy, nonatomic) NSString *explanation;
 @property (readonly, copy, nonatomic) NSArray *attributes;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

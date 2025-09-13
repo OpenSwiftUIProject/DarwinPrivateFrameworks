@@ -9,8 +9,8 @@
 @import Foundation;
 
 #include "BLSPresentationDateSpecifying-Protocol.h"
-#include "BSXPCCoding-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
 
 @class NSArray, NSDate, NSObject, NSString;
 
@@ -18,7 +18,7 @@
 
 @property (readonly, nonatomic) NSDate *presentationDate;
 @property (readonly, nonatomic) NSArray *specifiers;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

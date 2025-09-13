@@ -14,11 +14,11 @@
 
 @interface BLSAssertionAcquisitionObserver : NSObject <BLSAssertionObserving> {
     /* instance variables */
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     id /* block */ _lock_completion;
 }
 
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

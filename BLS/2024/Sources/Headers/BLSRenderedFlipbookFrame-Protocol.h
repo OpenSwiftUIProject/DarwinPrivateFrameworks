@@ -9,7 +9,7 @@
 @import Foundation;
 
 #include "BLSPresentationDateSpecifying-Protocol.h"
-#include "NSObject-Protocol.h"
+
 
 @class NSUUID;
 
@@ -25,7 +25,7 @@
 @property (readonly, nonatomic) id <BLSPresentationDateSpecifying> bls_specifier;
 @property (readonly, nonatomic) struct __IOSurface * surface;
 @property (readonly, nonatomic) struct __IOSurface * rawSurface;
-@property (readonly, nonatomic) struct CGRect { struct CGPoint { double x0; double x1; } x0; struct CGSize { double x0; double x1; } x1; } rawSurfaceFrame;
+@property (readonly, nonatomic) CGRect rawSurfaceFrame;
 @property (readonly, nonatomic) _Bool inverted;
 @property (readonly, nonatomic) NSUUID *bls_uuid;
 

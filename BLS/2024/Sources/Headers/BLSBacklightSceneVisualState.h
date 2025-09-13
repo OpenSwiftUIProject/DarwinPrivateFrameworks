@@ -8,9 +8,9 @@
 #define BLSBacklightSceneVisualState_h
 @import Foundation;
 
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSObject, NSString;
 
@@ -22,7 +22,7 @@
 @property (readonly, nonatomic) _Bool dimmed;
 @property (readonly, nonatomic) long long grantedFidelity;
 @property (readonly, nonatomic) long long expectedFidelity;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

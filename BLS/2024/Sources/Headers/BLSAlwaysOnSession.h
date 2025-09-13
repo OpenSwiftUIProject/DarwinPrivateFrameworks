@@ -10,7 +10,7 @@
 
 #include "BLSBacklightSceneEnvironment-Protocol.h"
 #include "BLSFrameSpecifierModel.h"
-#include "BSInvalidatable-Protocol.h"
+
 
 @class NSObject, NSString;
 
@@ -18,7 +18,7 @@
 
 @property (retain) BLSFrameSpecifierModel *model;
 @property (readonly, weak) id <BLSBacklightSceneEnvironment> environment;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

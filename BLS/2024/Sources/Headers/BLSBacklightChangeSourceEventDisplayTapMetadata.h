@@ -12,13 +12,13 @@
 
 @interface BLSBacklightChangeSourceEventDisplayTapMetadata : BLSBacklightChangeSourceEventMetadata
 
-@property (readonly, nonatomic) struct CGPoint { double x0; double x1; } position;
+@property (readonly, nonatomic) CGPoint position;
 
 /* class methods */
 + (_Bool)supportsSecureCoding;
 
 /* instance methods */
-- (id)initWithPosition:(struct CGPoint { double x0; double x1; })position;
+- (id)initWithPosition:(CGPoint)position;
 - (id)description;
 - (unsigned long long)hash;
 - (_Bool)isEqual:(id)equal;

@@ -10,7 +10,7 @@
 
 #include "BLSBacklightProxy-Protocol.h"
 #include "BLSXPCBacklightProxyClientInterface-Protocol.h"
-#include "BSInvalidatable-Protocol.h"
+
 
 @class BSServiceConnection, NSMapTable, NSObject, NSString;
 @protocol OS_dispatch_queue;
@@ -20,7 +20,7 @@
     NSMapTable *_lock_observers;
     NSObject<OS_dispatch_queue> *_callbackQueue;
     BSServiceConnection *_connection;
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
     int _lock_observingDidCompleteUpdateToStateCount;
     int _lock_observingEventsArrayCount;
     int _lock_observingDidChangeAlwaysOnEnabledCount;
@@ -41,7 +41,7 @@
 @property (readonly, nonatomic) _Bool transitioning;
 @property (readonly, nonatomic) _Bool alwaysOnEnabled;
 @property (readonly, nonatomic) _Bool deviceSupportsAlwaysOn;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

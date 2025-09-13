@@ -19,7 +19,7 @@
 
 @interface BLSBacklightFBSSceneEnvironment : NSObject <BLSBacklightSceneEnvironment_Private> {
     /* instance variables */
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
 }
 
 @property (weak) FBSScene *fbsScene;
@@ -36,7 +36,7 @@
 @property (readonly) _Bool liveUpdating;
 @property (readonly) _Bool unrestrictedFramerateUpdates;
 @property _Bool supportsAlwaysOn;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

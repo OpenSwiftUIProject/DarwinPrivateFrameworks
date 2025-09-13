@@ -8,8 +8,6 @@
 #define BSInvalidatable_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
-
 @protocol BSInvalidatable <NSObject>
 
 @required

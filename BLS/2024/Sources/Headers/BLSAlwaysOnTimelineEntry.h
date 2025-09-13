@@ -8,9 +8,9 @@
 #define BLSAlwaysOnTimelineEntry_h
 @import Foundation;
 
-#include "NSCopying-Protocol.h"
-#include "NSMutableCopying-Protocol.h"
-#include "NSObject-Protocol.h"
+
+
+
 
 @class NSDate, NSObject;
 

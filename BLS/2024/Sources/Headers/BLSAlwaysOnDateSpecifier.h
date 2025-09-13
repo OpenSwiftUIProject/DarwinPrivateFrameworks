@@ -8,9 +8,9 @@
 #define BLSAlwaysOnDateSpecifier_h
 @import Foundation;
 
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSDate, NSObject, NSString;
 
@@ -19,7 +19,7 @@
 @property (readonly, nonatomic) NSDate *date;
 @property (readonly, nonatomic) long long fidelity;
 @property (readonly, nonatomic) id userObject;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

@@ -17,7 +17,7 @@
     NSMutableArray *_requests;
     NSHashTable *_observers;
     id <BLSBacklightProxy> _replacementBacklightProxy;
-    struct os_unfair_lock_s { unsigned int _os_unfair_lock_opaque; } _lock;
+    os_unfair_lock _lock;
 }
 
 @property (readonly, nonatomic) long long backlightState;
@@ -25,7 +25,7 @@
 @property (readonly, nonatomic) _Bool transitioning;
 @property (readonly, nonatomic) _Bool alwaysOnEnabled;
 @property (readonly, nonatomic) _Bool deviceSupportsAlwaysOn;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

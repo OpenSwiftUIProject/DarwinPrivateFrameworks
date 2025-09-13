@@ -9,9 +9,9 @@
 @import Foundation;
 
 #include "BLSBacklightChangeSourceEventMetadata.h"
-#include "BSXPCCoding-Protocol.h"
-#include "NSCopying-Protocol.h"
-#include "NSSecureCoding-Protocol.h"
+
+
+
 
 @class NSObject, NSString;
 
@@ -22,7 +22,7 @@
 @property (readonly, nonatomic) unsigned long long timestamp;
 @property (readonly, nonatomic) long long sourceEvent;
 @property (readonly, nonatomic) BLSBacklightChangeSourceEventMetadata *sourceEventMetadata;
-@property (readonly) unsigned long long hash;
+@property (readonly) NSUInteger hash;
 @property (readonly) Class superclass;
 @property (readonly, copy) NSString *description;
 @property (readonly, copy) NSString *debugDescription;

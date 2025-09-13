@@ -8,8 +8,8 @@
 #define BLSAlwaysOnTimeline_h
 @import Foundation;
 
-#include "NSCopying-Protocol.h"
-#include "NSObject-Protocol.h"
+
+
 
 @class NSObject;
 
@@ -26,7 +26,7 @@
 + (id)everyMinuteTimelineWithIdentifier:(id)identifier configure:(id /* block */)configure;
 + (id)timelineWithUpdateInterval:(double)interval startDate:(id)date identifier:(id)identifier configure:(id /* block */)configure;
 + (id)timelineWithEntries:(id)entries identifier:(id)identifier configure:(id /* block */)configure;
-+ (struct _NSRange { unsigned long long x0; unsigned long long x1; })rangeOfEntries:(id)entries forDateInterval:(id)interval shouldIncludePrevious:(_Bool)previous;
++ (NSRange)rangeOfEntries:(id)entries forDateInterval:(id)interval shouldIncludePrevious:(_Bool)previous;
 + (id)constructFrameSpecifiersForTimelines:(id)timelines dateInterval:(id)interval shouldConstructStartSpecifier:(_Bool)specifier framesPerSecond:(double)second previousSpecifier:(id)specifier;
 + (long long)requestedFidelityForTimelines:(id)timelines inDateInterval:(id)interval;
 

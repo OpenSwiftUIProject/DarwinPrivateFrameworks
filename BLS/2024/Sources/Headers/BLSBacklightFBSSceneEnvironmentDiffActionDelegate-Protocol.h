@@ -8,7 +8,7 @@
 #define BLSBacklightFBSSceneEnvironmentDiffActionDelegate_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @protocol BLSBacklightFBSSceneEnvironmentDiffActionDelegate <NSObject>
 

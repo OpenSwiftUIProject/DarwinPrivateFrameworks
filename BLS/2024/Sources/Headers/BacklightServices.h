@@ -7,6 +7,15 @@
 #ifndef BacklightServices_h
 #define BacklightServices_h
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <os/lock.h>
+
+// Import protocols first as they are needed by the classes
+#import "BSXPCCoding-Protocol.h"
+#import "BSInvalidatable-Protocol.h"
+#import "BSCancellable-Protocol.h"
+
 #import "BLS1HzFlipbookAttribute.h"
 #import "BLSAlwaysFillFlipbookAttribute.h"
 #import "BLSAlwaysOnDateSpecifier.h"
@@ -133,24 +142,25 @@
 #import "BLSXPCAssertionServiceHostInterface-Protocol.h"
 #import "BLSXPCBacklightProxyClientInterface-Protocol.h"
 #import "BLSXPCBacklightProxyHostInterface-Protocol.h"
-#import "BSCancellable-Protocol.h"
-#import "BSInvalidatable-Protocol.h"
-#import "BSXPCCoding-Protocol.h"
-#import "NSCoding-Protocol.h"
-#import "NSCopying-Protocol.h"
-#import "NSMutableCopying-Protocol.h"
-#import "NSObject-Protocol.h"
-#import "NSSecureCoding-Protocol.h"
+
+
+
+
+
+
+
+
 #import "NSEnumerator+BLSPeeking.h"
 #import "BSDescriptionStream+BacklightServices.h"
 #import "NSDate+BacklightServices.h"
 #import "NSDateInterval+BacklightServices.h"
 #import "NSError+BacklightServices.h"
-#import "FBSScene+BacklightServices.h"
-#import "FBSSceneClientSettings+BacklightServices.h"
-#import "FBSMutableSceneClientSettings+BacklightServices.h"
+// FrontBoardServices categories - commented out as FrontBoardServices is not available
+// #import "FBSScene+BacklightServices.h"
+// #import "FBSSceneClientSettings+BacklightServices.h"
+// #import "FBSMutableSceneClientSettings+BacklightServices.h"
 #import "NSArray+BacklightServices.h"
-#import "FBSSceneSettings+BacklightServices.h"
-#import "FBSMutableSceneSettings+BacklightServicesInternal.h"
+// #import "FBSSceneSettings+BacklightServices.h"
+// #import "FBSMutableSceneSettings+BacklightServicesInternal.h"
 
 #endif /* BacklightServices_h */

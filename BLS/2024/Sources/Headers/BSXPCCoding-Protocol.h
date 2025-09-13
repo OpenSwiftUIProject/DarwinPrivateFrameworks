@@ -8,8 +8,6 @@
 #define BSXPCCoding_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
-
 @protocol BSXPCCoding <NSObject>
 
 @required

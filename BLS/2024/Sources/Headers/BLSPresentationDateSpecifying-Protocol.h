@@ -8,7 +8,7 @@
 #define BLSPresentationDateSpecifying_Protocol_h
 @import Foundation;
 
-#include "NSObject-Protocol.h"
+
 
 @class NSArray, NSDate;
 
