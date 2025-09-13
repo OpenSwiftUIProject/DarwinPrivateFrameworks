@@ -12,15 +12,17 @@ REPO_ROOT=$(filepath "$(dirname "$0")/..")
 
 # Function to display usage
 usage() {
-    echo "Usage: $0 <platform> [xcode_path] [-f]"
+    echo "Usage: $0 <platform> [xcode_path] [-f] [-d]"
     echo "  platform: MacOSX, iPhoneSimulator, iPhoneOS, or XRSimulator"
     echo "  xcode_path: Path to Xcode developer directory (optional, defaults to xcode-select -p)"
     echo "  -f: Force installation (backup existing Internal SDK)"
+    echo "  -d: Set Internal SDK as default (redirect versioned SDK symlink to Internal SDK)"
     echo ""
     echo "Example:"
     echo "  $0 MacOSX"
     echo "  $0 iPhoneSimulator /Applications/Xcode-16.4.0.app/Contents/Developer -f"
-    echo "  $0 XRSimulator"
+    echo "  $0 XRSimulator -d"
+    echo "  $0 XRSimulator -f -d"
     exit 1
 }
 
@@ -32,17 +34,38 @@ fi
 # Parse arguments
 PLATFORM="$1"
 FORCE_INSTALL=false
+SET_DEFAULT=false
+XCODE_PATH=""
 
-# Check if second argument is -f
-if [ "$2" = "-f" ]; then
-    FORCE_INSTALL=true
+# Parse remaining arguments
+shift
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -f)
+            FORCE_INSTALL=true
+            ;;
+        -d)
+            SET_DEFAULT=true
+            ;;
+        -*)
+            echo "Error: Unknown option: $1"
+            usage
+            ;;
+        *)
+            if [ -z "$XCODE_PATH" ]; then
+                XCODE_PATH="$1"
+            else
+                echo "Error: Unexpected argument: $1"
+                usage
+            fi
+            ;;
+    esac
+    shift
+done
+
+# Set default Xcode path if not provided
+if [ -z "$XCODE_PATH" ]; then
     XCODE_PATH="$(xcode-select -p)"
-else
-    XCODE_PATH="${2:-$(xcode-select -p)}"
-    # Check for -f flag in third argument
-    if [ "$3" = "-f" ]; then
-        FORCE_INSTALL=true
-    fi
 fi
 
 # Validate platform
@@ -141,27 +164,68 @@ if [ -f "$PLIST_PATH" ]; then
     
     # Get version number for soft links
     VERSION=$(plutil -extract Version raw "$PLIST_PATH" 2>/dev/null || echo "")
-    
+
     # Create version-based soft links
     if [ -n "$VERSION" ]; then
         SDK_DIR="$XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs"
         cd "$SDK_DIR"
-        
+
         if [ "$PLATFORM" = "MacOSX" ]; then
             # Extract major and minor version (e.g., 15.5 from 15.5.0)
             MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
             MAJOR=$(echo "$VERSION" | cut -d. -f1)
-            
+
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR.Internal.sdk"
             echo "  Created soft links: $PLATFORM$MAJOR_MINOR.Internal.sdk and $PLATFORM$MAJOR.Internal.sdk"
-            
+
+            # Handle -d flag: redirect versioned SDK symlink to Internal SDK
+            if [ "$SET_DEFAULT" = true ]; then
+                echo ""
+                echo "Setting Internal SDK as default..."
+
+                # Backup original symlinks if they exist
+                if [ -L "$PLATFORM$MAJOR_MINOR.sdk" ]; then
+                    ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR_MINOR.sdk")
+                    echo "  Backing up $PLATFORM$MAJOR_MINOR.sdk -> $ORIGINAL_TARGET"
+                    echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR_MINOR.sdk.original"
+                    rm -f "$PLATFORM$MAJOR_MINOR.sdk"
+                    ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.sdk"
+                    echo "  Redirected $PLATFORM$MAJOR_MINOR.sdk -> $PLATFORM.Internal.sdk"
+                fi
+
+                if [ -L "$PLATFORM$MAJOR.sdk" ]; then
+                    ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR.sdk")
+                    echo "  Backing up $PLATFORM$MAJOR.sdk -> $ORIGINAL_TARGET"
+                    echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR.sdk.original"
+                    rm -f "$PLATFORM$MAJOR.sdk"
+                    ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR.sdk"
+                    echo "  Redirected $PLATFORM$MAJOR.sdk -> $PLATFORM.Internal.sdk"
+                fi
+            fi
+
         else
             # Extract major and minor version
             MAJOR_MINOR=$(echo "$VERSION" | cut -d. -f1-2)
-            
+
             ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.Internal.sdk"
             echo "  Created soft link: $PLATFORM$MAJOR_MINOR.Internal.sdk"
+
+            # Handle -d flag: redirect versioned SDK symlink to Internal SDK
+            if [ "$SET_DEFAULT" = true ]; then
+                echo ""
+                echo "Setting Internal SDK as default..."
+
+                # Backup original symlink if it exists
+                if [ -L "$PLATFORM$MAJOR_MINOR.sdk" ]; then
+                    ORIGINAL_TARGET=$(readlink "$PLATFORM$MAJOR_MINOR.sdk")
+                    echo "  Backing up $PLATFORM$MAJOR_MINOR.sdk -> $ORIGINAL_TARGET"
+                    echo "$ORIGINAL_TARGET" > "$PLATFORM$MAJOR_MINOR.sdk.original"
+                    rm -f "$PLATFORM$MAJOR_MINOR.sdk"
+                    ln -sf "$PLATFORM.Internal.sdk" "$PLATFORM$MAJOR_MINOR.sdk"
+                    echo "  Redirected $PLATFORM$MAJOR_MINOR.sdk -> $PLATFORM.Internal.sdk"
+                fi
+            fi
         fi
     fi
 else
@@ -178,6 +242,17 @@ echo "Installing AttributeGraph frameworks..."
 if [ "$PLATFORM" = "XRSimulator" ]; then
     echo "Enabling UIScreen support for visionOS SDK..."
     "$REPO_ROOT/Scripts/XR/enable_uiscreen_support.sh" "$INTERNAL_SDK_PATH"
+fi
+
+# Final message about default SDK
+if [ "$SET_DEFAULT" = true ]; then
+    echo ""
+    echo "========================================="
+    echo "Internal SDK is now set as the default SDK."
+    echo "The versioned SDK symlinks now point to the Internal SDK."
+    echo "To restore original configuration, use the .original files in:"
+    echo "  $XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs/"
+    echo "========================================="
 fi
 
 # TODO: Only support install AG for now as other frameworks are not ready yet
