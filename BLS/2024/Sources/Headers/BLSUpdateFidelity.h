@@ -10,11 +10,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, BLSUpdateFidelity) {
-    BLSUpdateFidelityUnspecified = 0,
-    BLSUpdateFidelityNever = 1,
-    BLSUpdateFidelityMinutes = 2,
-    BLSUpdateFidelitySeconds = 3,
-    BLSUpdateFidelityMilliseconds = 4
+    BLSUpdateFidelityUnspecified = -1,
+    BLSUpdateFidelityNever = 0,
+    BLSUpdateFidelityMinutes = 1,
+    BLSUpdateFidelitySeconds = 2,
+    BLSUpdateFidelityMilliseconds = 3
 };
 
 /**
