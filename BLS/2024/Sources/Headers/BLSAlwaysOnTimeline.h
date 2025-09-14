@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BLSAlwaysOnTimelineEntry *)configureEntry:(BLSAlwaysOnTimelineEntry *)entry previousEntry:(nullable BLSAlwaysOnTimelineEntry *)entry;
 - (NSArray<BLSAlwaysOnTimelineEntry *> *)configureEntries:(NSArray<BLSAlwaysOnTimelineEntry *> *)entries previousEntry:(nullable BLSAlwaysOnTimelineEntry *)entry;
 - (BLSUpdateFidelity)requestedFidelityForStartEntryInDateInterval:(NSDateInterval *)interval withPreviousEntry:(nullable BLSAlwaysOnTimelineEntry *)entry;
-- (NSArray<BLSAlwaysOnTimelineUnconfiguredEntry *> *)unconfiguredEntriesForDateInterval:(NSDateInterval *)interval previousEntry:(nullable BLSAlwaysOnTimelineEntry *)entry;
+- (nullable NSArray<BLSAlwaysOnTimelineUnconfiguredEntry *> *)unconfiguredEntriesForDateInterval:(NSDateInterval *)interval previousEntry:(nullable BLSAlwaysOnTimelineEntry *)entry;
 - (BLSUpdateFidelity)estimatedFidelityForPresentationTime:(NSDate *)time nextPresentationTime:(NSDate *)time;
 
 @end
