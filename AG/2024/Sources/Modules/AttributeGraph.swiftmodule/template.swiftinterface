@@ -474,7 +474,7 @@ extension AnyWeakAttribute : Swift.CustomStringConvertible {
   public var value: Value? {
     get
   }
-  public func changedValue(options: AGValueOptions) -> (value: Value, changed: Swift.Bool)?
+  public func changedValue(options: AGValueOptions = []) -> (value: Value, changed: Swift.Bool)?
 }
 extension AttributeGraph.WeakAttribute : Swift.Hashable {
   public static func == (a: AttributeGraph.WeakAttribute<Value>, b: AttributeGraph.WeakAttribute<Value>) -> Swift.Bool
