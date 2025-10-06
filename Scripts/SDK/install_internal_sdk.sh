@@ -259,7 +259,7 @@ echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
 
 # Install AG frameworks
 echo "Installing AttributeGraph frameworks..."
-"$REPO_ROOT/Scripts/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+"$REPO_ROOT/Scripts/SDK/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 # Enable UIScreen support for XRSimulator
 if [ "$PLATFORM" = "XRSimulator" ]; then
@@ -275,7 +275,7 @@ if [ "$SET_DEFAULT" = true ]; then
     echo "The versioned SDK symlinks now point to the Internal SDK."
     echo ""
     echo "To restore original configuration, run:"
-    echo "  $REPO_ROOT/Scripts/restore_original_sdk.sh $PLATFORM"
+    echo "  $REPO_ROOT/Scripts/SDK/restore_original_sdk.sh $PLATFORM"
     echo ""
     echo "Or manually use the .original files in:"
     echo "  $XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs/"

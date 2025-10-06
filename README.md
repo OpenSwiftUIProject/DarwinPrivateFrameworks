@@ -69,16 +69,16 @@ For Xcode projects, first add the dependency as above and then manually drag the
 
 ```shell
 # For macOS
-Scripts/install_internal_sdk.sh MacOSX
+Scripts/SDK/install_internal_sdk.sh MacOSX
 
 # For iOS Simulator
-Scripts/install_internal_sdk.sh iPhoneSimulator
+Scripts/SDK/install_internal_sdk.sh iPhoneSimulator
 
 # For iOS Device
-Scripts/install_internal_sdk.sh iPhoneOS
+Scripts/SDK/install_internal_sdk.sh iPhoneOS
 
 # For visionOS Simulator
-Scripts/install_internal_sdk.sh XRSimulator
+Scripts/SDK/install_internal_sdk.sh XRSimulator
 ```
 
 2. Choose the corresponding Internal SDK as the Base SDK in your Xcode project settings.
