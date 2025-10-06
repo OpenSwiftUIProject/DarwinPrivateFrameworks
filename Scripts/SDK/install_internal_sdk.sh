@@ -8,7 +8,7 @@ filepath() {
 }
 
 # Define repository root
-REPO_ROOT=$(filepath "$(dirname "$0")/..")
+REPO_ROOT=$(filepath "$(dirname "$0")/../..")
 
 # Function to display usage
 usage() {
