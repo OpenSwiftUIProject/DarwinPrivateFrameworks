@@ -8,7 +8,7 @@ filepath() {
 }
 
 # Define repository root
-REPO_ROOT=$(filepath "$(dirname "$0")/..")
+REPO_ROOT=$(filepath "$(dirname "$0")/../..")
 
 # Check arguments
 if [ $# -lt 2 ]; then
@@ -30,11 +30,16 @@ echo "Installing AttributeGraph framework to: $SDK_AG_FRAMEWORK_PATH"
 case "$PLATFORM" in
     "MacOSX")
         echo "Setting up MacOSX AttributeGraph framework..."
-        
+
+        # Create Versions structure for macOS framework
+        mkdir -p "$SDK_AG_FRAMEWORK_PATH/Versions/A"
+        cd "$SDK_AG_FRAMEWORK_PATH/Versions"
+        ln -sfn A Current
+
         # Source paths
         REPO_SDK_AG_FRAMEWORK_PATH="$REPO_ROOT/AG/latest/AttributeGraph.xcframework/macos-arm64e-arm64-x86_64/AttributeGraph.framework"
-        SYSTEM_AG_RESOURCES="/System/Library/PrivateFrameworks/AttributeGraph.framework/Resources"
-        
+        SYSTEM_AG_RESOURCES="/System/Library/PrivateFrameworks/AttributeGraph.framework/Versions/A/Resources"
+
         # Copy Headers and Modules from xcframework
         if [ -d "$REPO_SDK_AG_FRAMEWORK_PATH/Headers" ]; then
             cp -R "$REPO_SDK_AG_FRAMEWORK_PATH/Headers" "$SDK_AG_FRAMEWORK_PATH/Versions/Current/"

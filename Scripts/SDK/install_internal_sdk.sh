@@ -8,7 +8,7 @@ filepath() {
 }
 
 # Define repository root
-REPO_ROOT=$(filepath "$(dirname "$0")/..")
+REPO_ROOT=$(filepath "$(dirname "$0")/../..")
 
 # Function to display usage
 usage() {
@@ -257,9 +257,26 @@ fi
 
 echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
 
-# Install AG frameworks
-echo "Installing AttributeGraph frameworks..."
-"$REPO_ROOT/Scripts/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+# Install private frameworks
+echo "Installing private frameworks..."
+
+echo "Installing AttributeGraph framework..."
+"$REPO_ROOT/Scripts/SDK/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+# BacklightServices and CoreUI are not available for macOS
+if [ "$PLATFORM" != "MacOSX" ]; then
+    echo "Installing BacklightServices framework..."
+    "$REPO_ROOT/Scripts/SDK/install_bls.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+    echo "Installing CoreUI framework..."
+    "$REPO_ROOT/Scripts/SDK/install_coreui.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+else
+    echo "Skipping BacklightServices framework (not available for MacOSX)"
+    echo "Skipping CoreUI framework (not available for MacOSX)"
+fi
+
+echo "Installing RenderBox framework..."
+"$REPO_ROOT/Scripts/SDK/install_rb.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 # Enable UIScreen support for XRSimulator
 if [ "$PLATFORM" = "XRSimulator" ]; then
@@ -275,7 +292,7 @@ if [ "$SET_DEFAULT" = true ]; then
     echo "The versioned SDK symlinks now point to the Internal SDK."
     echo ""
     echo "To restore original configuration, run:"
-    echo "  $REPO_ROOT/Scripts/restore_original_sdk.sh $PLATFORM"
+    echo "  $REPO_ROOT/Scripts/SDK/restore_original_sdk.sh $PLATFORM"
     echo ""
     echo "Or manually use the .original files in:"
     echo "  $XCODE_PATH/Platforms/$PLATFORM.platform/Developer/SDKs/"
