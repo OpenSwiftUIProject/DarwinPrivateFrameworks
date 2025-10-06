@@ -30,11 +30,16 @@ echo "Installing RenderBox framework to: $SDK_RB_FRAMEWORK_PATH"
 case "$PLATFORM" in
     "MacOSX")
         echo "Setting up MacOSX RenderBox framework..."
-        
+
+        # Create Versions structure for macOS framework
+        mkdir -p "$SDK_RB_FRAMEWORK_PATH/Versions/A"
+        cd "$SDK_RB_FRAMEWORK_PATH/Versions"
+        ln -sf A Current
+
         # Source paths
         REPO_SDK_RB_FRAMEWORK_PATH="$REPO_ROOT/RB/2024/RenderBox.xcframework/macos-arm64e-arm64-x86_64/RenderBox.framework"
-        SYSTEM_RB_RESOURCES="/System/Library/PrivateFrameworks/RenderBox.framework/Resources"
-        
+        SYSTEM_RB_RESOURCES="/System/Library/PrivateFrameworks/RenderBox.framework/Versions/A/Resources"
+
         # Copy Headers and Modules from xcframework
         if [ -d "$REPO_SDK_RB_FRAMEWORK_PATH/Headers" ]; then
             cp -R "$REPO_SDK_RB_FRAMEWORK_PATH/Headers" "$SDK_RB_FRAMEWORK_PATH/Versions/Current/"
