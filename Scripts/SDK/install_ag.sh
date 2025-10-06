@@ -34,7 +34,7 @@ case "$PLATFORM" in
         # Create Versions structure for macOS framework
         mkdir -p "$SDK_AG_FRAMEWORK_PATH/Versions/A"
         cd "$SDK_AG_FRAMEWORK_PATH/Versions"
-        ln -sf A Current
+        ln -sfn A Current
 
         # Source paths
         REPO_SDK_AG_FRAMEWORK_PATH="$REPO_ROOT/AG/latest/AttributeGraph.xcframework/macos-arm64e-arm64-x86_64/AttributeGraph.framework"

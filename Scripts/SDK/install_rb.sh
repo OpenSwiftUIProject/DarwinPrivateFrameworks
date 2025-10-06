@@ -34,7 +34,7 @@ case "$PLATFORM" in
         # Create Versions structure for macOS framework
         mkdir -p "$SDK_RB_FRAMEWORK_PATH/Versions/A"
         cd "$SDK_RB_FRAMEWORK_PATH/Versions"
-        ln -sf A Current
+        ln -sfn A Current
 
         # Source paths
         REPO_SDK_RB_FRAMEWORK_PATH="$REPO_ROOT/RB/2024/RenderBox.xcframework/macos-arm64e-arm64-x86_64/RenderBox.framework"
