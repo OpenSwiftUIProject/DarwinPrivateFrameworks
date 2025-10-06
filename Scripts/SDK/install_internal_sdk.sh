@@ -257,9 +257,25 @@ fi
 
 echo "Successfully created Internal SDK at: $INTERNAL_SDK_PATH"
 
-# Install AG frameworks
-echo "Installing AttributeGraph frameworks..."
+# Install private frameworks
+echo "Installing private frameworks..."
+
+echo "Installing AttributeGraph framework..."
 "$REPO_ROOT/Scripts/SDK/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+# BacklightServices is not available for macOS
+if [ "$PLATFORM" != "MacOSX" ]; then
+    echo "Installing BacklightServices framework..."
+    "$REPO_ROOT/Scripts/SDK/install_bls.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+else
+    echo "Skipping BacklightServices framework (not available for MacOSX)"
+fi
+
+echo "Installing CoreUI framework..."
+"$REPO_ROOT/Scripts/SDK/install_coreui.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+echo "Installing RenderBox framework..."
+"$REPO_ROOT/Scripts/SDK/install_rb.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 # Enable UIScreen support for XRSimulator
 if [ "$PLATFORM" = "XRSimulator" ]; then
