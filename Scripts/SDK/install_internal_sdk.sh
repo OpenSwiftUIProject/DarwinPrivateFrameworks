@@ -263,16 +263,17 @@ echo "Installing private frameworks..."
 echo "Installing AttributeGraph framework..."
 "$REPO_ROOT/Scripts/SDK/install_ag.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
-# BacklightServices is not available for macOS
+# BacklightServices and CoreUI are not available for macOS
 if [ "$PLATFORM" != "MacOSX" ]; then
     echo "Installing BacklightServices framework..."
     "$REPO_ROOT/Scripts/SDK/install_bls.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
+    echo "Installing CoreUI framework..."
+    "$REPO_ROOT/Scripts/SDK/install_coreui.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 else
     echo "Skipping BacklightServices framework (not available for MacOSX)"
+    echo "Skipping CoreUI framework (not available for MacOSX)"
 fi
-
-echo "Installing CoreUI framework..."
-"$REPO_ROOT/Scripts/SDK/install_coreui.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 echo "Installing RenderBox framework..."
 "$REPO_ROOT/Scripts/SDK/install_rb.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
