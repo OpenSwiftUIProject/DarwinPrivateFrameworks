@@ -8,7 +8,7 @@ filepath() {
 }
 
 # Define repository root
-REPO_ROOT=$(filepath "$(dirname "$0")/..")
+REPO_ROOT=$(filepath "$(dirname "$0")/../..")
 
 # Check arguments
 if [ $# -lt 2 ]; then
