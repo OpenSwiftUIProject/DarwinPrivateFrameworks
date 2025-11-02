@@ -12,7 +12,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Set default version if not specified
-VERSION=${DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:-2024}
+VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 
 # Function to get framework directory abbreviation
 get_framework_dir() {
@@ -50,7 +50,7 @@ update_framework() {
     cd "${PARENT_DIR}/${framework_dir}"
     
     # Run the update script with the specified version
-    DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE=${VERSION} ./update.sh
+    DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} ./update.sh
     
     if [ $? -eq 0 ]; then
         echo "✅ ${framework_name} updated successfully"
@@ -73,8 +73,8 @@ if [ $# -eq 0 ]; then
     echo ""
     echo "Frameworks: AttributeGraph (or AG), RenderBox (or RB), CoreUI"
     echo ""
-    echo "To specify version, set DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:"
-    echo "  DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE=2021 $0 all"
+    echo "To specify version, set DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:"
+    echo "  DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=2021 $0 all"
     exit 1
 fi
 

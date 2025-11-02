@@ -5,7 +5,7 @@ filepath() {
   [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-VERSION=${DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE:-2024}
+VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
 framework_name=AttributeGraph

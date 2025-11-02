@@ -51,7 +51,7 @@ The command will:
 
 1. For each specified framework:
    - Navigate to the framework directory (AG, RB, or CoreUI)
-   - Set the `DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE` environment variable if version is specified
+   - Set the `DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE` environment variable if version is specified
    - Execute the `update.sh` script
    - Report success or failure
 
@@ -84,7 +84,7 @@ The command will:
 
 ## Notes
 
-- The scripts use the `DARWIN_PRIVATE_FRAMEWORKS_TARGET_RELEASE` environment variable to determine the version (defaults to 2024)
+- The scripts use the `DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE` environment variable to determine the version (defaults to 2024)
 - Make sure TBD files exist in the appropriate directories before running update
 
 ## Prerequisites
