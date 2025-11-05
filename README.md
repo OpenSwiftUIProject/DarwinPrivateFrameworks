@@ -96,6 +96,8 @@ Scripts/SDK/install_internal_sdk.sh XRSimulator
 > - iOS Device: `iphoneos18.5.internal`
 > - visionOS Simulator: `xrsimulator2.0.internal`
 >
+> To get the current supported canonical name, you can run `xcodebuild -showsdks` after installing the SDK.
+>
 > **Note**: Command-line `xcodebuild` with `-sdk macosx.internal` works regardless of Xcode version.
 >
 > Similar report: https://github.com/insidegui/researchsdk/commit/71259b0a0e8c92ba31131acbe024096fbe096844
