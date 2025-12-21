@@ -24,12 +24,15 @@ struct RBPathStorage;
 struct RBPathCallbacks;
 
 /// Path element type for path enumeration
-typedef RB_ENUM(int32_t, RBPathElementType) {
+typedef RB_ENUM(int32_t, RBPathElement) {
     RBPathElementMoveToPoint = 0,
     RBPathElementAddLineToPoint = 1,
     RBPathElementAddQuadCurveToPoint = 2,
     RBPathElementAddCurveToPoint = 3,
     RBPathElementCloseSubpath = 4,
+
+    RBPathElementFixedRoundedRectCircular = 8,
+    RBPathElementFixedRoundedRectContinuous = 9,
 };
 
 /// Defines the shape of a rounded rectangle's corners.
@@ -40,16 +43,9 @@ typedef RB_ENUM(int32_t, RBRoundedCornerStyle) {
     RBRoundedCornerStyleContinuous = 1,
 };
 
-/// An element of a path returned by path enumeration
-struct RBPathElement {
-    RBPathElementType type;
-    const double * _Nullable points;
-};
-typedef struct RBPathElement RBPathElement;
-
 /// Callback type for path element enumeration
 /// Returns true to stop enumeration, false to continue
-typedef bool (*RBPathApplyCallback)(void * _Nullable info, RBPathElement element, const void * _Nullable userInfo);
+typedef bool (*RBPathApplyCallback)(void * _Nullable info, RBPathElement element, const CGFloat *points, const void * _Nullable userInfo);
 
 /// Callback function pointer types for RBPathCallbacks
 typedef void (* _Nullable RBPathRetainCallback)(RBPathRef path);

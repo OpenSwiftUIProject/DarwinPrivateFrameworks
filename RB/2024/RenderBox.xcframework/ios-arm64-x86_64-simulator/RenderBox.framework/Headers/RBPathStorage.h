@@ -26,7 +26,7 @@ void RBPathStorageClear(RBPathStorageRef storage) RB_SWIFT_NAME(RBPathStorageRef
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageAppendElement(RBPathStorageRef storage, RBPathElement element, double const * points, const void * _Nullable userInfo) RB_SWIFT_NAME(RBPathStorageRef.append(self:element:points:userInfo:));
+void RBPathStorageAppendElement(RBPathStorageRef storage, RBPathElement element, CGFloat const * points, const void * _Nullable userInfo) RB_SWIFT_NAME(RBPathStorageRef.append(self:element:points:userInfo:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
