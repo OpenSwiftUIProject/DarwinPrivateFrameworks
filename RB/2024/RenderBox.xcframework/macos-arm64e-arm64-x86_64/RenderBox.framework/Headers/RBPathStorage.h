@@ -1,6 +1,9 @@
 //
 //  RBPathStorage.h
 //  RenderBox
+//
+//  Audited for 6.5.1
+//  Status: Complete
 
 #pragma once
 
@@ -34,11 +37,15 @@ void RBPathStorageAppendPath(RBPathStorageRef, RBPath) RB_SWIFT_NAME(RBPathStora
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
+void RBPathStorageApplyElements(RBPathStorageRef, void *info, RBPathApplyCallback callback) RB_SWIFT_NAME(RBPathStorageRef.applyElements(self:info:callback:));
+
+RB_EXPORT
+RB_REFINED_FOR_SWIFT
 bool RBPathStorageIsEmpty(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorageRef.isEmpty(self:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-bool RBPathStorageEqualToStorage(RBPathStorageRef lhs, RBPathStorageRef rhs) RB_SWIFT_NAME(RBPathStorageRef.isEqualTo(self:_:));
+bool RBPathStorageEqualToStorage(RBPathStorageRef lhs, RBPathStorageRef rhs) RB_SWIFT_NAME(RBPathStorageRef.isEqual(self:to:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
