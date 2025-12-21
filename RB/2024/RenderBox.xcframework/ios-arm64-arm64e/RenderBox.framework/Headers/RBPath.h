@@ -43,10 +43,45 @@ typedef struct RBPathElement RBPathElement;
 /// Returns true to stop enumeration, false to continue
 typedef bool (*RBPathApplyCallback)(void * _Nullable info, RBPathElement element, const void * _Nullable userInfo);
 
+/// Callback function pointer types for RBPathCallbacks
+typedef void (* _Nullable RBPathRetainCallback)(RBPathRef path);
+typedef void (* _Nullable RBPathReleaseCallback)(RBPathRef path);
+typedef bool (* _Nullable RBPathApplyFunction)(RBPathRef path, void * _Nullable info, RBPathApplyCallback _Nullable callback);
+typedef bool (* _Nullable RBPathIsEqualCallback)(RBPathRef path, RBPathRef otherPath);
+typedef bool (* _Nullable RBPathIsEmptyCallback)(RBPathRef path);
+typedef bool (* _Nullable RBPathIsSingleRectCallback)(RBPathRef path);
+typedef uint32_t (* _Nullable RBPathBezierOrderCallback)(RBPathRef path);
+typedef CGRect (* _Nullable RBPathBoundingBoxCallback)(RBPathRef path);
+typedef CGPathRef _Nullable (* _Nullable RBPathGetCGPathCallback)(RBPathRef path);
+
+/// Callbacks structure for path operations
+/// This allows different path storage types (CGPath, custom storage, etc.) to provide their own implementations
+typedef struct RBPathCallbacks {
+    void * _Nullable reserved;              // 0x00: Reserved for future use
+    RBPathRetainCallback retain;            // 0x08: Retain callback
+    RBPathReleaseCallback release;          // 0x10: Release callback
+    RBPathApplyFunction apply;              // 0x18: Enumerate path elements
+    RBPathIsEqualCallback isEqual;          // 0x20: Compare two paths
+    RBPathIsEmptyCallback isEmpty;          // 0x28: Check if path is empty
+    RBPathIsSingleRectCallback isSingleRect; // 0x30: Check if path is a single rectangle
+    RBPathBezierOrderCallback bezierOrder;  // 0x38: Get bezier order (1=linear, 2=quad, 3=cubic)
+    RBPathBoundingBoxCallback boundingBox;  // 0x40: Get bounding box
+    RBPathGetCGPathCallback cgPath;         // 0x48: Get CGPath representation
+    void * _Nullable reserved2;             // 0x50: Reserved for future use
+} RBPathCallbacks;
+
 typedef struct RBPath {
     RBPathStorageRef storage;
     RBPathCallbacksRef callbacks;
 } RBPath;
+
+/// Global empty path callbacks (all null)
+RB_EXPORT
+const RBPathCallbacks RBPathEmptyCallbacks;
+
+/// Global callbacks for CGPath-backed paths
+RB_EXPORT
+const RBPathCallbacks RBPathCGPathCallbacks;
 
 /// Global empty path (storage = null, callbacks = &RBPathEmptyCallbacks)
 RB_EXPORT
