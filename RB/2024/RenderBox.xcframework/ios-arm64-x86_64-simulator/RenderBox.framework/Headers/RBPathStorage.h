@@ -37,7 +37,7 @@ void RBPathStorageAppendPath(RBPathStorageRef, RBPath) RB_SWIFT_NAME(RBPathStora
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageApplyElements(RBPathStorageRef, void *info, RBPathApplyCallback callback) RB_SWIFT_NAME(RBPathStorageRef.applyElements(self:info:callback:));
+bool RBPathStorageApplyElements(RBPathStorageRef, void *info, RBPathApplyCallback _Nullable callback) RB_SWIFT_NAME(RBPathStorageRef.apply(self:info:callback:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT

@@ -26,7 +26,7 @@ typedef struct RB_SWIFT_NAME(RBPath.Callbacks) RBPathCallbacks {
     bool (* _Nullable isEmpty)(const void *object); // 0x28
     bool (* _Nullable isSingleElement)(const void *object); // 0x30
     uint32_t (* _Nullable bezierOrder)(const void *object); // 0x38
-    CGRect (* _Nullable boundingBox)(const void *object); // 0x40
+    CGRect (* _Nullable boundingRect)(const void *object); // 0x40
     CGPathRef _Nullable (* _Nullable cgPath)(const void *object); // 0x48
     void (* _Nullable unknown2)(const void *); // 0x50
 } RBPathCallbacks;
