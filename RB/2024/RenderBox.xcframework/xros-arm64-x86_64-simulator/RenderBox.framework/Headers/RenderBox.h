@@ -1,5 +1,6 @@
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBPath.h>
+#include <RenderBox/RBPathCallbacks.h>
 #include <RenderBox/RBPathStorage.h>
 #include <RenderBox/RBSwiftSupport.h>
 #include <RenderBox/RBTargetConditionals.h>

@@ -1,15 +1,15 @@
 //
 //  RBPathStorage.h
 //  RenderBox
+//
+//  Audited for 6.5.1
+//  Status: Complete
 
 #pragma once
 
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBPath.h>
-
-#if RB_TARGET_OS_DARWIN
 #include <CoreGraphics/CoreGraphics.h>
-#endif
 
 RB_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +17,7 @@ RB_EXTERN_C_BEGIN
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageInit(RBPathStorageRef dst, uint32_t capacity, RBPathStorageRef _Nullable source);
+void RBPathStorageInit(RBPathStorageRef dst, uint32_t capacity, RBPathStorageRef _Nullable source) RB_SWIFT_NAME(RBPathStorageRef.initialize(self:capacity:source:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
@@ -27,9 +27,17 @@ RB_EXPORT
 RB_REFINED_FOR_SWIFT
 void RBPathStorageClear(RBPathStorageRef storage) RB_SWIFT_NAME(RBPathStorageRef.clear(self:));
 
-//RB_EXPORT
-//RB_REFINED_FOR_SWIFT
-//void RBPathStorageAppendPath(RBPathStorage, RBPath);
+RB_EXPORT
+RB_REFINED_FOR_SWIFT
+void RBPathStorageAppendElement(RBPathStorageRef storage, RBPathElement element, CGFloat const * points, const void * _Nullable userInfo) RB_SWIFT_NAME(RBPathStorageRef.append(self:element:points:userInfo:));
+
+RB_EXPORT
+RB_REFINED_FOR_SWIFT
+void RBPathStorageAppendPath(RBPathStorageRef, RBPath) RB_SWIFT_NAME(RBPathStorageRef.append(self:path:));
+
+RB_EXPORT
+RB_REFINED_FOR_SWIFT
+bool RBPathStorageApplyElements(RBPathStorageRef, void *info, RBPathApplyCallback _Nullable callback) RB_SWIFT_NAME(RBPathStorageRef.apply(self:info:callback:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
@@ -37,7 +45,7 @@ bool RBPathStorageIsEmpty(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathS
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-bool RBPathStorageEqualToStorage(RBPathStorageRef lhs, RBPathStorageRef rhs) RB_SWIFT_NAME(RBPathStorageRef.isEqualTo(self:_:));
+bool RBPathStorageEqualToStorage(RBPathStorageRef lhs, RBPathStorageRef rhs) RB_SWIFT_NAME(RBPathStorageRef.isEqual(self:to:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
@@ -47,7 +55,6 @@ RB_EXPORT
 RB_REFINED_FOR_SWIFT
 uint32_t RBPathStorageGetBezierOrder(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorageRef.bezierOrder(self:));
 
-#if RB_TARGET_OS_DARWIN
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
 CGRect RBPathStorageGetBoundingRect(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorageRef.boundingRect(self:));
@@ -55,9 +62,7 @@ CGRect RBPathStorageGetBoundingRect(RBPathStorageRef storage) RB_SWIFT_NAME(gett
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
 CGPathRef RBPathStorageGetCGPath(RBPathStorageRef storage) RB_SWIFT_NAME(getter:RBPathStorageRef.cgPath(self:));
-#endif
 
 RB_EXTERN_C_END
 
 RB_ASSUME_NONNULL_END
-
