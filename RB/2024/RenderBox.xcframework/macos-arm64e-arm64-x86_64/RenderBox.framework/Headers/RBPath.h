@@ -15,9 +15,7 @@ RB_EXTERN_C_BEGIN
 
 typedef struct RB_BRIDGED_TYPE(id) RBPath * RBMutablePathRef;
 typedef const struct RB_BRIDGED_TYPE(id) RBPath * RBPathRef;
-
-typedef struct RB_BRIDGED_TYPE(id) RBPathStorage * RBPathStorageRef RB_SWIFT_NAME(RBPath.Storage);
-typedef const struct RB_BRIDGED_TYPE(id) RBPathCallbacks * RBPathCallbacksRef RB_SWIFT_NAME(RBPath.Callbacks);
+typedef struct RBPathStorage * RBPathStorageRef RB_SWIFT_STRUCT RB_SWIFT_NAME(RBPath.Storage);
 
 struct RBPath;
 struct RBPathStorage;
@@ -74,11 +72,6 @@ typedef struct RBPathCallbacks {
     void * _Nullable reserved2;             // 0x50: Reserved for future use
 } RBPathCallbacks;
 
-typedef struct RBPath {
-    RBPathStorageRef storage;
-    RBPathCallbacksRef callbacks;
-} RBPath;
-
 /// Global empty path callbacks (all null)
 RB_EXPORT
 const RBPathCallbacks RBPathEmptyCallbacks;
@@ -86,6 +79,11 @@ const RBPathCallbacks RBPathEmptyCallbacks;
 /// Global callbacks for CGPath-backed paths
 RB_EXPORT
 const RBPathCallbacks RBPathCGPathCallbacks;
+
+typedef struct RBPath {
+    RBPathStorageRef storage;
+    const RBPathCallbacks * callbacks;
+} RBPath;
 
 /// Global empty path (storage = null, callbacks = &RBPathEmptyCallbacks)
 RB_EXPORT
@@ -120,8 +118,12 @@ RBPath RBPathMakeRoundedRect(CGRect rect, CGFloat cornerWidth, CGFloat cornerHei
 RB_EXPORT
 RBPath RBPathMakeUnevenRoundedRect(CGRect rect, CGFloat topLeftRadius, CGFloat bottomLeftRadius, CGFloat bottomRightRadius, CGFloat topRightRadius, RBRoundedCornerStyle style, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.init(roundedRect:topLeftRadius:bottomLeftRadius:bottomRightRadius:topRightRadius:style:transform:));
 
+// MARK: - CGPath Interoperability
+
 RB_EXPORT
 CGPathRef RBPathCopyCGPath(RBPath path) RB_SWIFT_NAME(getter:RBPath.cgPath(self:));
+
+// MARK: - Point Containment
 
 RB_EXPORT
 bool RBPathContainsPoint(RBPath path, CGPoint point, bool eoFill) RB_SWIFT_NAME(RBPath.contains(self:point:eoFill:));
