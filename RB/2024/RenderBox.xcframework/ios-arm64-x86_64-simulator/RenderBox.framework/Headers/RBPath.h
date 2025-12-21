@@ -33,7 +33,7 @@ typedef RB_ENUM(int32_t, RBPathRoundedCornerStyle) {
 
 /// Callback type for path element enumeration
 /// Returns true to stop enumeration, false to continue
-typedef bool (*RBPathApplyCallback)(void * _Nullable info, RBPathElement element, const CGFloat *points, const void * _Nullable userInfo);
+typedef bool (*RBPathApplyCallback)(void * info, RBPathElement element, const CGFloat *points, const void * _Nullable userInfo);
 
 typedef struct RBPathCallbacks RBPathCallbacks;
 
