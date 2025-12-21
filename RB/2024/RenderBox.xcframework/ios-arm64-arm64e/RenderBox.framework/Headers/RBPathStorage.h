@@ -14,7 +14,7 @@ RB_EXTERN_C_BEGIN
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
-void RBPathStorageInit(RBPathStorageRef dst, uint32_t capacity, RBPathStorageRef _Nullable source);
+void RBPathStorageInit(RBPathStorageRef dst, uint32_t capacity, RBPathStorageRef _Nullable source) RB_SWIFT_NAME(RBPathStorageRef.init(self:capacity:source:));
 
 RB_EXPORT
 RB_REFINED_FOR_SWIFT
