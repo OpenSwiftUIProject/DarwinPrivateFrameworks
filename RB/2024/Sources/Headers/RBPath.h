@@ -44,8 +44,8 @@ typedef struct RBPathElement RBPathElement;
 typedef bool (*RBPathApplyCallback)(void * _Nullable info, RBPathElement element, const void * _Nullable userInfo);
 
 typedef struct RBPath {
-    RBPathStorageRef _Nullable storage;
-    RBPathCallbacksRef _Nullable callbacks;
+    RBPathStorageRef storage;
+    RBPathCallbacksRef callbacks;
 } RBPath;
 
 /// Global empty path (storage = null, callbacks = &RBPathEmptyCallbacks)
