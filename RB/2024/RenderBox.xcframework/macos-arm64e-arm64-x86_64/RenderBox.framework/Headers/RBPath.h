@@ -18,10 +18,13 @@ typedef RB_ENUM(int32_t, RBPathElement) {
     RBPathElementAddQuadCurveToPoint = 2,
     RBPathElementAddCurveToPoint = 3,
     RBPathElementCloseSubpath = 4,
-
+    RBPathElementRect = 5,
+    RBPathElementRoundedRect = 6,
     RBPathElementFixedRoundedRectCircular = 8,
     RBPathElementFixedRoundedRectContinuous = 9,
-};
+
+    RBPathElementInvalid = 25,
+} RB_SWIFT_NAME(RBPath.Element);
 
 /// Defines the shape of a rounded rectangle's corners.
 typedef RB_ENUM(int32_t, RBPathRoundedCornerStyle) {
@@ -35,7 +38,7 @@ typedef RB_ENUM(int32_t, RBPathRoundedCornerStyle) {
 /// Returns true to stop enumeration, false to continue
 typedef bool (*RBPathApplyCallback)(void * info, RBPathElement element, const CGFloat *points, const void * _Nullable userInfo);
 
-typedef struct RBPathCallbacks RBPathCallbacks;
+typedef struct RBPathCallbacks RBPathCallbacks RB_SWIFT_NAME(RBPath.ApplyCallback);
 
 typedef struct RBPathStorage * RBPathStorageRef RB_SWIFT_STRUCT RB_SWIFT_NAME(RBPath.Storage);
 
@@ -53,11 +56,9 @@ RB_EXPORT
 const RBPath RBPathNull RB_SWIFT_NAME(RBPath.null);
 
 RB_EXPORT
-RB_REFINED_FOR_SWIFT
 void RBPathRetain(RBPath path) RB_SWIFT_NAME(RBPath.retain(self:));
 
 RB_EXPORT
-RB_REFINED_FOR_SWIFT
 void RBPathRelease(RBPath path) RB_SWIFT_NAME(RBPath.release(self:));
 
 // MARK: - Path Creation
@@ -89,6 +90,11 @@ bool RBPathContainsPoint(RBPath path, CGPoint point, bool eoFill) RB_SWIFT_NAME(
 
 RB_EXPORT
 bool RBPathContainsPoints(RBPath path, uint64_t count, const CGPoint *points, bool eoFill, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.containsPoints(self:count:points:eoFill:transform:));
+
+// MARK: - Apply Callback
+
+RB_EXPORT
+bool RBPathApplyElements(RBPath path, void * info, _Nullable RBPathApplyCallback callback) RB_SWIFT_NAME(RBPath.apply(self:info:callback:));
 
 RB_EXTERN_C_END
 
