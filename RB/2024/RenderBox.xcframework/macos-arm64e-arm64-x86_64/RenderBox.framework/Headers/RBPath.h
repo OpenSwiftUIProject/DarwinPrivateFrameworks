@@ -78,6 +78,17 @@ RBPath RBPathMakeRoundedRect(CGRect rect, CGFloat cornerWidth, CGFloat cornerHei
 RB_EXPORT
 RBPath RBPathMakeUnevenRoundedRect(CGRect rect, CGFloat topLeftRadius, CGFloat bottomLeftRadius, CGFloat bottomRightRadius, CGFloat topRightRadius, RBPathRoundedCornerStyle style, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.init(roundedRect:topLeftRadius:bottomLeftRadius:bottomRightRadius:topRightRadius:style:transform:));
 
+// MARK: - Path Operation
+
+RB_EXPORT
+bool RBPathIsEmpty(RBPath path) RB_SWIFT_NAME(getter:RBPath.isEmpty(self:));
+
+RB_EXPORT
+bool RBPathApplyElements(RBPath path, void * info, _Nullable RBPathApplyCallback callback) RB_SWIFT_NAME(RBPath.apply(self:info:callback:));
+
+RB_EXPORT
+bool RBPathEqualToPath(RBPath lhs, RBPath rhs) RB_SWIFT_NAME(RBPath.isEqual(self:to:));
+
 // MARK: - CGPath Interoperability
 
 RB_EXPORT
@@ -90,11 +101,6 @@ bool RBPathContainsPoint(RBPath path, CGPoint point, bool eoFill) RB_SWIFT_NAME(
 
 RB_EXPORT
 bool RBPathContainsPoints(RBPath path, uint64_t count, const CGPoint *points, bool eoFill, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.containsPoints(self:count:points:eoFill:transform:));
-
-// MARK: - Apply Callback
-
-RB_EXPORT
-bool RBPathApplyElements(RBPath path, void * info, _Nullable RBPathApplyCallback callback) RB_SWIFT_NAME(RBPath.apply(self:info:callback:));
 
 RB_EXTERN_C_END
 
