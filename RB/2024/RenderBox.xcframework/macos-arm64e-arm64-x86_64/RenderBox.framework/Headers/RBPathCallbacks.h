@@ -19,7 +19,7 @@ RB_EXTERN_C_BEGIN
 typedef struct RBPathCallbacksFlags {
     uint8_t unknown0;
     uint8_t unknown1;
-    uint8_t isExtended;
+    bool isExtended;
     uint8_t padding[5];
 } RBPathCallbacksFlags;
 
