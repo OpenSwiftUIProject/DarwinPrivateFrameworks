@@ -15,21 +15,44 @@ RB_ASSUME_NONNULL_BEGIN
 
 RB_EXTERN_C_BEGIN
 
+/// Flags for path callbacks
+typedef struct RBPathCallbacksFlags {
+    uint8_t unknown0;
+    uint8_t unknown1;
+    uint8_t isExtended;
+    uint8_t padding[5];
+} RBPathCallbacksFlags;
+
 /// Callbacks structure for path operations
 /// This allows different path storage types (CGPath, custom storage, etc.) to provide their own implementations
 typedef struct RB_SWIFT_NAME(RBPath.Callbacks) RBPathCallbacks {
-    void (* _Nullable unknown1)(const void * object); // 0x00
-    const void * _Nonnull (* _Nullable retain)(const void *object); // 0x08
-    void (* _Nullable release)(const void *object); // 0x10
-    bool (* _Nullable apply)(const void *object, void * info, RBPathApplyCallback _Nullable callback); // 0x18
-    bool (* _Nullable isEqual)(const void *object, const void *otherObject); // 0x20
-    bool (* _Nullable isEmpty)(const void *object); // 0x28
-    bool (* _Nullable isSingleElement)(const void *object); // 0x30
-    uint32_t (* _Nullable bezierOrder)(const void *object); // 0x38
-    CGRect (* _Nullable boundingRect)(const void *object); // 0x40
-    CGPathRef _Nullable (* _Nullable cgPath)(const void *object); // 0x48
-    void (* _Nullable unknown2)(const void *); // 0x50
+    RBPathCallbacksFlags flags;
+    const void * _Nonnull (* _Nullable retain)(const void *object);
+    void (* _Nullable release)(const void *object);
+    bool (* _Nullable apply)(const void *object, void * info, RBPathApplyCallback _Nullable callback);
+    bool (* _Nullable isEqual)(const void *object, const void *otherObject);
+    bool (* _Nullable isEmpty)(const void *object);
+    bool (* _Nullable isSingleElement)(const void *object);
+    uint32_t (* _Nullable bezierOrder)(const void *object);
+    CGRect (* _Nullable boundingRect)(const void *object);
+    CGPathRef _Nullable (* _Nullable cgPath)(const void *object);
+    const struct RBPathCallbacks * _Nullable (* _Nullable next)(const void *object);
 } RBPathCallbacks;
+
+/// Extended callbacks structure with additional extended callbacks argument
+typedef struct RB_SWIFT_NAME(RBPath.CallbacksExtended) RBPathCallbacksExtended {
+    RBPathCallbacksFlags flags;
+    const void * _Nonnull (* _Nullable retain)(const void *object);
+    void (* _Nullable release)(const void *object);
+    bool (* _Nullable apply)(const void *object, void * info, RBPathApplyCallback _Nullable callback, const struct RBPathCallbacksExtended *extended);
+    bool (* _Nullable isEqual)(const void *object, const void *otherObject, const struct RBPathCallbacksExtended *extended);
+    bool (* _Nullable isEmpty)(const void *object, const struct RBPathCallbacksExtended *extended);
+    bool (* _Nullable isSingleElement)(const void *object, const struct RBPathCallbacksExtended *extended);
+    uint32_t (* _Nullable bezierOrder)(const void *object, const struct RBPathCallbacksExtended *extended);
+    CGRect (* _Nullable boundingRect)(const void *object, const struct RBPathCallbacksExtended *extended);
+    CGPathRef _Nullable (* _Nullable cgPath)(const void *object, const struct RBPathCallbacksExtended *extended);
+    const struct RBPathCallbacksExtended * _Nullable (* _Nullable next)(const void *object, const struct RBPathCallbacksExtended *extended);
+} RBPathCallbacksExtended;
 
 /// Global callbacks for CGPath-backed paths
 RB_EXPORT
