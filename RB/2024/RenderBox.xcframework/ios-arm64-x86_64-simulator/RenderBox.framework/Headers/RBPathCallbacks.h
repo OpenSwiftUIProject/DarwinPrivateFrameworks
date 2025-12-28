@@ -16,7 +16,7 @@ RB_ASSUME_NONNULL_BEGIN
 RB_EXTERN_C_BEGIN
 
 /// Flags for path callbacks
-typedef struct RBPathCallbacksFlags {
+typedef struct RB_SWIFT_NAME(RBPath.Callbacks.Flags) RBPathCallbacksFlags {
     uint8_t unknown0;
     uint8_t unknown1;
     bool isExtended;
