@@ -5,9 +5,11 @@
 #pragma once
 
 #include <RenderBox/RBBase.h>
+#include <RenderBox/RBColor.h>
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDrawableStatistics.h>
-#include <RenderBox/RBColor.h>
+#include <RenderBox/_RBDrawableDelegate.h>
+#include <RenderBox/RBDisplayList.h>
 #include <QuartzCore/QuartzCore.h>
 #include <Foundation/Foundation.h>
 
@@ -15,7 +17,7 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
-@interface RBLayer: CALayer </*_RBDrawableDelegate, _RBSharedSurfaceOwner,*/ RBDrawableStatistics>
+@interface RBLayer: CALayer <_RBDrawableDelegate, /*_RBSharedSurfaceOwner,*/ RBDrawableStatistics>
 
 @property (retain, nonatomic, nullable) RBDevice *device;
 @property (nonatomic) BOOL rendersAsynchronously;
@@ -59,7 +61,7 @@ RB_ASSUME_NONNULL_BEGIN
 - (BOOL)_willMoveSubsurface:(unsigned int)subsurface;
 - (void)copyImageInRect:(CGRect)rect options:(nullable id)options completionQueue:(nullable id)queue handler:(nullable id /* block */)handler;
 - (BOOL)displayWithBounds:(CGRect)bounds callback:(nullable id /* block */)callback;
-- (void)drawInDisplayList:(nullable id)list;
+- (void)drawInDisplayList:(nullable RBDisplayList *)list;
 - (void)resetStatistics:(NSUInteger)statistics alpha:(double)alpha;
 - (void)waitUntilAsyncRenderingCompleted;
 
