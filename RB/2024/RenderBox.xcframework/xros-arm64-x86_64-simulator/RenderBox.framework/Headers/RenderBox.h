@@ -1,5 +1,7 @@
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
+#include <RenderBox/RBColorMode.h>
+#include <RenderBox/RBColorSpace.h>
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDrawableStatistics.h>
 #include <RenderBox/RBImageRenderer.h>
