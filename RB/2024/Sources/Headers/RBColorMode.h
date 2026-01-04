@@ -11,7 +11,7 @@ RB_ASSUME_NONNULL_BEGIN
 
 RB_EXTERN_C_BEGIN
 
-typedef RB_ENUM(uint32_t, RBColorMode) {
+typedef RB_ENUM(int32_t, RBColorMode) {
     RBColorMode0 = 0,
     RBColorMode1 = 1,
     RBColorMode2 = 2,
