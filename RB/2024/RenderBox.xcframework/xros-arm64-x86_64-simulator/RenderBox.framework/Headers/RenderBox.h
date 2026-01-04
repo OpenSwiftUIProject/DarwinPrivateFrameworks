@@ -1,4 +1,9 @@
 #include <RenderBox/RBBase.h>
+#include <RenderBox/RBColor.h>
+#include <RenderBox/RBDevice.h>
+#include <RenderBox/RBDrawableStatistics.h>
+#include <RenderBox/RBImageRenderer.h>
+#include <RenderBox/RBLayer.h>
 #include <RenderBox/RBPath.h>
 #include <RenderBox/RBPathCallbacks.h>
 #include <RenderBox/RBPathStorage.h>
