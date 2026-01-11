@@ -6,6 +6,7 @@
 
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
+#include <RenderBox/RBColorMode.h>
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDrawableStatistics.h>
 #include <RenderBox/_RBDrawableDelegate.h>
@@ -21,7 +22,7 @@ RB_ASSUME_NONNULL_BEGIN
 
 @property (retain, nonatomic, nullable) RBDevice *device;
 @property (nonatomic) BOOL rendersAsynchronously;
-@property (nonatomic) int colorMode;
+@property (nonatomic) RBColorMode colorMode;
 @property (nonatomic) BOOL promotesFramebuffer;
 @property (nonatomic) NSUInteger pixelFormat;
 @property (nonatomic) BOOL clearsBackground;
