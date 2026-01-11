@@ -16,7 +16,7 @@ typedef RB_ENUM(uint32_t, RBColorSpace) {
     RBColorSpaceLinearSRGB = 2,
     RBColorSpaceDisplayP3 = 3,
     RBColorSpaceLinearDisplayP3 = 4,
-} RB_SWIFT_NAME(RBColor.Space);
+} RB_SWIFT_NAME(RBColor.ColorSpace);
 
 RB_EXTERN_C_END
 
