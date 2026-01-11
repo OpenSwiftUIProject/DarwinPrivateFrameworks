@@ -6,6 +6,7 @@
 
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBDisplayList.h>
+#include <RenderBox/RBDevice.h>
 #include <Foundation/Foundation.h>
 #include <QuartzCore/QuartzCore.h>
 
@@ -20,7 +21,7 @@ RB_ASSUME_NONNULL_BEGIN
 @optional
 
 - (void)RBLayer:(RBLayer *)layer draw:(RBDisplayList *)inDisplayList;
-- (nullable id)RBLayerDefaultDevice:(RBLayer *)layer;
+- (nullable RBDevice *)RBLayerDefaultDevice:(RBLayer *)layer;
 
 @end
 
