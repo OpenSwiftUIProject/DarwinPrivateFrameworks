@@ -10,6 +10,8 @@ After making change to Sources, run `update.sh` to update the xcframework.
 
 - iOS's tbd is from
     - `https://github.com/xybp888/iOS-SDKs/blob/master/iPhoneOS18.0.sdk/System/Library/PrivateFrameworks/RenderBox.framework/RenderBox.tbd` 
+        - This is not work
+    - Copy from iOS Simulator and change the arch information on target_info in tbd file.
 - iOS Simulator: 
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22A3351/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/RenderBox.framework`
     - `xcrun tapi stubify ./RenderBox.framework`
