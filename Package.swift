@@ -126,13 +126,21 @@ let package = Package(
     name: "DarwinPrivateFrameworks",
     platforms: platforms,
     products: [
-        .library(name: "AttributeGraph", targets: ["AttributeGraph"]),
+        .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
         .library(name: "RenderBox", targets: ["RenderBox"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
         .library(name: "BacklightServices", targets: ["BacklightServices"])
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
+        .target(
+            name: "_AttributeGraphDeviceSwiftShims",
+            dependencies: ["AttributeGraph"],
+            path: "AG/DeviceSwiftShims",
+            swiftSettings: [
+                .define("ATTRIBUTEGRAPH_\(releaseVersion)")
+            ]
+        ),
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
