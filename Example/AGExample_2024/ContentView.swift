@@ -6,6 +6,9 @@
 //
 
 import AttributeGraph
+#if os(iOS) && !targetEnvironment(simulator)
+import _AttributeGraphDeviceSwiftShims
+#endif
 import SwiftUI
 
 struct ContentView: View {

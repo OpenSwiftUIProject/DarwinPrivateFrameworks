@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2769F7272E75768C00E13102 /* BacklightServices.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2769F7262E75767600E13102 /* BacklightServices.xcframework */; };
 		2777DFE32DAD03A700E614B9 /* CoreUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */; };
+		27D1541E2F39E0E600D96064 /* AttributeGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 27D1541D2F39E0E600D96064 /* AttributeGraph */; };
 		27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; };
 		27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; };
 		27F0A5232D21C51E00361C42 /* RenderBox.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5222D21C51E00361C42 /* RenderBox.xcframework */; };
@@ -84,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D1541E2F39E0E600D96064 /* AttributeGraph in Frameworks */,
 				27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +224,7 @@
 			);
 			name = AGExample_2024;
 			packageProductDependencies = (
+				27D1541D2F39E0E600D96064 /* AttributeGraph */,
 			);
 			productName = Example_2024;
 			productReference = 27F0A4F82D21C33200361C42 /* AGExample_2024.app */;
@@ -926,6 +929,14 @@
 			relativePath = ../../DarwinPrivateFrameworks;
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		27D1541D2F39E0E600D96064 /* AttributeGraph */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27156D0E2D1C667400484E52 /* XCLocalSwiftPackageReference "../../DarwinPrivateFrameworks" */;
+			productName = AttributeGraph;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27CB45952D1C6498008338DF /* Project object */;
 }

@@ -16,7 +16,10 @@ After making change to Sources, run `update.sh` to update the xcframework.
 #### Version OS_RELEASE 2024 / 6.5.1
 
 - iOS's tbd is from
-    - `https://github.com/xybp888/iOS-SDKs/blob/master/iPhoneOS18.5.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework/AttributeGraph.tbd` 
+    - DeviceSupport + iPhone16,1_18.5_(22F76)
+    - `xcrun tapi stubify ./AttributeGraph.framework` with Xcode 16.0
+    - Empty result -> copy from ios-arm64-x86_64-simulator and remove the Swift symbol part
+
 - iOS Simulator: 
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AttributeGraph.framework`
     - `xcrun tapi stubify ./AttributeGraph.framework`
