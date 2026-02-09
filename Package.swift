@@ -115,7 +115,34 @@ public func envStringValue(_ key: String, searchInDomain: Bool = true) -> String
 EnvManager.shared.register(domain: "DarwinPrivateFrameworks")
 EnvManager.shared.register(domain: "OpenSwiftUI")
 
+// MARK: - Env and config
+
+#if os(macOS)
+// NOTE: #if os(macOS) check is not accurate if we are cross compiling for Linux platform. So we add an env key to specify it.
+let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM", default: true)
+#else
+let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM")
+#endif
+
 let releaseVersion = envIntValue("TARGET_RELEASE", default: 2024)
+let libraryEvolutionCondition = envBoolValue("LIBRARY_EVOLUTION", default: buildForDarwinPlatform)
+
+
+// MARK: - Shared Settings
+
+var sharedSwiftSettings: [SwiftSetting] = [
+    .enableUpcomingFeature("InternalImportsByDefault"),
+    .enableExperimentalFeature("Extern"),
+    .swiftLanguageMode(.v5),
+    .define("ATTRIBUTEGRAPH_RELEASE_\(releaseVersion)"),
+]
+
+if libraryEvolutionCondition {
+    // NOTE: -enable-library-evolution will cause module verify failure for `swift build`.
+    // Either set OPENATTRIBUTEGRAPH_LIBRARY_EVOLUTION=0 or add `-Xswiftc -no-verify-emitted-module-interface` after `swift build`
+    sharedSwiftSettings.append(.unsafeFlags(["-enable-library-evolution", "-no-verify-emitted-module-interface"]))
+}
+
 let platforms: [SupportedPlatform] = switch releaseVersion {
     case 2024: [.iOS(.v18), .macOS(.v15), .macCatalyst(.v18), .tvOS(.v18), .watchOS(.v10), .visionOS(.v2)]
     case 2021: [.iOS(.v15), .macOS(.v12), .macCatalyst(.v15), .tvOS(.v15), .watchOS(.v7)]
@@ -137,9 +164,7 @@ let package = Package(
             name: "_AttributeGraphDeviceSwiftShims",
             dependencies: ["AttributeGraph"],
             path: "AG/DeviceSwiftShims",
-            swiftSettings: [
-                .define("ATTRIBUTEGRAPH_\(releaseVersion)")
-            ]
+            swiftSettings: sharedSwiftSettings
         ),
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
