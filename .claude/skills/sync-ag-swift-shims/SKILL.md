@@ -84,3 +84,7 @@ AG/DeviceSwiftShims/
 - The `_AttributeGraphDeviceSwiftShims` target provides Swift symbols for iOS device builds where the binary AttributeGraph framework lacks Swift interface
 - This target depends on the `AttributeGraph` binary target
 - Files use `public import AttributeGraph` to access C/C++ symbols from the binary framework
+
+---
+
+Sync shims from: $ARGUMENTS

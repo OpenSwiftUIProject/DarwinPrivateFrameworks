@@ -93,3 +93,7 @@ Before running this command, ensure:
 1. TBD files are present in the `{framework}/2024/tbds/` directories
 2. Source headers and modules are present in `{framework}/2024/Sources/`
 3. Info.plist files are optional for each platform
+
+---
+
+Update frameworks: $ARGUMENTS

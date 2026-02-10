@@ -1,4 +1,7 @@
-# Claude Command to Create Private SDK XCFramework
+---
+name: create_private_framework
+description: Claude Command to Create Private SDK XCFramework
+---
 
 To create a new private SDK xcframework like BacklightServices, follow these steps:
 
@@ -80,3 +83,7 @@ The framework supports:
 - **Swift frameworks** require a `template.swiftinterface` file for proper module interface generation (see AttributeGraph for example)
 - **Objective-C frameworks** require a `module.modulemap` and header files in the Sources directory
 - The `update.sh` script should handle copying these files into the generated xcframework structure
+
+---
+
+Create framework: $ARGUMENTS
