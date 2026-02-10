@@ -37,7 +37,7 @@ Frameworks: AttributeGraph RenderBox CoreUI
 ```
 /generate-tbd
 
-Platform: ios  
+Platform: ios
 Runtime: /Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime
 Frameworks: AttributeGraph RenderBox CoreUI
 ```
@@ -70,7 +70,7 @@ The command will execute the script at `Scripts/generate_tbd.sh` with the provid
 ## Platform Directory Mappings
 
 - **ios**: ios-arm64-x86_64-simulator
-- **xros**: xros-arm64-x86_64-simulator  
+- **xros**: xros-arm64-x86_64-simulator
 - **macos**: macos-arm64e-arm64-x86_64
 - **tvos**: tvos-arm64-x86_64-simulator
 - **watchos**: watchos-arm64-x86_64-simulator
@@ -86,3 +86,7 @@ The command will execute the script at `Scripts/generate_tbd.sh` with the provid
 - Info.plist files are converted to XML format using `plutil -convert xml1`
 - The script includes error checking for missing directories and existing platform support
 - For AttributeGraph with visionOS, additional manual configuration may be needed for swiftinterface generation
+
+---
+
+Generate TBDs for: $ARGUMENTS
