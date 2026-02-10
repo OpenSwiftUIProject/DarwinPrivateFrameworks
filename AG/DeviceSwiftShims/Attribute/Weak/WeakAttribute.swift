@@ -1,0 +1,102 @@
+//
+//  WeakAttribute.swift
+//  AttributeGraph
+//
+//  Audited for 6.5.1
+//  Status: Complete
+
+public import AttributeGraph
+
+/// A weak reference property wrapper for attributes that prevents retain cycles.
+///
+/// `WeakAttribute` provides a way to hold weak references to attributes, preventing strong reference cycles in the attribute graph while still allowing access to reactive values.
+///
+///     @WeakAttribute var parentAttribute: SomeType?
+///     
+///     // Safe access to potentially deallocated attribute
+///     if let value = parentAttribute {
+///         print("Parent value: \(value)")
+///     }
+///
+/// The weak attribute automatically becomes `nil` when the referenced attribute is deallocated, providing memory-safe access to optional attribute references.
+///
+/// ## Key Features
+///
+/// - Weak references: Prevents retain cycles in attribute relationships
+/// - Automatic nil assignment: Referenced attributes become nil when deallocated  
+/// - Dynamic member lookup: Access nested properties through weak references
+/// - Optional semantics: All values are optional since references may be deallocated
+///
+/// ## Usage Pattern
+///
+/// WeakAttribute is essential for:
+/// - Parent-child attribute relationships
+/// - Observer patterns that don't own the observed attribute
+/// - Breaking potential retain cycles in complex attribute graphs
+/// - Optional attribute references in data structures
+@frozen
+@propertyWrapper
+@dynamicMemberLookup
+public struct WeakAttribute<Value> {
+    var base: AnyWeakAttribute
+
+    public init(base: AnyWeakAttribute) {
+        self.base = base
+    }
+
+    public init() {
+        base = AnyWeakAttribute(_details: .init(identifier: .init(rawValue: 0), seed: 0))
+    }
+
+    public init(_ attribute: Attribute<Value>) {
+        base = AnyWeakAttribute(attribute.identifier)
+    }
+
+    public init(_ attribute: Attribute<Value>?) {
+        base = AnyWeakAttribute(attribute?.identifier)
+    }
+
+    public var wrappedValue: Value? {
+        AGGraphGetWeakValue(base, type: Value.self)
+            .value?
+            .assumingMemoryBound(to: Value.self)
+            .pointee
+    }
+
+    public var projectedValue: Attribute<Value>?{
+        get { attribute }
+        set { attribute = newValue }
+        _modify { yield &attribute }
+    }
+
+    public subscript<Member>(dynamicMember keyPath: KeyPath<Value, Member>) -> Attribute<Member>? {
+        attribute?[keyPath: keyPath]
+    }
+
+    public var attribute: Attribute<Value>? {
+        get { base.attribute?.unsafeCast(to: Value.self) }
+        set { base.attribute = newValue?.identifier }
+    }
+
+    public var value: Value? { wrappedValue }
+
+    public func changedValue(options: AGValueOptions = []) -> (value: Value, changed: Bool)? {
+        let value = AGGraphGetWeakValue(base, options: options, type: Value.self)
+        guard let ptr = value.value else {
+            return nil
+        }
+        return (
+            ptr.assumingMemoryBound(to: Value.self).pointee,
+            value.flags.contains(.changed)
+        )
+    }
+}
+
+extension WeakAttribute: Hashable {}
+
+extension WeakAttribute: CustomStringConvertible {
+    public var description: String { base.description }
+}
+
+@_silgen_name("AGGraphGetWeakValue")
+private func AGGraphGetWeakValue<Value>(_ attribute: AnyWeakAttribute, options: AGValueOptions = [], type: Value.Type = Value.self) -> AGWeakValue
