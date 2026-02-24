@@ -1,5 +1,5 @@
 framework module AttributeGraph [system] {
-  umbrella header "AttributeGraph-umbrella.h"
+  umbrella header "AttributeGraph.h"
 
   export *
   module * { export * }
