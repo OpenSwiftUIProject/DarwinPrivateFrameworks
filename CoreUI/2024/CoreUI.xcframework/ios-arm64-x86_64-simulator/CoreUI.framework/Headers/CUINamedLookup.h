@@ -31,7 +31,7 @@ CUI_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) BOOL representsOnDemandContent;
 @property (readonly, nonatomic) CUIDeviceIdiom idiom;
 @property (readonly, nonatomic) CUIDisplayGamut displayGamut;
-@property (readonly, nonatomic) NSInteger layoutDirection;
+@property (readonly, nonatomic) CUILayoutDirection layoutDirection;
 @property (readonly, nonatomic) NSInteger localization;
 @property (readonly, nonatomic) NSString *appearance;
 

@@ -39,6 +39,7 @@ CUI_ASSUME_NONNULL_BEGIN
 
 @property (readonly, nonatomic) BOOL hasSliceInformation;
 @property (readonly, nonatomic) BOOL hasAlignmentInformation;
+@property (readonly, nonatomic) CUIEdgeInsets edgeInsets;
 
 - (CUIResizingMode)resizingModeWithSubtype:(CUISubtype)subtype;
 - (CGFloat)positionOfSliceBoundary:(unsigned int)boundary;

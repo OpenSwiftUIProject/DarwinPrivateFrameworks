@@ -15,6 +15,16 @@
 #import <CoreUI/CUIResizingMode.h>
 #import <CoreUI/CUIImageType.h>
 #import <CoreUI/CUIGraphicalClass.h>
+#import <CoreUI/CUILayoutDirection.h>
 #import <CoreUI/CUIMemoryClass.h>
+
+#import <CoreGraphics/CoreGraphics.h>
+
+typedef struct CUIEdgeInsets {
+    CGFloat top;
+    CGFloat left;
+    CGFloat bottom;
+    CGFloat right;
+} CUIEdgeInsets;
 
 #endif /* CUITypes_h */

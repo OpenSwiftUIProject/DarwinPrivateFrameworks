@@ -6,20 +6,36 @@
 //  Status: WIP
 
 #import <CoreUI/CUIBase.h>
+#import <CoreUI/CUINamedLookup.h>
 #import <CoreUI/CUITypes.h>
+#import <CoreUI/CUIVectorGlyphLayer.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 
 CUI_ASSUME_NONNULL_BEGIN
 
+CUI_EXTERN_C_BEGIN
+
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightUltralight;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightThin;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightLight;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightRegular;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightMedium;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightSemibold;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightBold;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightHeavy;
+CUI_EXPORT const CGFloat _CUIVectorGlyphContinuousWeightBlack;
+
+CUI_EXTERN_C_END
+
 @class CUICatalog;
 
-@interface CUINamedVectorGlyph : NSObject
+@interface CUINamedVectorGlyph : CUINamedLookup
 
 @property (readonly, nonatomic, nullable) CGImageRef image;
 @property (readonly, nonatomic) CGFloat scale;
 @property (readonly, nonatomic, nullable) CGPathRef CGPath;
-@property (readonly, nonatomic) NSInteger layoutDirection;
+@property (readonly, nonatomic) CUILayoutDirection layoutDirection;
 @property (readonly, nonatomic) CGFloat pointSize;
 @property (readonly, nonatomic) NSInteger glyphSize;
 @property (readonly, nonatomic) NSInteger glyphWeight;
@@ -42,6 +58,8 @@ CUI_ASSUME_NONNULL_BEGIN
 @property (readonly, nonatomic) CGSize referenceCanvasSize;
 @property (readonly, nonatomic) CGFloat referencePointSize;
 @property (readonly, nonatomic) CGPoint rotationAnchor;
+
+@property (readonly, nonatomic, nullable) NSArray<CUIVectorGlyphLayer *> *monochromeLayers;
 
 @property (readonly, nonatomic) NSInteger preferredRenderingMode;
 

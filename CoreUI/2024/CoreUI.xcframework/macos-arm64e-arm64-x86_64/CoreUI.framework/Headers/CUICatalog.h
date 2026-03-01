@@ -45,7 +45,7 @@ CUI_ASSUME_NONNULL_BEGIN
                               deviceIdiom:(CUIDeviceIdiom)idiom
                             deviceSubtype:(CUISubtype)subtype
                              displayGamut:(CUIDisplayGamut)gamut
-                          layoutDirection:(NSInteger)layoutDirection
+                          layoutDirection:(CUILayoutDirection)layoutDirection
                     sizeClassHorizontal:(CUIUserInterfaceSizeClass)horizontalSizeClass
                       sizeClassVertical:(CUIUserInterfaceSizeClass)verticalSizeClass
                            appearanceName:(nullable NSString *)appearanceName;
@@ -55,7 +55,7 @@ CUI_ASSUME_NONNULL_BEGIN
                               deviceIdiom:(CUIDeviceIdiom)idiom
                             deviceSubtype:(CUISubtype)subtype
                              displayGamut:(CUIDisplayGamut)gamut
-                          layoutDirection:(NSInteger)layoutDirection
+                          layoutDirection:(CUILayoutDirection)layoutDirection
                     sizeClassHorizontal:(CUIUserInterfaceSizeClass)horizontalSizeClass
                       sizeClassVertical:(CUIUserInterfaceSizeClass)verticalSizeClass
                            appearanceName:(nullable NSString *)appearanceName
@@ -66,7 +66,7 @@ CUI_ASSUME_NONNULL_BEGIN
 - (nullable CUINamedVectorGlyph *)namedVectorGlyphWithName:(NSString *)name
                                                scaleFactor:(CGFloat)scaleFactor
                                                deviceIdiom:(CUIDeviceIdiom)idiom
-                                           layoutDirection:(NSInteger)layoutDirection
+                                           layoutDirection:(CUILayoutDirection)layoutDirection
                                                  glyphSize:(NSInteger)glyphSize
                                                glyphWeight:(NSInteger)glyphWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
@@ -75,7 +75,7 @@ CUI_ASSUME_NONNULL_BEGIN
 - (nullable CUINamedVectorGlyph *)namedVectorGlyphWithName:(NSString *)name
                                                scaleFactor:(CGFloat)scaleFactor
                                                deviceIdiom:(CUIDeviceIdiom)idiom
-                                           layoutDirection:(NSInteger)layoutDirection
+                                           layoutDirection:(CUILayoutDirection)layoutDirection
                                                  glyphSize:(NSInteger)glyphSize
                                                glyphWeight:(NSInteger)glyphWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
@@ -85,7 +85,7 @@ CUI_ASSUME_NONNULL_BEGIN
 - (nullable CUINamedVectorGlyph *)namedVectorGlyphWithName:(NSString *)name
                                                scaleFactor:(CGFloat)scaleFactor
                                                deviceIdiom:(CUIDeviceIdiom)idiom
-                                           layoutDirection:(NSInteger)layoutDirection
+                                           layoutDirection:(CUILayoutDirection)layoutDirection
                                       glyphContinuousSize:(CGFloat)glyphContinuousSize
                                     glyphContinuousWeight:(CGFloat)glyphContinuousWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
@@ -99,7 +99,7 @@ CUI_ASSUME_NONNULL_BEGIN
                                      deviceIdiom:(CUIDeviceIdiom)idiom
                                    deviceSubtype:(CUISubtype)subtype
                                     displayGamut:(CUIDisplayGamut)gamut
-                                 layoutDirection:(NSInteger)layoutDirection
+                                 layoutDirection:(CUILayoutDirection)layoutDirection
                            sizeClassHorizontal:(CUIUserInterfaceSizeClass)horizontalSizeClass
                              sizeClassVertical:(CUIUserInterfaceSizeClass)verticalSizeClass
                                   appearanceName:(nullable NSString *)appearanceName
