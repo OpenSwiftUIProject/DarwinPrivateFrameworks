@@ -68,7 +68,7 @@ CUI_ASSUME_NONNULL_BEGIN
                                                deviceIdiom:(CUIDeviceIdiom)idiom
                                            layoutDirection:(CUILayoutDirection)layoutDirection
                                                  glyphSize:(NSInteger)glyphSize
-                                               glyphWeight:(NSInteger)glyphWeight
+                                               glyphWeight:(_CUIThemeVectorGlyphWeight)glyphWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
                                             appearanceName:(nullable NSString *)appearanceName;
 
@@ -77,10 +77,10 @@ CUI_ASSUME_NONNULL_BEGIN
                                                deviceIdiom:(CUIDeviceIdiom)idiom
                                            layoutDirection:(CUILayoutDirection)layoutDirection
                                                  glyphSize:(NSInteger)glyphSize
-                                               glyphWeight:(NSInteger)glyphWeight
+                                               glyphWeight:(_CUIThemeVectorGlyphWeight)glyphWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
                                             appearanceName:(nullable NSString *)appearanceName
-                                                    locale:(nullable NSString *)locale;
+                                                    locale:(nullable NSLocale *)locale;
 
 - (nullable CUINamedVectorGlyph *)namedVectorGlyphWithName:(NSString *)name
                                                scaleFactor:(CGFloat)scaleFactor
@@ -90,7 +90,7 @@ CUI_ASSUME_NONNULL_BEGIN
                                     glyphContinuousWeight:(CGFloat)glyphContinuousWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
                                             appearanceName:(nullable NSString *)appearanceName
-                                                    locale:(nullable NSString *)locale;
+                                                    locale:(nullable NSLocale *)locale;
 
 // MARK: - Named Lookup (Generic)
 

@@ -17,6 +17,7 @@
 #import <CoreUI/CUIGraphicalClass.h>
 #import <CoreUI/CUILayoutDirection.h>
 #import <CoreUI/CUIMemoryClass.h>
+#import <CoreUI/_CUIThemeVectorGlyphWeight.h>
 
 #import <CoreGraphics/CoreGraphics.h>
 
