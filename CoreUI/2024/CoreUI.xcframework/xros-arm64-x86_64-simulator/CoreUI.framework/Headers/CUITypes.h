@@ -15,6 +15,9 @@
 #import <CoreUI/CUIResizingMode.h>
 #import <CoreUI/CUIImageType.h>
 #import <CoreUI/CUIGraphicalClass.h>
+#import <CoreUI/CUILayoutDirection.h>
 #import <CoreUI/CUIMemoryClass.h>
+#import <CoreUI/_CUIThemeVectorGlyphWeight.h>
+#import <CoreUI/CUIEdgeInsets.h>
 
 #endif /* CUITypes_h */
