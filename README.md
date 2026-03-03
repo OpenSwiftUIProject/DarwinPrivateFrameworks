@@ -1,6 +1,6 @@
 # DarwinPrivateFrameworks
 
-This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox` and `CoreUI`.
+This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, and `SFSymbols`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], and visionOS Simulator platforms.
 
@@ -20,8 +20,10 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 
 - `AG/`: Contains the `AttributeGraph` framework.
 - `CoreUI/`: Contains the `CoreUI` framework.
+- `BLS/`: Contains the `BacklightServices` framework.
 - `Examples/`: Contains example projects demonstrating usage of the private frameworks.
 - `RB/`: Contains the `RenderBox` framework.
+- `SFSymbols/`: Contains the `SFSymbols` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
 
 ## Update
@@ -116,4 +118,4 @@ import AttributeGraph
 
 [^1]: The Swift API of AttributeGraph is not available on iOS platform.
 
-[^2]: Only AttributeGraph is currently installed to the Internal SDK. Other frameworks are not ready yet. For visionOS, the script also enables UIScreen support by removing API availability restrictions.
+[^2]: The installer currently includes AttributeGraph, RenderBox, CoreUI, BacklightServices, and SFSymbols (platform-dependent). For visionOS, the script also enables UIScreen support by removing API availability restrictions.

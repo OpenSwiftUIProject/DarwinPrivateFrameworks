@@ -19,6 +19,9 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // CoreUI
         try run(context: context, command: "CoreUI/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "CoreUI/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // SFSymbols
+        try run(context: context, command: "SFSymbols/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2025"])
+        try run(context: context, command: "SFSymbols/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2025"])
     }
     
     private func run(context: PackagePlugin.PluginContext, command: String, environment: [String: String]) throws {
