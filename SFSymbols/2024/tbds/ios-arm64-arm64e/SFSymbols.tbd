@@ -334,11 +334,11 @@
     "target_info": [
       {
         "target": "arm64-ios",
-        "min_deployment": "18.0"
+        "min_deployment": "17.0"
       },
       {
         "target": "arm64e-ios",
-        "min_deployment": "18.0"
+        "min_deployment": "17.0"
       }
     ]
   },

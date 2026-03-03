@@ -7,14 +7,14 @@ filepath() {
   [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2025}
+VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
 # Version mapping logic
-if [ "$VERSION" = "2025" ]; then
-    IOS_VERSION="18.0"
-    MACOS_VERSION="15.0"
-    XROS_VERSION="2.0"
+if [ "$VERSION" = "2024" ]; then
+    IOS_VERSION="17.0"
+    MACOS_VERSION="14.0"
+    XROS_VERSION="1.0"
 else
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"

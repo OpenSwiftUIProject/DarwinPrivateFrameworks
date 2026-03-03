@@ -333,7 +333,7 @@
     ],
     "target_info": [
       {
-        "min_deployment": "26.2",
+        "min_deployment": "17.0",
         "target": "arm64-ios-simulator"
       }
     ]
