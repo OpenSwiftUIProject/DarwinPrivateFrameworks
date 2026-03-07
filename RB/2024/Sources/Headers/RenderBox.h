@@ -1,3 +1,4 @@
+#include <RenderBox/RBAnimation.h>
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBColorMode.h>
@@ -12,6 +13,8 @@
 #include <RenderBox/_RBDrawableDelegate.h>
 #include <RenderBox/RBPathCallbacks.h>
 #include <RenderBox/RBPathStorage.h>
+#include <RenderBox/RBSymbolAnimator.h>
+#include <RenderBox/RBSymbolAnimatorObserver.h>
 #include <RenderBox/RBSwiftSupport.h>
 #include <RenderBox/RBTargetConditionals.h>
 #include <RenderBox/RBUUID.h>
