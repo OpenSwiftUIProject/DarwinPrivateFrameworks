@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2769F7272E75768C00E13102 /* BacklightServices.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2769F7262E75767600E13102 /* BacklightServices.xcframework */; };
 		2777DFE32DAD03A700E614B9 /* CoreUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */; };
-		27A8DB3E2F5D312A001C123E /* SFSymbols.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8DB3C2F5D3124001C123E /* SFSymbols.xcframework */; };
+		27A8DB662F5D38E7001C123E /* SFSymbols.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */; };
 		27D1541E2F39E0E600D96064 /* AttributeGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 27D1541D2F39E0E600D96064 /* AttributeGraph */; };
 		27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; };
 		27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; };
@@ -30,6 +30,7 @@
 		27A8DB382F5D3124001C123E /* SFSymbols.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = SFSymbols.tbd; sourceTree = "<group>"; };
 		27A8DB3B2F5D3124001C123E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27A8DB3C2F5D3124001C123E /* SFSymbols.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SFSymbols.xcframework; sourceTree = "<group>"; };
+		27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SFSymbols.xcframework; path = ../SF/2024/SFSymbols.xcframework; sourceTree = "<group>"; };
 		27CB459D2D1C6498008338DF /* AGExample_2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2021.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A4F82D21C33200361C42 /* AGExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2021/AttributeGraph.xcframework; sourceTree = "<group>"; };
@@ -92,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27A8DB3E2F5D312A001C123E /* SFSymbols.xcframework in Frameworks */,
+				27A8DB662F5D38E7001C123E /* SFSymbols.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +128,7 @@
 		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */,
 				27A8DB3D2F5D3124001C123E /* 2024 */,
 				2769F7262E75767600E13102 /* BacklightServices.xcframework */,
 				2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */,
