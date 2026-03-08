@@ -12,13 +12,11 @@ FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 
 # Version mapping logic
 if [ "$VERSION" = "2024" ]; then
-    IOS_VERSION="17.0"
-    MACOS_VERSION="14.0"
-    XROS_VERSION="1.0"
+    IOS_VERSION="18.0"
+    MACOS_VERSION="15.0"
 else
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"
-    XROS_VERSION="2.0"
 fi
 
 framework_name=SFSymbols
@@ -28,7 +26,7 @@ generate_swiftinterface_header() {
     local result=""
     result+="// swift-interface-format-version: 1.0\n"
     result+="// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)\n"
-    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name SFSymbols -package-name OpenSFSymbols\n"
+    result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name SFSymbols\n"
     result+="// swift-module-flags-ignorable:  -interface-compiler-version 6.1"
 
     echo -e $result
@@ -75,6 +73,11 @@ generate_framework $framework_name ios-arm64-x86_64-simulator
 generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
 generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
 rm template.swiftinterface
+
+generate_framework $framework_name ios-arm64-arm64e
+# iPhoneOS platform does not support links Swift API of SFSymbols
+cd ../
+rm -r ./$framework_name.swiftmodule
 
 generate_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}

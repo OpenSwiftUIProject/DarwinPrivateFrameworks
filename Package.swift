@@ -157,7 +157,7 @@ let package = Package(
         .library(name: "RenderBox", targets: ["RenderBox"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
         .library(name: "BacklightServices", targets: ["BacklightServices"]),
-        .library(name: "SFSymbols", targets: ["SFSymbols"])
+        .library(name: "SFSymbols", targets: ["SFSymbols"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
