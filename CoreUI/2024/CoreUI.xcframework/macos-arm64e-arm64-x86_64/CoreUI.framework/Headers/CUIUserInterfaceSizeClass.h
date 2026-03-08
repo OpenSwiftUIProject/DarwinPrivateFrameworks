@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreUI/CUIBase.h>
 
-typedef CUI_CLOSED_ENUM(int8_t, CUIUserInterfaceSizeClass) {
+typedef CUI_CLOSED_ENUM(NSInteger, CUIUserInterfaceSizeClass) {
     CUIUserInterfaceSizeClassAny      = 0,
     CUIUserInterfaceSizeClassCompact  = 1,
     CUIUserInterfaceSizeClassRegular  = 2,
