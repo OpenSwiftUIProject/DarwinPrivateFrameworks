@@ -2,7 +2,7 @@
   "main_library": {
     "current_versions": [
       {
-        "version": "190.1"
+        "version": "167.5"
       }
     ],
     "exported_symbols": [
@@ -333,7 +333,11 @@
     ],
     "target_info": [
       {
-        "min_deployment": "17.0",
+        "min_deployment": "18.5",
+        "target": "x86_64-ios-simulator"
+      },
+      {
+        "min_deployment": "18.5",
         "target": "arm64-ios-simulator"
       }
     ]
