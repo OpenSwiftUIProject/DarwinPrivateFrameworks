@@ -47,12 +47,10 @@ generate_framework() {
     mkdir -p ${path}
 
     rm -rf ${path}/${framework_name}.tbd
-    rm -rf ${path}/Headers
     rm -rf ${path}/Modules
     rm -rf ${path}/Info.plist
 
     cp ${FRAMEWORK_ROOT}/tbds/${arch_name}/${framework_name}.tbd ${path}/
-    cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
 
