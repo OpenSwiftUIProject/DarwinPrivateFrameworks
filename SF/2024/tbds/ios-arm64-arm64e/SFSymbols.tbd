@@ -334,11 +334,11 @@
     "target_info": [
       {
         "min_deployment": "18.5",
-        "target": "x86_64-ios-simulator"
+        "target": "arm64e-ios"
       },
       {
         "min_deployment": "18.5",
-        "target": "arm64-ios-simulator"
+        "target": "arm64-ios"
       }
     ]
   },
