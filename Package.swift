@@ -156,7 +156,8 @@ let package = Package(
         .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
         .library(name: "RenderBox", targets: ["RenderBox"]),
         .library(name: "CoreUI", targets: ["CoreUI"]),
-        .library(name: "BacklightServices", targets: ["BacklightServices"])
+        .library(name: "BacklightServices", targets: ["BacklightServices"]),
+        .library(name: "SFSymbols", targets: ["SFSymbols"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
@@ -169,6 +170,7 @@ let package = Package(
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
+        .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(

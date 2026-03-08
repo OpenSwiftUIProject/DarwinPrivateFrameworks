@@ -2,7 +2,7 @@
 
 # Script to run update.sh for specified frameworks
 # Usage: ./update_frameworks.sh [framework1] [framework2] ... or "all"
-# Example: ./update_frameworks.sh AttributeGraph RenderBox CoreUI
+# Example: ./update_frameworks.sh AttributeGraph RenderBox CoreUI SFSymbols
 # Example: ./update_frameworks.sh all
 
 set -e
@@ -25,6 +25,9 @@ get_framework_dir() {
             ;;
         CoreUI)
             echo "CoreUI"
+            ;;
+        SFSymbols|SF)
+            echo "SF"
             ;;
         *)
             echo "$1"
@@ -68,10 +71,10 @@ update_framework() {
 if [ $# -eq 0 ]; then
     echo "Usage: $0 [framework1] [framework2] ... or 'all'"
     echo "Examples:"
-    echo "  $0 AttributeGraph RenderBox CoreUI"
+    echo "  $0 AttributeGraph RenderBox CoreUI SFSymbols"
     echo "  $0 all"
     echo ""
-    echo "Frameworks: AttributeGraph (or AG), RenderBox (or RB), CoreUI"
+    echo "Frameworks: AttributeGraph (or AG), RenderBox (or RB), CoreUI, SFSymbols"
     echo ""
     echo "To specify version, set DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:"
     echo "  DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=2021 $0 all"
@@ -80,7 +83,7 @@ fi
 
 # Check if "all" was specified
 if [ "$1" = "all" ]; then
-    frameworks=("AttributeGraph" "RenderBox" "CoreUI")
+    frameworks=("AttributeGraph" "RenderBox" "CoreUI" "SFSymbols")
 else
     frameworks=("$@")
 fi

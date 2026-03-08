@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2769F7272E75768C00E13102 /* BacklightServices.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2769F7262E75767600E13102 /* BacklightServices.xcframework */; };
 		2777DFE32DAD03A700E614B9 /* CoreUI.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */; };
+		27A8DB662F5D38E7001C123E /* SFSymbols.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */; };
 		27D1541E2F39E0E600D96064 /* AttributeGraph in Frameworks */ = {isa = PBXBuildFile; productRef = 27D1541D2F39E0E600D96064 /* AttributeGraph */; };
 		27F0A5082D21C40600361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */; };
 		27F0A50C2D21C41100361C42 /* AttributeGraph.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0A50B2D21C41100361C42 /* AttributeGraph.xcframework */; };
@@ -20,6 +21,16 @@
 		2769F7262E75767600E13102 /* BacklightServices.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = BacklightServices.xcframework; path = ../BLS/2024/BacklightServices.xcframework; sourceTree = SOURCE_ROOT; };
 		2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreUIExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CoreUI.xcframework; path = ../CoreUI/2024/CoreUI.xcframework; sourceTree = SOURCE_ROOT; };
+		27A8DAFE2F5D309D001C123E /* SFSymbolsExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFSymbolsExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27A8DB2E2F5D3124001C123E /* template.swiftinterface */ = {isa = PBXFileReference; lastKnownFileType = text; path = template.swiftinterface; sourceTree = "<group>"; };
+		27A8DB312F5D3124001C123E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27A8DB332F5D3124001C123E /* SFSymbols.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = SFSymbols.tbd; sourceTree = "<group>"; };
+		27A8DB352F5D3124001C123E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27A8DB362F5D3124001C123E /* SFSymbols.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = SFSymbols.tbd; sourceTree = "<group>"; };
+		27A8DB382F5D3124001C123E /* SFSymbols.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = SFSymbols.tbd; sourceTree = "<group>"; };
+		27A8DB3B2F5D3124001C123E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27A8DB3C2F5D3124001C123E /* SFSymbols.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SFSymbols.xcframework; sourceTree = "<group>"; };
+		27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SFSymbols.xcframework; path = ../SF/2024/SFSymbols.xcframework; sourceTree = "<group>"; };
 		27CB459D2D1C6498008338DF /* AGExample_2021.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2021.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A4F82D21C33200361C42 /* AGExample_2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGExample_2024.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AttributeGraph.xcframework; path = ../AG/2021/AttributeGraph.xcframework; sourceTree = "<group>"; };
@@ -37,6 +48,11 @@
 		2777DFD22DAD035A00E614B9 /* CoreUIExample_2024 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CoreUIExample_2024;
+			sourceTree = "<group>";
+		};
+		27A8DAFF2F5D309D001C123E /* SFSymbolsExample_2024 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SFSymbolsExample_2024;
 			sourceTree = "<group>";
 		};
 		27CB459F2D1C6498008338DF /* AGExample_2021 */ = {
@@ -73,6 +89,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27A8DAFB2F5D309D001C123E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27A8DB662F5D38E7001C123E /* SFSymbols.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		27CB459A2D1C6498008338DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +128,8 @@
 		273CA58B2D21496D00DCBEF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27A8DB652F5D38E7001C123E /* SFSymbols.xcframework */,
+				27A8DB3D2F5D3124001C123E /* 2024 */,
 				2769F7262E75767600E13102 /* BacklightServices.xcframework */,
 				2777DFE22DAD03A700E614B9 /* CoreUI.xcframework */,
 				27F0A5222D21C51E00361C42 /* RenderBox.xcframework */,
@@ -111,6 +137,78 @@
 				27F0A5072D21C40600361C42 /* AttributeGraph.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		27A8DB2F2F5D3124001C123E /* SFSymbols.swiftmodule */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB2E2F5D3124001C123E /* template.swiftinterface */,
+			);
+			path = SFSymbols.swiftmodule;
+			sourceTree = "<group>";
+		};
+		27A8DB302F5D3124001C123E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB2F2F5D3124001C123E /* SFSymbols.swiftmodule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		27A8DB322F5D3124001C123E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB302F5D3124001C123E /* Modules */,
+				27A8DB312F5D3124001C123E /* Info.plist */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		27A8DB342F5D3124001C123E /* ios-arm64-arm64e */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB332F5D3124001C123E /* SFSymbols.tbd */,
+			);
+			path = "ios-arm64-arm64e";
+			sourceTree = "<group>";
+		};
+		27A8DB372F5D3124001C123E /* ios-arm64-x86_64-simulator */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB352F5D3124001C123E /* Info.plist */,
+				27A8DB362F5D3124001C123E /* SFSymbols.tbd */,
+			);
+			path = "ios-arm64-x86_64-simulator";
+			sourceTree = "<group>";
+		};
+		27A8DB392F5D3124001C123E /* macos-arm64e-arm64-x86_64 */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB382F5D3124001C123E /* SFSymbols.tbd */,
+			);
+			path = "macos-arm64e-arm64-x86_64";
+			sourceTree = "<group>";
+		};
+		27A8DB3A2F5D3124001C123E /* tbds */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB342F5D3124001C123E /* ios-arm64-arm64e */,
+				27A8DB372F5D3124001C123E /* ios-arm64-x86_64-simulator */,
+				27A8DB392F5D3124001C123E /* macos-arm64e-arm64-x86_64 */,
+			);
+			path = tbds;
+			sourceTree = "<group>";
+		};
+		27A8DB3D2F5D3124001C123E /* 2024 */ = {
+			isa = PBXGroup;
+			children = (
+				27A8DB322F5D3124001C123E /* Sources */,
+				27A8DB3A2F5D3124001C123E /* tbds */,
+				27A8DB3B2F5D3124001C123E /* Info.plist */,
+				27A8DB3C2F5D3124001C123E /* SFSymbols.xcframework */,
+			);
+			name = 2024;
+			path = ../SFSymbols/2024;
 			sourceTree = "<group>";
 		};
 		27CB45942D1C6498008338DF = {
@@ -121,6 +219,7 @@
 				27F0A5142D21C4A300361C42 /* RBExample_2024 */,
 				2777DFD22DAD035A00E614B9 /* CoreUIExample_2024 */,
 				2769F71B2E75720C00E13102 /* BLSExample_2024 */,
+				27A8DAFF2F5D309D001C123E /* SFSymbolsExample_2024 */,
 				273CA58B2D21496D00DCBEF9 /* Frameworks */,
 				27CB459E2D1C6498008338DF /* Products */,
 			);
@@ -134,6 +233,7 @@
 				27F0A5132D21C4A300361C42 /* RBExample_2024.app */,
 				2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */,
 				2769F71A2E75720C00E13102 /* BLSExample_2024.app */,
+				27A8DAFE2F5D309D001C123E /* SFSymbolsExample_2024.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +283,28 @@
 			);
 			productName = CoreUIExample_2024;
 			productReference = 2777DFD12DAD035A00E614B9 /* CoreUIExample_2024.app */;
+			productType = "com.apple.product-type.application";
+		};
+		27A8DAFD2F5D309D001C123E /* SFSymbolsExample_2024 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27A8DB092F5D309E001C123E /* Build configuration list for PBXNativeTarget "SFSymbolsExample_2024" */;
+			buildPhases = (
+				27A8DAFA2F5D309D001C123E /* Sources */,
+				27A8DAFB2F5D309D001C123E /* Frameworks */,
+				27A8DAFC2F5D309D001C123E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				27A8DAFF2F5D309D001C123E /* SFSymbolsExample_2024 */,
+			);
+			name = SFSymbolsExample_2024;
+			packageProductDependencies = (
+			);
+			productName = SFSymbolsExample_2024;
+			productReference = 27A8DAFE2F5D309D001C123E /* SFSymbolsExample_2024.app */;
 			productType = "com.apple.product-type.application";
 		};
 		27CB459C2D1C6498008338DF /* AGExample_2021 */ = {
@@ -268,6 +390,9 @@
 					2777DFD02DAD035A00E614B9 = {
 						CreatedOnToolsVersion = 16.0;
 					};
+					27A8DAFD2F5D309D001C123E = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					27CB459C2D1C6498008338DF = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -301,6 +426,7 @@
 				27F0A5122D21C4A300361C42 /* RBExample_2024 */,
 				2777DFD02DAD035A00E614B9 /* CoreUIExample_2024 */,
 				2769F7192E75720C00E13102 /* BLSExample_2024 */,
+				27A8DAFD2F5D309D001C123E /* SFSymbolsExample_2024 */,
 			);
 		};
 /* End PBXProject section */
@@ -314,6 +440,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2777DFCF2DAD035A00E614B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A8DAFC2F5D309D001C123E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -352,6 +485,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2777DFCD2DAD035A00E614B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27A8DAFA2F5D309D001C123E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -525,6 +665,84 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
 				XROS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		27A8DB072F5D309E001C123E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.SFSymbolsExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		27A8DB082F5D309E001C123E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VB7MJ8R223;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example.SFSymbolsExample-2024";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Release;
 		};
@@ -881,6 +1099,15 @@
 			buildConfigurations = (
 				2777DFDD2DAD035B00E614B9 /* Debug */,
 				2777DFDE2DAD035B00E614B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27A8DB092F5D309E001C123E /* Build configuration list for PBXNativeTarget "SFSymbolsExample_2024" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27A8DB072F5D309E001C123E /* Debug */,
+				27A8DB082F5D309E001C123E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

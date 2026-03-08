@@ -278,6 +278,9 @@ fi
 echo "Installing RenderBox framework..."
 "$REPO_ROOT/Scripts/SDK/install_rb.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
+echo "Installing SFSymbols framework..."
+"$REPO_ROOT/Scripts/SDK/install_sf.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
 # Enable UIScreen support for XRSimulator
 if [ "$PLATFORM" = "XRSimulator" ]; then
     echo "Enabling UIScreen support for visionOS SDK..."
@@ -299,4 +302,4 @@ if [ "$SET_DEFAULT" = true ]; then
     echo "========================================="
 fi
 
-# TODO: Only support install AG for now as other frameworks are not ready yet
+# NOTE: Installed private frameworks are platform-dependent.
