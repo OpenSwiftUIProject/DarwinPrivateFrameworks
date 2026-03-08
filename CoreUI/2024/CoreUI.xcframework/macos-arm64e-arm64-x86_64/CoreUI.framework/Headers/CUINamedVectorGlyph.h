@@ -104,7 +104,7 @@ CUI_EXTERN_C_END
                                 black:(nullable id)black
                           fromCatalog:(CUICatalog *)catalog
                              themeRef:(NSUInteger)themeRef
-                               locale:(nullable NSString *)locale;
+                               locale:(nullable NSLocale *)locale;
 
 @end
 

@@ -59,7 +59,7 @@ CUI_ASSUME_NONNULL_BEGIN
                     sizeClassHorizontal:(CUIUserInterfaceSizeClass)horizontalSizeClass
                       sizeClassVertical:(CUIUserInterfaceSizeClass)verticalSizeClass
                            appearanceName:(nullable NSString *)appearanceName
-                                   locale:(nullable NSString *)locale;
+                                   locale:(nullable NSLocale *)locale;
 
 // MARK: - Named Vector Glyph Lookup
 
@@ -103,7 +103,7 @@ CUI_ASSUME_NONNULL_BEGIN
                            sizeClassHorizontal:(CUIUserInterfaceSizeClass)horizontalSizeClass
                              sizeClassVertical:(CUIUserInterfaceSizeClass)verticalSizeClass
                                   appearanceName:(nullable NSString *)appearanceName
-                                          locale:(nullable NSString *)locale;
+                                          locale:(nullable NSLocale *)locale;
 
 // MARK: - Utility
 
