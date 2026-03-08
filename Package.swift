@@ -170,7 +170,7 @@ let package = Package(
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
-        .binaryTarget(name: "SFSymbols", path: "SFSymbols/2024/SFSymbols.xcframework"),
+        .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(

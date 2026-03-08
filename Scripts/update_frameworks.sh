@@ -26,8 +26,8 @@ get_framework_dir() {
         CoreUI)
             echo "CoreUI"
             ;;
-        SFSymbols)
-            echo "SFSymbols"
+        SFSymbols|SF)
+            echo "SF"
             ;;
         *)
             echo "$1"

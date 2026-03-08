@@ -23,7 +23,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `BLS/`: Contains the `BacklightServices` framework.
 - `Examples/`: Contains example projects demonstrating usage of the private frameworks.
 - `RB/`: Contains the `RenderBox` framework.
-- `SFSymbols/`: Contains the `SFSymbols` framework.
+- `SF/`: Contains the `SFSymbols` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
 
 ## Update

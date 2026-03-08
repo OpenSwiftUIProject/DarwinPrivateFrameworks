@@ -20,4 +20,4 @@ After making changes to Sources or tbds, run `update.sh` to update the xcframewo
 
 - macOS (arm64e, arm64, x86_64)
 - iOS (arm64, arm64e)
-- iOS Simulator (arm64)
+- iOS Simulator (arm64, x86_64)
