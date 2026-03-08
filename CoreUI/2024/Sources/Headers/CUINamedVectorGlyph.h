@@ -9,6 +9,7 @@
 #import <CoreUI/CUINamedLookup.h>
 #import <CoreUI/CUITypes.h>
 #import <CoreUI/CUIVectorGlyphLayer.h>
+#import <CoreUI/CUIVectorGlyphGraphicVariantOptions.h>
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
 
@@ -105,6 +106,8 @@ CUI_EXTERN_C_END
                           fromCatalog:(CUICatalog *)catalog
                              themeRef:(NSUInteger)themeRef
                                locale:(nullable NSLocale *)locale;
+
+- (nullable CUINamedVectorGlyph *)graphicVariantWithOptions:(CUIVectorGlyphGraphicVariantOptions *)options;
 
 @end
 
