@@ -12,6 +12,7 @@
 #import <CoreUI/CUINamedColor.h>
 #import <CoreUI/CUINamedImage.h>
 #import <CoreUI/CUINamedVectorGlyph.h>
+#import <CoreUI/CUINamedVectorImage.h>
 #import <CoreUI/CUITypes.h>
 #import <Foundation/Foundation.h>
 
@@ -89,6 +90,15 @@ CUI_ASSUME_NONNULL_BEGIN
                                       glyphContinuousSize:(CGFloat)glyphContinuousSize
                                     glyphContinuousWeight:(CGFloat)glyphContinuousWeight
                                             glyphPointSize:(CGFloat)glyphPointSize
+                                            appearanceName:(nullable NSString *)appearanceName
+                                                    locale:(nullable NSLocale *)locale;
+
+// MARK: - Named Vector Image Lookup
+
+- (nullable CUINamedVectorImage *)namedVectorImageWithName:(NSString *)name
+                                               scaleFactor:(CGFloat)scaleFactor
+                                              displayGamut:(CUIDisplayGamut)gamut
+                                           layoutDirection:(CUILayoutDirection)layoutDirection
                                             appearanceName:(nullable NSString *)appearanceName
                                                     locale:(nullable NSLocale *)locale;
 
