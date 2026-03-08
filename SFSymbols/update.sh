@@ -75,9 +75,9 @@ generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-
 rm template.swiftinterface
 
 generate_framework $framework_name ios-arm64-arm64e
-# iPhoneOS platform does not support links Swift API of SFSymbols
-cd ../
-rm -r ./$framework_name.swiftmodule
+generate_swiftinterface arm64e-apple-ios arm64e-apple-ios${IOS_VERSION}
+generate_swiftinterface arm64-apple-ios arm64-apple-ios${IOS_VERSION}
+rm template.swiftinterface
 
 generate_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
