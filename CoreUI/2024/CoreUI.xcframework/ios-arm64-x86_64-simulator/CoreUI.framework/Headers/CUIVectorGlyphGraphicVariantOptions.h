@@ -17,7 +17,7 @@ CUI_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger fill;
 @property (nonatomic, copy, nullable) NSArray *fillColors;
 @property (nonatomic) NSInteger contentEffect;
-@property (nonatomic, nullable) CGColorRef monochromeForegroundColor;
+@property (nonatomic, strong, nullable) id monochromeForegroundColor;
 @property (nonatomic) CGFloat roundedRectCornerRadius;
 @property (nonatomic) NSInteger imageCentering;
 @property (nonatomic) NSInteger imageScaling;
@@ -25,7 +25,7 @@ CUI_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGSize imageOffset;
 @property (nonatomic) NSInteger shapeEffect;
 @property (nonatomic) CGFloat borderWidth;
-@property (nonatomic, nullable) CGColorRef borderColor;
+@property (nonatomic, strong, nullable) id borderColor;
 
 + (CGFloat)defaultSymbolPointSizeRatio;
 
