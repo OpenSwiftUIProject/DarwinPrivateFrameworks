@@ -118,6 +118,7 @@ CUI_ASSUME_NONNULL_BEGIN
 // MARK: - Utility
 
 - (BOOL)containsLookupForName:(NSString *)name;
+- (NSArray<NSString *> *)appearanceNames;
 - (nullable NSArray<NSString *> *)allImageNames;
 - (void)clearCachedImageResources;
 - (void)enumerateNamedLookupsUsingBlock:(void (^)(CUINamedLookup *lookup))block;
