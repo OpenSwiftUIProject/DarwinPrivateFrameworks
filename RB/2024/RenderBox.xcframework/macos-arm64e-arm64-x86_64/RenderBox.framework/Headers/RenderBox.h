@@ -3,9 +3,16 @@
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBColorMode.h>
 #include <RenderBox/RBColorSpace.h>
+#include <RenderBox/RBDecodable.h>
+#include <RenderBox/RBDecoderDelegate.h>
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDisplayList.h>
+#include <RenderBox/RBDisplayListContents.h>
+#include <RenderBox/RBDisplayListInterpolator.h>
 #include <RenderBox/RBDrawableStatistics.h>
+#include <RenderBox/RBEncodable.h>
+#include <RenderBox/RBEncoderDelegate.h>
+#include <RenderBox/RBEncoderSet.h>
 #include <RenderBox/RBImageRenderer.h>
 #include <RenderBox/RBLayer.h>
 #include <RenderBox/RBLayerDelegate.h>
