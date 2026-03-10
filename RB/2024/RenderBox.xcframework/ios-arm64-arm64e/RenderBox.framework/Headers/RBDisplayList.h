@@ -39,8 +39,8 @@ RB_ASSUME_NONNULL_BEGIN
 - (void)translateByX:(double)x Y:(double)y;
 - (void)scaleByX:(double)x Y:(double)y;
 - (void)rotateBy:(double)angle;
-- (CGContextRef)beginCGContextWithAlpha:(float)alpha;
-- (CGContextRef)beginCGContextWithAlpha:(float)alpha flags:(unsigned int)flags;
+- (CGContextRef)beginCGContextWithAlpha:(float)alpha CF_RETURNS_NOT_RETAINED;
+- (CGContextRef)beginCGContextWithAlpha:(float)alpha flags:(unsigned int)flags CF_RETURNS_NOT_RETAINED;
 - (void)endCGContext;
 - (void)beginLayer;
 - (void)beginLayerWithFlags:(unsigned int)flags;
