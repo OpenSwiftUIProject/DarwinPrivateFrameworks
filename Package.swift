@@ -158,6 +158,7 @@ let package = Package(
         .library(name: "CoreUI", targets: ["CoreUI"]),
         .library(name: "BacklightServices", targets: ["BacklightServices"]),
         .library(name: "SFSymbols", targets: ["SFSymbols"]),
+        .library(name: "CoreSVG", targets: ["CoreSVG"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
@@ -171,6 +172,7 @@ let package = Package(
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
+        .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(

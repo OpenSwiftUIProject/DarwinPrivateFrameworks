@@ -6,7 +6,8 @@
 //  Status: Complete
 
 #import <CoreUI/CUINamedVectorImage.h>
-#import <CoreUI/CoreGraphics_SPI.h>
+
+typedef struct CF_BRIDGED_TYPE(id) CGSVGDocument *CGSVGDocumentRef;
 
 CUI_ASSUME_NONNULL_BEGIN
 
