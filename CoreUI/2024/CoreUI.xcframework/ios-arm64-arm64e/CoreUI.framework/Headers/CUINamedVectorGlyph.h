@@ -109,6 +109,8 @@ CUI_EXTERN_C_END
 
 - (nullable CUINamedVectorGlyph *)graphicVariantWithOptions:(CUIVectorGlyphGraphicVariantOptions *)options;
 
+- (BOOL)canBeInterpolatedWith:(CUINamedVectorGlyph *)canBeInterpolatedWith;
+
 @end
 
 CUI_ASSUME_NONNULL_END
