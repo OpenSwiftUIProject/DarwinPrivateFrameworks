@@ -7,6 +7,9 @@
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBColorMode.h>
+
+#if RB_OBJC_FOUNDATION
+
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDrawableStatistics.h>
 #include <RenderBox/RBDisplayList.h>
@@ -68,4 +71,6 @@ RB_ASSUME_NONNULL_BEGIN
 @end
 
 RB_ASSUME_NONNULL_END
+
+#endif /* RB_OBJC_FOUNDATION */
 

@@ -5,6 +5,9 @@
 #pragma once
 
 #include <RenderBox/RBBase.h>
+
+#if RB_OBJC_FOUNDATION
+
 #include <RenderBox/RBEncodable.h>
 #include <RenderBox/RBDecodable.h>
 #include <Foundation/Foundation.h>
@@ -31,3 +34,5 @@ struct _RBDrawingState;
 @end
 
 RB_ASSUME_NONNULL_END
+
+#endif /* RB_OBJC_FOUNDATION */

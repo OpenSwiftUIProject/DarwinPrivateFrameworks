@@ -5,6 +5,9 @@
 #pragma once
 
 #include <RenderBox/RBBase.h>
+
+#if RB_OBJC_FOUNDATION
+
 #include <RenderBox/RBDisplayList.h>
 #include <RenderBox/RBDevice.h>
 #include <Foundation/Foundation.h>
@@ -26,4 +29,6 @@ RB_ASSUME_NONNULL_BEGIN
 @end
 
 RB_ASSUME_NONNULL_END
+
+#endif /* RB_OBJC_FOUNDATION */
 
