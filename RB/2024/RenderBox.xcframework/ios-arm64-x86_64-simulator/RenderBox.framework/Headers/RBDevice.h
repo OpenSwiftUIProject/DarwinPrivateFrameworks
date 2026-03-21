@@ -5,6 +5,9 @@
 #pragma once
 
 #include <RenderBox/RBBase.h>
+
+#if RB_OBJC_FOUNDATION
+
 #include <Foundation/Foundation.h>
 #include <Metal/Metal.h>
 #include <RenderBox/RBImageRenderer.h>
@@ -49,4 +52,6 @@ RB_ASSUME_NONNULL_BEGIN
 @end
 
 RB_ASSUME_NONNULL_END
+
+#endif /* RB_OBJC_FOUNDATION */
 
