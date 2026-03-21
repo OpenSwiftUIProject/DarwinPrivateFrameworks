@@ -9,7 +9,6 @@
 #include <RenderBox/RBColorMode.h>
 #include <RenderBox/RBDevice.h>
 #include <RenderBox/RBDrawableStatistics.h>
-#include <RenderBox/_RBDrawableDelegate.h>
 #include <RenderBox/RBDisplayList.h>
 #include <QuartzCore/QuartzCore.h>
 #include <Foundation/Foundation.h>
@@ -18,7 +17,7 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
-@interface RBLayer: CALayer <_RBDrawableDelegate, /*_RBSharedSurfaceOwner,*/ RBDrawableStatistics>
+@interface RBLayer: CALayer <RBDrawableStatistics>
 
 @property (retain, nonatomic, nullable) RBDevice *device;
 @property (nonatomic) BOOL rendersAsynchronously;
