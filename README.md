@@ -38,6 +38,9 @@ swift package update-xcframeworks --allow-writing-to-package-directory
 
 ## Usage
 
+> [!NOTE]
+> If you are using [Tuist](https://tuist.dev), version **4.168.0** or later is required for `.tbd` stub file support in xcframeworks. See [tuist/tuist#9992](https://github.com/tuist/tuist/pull/9992) for details.
+
 There are three ways supported to integrate and use these private frameworks:
 
 ### 1. For Swift Package Manager Projects
