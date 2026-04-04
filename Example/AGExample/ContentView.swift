@@ -1,11 +1,14 @@
 //
 //  ContentView.swift
-//  AGExample_2021
+//  AGExample
 //
-//  Created by Kyle on 2024/12/26.
+//  Created by Kyle on 2024/12/30.
 //
 
 import AttributeGraph
+#if os(iOS) && !targetEnvironment(simulator)
+import _AttributeGraphDeviceSwiftShims
+#endif
 import SwiftUI
 
 struct ContentView: View {
@@ -24,8 +27,8 @@ struct MetadataView: View {
         VStack {
             Text("nominalDescriptorName \(String(cString: metadata.nominalDescriptorName!))")
             Text("description \(metadata.description)")
-            // Text("descriptor \(metadata.descriptor!)")
-            // Text("signature \(metadata.signature.bytes)")
+            Text("descriptor \(metadata.descriptor!)")
+            Text("signature \(metadata.signature.bytes)")
         }
     }
 }

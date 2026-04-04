@@ -1,6 +1,6 @@
 //
 //  rb_demo_c.h
-//  RBExample_2024
+//  RBExample
 //
 //  Created by Kyle on 3/22/26.
 //

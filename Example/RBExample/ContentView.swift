@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  RBExample_2024
+//  RBExample
 //
 //  Created by Kyle on 2024/12/30.
 //

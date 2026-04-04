@@ -1,8 +1,8 @@
 //
 //  ExampleApp.swift
-//  AGExample_2021
+//  CoreUIExample
 //
-//  Created by Kyle on 2024/12/26.
+//  Created by Kyle on 2025/4/14.
 //
 
 import SwiftUI

@@ -1,14 +1,20 @@
 //
 //  ExampleApp.swift
-//  CoreUIExample_2024
+//  BLSExample
 //
-//  Created by Kyle on 2025/4/14.
+//  Created by Kyle on 2025/9/13.
 //
 
 import SwiftUI
 
 @main
 struct ExampleApp: App {
+    init() {
+        #if AG_EXAMPLE_OBJC
+        ag_example_main()
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

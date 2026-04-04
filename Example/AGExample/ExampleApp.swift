@@ -1,14 +1,14 @@
 //
 //  ExampleApp.swift
-//  BacklightServicesExample_2024
+//  AGExample
 //
-//  Created by Kyle on 2025/9/13.
+//  Created by Kyle on 2024/12/30.
 //
 
 import SwiftUI
 
 @main
-struct BacklightServicesExample_2024App: App {
+struct ExampleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

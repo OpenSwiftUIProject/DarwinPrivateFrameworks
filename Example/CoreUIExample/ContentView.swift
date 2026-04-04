@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  CoreUIExample_2024
+//  CoreUIExample
 //
 //  Created by Kyle on 2025/4/14.
 //
