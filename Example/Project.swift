@@ -4,6 +4,11 @@ import ProjectDescription
 
 let bundleIdPrefix = "org.OpenSwiftUIProject.DarwinPrivateFrameworks.Example"
 
+let signingSettings: SettingsDictionary = [
+    "CODE_SIGN_STYLE": "Automatic",
+    "DEVELOPMENT_TEAM": "VB7MJ8R223",
+]
+
 // MARK: - Project
 
 let project = Project(
@@ -23,7 +28,8 @@ let project = Project(
             resources: ["AGExample_2021/Assets.xcassets"],
             dependencies: [
                 .xcframework(path: "../AG/2021/AttributeGraph.xcframework"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
         // MARK: AGExample_2024
         .target(
@@ -40,7 +46,8 @@ let project = Project(
             resources: ["AGExample_2024/Assets.xcassets"],
             dependencies: [
                 .external(name: "AttributeGraph"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
         // MARK: RBExample_2024
         .target(
@@ -57,7 +64,8 @@ let project = Project(
             resources: ["RBExample_2024/Assets.xcassets"],
             dependencies: [
                 .external(name: "RenderBox"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
         // MARK: CoreUIExample_2024
         .target(
@@ -74,7 +82,8 @@ let project = Project(
             resources: ["CoreUIExample_2024/Assets.xcassets"],
             dependencies: [
                 .external(name: "CoreUI"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
         // MARK: BLSExample_2024
         .target(
@@ -90,7 +99,8 @@ let project = Project(
             resources: ["BLSExample_2024/Assets.xcassets"],
             dependencies: [
                 .external(name: "BacklightServices"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
         // MARK: SFSymbolsExample_2024
         .target(
@@ -106,7 +116,8 @@ let project = Project(
             resources: ["SFSymbolsExample_2024/Assets.xcassets"],
             dependencies: [
                 .external(name: "SFSymbols"),
-            ]
+            ],
+            settings: .settings(base: signingSettings)
         ),
     ]
 )
