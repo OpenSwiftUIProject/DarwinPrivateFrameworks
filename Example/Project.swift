@@ -95,6 +95,24 @@ let project = Project(
             ],
             settings: .settings(base: baseSettings)
         ),
+        // MARK: GSExample
+        .target(
+            name: "GSExample",
+            destinations: [.iPhone, .iPad, .mac],
+            product: .app,
+            bundleId: "\(bundleIdPrefix).GSExample",
+            deploymentTargets: .multiplatform(
+                iOS: "18.0",
+                macOS: "15.0"
+            ),
+            infoPlist: .extendingDefault(with: defaultInfoPlist),
+            sources: ["GSExample/**"],
+            resources: ["GSExample/Assets.xcassets"],
+            dependencies: [
+                .external(name: "Gestures"),
+            ],
+            settings: .settings(base: baseSettings)
+        ),
         // MARK: SFSymbolsExample
         .target(
             name: "SFSymbolsExample",
