@@ -2,3 +2,7 @@
 .build
 _Headers
 .DS_Store
+
+# Tuist generated (from Example/)
+DarwinPrivateFrameworks.xcodeproj
+Derived/
