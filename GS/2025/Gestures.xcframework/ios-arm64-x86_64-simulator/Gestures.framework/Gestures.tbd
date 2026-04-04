@@ -1,21 +1,5 @@
 {
   "main_library": {
-    "allowable_clients": [
-      {
-        "clients": [
-          "AppKit",
-          "DesignLibrary",
-          "GesturesDemo",
-          "GesturesPlayground",
-          "GesturesTests",
-          "SwiftUI",
-          "SwiftUICore",
-          "UIKit",
-          "UIKitCore",
-          "_UIKitTestTarget"
-        ]
-      }
-    ],
     "current_versions": [
       {
         "version": "9126.1.5"

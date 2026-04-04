@@ -5,11 +5,6 @@ targets:         [ x86_64-macos, x86_64-maccatalyst, arm64-macos, arm64-maccatal
 install-name:    '/System/Library/PrivateFrameworks/Gestures.framework/Versions/A/Gestures'
 current-version: 9126.1.5
 swift-abi-version: 7
-allowable-clients:
-  - targets:         [ x86_64-macos, x86_64-maccatalyst, arm64-macos, arm64-maccatalyst, 
-                       arm64e-macos, arm64e-maccatalyst ]
-    clients:         [ AppKit, DesignLibrary, GesturesDemo, GesturesPlayground, GesturesTests, 
-                       SwiftUI, SwiftUICore, UIKit, UIKitCore, _UIKitTestTarget ]
 exports:
   - targets:         [ x86_64-macos, x86_64-maccatalyst, arm64-macos, arm64-maccatalyst, 
                        arm64e-macos, arm64e-maccatalyst ]
