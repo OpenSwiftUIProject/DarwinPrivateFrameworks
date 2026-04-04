@@ -174,7 +174,7 @@ let package = Package(
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
-        .binaryTarget(name: "Gestures", path: "GS/2024/Gestures.xcframework"),
+        .binaryTarget(name: "Gestures", path: "GS/2025/Gestures.xcframework"),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(
