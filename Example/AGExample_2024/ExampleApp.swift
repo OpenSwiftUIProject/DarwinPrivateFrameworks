@@ -9,6 +9,12 @@ import SwiftUI
 
 @main
 struct ExampleApp: App {
+    init() {
+        #if AG_EXAMPLE_OBJC
+        ag_example_main()
+        #endif
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

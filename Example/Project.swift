@@ -53,7 +53,9 @@ let project = Project(
             dependencies: [
                 .external(name: "AttributeGraph"),
             ],
-            settings: .settings(base: baseSettings)
+            settings: .settings(base: baseSettings.merging([
+                "SWIFT_OBJC_BRIDGING_HEADER": "AGExample_2024/AGExample_2024-Bridging-Header.h",
+            ]))
         ),
         // MARK: RBExample_2024
         .target(
