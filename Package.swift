@@ -159,6 +159,7 @@ let package = Package(
         .library(name: "BacklightServices", targets: ["BacklightServices"]),
         .library(name: "SFSymbols", targets: ["SFSymbols"]),
         .library(name: "CoreSVG", targets: ["CoreSVG"]),
+        .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"]),
     ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
@@ -173,6 +174,13 @@ let package = Package(
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
+        .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
+        .target(
+            name: "_GesturesDeviceSwiftShims",
+            dependencies: ["Gestures"],
+            path: "GF/DeviceSwiftShims",
+            swiftSettings: sharedSwiftSettings
+        ),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(
