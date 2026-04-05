@@ -1,0 +1,48 @@
+name: Build Example
+description: Build an Example target for a specific platform
+
+inputs:
+  scheme:
+    description: Xcode scheme to build
+    required: true
+  destination:
+    description: Xcode build destination
+    required: true
+  xcode-version:
+    description: Xcode version to use
+    required: false
+    default: "16.4"
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Xcode
+      uses: OpenSwiftUIProject/setup-xcode@v2
+      with:
+        xcode-version: ${{ inputs.xcode-version }}
+    - name: Setup mise
+      uses: jdx/mise-action@v2
+      with:
+        working_directory: Example
+    - name: Generate project
+      shell: bash
+      run: |
+        cd Example
+        tuist install
+        tuist generate --no-open
+    - name: Install xcbeautify
+      shell: bash
+      run: brew install xcbeautify
+    - name: Build
+      shell: bash
+      run: |
+        cd Example
+        set -o pipefail
+        NSUnbufferedIO=YES xcodebuild build \
+          -workspace Example.xcworkspace \
+          -scheme "${{ inputs.scheme }}" \
+          -destination "${{ inputs.destination }}" \
+          CODE_SIGN_IDENTITY="" \
+          CODE_SIGNING_REQUIRED=NO \
+          CODE_SIGNING_ALLOWED=NO \
+          2>&1 | xcbeautify --renderer github-actions --preserve-unbeautified
