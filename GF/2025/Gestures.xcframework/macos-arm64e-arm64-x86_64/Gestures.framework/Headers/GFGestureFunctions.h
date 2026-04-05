@@ -7,7 +7,6 @@
 
 #include <Gestures/GSBase.h>
 
-#if __OBJC__
 #import <Foundation/Foundation.h>
 
 @protocol GFGestureNode;
@@ -37,7 +36,5 @@ GS_EXPORT bool GFGestureFailureTypeIsTerminated(struct GFGesturePhase phase);
 GS_EXPORT id _Nullable GFGestureNodeDefaultValue(void);
 
 GS_EXTERN_C_END
-
-#endif /* __OBJC__ */
 
 #endif /* GFGestureFunctions_h */

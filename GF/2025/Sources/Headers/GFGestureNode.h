@@ -9,7 +9,6 @@
 #include <Gestures/GFGesturePhase.h>
 #include <Gestures/GFGestureRelation.h>
 
-#if __OBJC__
 #import <Foundation/Foundation.h>
 
 @protocol GFGestureNodeDelegate;
@@ -51,7 +50,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif /* __OBJC__ */
 
 #endif /* GFGestureNode_h */

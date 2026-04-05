@@ -7,7 +7,6 @@
 
 #include <Gestures/GSBase.h>
 
-#if __OBJC__
 #import <Foundation/Foundation.h>
 
 @protocol GFGestureNode;
@@ -34,7 +33,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif /* __OBJC__ */
 
 #endif /* GFGestureNodeCoordinator_h */
