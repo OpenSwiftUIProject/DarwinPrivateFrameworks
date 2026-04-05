@@ -19,6 +19,9 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // CoreUI
         try run(context: context, command: "CoreUI/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "CoreUI/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // BacklightServices
+        try run(context: context, command: "BLS/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        try run(context: context, command: "BLS/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         // SFSymbols
         try run(context: context, command: "SF/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "SF/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
