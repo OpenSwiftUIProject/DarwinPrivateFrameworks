@@ -1,0 +1,43 @@
+{
+  "main_library": {
+    "current_versions": [
+      {
+        "version": "9126.1.5"
+      }
+    ],
+    "exported_symbols": [
+      {
+        "text": {
+          "global": [
+            "_GFGestureNodeCreateDefault",
+            "_GFGestureFailureTypeIsTerminated",
+            "_GFGestureNodeDefaultValue",
+            "_GFGestureNodeCoordinatorCreate",
+            "_GFGestureComponentControllerSetNode"
+          ]
+        }
+      }
+    ],
+    "install_names": [
+      {
+        "name": "/System/Library/PrivateFrameworks/Gestures.framework/Gestures"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "26.2",
+        "target": "arm64-ios"
+      },
+      {
+        "min_deployment": "26.2",
+        "target": "arm64e-ios"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

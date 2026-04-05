@@ -1,0 +1,6 @@
+framework module Gestures [system] {
+  umbrella header "Gestures.h"
+
+  export *
+  module * { export * }
+}

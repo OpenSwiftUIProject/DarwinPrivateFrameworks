@@ -1,0 +1,25 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.16.112 clang-1800.1.29)
+// swift-module-flags: -target arm64-apple-macos26.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name Gestures
+// swift-module-flags-ignorable: -interface-compiler-version 6.2
+
+@_exported public import Gestures
+public import Swift
+public import _Concurrency
+public import _StringProcessing
+public import _SwiftConcurrencyShims
+extension GFGesturePhase : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationRole : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}

@@ -281,6 +281,9 @@ echo "Installing RenderBox framework..."
 echo "Installing SFSymbols framework..."
 "$REPO_ROOT/Scripts/SDK/install_sf.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
+echo "Installing Gestures framework..."
+"$REPO_ROOT/Scripts/SDK/install_gf.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+
 # Enable UIScreen support for XRSimulator
 if [ "$PLATFORM" = "XRSimulator" ]; then
     echo "Enabling UIScreen support for visionOS SDK..."
