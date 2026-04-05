@@ -20,11 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 - (BOOL)gestureNodeShouldActivate:(id<GFGestureNode>)node;
 - (void)gestureNodeWillUnblock:(id<GFGestureNode>)node;
-- (void)gestureNode:(id<GFGestureNode>)node didEnqueuePhase:(struct GFGesturePhase)phase;
-- (void)gestureNode:(id<GFGestureNode>)node didUpdatePhase:(struct GFGesturePhase)phase;
-- (struct GFGestureRelationRole)gestureNode:(id<GFGestureNode>)node
-                       roleForRelationType:(struct GFGestureRelationType)type
-                               relatedNode:(id<GFGestureNode>)relatedNode;
+- (void)gestureNode:(id<GFGestureNode>)node didEnqueuePhase:(GFGesturePhase)phase;
+- (void)gestureNode:(id<GFGestureNode>)node didUpdatePhase:(GFGesturePhase)phase;
+- (GFGestureRelationRole)gestureNode:(id<GFGestureNode>)node
+                roleForRelationType:(GFGestureRelationType)type
+                        relatedNode:(id<GFGestureNode>)relatedNode;
 
 @end
 

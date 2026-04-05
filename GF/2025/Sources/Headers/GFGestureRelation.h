@@ -7,20 +7,18 @@
 
 #include <Gestures/GSBase.h>
 
-GS_EXTERN_C_BEGIN
+typedef GS_ENUM(NSInteger, GFGestureRelationType) {
+    GFGestureRelationTypeCanExclude = 0,
+    GFGestureRelationTypeCanBeExcluded = 1,
+    GFGestureRelationTypeCanExcludeActive = 2,
+    GFGestureRelationTypeCanBeExcludedWhenActive = 3,
+    GFGestureRelationTypeRequiresFailure = 4,
+    GFGestureRelationTypeRequiredToFail = 5,
+};
 
-/// Gesture relation type.
-/// rawValue 0: canExclude, 1: canBeExcluded, 2: failureRequirement, 4: requires, 5: requiredBy
-typedef struct GFGestureRelationType {
-    NSInteger rawValue;
-} GFGestureRelationType;
-
-/// Gesture relation role.
-/// rawValue 0: regular, 1: blocking
-typedef struct GFGestureRelationRole {
-    NSInteger rawValue;
-} GFGestureRelationRole;
-
-GS_EXTERN_C_END
+typedef GS_ENUM(NSInteger, GFGestureRelationRole) {
+    GFGestureRelationRoleRegular = 0,
+    GFGestureRelationRoleBlocking = 1,
+};
 
 #endif /* GFGestureRelation_h */

@@ -27,7 +27,7 @@ struct ContentView: View {
             let coordinator = GFGestureNodeCoordinatorCreate(nil, nil)
             let node = GFGestureNodeCreateDefault(1)
             let defaultValue = GFGestureNodeDefaultValue()
-            let phase = GFGesturePhase(rawValue: 0)
+            let phase = GFGesturePhase.idle
             let isTerminated = GFGestureFailureTypeIsTerminated(phase)
             nodeInfo = """
             Coordinator: \(coordinator)

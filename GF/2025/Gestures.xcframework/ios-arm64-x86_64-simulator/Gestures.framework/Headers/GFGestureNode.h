@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol GFGestureNode <NSObject>
 
-@property (nonatomic, readonly) struct GFGesturePhase phase;
+@property (nonatomic, readonly) GFGesturePhase phase;
 @property (nonatomic, readonly) NSInteger identifier;
 @property (nonatomic, copy, nullable) NSString *tag;
 @property (nonatomic, readonly, getter=isBlocked) BOOL blocked;
@@ -36,11 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)abort:(NSError **)error;
 - (BOOL)failWithReason:(nullable NSNumber *)reason error:(NSError **)error;
 
-- (void)addRelationWithType:(struct GFGestureRelationType)type
-                       role:(struct GFGestureRelationRole)role
+- (void)addRelationWithType:(GFGestureRelationType)type
+                       role:(GFGestureRelationRole)role
                 relatedNode:(id<GFGestureNode>)node;
-- (void)removeRelationWithType:(struct GFGestureRelationType)type
-                          role:(struct GFGestureRelationRole)role
+- (void)removeRelationWithType:(GFGestureRelationType)type
+                          role:(GFGestureRelationRole)role
                    relatedNode:(id<GFGestureNode>)node;
 
 - (void)setTracking:(BOOL)tracking eventsWithIdentifiers:(NSArray *)identifiers;

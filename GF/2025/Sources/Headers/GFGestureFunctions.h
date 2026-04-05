@@ -6,6 +6,7 @@
 #define GFGestureFunctions_h
 
 #include <Gestures/GSBase.h>
+#include <Gestures/GFGesturePhase.h>
 
 #import <Foundation/Foundation.h>
 
@@ -30,7 +31,7 @@ GS_EXPORT void GFGestureComponentControllerSetNode(
 );
 
 /// Check if a gesture failure type is terminated.
-GS_EXPORT bool GFGestureFailureTypeIsTerminated(struct GFGesturePhase phase);
+GS_EXPORT bool GFGestureFailureTypeIsTerminated(GFGesturePhase phase);
 
 /// Get the default value for a gesture node.
 GS_EXPORT id _Nullable GFGestureNodeDefaultValue(void);
