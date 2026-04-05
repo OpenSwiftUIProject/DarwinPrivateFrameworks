@@ -1,4 +1,4 @@
-// swift-tools-version: 6.1
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -124,7 +124,7 @@ let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM", default: 
 let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM")
 #endif
 
-let releaseVersion = envIntValue("TARGET_RELEASE", default: 2024)
+let releaseVersion = envIntValue("TARGET_RELEASE", default: 2025)
 let libraryEvolutionCondition = envBoolValue("LIBRARY_EVOLUTION", default: buildForDarwinPlatform)
 
 
@@ -144,10 +144,13 @@ if libraryEvolutionCondition {
 }
 
 let platforms: [SupportedPlatform] = switch releaseVersion {
+    case 2025: [.iOS(.v26), .macOS(.v26), .macCatalyst(.v26), .tvOS(.v26), .watchOS(.v26), .visionOS(.v26)]
     case 2024: [.iOS(.v18), .macOS(.v15), .macCatalyst(.v18), .tvOS(.v18), .watchOS(.v10), .visionOS(.v2)]
     case 2021: [.iOS(.v15), .macOS(.v12), .macCatalyst(.v15), .tvOS(.v15), .watchOS(.v7)]
     default: []
 }
+
+let agVersion = releaseVersion >= 2025 ? "latest" : "\(releaseVersion)"
 
 let package = Package(
     name: "DarwinPrivateFrameworks",
@@ -159,9 +162,10 @@ let package = Package(
         .library(name: "BacklightServices", targets: ["BacklightServices"]),
         .library(name: "SFSymbols", targets: ["SFSymbols"]),
         .library(name: "CoreSVG", targets: ["CoreSVG"]),
+        .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"]),
     ],
     targets: [
-        .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
+        .binaryTarget(name: "AttributeGraph", path: "AG/\(agVersion)/AttributeGraph.xcframework"),
         .target(
             name: "_AttributeGraphDeviceSwiftShims",
             dependencies: ["AttributeGraph"],
@@ -173,6 +177,13 @@ let package = Package(
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
+        .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
+        .target(
+            name: "_GesturesDeviceSwiftShims",
+            dependencies: ["Gestures"],
+            path: "GF/DeviceSwiftShims",
+            swiftSettings: sharedSwiftSettings
+        ),
         .plugin(
             name: "UpdateXCFrameworks",
             capability: .command(
