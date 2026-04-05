@@ -22,6 +22,8 @@ runs:
         xcode-version: ${{ inputs.xcode-version }}
     - name: Setup mise
       uses: jdx/mise-action@v2
+      with:
+        working_directory: Example
     - name: Generate project
       shell: bash
       run: |
