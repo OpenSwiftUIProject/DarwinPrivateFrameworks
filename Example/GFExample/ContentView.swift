@@ -33,7 +33,7 @@ struct ContentView: View {
             Coordinator: \(coordinator)
             Node: \(node)
             DefaultValue: \(String(describing: defaultValue))
-            Phase(0) terminated: \(isTerminated)
+            Phase \(phase) terminated: \(isTerminated)
             """
         }
     }

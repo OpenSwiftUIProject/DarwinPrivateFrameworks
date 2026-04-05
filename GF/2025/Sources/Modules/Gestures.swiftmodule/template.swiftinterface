@@ -1,0 +1,21 @@
+
+@_exported public import Gestures
+public import Swift
+public import _Concurrency
+public import _StringProcessing
+public import _SwiftConcurrencyShims
+extension GFGesturePhase : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationRole : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
