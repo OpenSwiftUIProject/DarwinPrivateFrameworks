@@ -1,0 +1,49 @@
+name: GFExample
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'GF/**'
+      - 'Example/GFExample/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/.mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/gf_example.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'GF/**'
+      - 'Example/GFExample/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/.mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/gf_example.yml'
+
+jobs:
+  build:
+    name: Build GFExample (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: iOS
+            destination: "generic/platform=iOS"
+          - platform: iOS Simulator
+            destination: "generic/platform=iOS Simulator"
+          - platform: macOS
+            destination: "platform=macOS"
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-example
+        with:
+          scheme: GFExample
+          destination: ${{ matrix.destination }}
+          xcode-version: "26.3"
