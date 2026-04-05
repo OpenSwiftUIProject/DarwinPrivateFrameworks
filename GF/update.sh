@@ -69,6 +69,11 @@ generate_xcframework() {
 
 generate_xcframework $framework_name
 
+generate_framework $framework_name ios-arm64-arm64e
+# iPhoneOS platform does not support linking Swift API of Gestures
+cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-arm64e/${framework_name}.framework/Modules
+rm -r ./$framework_name.swiftmodule
+
 generate_framework $framework_name ios-arm64-x86_64-simulator
 cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-x86_64-simulator/${framework_name}.framework/Modules/${framework_name}.swiftmodule
 generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator

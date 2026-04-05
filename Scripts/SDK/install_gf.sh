@@ -128,7 +128,60 @@ case "$PLATFORM" in
         fi
         ;;
 
-    "iPhoneOS"|"XRSimulator")
+    "iPhoneOS")
+        echo "Setting up iPhoneOS Gestures framework..."
+
+        # Source paths
+        REPO_SDK_GF_FRAMEWORK_PATH="$REPO_ROOT/GF/2025/Gestures.xcframework/ios-arm64-arm64e/Gestures.framework"
+
+        # Copy Headers and Modules from xcframework directly to framework root
+        if [ -d "$REPO_SDK_GF_FRAMEWORK_PATH/Headers" ]; then
+            cp -R "$REPO_SDK_GF_FRAMEWORK_PATH/Headers" "$SDK_GF_FRAMEWORK_PATH/"
+            echo "  Copied Headers"
+        fi
+
+        if [ -d "$REPO_SDK_GF_FRAMEWORK_PATH/Modules" ]; then
+            cp -R "$REPO_SDK_GF_FRAMEWORK_PATH/Modules" "$SDK_GF_FRAMEWORK_PATH/"
+            echo "  Copied Modules"
+        fi
+
+        # Check for iOS IPSW root via environment variable
+        if [ -n "$IOS_IPSW_ROOT" ] && [ -d "$IOS_IPSW_ROOT" ]; then
+            echo "  Using iOS IPSW root from environment: $IOS_IPSW_ROOT"
+            SYSTEM_GF_FRAMEWORK_PATH="$IOS_IPSW_ROOT/System/Library/PrivateFrameworks/Gestures.framework"
+            SYSTEM_GF_INFO="$SYSTEM_GF_FRAMEWORK_PATH/Info.plist"
+            SYSTEM_GF_TBD="$SYSTEM_GF_FRAMEWORK_PATH/Gestures.tbd"
+
+            # Copy Resources from system framework
+            if [ -f "$SYSTEM_GF_INFO" ]; then
+                cp "$SYSTEM_GF_INFO" "$SDK_GF_FRAMEWORK_PATH/"
+                echo "  Copied Info.plist from iOS IPSW"
+            fi
+
+            if [ -f "$SYSTEM_GF_TBD" ]; then
+                cp "$SYSTEM_GF_TBD" "$SDK_GF_FRAMEWORK_PATH/"
+                echo "  Copied Gestures.tbd from iOS IPSW"
+            fi
+        else
+            echo "  IOS_IPSW_ROOT not set or directory doesn't exist, using fallback files from this repository"
+            echo "  To use iOS IPSW files, set IOS_IPSW_ROOT environment variable:"
+            echo "  For example:"
+            echo "  export IOS_IPSW_ROOT=\"/path/to/extracted/ipsw/root\""
+
+            # Use fallback files from repository
+            if [ -f "$REPO_SDK_GF_FRAMEWORK_PATH/Info.plist" ]; then
+                cp "$REPO_SDK_GF_FRAMEWORK_PATH/Info.plist" "$SDK_GF_FRAMEWORK_PATH/"
+                echo "  Copied Info.plist from repository"
+            fi
+
+            if [ -f "$REPO_SDK_GF_FRAMEWORK_PATH/Gestures.tbd" ]; then
+                cp "$REPO_SDK_GF_FRAMEWORK_PATH/Gestures.tbd" "$SDK_GF_FRAMEWORK_PATH/"
+                echo "  Copied Gestures.tbd from repository"
+            fi
+        fi
+        ;;
+
+    "XRSimulator")
         echo "Warning: Gestures framework is not available for $PLATFORM, skipping"
         ;;
 

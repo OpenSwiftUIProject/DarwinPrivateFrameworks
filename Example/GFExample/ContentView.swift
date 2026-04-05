@@ -7,6 +7,9 @@
 
 import SwiftUI
 import Gestures
+#if os(iOS) && !targetEnvironment(simulator)
+import _GesturesDeviceSwiftShims
+#endif
 
 struct ContentView: View {
     @State private var nodeInfo: String = ""
