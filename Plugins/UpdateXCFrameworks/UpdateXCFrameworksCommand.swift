@@ -19,9 +19,18 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // CoreUI
         try run(context: context, command: "CoreUI/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "CoreUI/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // BacklightServices
+        try run(context: context, command: "BLS/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        try run(context: context, command: "BLS/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         // SFSymbols
         try run(context: context, command: "SF/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "SF/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // CoreSVG
+        try run(context: context, command: "CoreSVG/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        try run(context: context, command: "CoreSVG/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // Gestures
+        try run(context: context, command: "GF/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2025"])
+        try run(context: context, command: "GF/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2025"])
     }
     
     private func run(context: PackagePlugin.PluginContext, command: String, environment: [String: String]) throws {

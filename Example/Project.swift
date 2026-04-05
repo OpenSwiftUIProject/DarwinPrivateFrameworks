@@ -102,8 +102,8 @@ let project = Project(
             product: .app,
             bundleId: "\(bundleIdPrefix).GFExample",
             deploymentTargets: .multiplatform(
-                iOS: "26.0",
-                macOS: "26.0"
+                iOS: "26.2",
+                macOS: "26.2"
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["GFExample/**"],
