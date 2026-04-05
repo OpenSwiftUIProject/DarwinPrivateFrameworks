@@ -1,6 +1,15 @@
 # DarwinPrivateFrameworks
 
-This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, and `SFSymbols`.
+| **CI Status** |
+|---|
+|[![AGExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/ag_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/ag_example.yml)|
+|[![RBExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/rb_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/rb_example.yml)|
+|[![CoreUIExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/coreui_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/coreui_example.yml)|
+|[![BLSExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml)|
+|[![GFExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml)|
+|[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
+
+This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `Gestures`, and `SFSymbols`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], and visionOS Simulator platforms.
 
@@ -22,6 +31,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `CoreUI/`: Contains the `CoreUI` framework.
 - `BLS/`: Contains the `BacklightServices` framework.
 - `Examples/`: Contains example projects demonstrating usage of the private frameworks.
+- `GF/`: Contains the `Gestures` framework.
 - `RB/`: Contains the `RenderBox` framework.
 - `SF/`: Contains the `SFSymbols` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
@@ -121,4 +131,4 @@ import AttributeGraph
 
 [^1]: The Swift API of AttributeGraph is not available on iOS platform.
 
-[^2]: The installer currently includes AttributeGraph, RenderBox, CoreUI, BacklightServices, and SFSymbols (platform-dependent). For visionOS, the script also enables UIScreen support by removing API availability restrictions.
+[^2]: The installer currently includes AttributeGraph, RenderBox, CoreUI, BacklightServices, SFSymbols, and Gestures (platform-dependent). For visionOS, the script also enables UIScreen support by removing API availability restrictions.
