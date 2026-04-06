@@ -36,6 +36,6 @@ extension GestureNodeOptions: CustomStringConvertible {
         if contains(.isGloballyScoped) {
             names.append("isGloballyScoped")
         }
-        return "GestureNodeOptions { \(names.joined(separator: ", ")) }"
+        return "{ \(names.joined(separator: " | ")) }"
     }
 }
