@@ -5,9 +5,9 @@
 #ifndef GFGestureRelation_h
 #define GFGestureRelation_h
 
-#include <Gestures/GSBase.h>
+#include <Gestures/GFBase.h>
 
-typedef GS_ENUM(NSInteger, GFGestureRelationType) {
+typedef GF_ENUM(NSInteger, GFGestureRelationType) {
     GFGestureRelationTypeCanExclude = 0,
     GFGestureRelationTypeCanBeExcluded = 1,
     GFGestureRelationTypeCanExcludeActive = 2,
@@ -16,7 +16,7 @@ typedef GS_ENUM(NSInteger, GFGestureRelationType) {
     GFGestureRelationTypeRequiredToFail = 5,
 };
 
-typedef GS_ENUM(NSInteger, GFGestureRelationRole) {
+typedef GF_ENUM(NSInteger, GFGestureRelationRole) {
     GFGestureRelationRoleRegular = 0,
     GFGestureRelationRoleBlocking = 1,
 };

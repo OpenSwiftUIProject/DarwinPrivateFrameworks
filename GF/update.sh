@@ -33,12 +33,6 @@ generate_swiftinterface() {
   cat template.swiftinterface >> $name
 }
 
-update_version_in_header() {
-    local file="$1"
-    local version="$2"
-    sed -i '' "s/#define GESTURES_RELEASE [0-9]\{4\}/#define GESTURES_RELEASE ${version}/g" "$file"
-}
-
 generate_framework() {
     local framework_name=$1
     local arch_name=$2
@@ -55,8 +49,6 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
-
-    update_version_in_header "${path}/Headers/GSVersion.h" "${VERSION}"
 }
 
 generate_xcframework() {
@@ -95,8 +87,6 @@ generate_macos_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/Versions/A/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/Versions/A/
     cp ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/Versions/A/Resources/
-
-    update_version_in_header "${path}/Versions/A/Headers/GSVersion.h" "${VERSION}"
 
     cd ${path}
     ln -sf Versions/Current/Headers Headers

@@ -8,9 +8,9 @@
 #ifndef GFGesturePhase_h
 #define GFGesturePhase_h
 
-#include <Gestures/GSBase.h>
+#include <Gestures/GFBase.h>
 
-typedef GS_ENUM(NSInteger, GFGesturePhase) {
+typedef GF_ENUM(NSInteger, GFGesturePhase) {
     GFGesturePhaseIdle = 0,
     GFGesturePhasePossible = 1,
     GFGesturePhaseBegan = 2,
