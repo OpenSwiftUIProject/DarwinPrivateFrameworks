@@ -7,6 +7,7 @@
 
 // MARK: - GestureTag
 
+@frozen
 public struct GestureTag: Hashable, Sendable, ExpressibleByStringLiteral, CustomStringConvertible {
     public let rawValue: String
 

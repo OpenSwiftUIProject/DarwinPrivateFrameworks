@@ -3,36 +3,6 @@ public import Swift
 public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
-extension GFGesturePhase : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension GFGestureRelationType : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension GFGestureRelationRole : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
-  public let rawValue: Swift.Int
-  public init(rawValue: Swift.Int)
-  public static let isDisabled: Gestures.GestureNodeOptions
-  public static let disallowExclusionWithUnresolvedFailureRequirements: Gestures.GestureNodeOptions
-  public static let isGloballyScoped: Gestures.GestureNodeOptions
-  public typealias ArrayLiteralElement = Gestures.GestureNodeOptions
-  public typealias Element = Gestures.GestureNodeOptions
-  public typealias RawValue = Swift.Int
-}
-extension GestureNodeOptions : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
 public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable {
   public var id: Gestures.GestureTraitID
   public var attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue]
@@ -105,3 +75,62 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
+@frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
+  public let rawValue: Swift.String
+  public init(rawValue: Swift.String)
+  public init(stringLiteral value: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: Gestures.GestureTag, b: Gestures.GestureTag) -> Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension GFGesturePhase : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GFGestureRelationRole : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@frozen public struct GestureNodeID : Swift.Hashable, Swift.Comparable, Swift.Sendable, Swift.CustomStringConvertible {
+  package let rawValue: Swift.UInt32
+  public static func < (lhs: Gestures.GestureNodeID, rhs: Gestures.GestureNodeID) -> Swift.Bool
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: Gestures.GestureNodeID, b: Gestures.GestureNodeID) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let isDisabled: Gestures.GestureNodeOptions
+  public static let disallowExclusionWithUnresolvedFailureRequirements: Gestures.GestureNodeOptions
+  public static let isGloballyScoped: Gestures.GestureNodeOptions
+  public typealias ArrayLiteralElement = Gestures.GestureNodeOptions
+  public typealias Element = Gestures.GestureNodeOptions
+  public typealias RawValue = Swift.Int
+}
+extension GestureNodeOptions : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GestureNodeID : Swift.BitwiseCopyable {}
