@@ -31,12 +31,13 @@ struct ContentView: View {
             let node = GFGestureNodeCreateDefault(1)
             let defaultValue = GFGestureNodeDefaultValue()
             let phase = GFGesturePhase.idle
-            let isTerminated = GFGestureFailureTypeIsTerminated(phase)
+            let failureType = GFGestureFailureType.excluded
+            let isTerminated = GFGestureFailureTypeIsTerminated(failureType)
             nodeInfo = """
             Coordinator: \(coordinator)
             Node: \(node)
             DefaultValue: \(String(describing: defaultValue))
-            Phase \(phase) terminated: \(isTerminated)
+            Phase: \(phase), FailureType \(failureType) terminated: \(isTerminated)
             """
         }
     }
