@@ -53,6 +53,9 @@ update_version_in_header() {
     sed -i '' "s/#define ATTRIBUTEGRAPH_RELEASE [0-9]\{4\}/#define ATTRIBUTEGRAPH_RELEASE ${version}/g" "$file"
 }
 
+# Regenerate template.swiftinterface from DeviceSwiftShims sources
+DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "$(dirname "$(filepath "$0")")/generate_swiftinterface.sh"
+
 generate_framework() {
     local framework_name=$1
     local arch_name=$2

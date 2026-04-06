@@ -59,6 +59,9 @@ generate_xcframework() {
     cp ${FRAMEWORK_ROOT}/Info.plist ${path}/
 }
 
+# Regenerate template.swiftinterface from DeviceSwiftShims sources
+DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "$(dirname "$(filepath "$0")")/generate_swiftinterface.sh"
+
 generate_xcframework $framework_name
 
 generate_framework $framework_name ios-arm64-arm64e
