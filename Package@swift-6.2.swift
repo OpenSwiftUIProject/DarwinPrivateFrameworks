@@ -162,6 +162,9 @@ let package = Package(
         .library(name: "CoreSVG", targets: ["CoreSVG"]),
         .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-collections", from: "1.1.0"),
+    ],
     targets: [
         .binaryTarget(name: "AttributeGraph", path: "AG/2024/AttributeGraph.xcframework"),
         .target(
@@ -178,7 +181,10 @@ let package = Package(
         .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
         .target(
             name: "_GesturesDeviceSwiftShims",
-            dependencies: ["Gestures"],
+            dependencies: [
+                "Gestures",
+                .product(name: "OrderedCollections", package: "swift-collections"),
+            ],
             path: "GF/DeviceSwiftShims",
             swiftSettings: sharedSwiftSettings
         ),

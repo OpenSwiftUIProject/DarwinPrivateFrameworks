@@ -152,6 +152,9 @@ let platforms: [SupportedPlatform] = switch releaseVersion {
 let package = Package(
     name: "DarwinPrivateFrameworks",
     platforms: platforms,
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-collections", from: "1.1.0"),
+    ],
     products: [
         .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
         .library(name: "RenderBox", targets: ["RenderBox"]),
@@ -177,7 +180,10 @@ let package = Package(
         .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
         .target(
             name: "_GesturesDeviceSwiftShims",
-            dependencies: ["Gestures"],
+            dependencies: [
+                "Gestures",
+                .product(name: "OrderedCollections", package: "swift-collections"),
+            ],
             path: "GF/DeviceSwiftShims",
             swiftSettings: sharedSwiftSettings
         ),

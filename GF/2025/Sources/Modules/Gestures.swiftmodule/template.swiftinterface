@@ -75,6 +75,49 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
+public enum GestureRelationType : Swift.Hashable, Swift.Sendable {
+  case exclusion
+  case activeExclusion
+  case failureRequirement
+  public static func == (a: Gestures.GestureRelationType, b: Gestures.GestureRelationType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureRelationRole : Swift.Hashable, Swift.Sendable {
+  case regular
+  case blocking
+  public static func == (a: Gestures.GestureRelationRole, b: Gestures.GestureRelationRole) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureRelationDirection : Swift.Hashable, Swift.Sendable {
+  case outgoing
+  case incoming
+  public static func == (a: Gestures.GestureRelationDirection, b: Gestures.GestureRelationDirection) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureRelation : Swift.Equatable, Swift.Sendable {
+  public var type: Gestures.GestureRelationType
+  public var direction: Gestures.GestureRelationDirection
+  public var role: Gestures.GestureRelationRole?
+  public var target: Gestures.GestureNodeMatcher
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, role: Gestures.GestureRelationRole?, target: Gestures.GestureNodeMatcher)
+  #endif
+  public static func == (a: Gestures.GestureRelation, b: Gestures.GestureRelation) -> Swift.Bool
+}
+extension Swift.Array where Element == Gestures.GestureRelation {
+  public static var `default`: [Gestures.GestureRelation] {
+    get
+  }
+}
 public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
   case id(Gestures.GestureNodeID)
   case tag(Gestures.GestureTag)
