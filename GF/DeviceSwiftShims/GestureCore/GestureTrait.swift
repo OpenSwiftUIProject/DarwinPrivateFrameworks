@@ -61,7 +61,7 @@ public struct GestureTrait: Hashable, Identifiable, Sendable {
             self.rawValue = TraitLabelStore.shared.register(label)
         }
 
-        public var label: String {
+        package var label: String {
             TraitLabelStore.shared.label(for: rawValue)
         }
 

@@ -47,9 +47,6 @@ public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable 
   public struct AttributeKey : Swift.Hashable, Swift.Sendable, Swift.CustomStringConvertible {
     public let rawValue: Swift.Int
     public init(_ label: Swift.String)
-    public var label: Swift.String {
-      get
-    }
     public var description: Swift.String {
       get
     }
