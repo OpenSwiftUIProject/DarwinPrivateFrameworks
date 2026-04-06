@@ -1,11 +1,14 @@
 //
 //  GFGestureNodeDelegate.h
 //  Gestures
+//
+//  Audited for 9126.1.5
+//  Status: Complete
 
 #ifndef GFGestureNodeDelegate_h
 #define GFGestureNodeDelegate_h
 
-#include <Gestures/GSBase.h>
+#include <Gestures/GFBase.h>
 #include <Gestures/GFGesturePhase.h>
 #include <Gestures/GFGestureRelation.h>
 
@@ -17,14 +20,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol GFGestureNodeDelegate <NSObject>
 
-@optional
+@required
+
+- (void)gestureNode:(id<GFGestureNode>)gestureNode didUpdatePhase:(NSInteger)phase;
+- (nullable id)gestureNode:(id<GFGestureNode>)gestureNode roleForRelationType:(NSInteger)relationType relatedNode:(id<GFGestureNode>)relatedNode;
 - (BOOL)gestureNodeShouldActivate:(id<GFGestureNode>)node;
 - (void)gestureNodeWillUnblock:(id<GFGestureNode>)node;
-- (void)gestureNode:(id<GFGestureNode>)node didEnqueuePhase:(GFGesturePhase)phase;
-- (void)gestureNode:(id<GFGestureNode>)node didUpdatePhase:(GFGesturePhase)phase;
-- (GFGestureRelationRole)gestureNode:(id<GFGestureNode>)node
-                roleForRelationType:(GFGestureRelationType)type
-                        relatedNode:(id<GFGestureNode>)relatedNode;
+
+@optional
+
+- (void)gestureNode:(id<GFGestureNode>)gestureNode didEnqueuePhase:(NSInteger)phase;
+- (void)gestureNodeWillAbort:(id<GFGestureNode>)node;
 
 @end
 

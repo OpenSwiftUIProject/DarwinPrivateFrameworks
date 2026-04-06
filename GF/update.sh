@@ -56,7 +56,7 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
 
-    update_version_in_header "${path}/Headers/GSVersion.h" "${VERSION}"
+    update_version_in_header "${path}/Headers/GFVersion.h" "${VERSION}"
 }
 
 generate_xcframework() {
@@ -96,7 +96,7 @@ generate_macos_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/Versions/A/
     cp ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/Versions/A/Resources/
 
-    update_version_in_header "${path}/Versions/A/Headers/GSVersion.h" "${VERSION}"
+    update_version_in_header "${path}/Versions/A/Headers/GFVersion.h" "${VERSION}"
 
     cd ${path}
     ln -sf Versions/Current/Headers Headers

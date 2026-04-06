@@ -1,11 +1,11 @@
 //
-//  GSVersion.h
+//  GFVersion.h
 //  Gestures
 
-#ifndef GSVersion_h
-#define GSVersion_h
+#ifndef GFVersion_h
+#define GFVersion_h
 
-#include <Gestures/GSBase.h>
+#include <Gestures/GFBase.h>
 
 #define GESTURES_RELEASE 2025
 
@@ -15,4 +15,4 @@
 #define GESTURES_RELEASE GESTURES_RELEASE_2025
 #endif
 
-#endif /* GSVersion_h */
+#endif /* GFVersion_h */
