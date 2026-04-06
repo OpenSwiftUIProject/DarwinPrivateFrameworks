@@ -5,7 +5,6 @@
 ## This compiles the DeviceSwiftShims Swift files against the Gestures xcframework
 ## to produce a .swiftinterface, then transforms it into the template used by update.sh:
 ##   1. Strip the compiler header comments (update.sh generates per-platform headers)
-##   2. Remove `Gestures.` module prefix from extension type names
 
 # A `realpath` alternative using the default C implementation.
 filepath() {
@@ -69,11 +68,8 @@ if [ ! -f "${GENERATED}" ]; then
     exit 1
 fi
 
-# Transform:
-#   1. Strip the compiler header comments (update.sh generates per-platform headers)
-#   2. Remove `Gestures.` module prefix from extension declarations
+# Strip the compiler header comments (update.sh generates per-platform headers)
 sed -e '/^\/\/ swift-/d' \
-    -e 's/extension Gestures\./extension /g' \
     "${GENERATED}" > "${TEMPLATE_PATH}"
 
 echo "Generated: ${TEMPLATE_PATH}"

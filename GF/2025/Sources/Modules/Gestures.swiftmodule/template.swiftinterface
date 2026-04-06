@@ -139,7 +139,7 @@ public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
     get
   }
 }
-extension GestureNodeMatcher : Swift.Comparable {
+extension Gestures.GestureNodeMatcher : Swift.Comparable {
   public static func < (lhs: Gestures.GestureNodeMatcher, rhs: Gestures.GestureNodeMatcher) -> Swift.Bool
 }
 @frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
@@ -158,17 +158,17 @@ extension GestureNodeMatcher : Swift.Comparable {
     get
   }
 }
-extension GFGesturePhase : Swift.CustomStringConvertible {
+extension Gestures.GFGesturePhase : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GFGestureRelationType : Swift.CustomStringConvertible {
+extension Gestures.GFGestureRelationType : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GFGestureRelationRole : Swift.CustomStringConvertible {
+extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
@@ -195,9 +195,9 @@ public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
   public typealias Element = Gestures.GestureNodeOptions
   public typealias RawValue = Swift.Int
 }
-extension GestureNodeOptions : Swift.CustomStringConvertible {
+extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GestureNodeID : Swift.BitwiseCopyable {}
+extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}
