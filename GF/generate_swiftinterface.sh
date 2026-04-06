@@ -40,6 +40,7 @@ xcrun --sdk iphonesimulator swiftc \
     -emit-module-interface-path "${GENERATED}" \
     -emit-module-path "${TMPDIR_WORK}/module.swiftmodule" \
     -module-name Gestures \
+    -package-name Gestures \
     -enable-library-evolution \
     -swift-version 5 \
     -Osize \
