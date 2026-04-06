@@ -18,3 +18,90 @@ extension GFGestureRelationRole : Swift.CustomStringConvertible {
     get
   }
 }
+public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let isDisabled: Gestures.GestureNodeOptions
+  public static let disallowExclusionWithUnresolvedFailureRequirements: Gestures.GestureNodeOptions
+  public static let isGloballyScoped: Gestures.GestureNodeOptions
+  public typealias ArrayLiteralElement = Gestures.GestureNodeOptions
+  public typealias Element = Gestures.GestureNodeOptions
+  public typealias RawValue = Swift.Int
+}
+extension GestureNodeOptions : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable {
+  public var id: Gestures.GestureTraitID
+  public var attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue]
+  public init(id: Gestures.GestureTraitID, attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue] = [:])
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func tap(tapCount: Swift.Int? = nil, pointCount: Swift.Int? = nil) -> Gestures.GestureTrait
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func longPress(pointCount: Swift.Int? = nil, minimumDuration: Swift.Duration? = nil, maximumMovement: Swift.Double? = nil) -> Gestures.GestureTrait
+  #endif
+  public static func pan() -> Gestures.GestureTrait
+  public struct AttributeKey : Swift.Hashable, Swift.Sendable, Swift.CustomStringConvertible {
+    public let rawValue: Swift.Int
+    public init(_ label: Swift.String)
+    public var description: Swift.String {
+      get
+    }
+    public static let pointCount: Gestures.GestureTrait.AttributeKey
+    public static let tapCount: Gestures.GestureTrait.AttributeKey
+    public static let minimumDuration: Gestures.GestureTrait.AttributeKey
+    public static let maximumMovement: Gestures.GestureTrait.AttributeKey
+    public static func == (a: Gestures.GestureTrait.AttributeKey, b: Gestures.GestureTrait.AttributeKey) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum AttributeValue : Swift.Hashable, Swift.Sendable, Swift.CustomStringConvertible {
+    case bool(Swift.Bool)
+    case int(Swift.Int)
+    case double(Swift.Double)
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: Gestures.GestureTrait.AttributeValue, b: Gestures.GestureTrait.AttributeValue) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: Gestures.GestureTrait, b: Gestures.GestureTrait) -> Swift.Bool
+  public typealias ID = Gestures.GestureTraitID
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureTraitID : Swift.Hashable, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(_ label: Swift.String)
+  public static let tap: Gestures.GestureTraitID
+  public static let longPress: Gestures.GestureTraitID
+  public static let pan: Gestures.GestureTraitID
+  public static func == (a: Gestures.GestureTraitID, b: Gestures.GestureTraitID) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
+  public init(traits: [Gestures.GestureTrait] = [])
+  public static func withTrait(_ trait: Gestures.GestureTrait) -> Gestures.GestureTraitCollection
+  public var allTraits: [Gestures.GestureTrait] {
+    get
+  }
+  public func containsSubtraits(from other: Gestures.GestureTraitCollection) -> Swift.Bool
+  public static func == (a: Gestures.GestureTraitCollection, b: Gestures.GestureTraitCollection) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}

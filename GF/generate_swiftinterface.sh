@@ -40,6 +40,7 @@ xcrun --sdk iphonesimulator swiftc \
     -emit-module-interface-path "${GENERATED}" \
     -emit-module-path "${TMPDIR_WORK}/module.swiftmodule" \
     -module-name Gestures \
+    -package-name Gestures \
     -enable-library-evolution \
     -swift-version 5 \
     -Osize \
@@ -47,8 +48,7 @@ xcrun --sdk iphonesimulator swiftc \
     -enable-experimental-feature Extern \
     -target "arm64-apple-ios${IOS_SDK_VERSION}-simulator" \
     -F "${FRAMEWORK_ROOT}/Gestures.xcframework/ios-arm64-x86_64-simulator/" \
-    "${SHIMS_DIR}/Export.swift" \
-    $(find "${SHIMS_DIR}/Extension" -name '*.swift' 2>/dev/null) \
+    $(find "${SHIMS_DIR}" -name '*.swift') \
     2>/dev/null
 
 if [ ! -f "${GENERATED}" ]; then
