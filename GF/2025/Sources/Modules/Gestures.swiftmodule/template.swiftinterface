@@ -18,3 +18,18 @@ extension GFGestureRelationRole : Swift.CustomStringConvertible {
     get
   }
 }
+public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let isDisabled: Gestures.GestureNodeOptions
+  public static let disallowExclusionWithUnresolvedFailureRequirements: Gestures.GestureNodeOptions
+  public static let isGloballyScoped: Gestures.GestureNodeOptions
+  public typealias ArrayLiteralElement = Gestures.GestureNodeOptions
+  public typealias Element = Gestures.GestureNodeOptions
+  public typealias RawValue = Swift.Int
+}
+extension GestureNodeOptions : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
