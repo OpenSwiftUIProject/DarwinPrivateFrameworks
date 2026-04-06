@@ -7,7 +7,7 @@
 
 // MARK: - NestedCustomStringConvertible
 
-// TBA
-package protocol NestedCustomStringConvertible: CustomDebugStringConvertible, CustomStringConvertible {
+@_spi(Private)
+public protocol NestedCustomStringConvertible: CustomDebugStringConvertible, CustomStringConvertible {
     var label: String { get }
 }

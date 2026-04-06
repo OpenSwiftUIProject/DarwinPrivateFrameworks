@@ -3,11 +3,11 @@
 //  Gestures
 //
 //  Audited for 9126.1.5
-//  Status: WIP
+//  Status: Complete
 
 // MARK: - Mergeable
 
-// TBA
-package protocol Mergeable {
+@_spi(Private)
+public protocol Mergeable {
     mutating func merge(_ other: Self)
 }

@@ -37,15 +37,6 @@ public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable 
   public var id: Gestures.GestureTraitID
   public var attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue]
   public init(id: Gestures.GestureTraitID, attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue] = [:])
-  public var label: Swift.String {
-    get
-  }
-  public var description: Swift.String {
-    get
-  }
-  public var debugDescription: Swift.String {
-    get
-  }
   #if compiler(>=5.3) && $NonescapableTypes
   public static func tap(tapCount: Swift.Int? = nil, pointCount: Swift.Int? = nil) -> Gestures.GestureTrait
   #endif
@@ -117,24 +108,3 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
-extension GestureTraitCollection : Swift.Sequence {
-  public func makeIterator() -> some Swift.IteratorProtocol
-  
-  public typealias Element = (@_opaqueReturnTypeOf("$s8Gestures22GestureTraitCollectionV12makeIteratorQryF", 0) __).Element
-  public typealias Iterator = @_opaqueReturnTypeOf("$s8Gestures22GestureTraitCollectionV12makeIteratorQryF", 0) __
-}
-extension GestureTraitCollection {
-  public var label: Swift.String {
-    get
-  }
-  public var description: Swift.String {
-    get
-  }
-  public var debugDescription: Swift.String {
-    get
-  }
-}
-extension GestureTrait : Swift.CustomStringConvertible {}
-extension GestureTrait : Swift.CustomDebugStringConvertible {}
-extension GestureTraitCollection : Swift.CustomStringConvertible {}
-extension GestureTraitCollection : Swift.CustomDebugStringConvertible {}
