@@ -75,6 +75,30 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
+public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
+  case id(Gestures.GestureNodeID)
+  case tag(Gestures.GestureTag)
+  case traits(Gestures.GestureTraitCollection, position: Gestures.GestureNodeMatcher.RelativePosition)
+  case any(position: Gestures.GestureNodeMatcher.RelativePosition)
+  public enum RelativePosition : Swift.Hashable, Swift.Sendable {
+    case any
+    case above
+    case below
+    public static func == (a: Gestures.GestureNodeMatcher.RelativePosition, b: Gestures.GestureNodeMatcher.RelativePosition) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: Gestures.GestureNodeMatcher, b: Gestures.GestureNodeMatcher) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension GestureNodeMatcher : Swift.Comparable {
+  public static func < (lhs: Gestures.GestureNodeMatcher, rhs: Gestures.GestureNodeMatcher) -> Swift.Bool
+}
 @frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
