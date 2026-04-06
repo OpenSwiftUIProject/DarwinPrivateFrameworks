@@ -3,7 +3,6 @@
 //  Gestures
 
 #include <Gestures/GFBase.h>
-#include <Gestures/GFVersion.h>
 #include <Gestures/GFGesturePhase.h>
 #include <Gestures/GFGestureRelation.h>
 #include <Gestures/GFGestureFailureType.h>
