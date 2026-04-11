@@ -150,8 +150,6 @@ let platforms: [SupportedPlatform] = switch releaseVersion {
     default: []
 }
 
-let agVersion = releaseVersion >= 2025 ? "latest" : "\(releaseVersion)"
-
 let package = Package(
     name: "DarwinPrivateFrameworks",
     platforms: platforms,
@@ -165,7 +163,7 @@ let package = Package(
         .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"]),
     ],
     targets: [
-        .binaryTarget(name: "AttributeGraph", path: "AG/\(agVersion)/AttributeGraph.xcframework"),
+        .binaryTarget(name: "AttributeGraph", path: "AG/2024/AttributeGraph.xcframework"),
         .target(
             name: "_AttributeGraphDeviceSwiftShims",
             dependencies: ["AttributeGraph"],
