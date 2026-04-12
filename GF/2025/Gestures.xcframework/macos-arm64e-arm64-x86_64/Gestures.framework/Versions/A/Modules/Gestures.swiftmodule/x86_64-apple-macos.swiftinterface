@@ -2,6 +2,7 @@
 // swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.16.112 clang-1800.1.29)
 // swift-module-flags: -target x86_64-apple-macos26.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name Gestures
 // swift-module-flags-ignorable: -interface-compiler-version 6.2
+public import Dispatch
 @_exported public import Gestures
 public import Swift
 public import _Concurrency
@@ -209,6 +210,83 @@ extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
     get
   }
 }
+public protocol TimeSource {
+  var timestamp: Gestures.Timestamp { get }
+}
+extension Swift.Never : Gestures.TimeSource {
+  public var timestamp: Gestures.Timestamp {
+    get
+  }
+}
+public protocol TimeSourceImpl : Gestures.TimeSource {
+  var _duration: Swift.Duration { get }
+}
+public protocol GestureUpdateDriver : Swift.Sendable {
+  func register(_ handler: @escaping () -> Swift.Void) -> Gestures.GestureUpdateDriverToken
+  func unregister(token: Gestures.GestureUpdateDriverToken)
+}
+public struct GestureUpdateDriverToken : Swift.Hashable, Swift.Sendable {
+  public var value: Swift.UInt32
+  public init(value: Swift.UInt32)
+  public static func == (a: Gestures.GestureUpdateDriverToken, b: Gestures.GestureUpdateDriverToken) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol TimeScheduler : AnyObject, Gestures.TimeSource {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func schedule(after duration: Swift.Duration, handler: @escaping () -> Swift.Void, cancelHandler: (() -> Swift.Void)?) -> Gestures.TimeSchedulerToken
+  #endif
+  func cancel(token: Gestures.TimeSchedulerToken)
+}
+public struct TimeSchedulerToken : Swift.Hashable, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static func == (a: Gestures.TimeSchedulerToken, b: Gestures.TimeSchedulerToken) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class DispatchTimeScheduler : @unchecked Swift.Sendable, Gestures.TimeScheduler {
+  final public let queue: Dispatch.DispatchQueue
+  final public let timeSource: any Gestures.TimeSource
+  public init(queue: Dispatch.DispatchQueue, timeSource: any Gestures.TimeSource)
+  final public var timestamp: Gestures.Timestamp {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func schedule(after duration: Swift.Duration, handler: @escaping () -> Swift.Void, cancelHandler: (() -> Swift.Void)? = nil) -> Gestures.TimeSchedulerToken
+  #endif
+  final public func cancel(token: Gestures.TimeSchedulerToken)
+  @objc deinit
+}
+@frozen public struct Timestamp : Swift.Hashable, Swift.Comparable, Swift.Sendable, Swift.CustomStringConvertible {
+  package let value: Swift.Duration
+  public static func < (lhs: Gestures.Timestamp, rhs: Gestures.Timestamp) -> Swift.Bool
+  public var description: Swift.String {
+    get
+  }
+  public func advanced(by duration: Swift.Duration) -> Gestures.Timestamp
+  public func duration(to other: Gestures.Timestamp) -> Swift.Duration
+  public static func + (lhs: Gestures.Timestamp, rhs: Swift.Duration) -> Gestures.Timestamp
+  public static func - (lhs: Gestures.Timestamp, rhs: Swift.Duration) -> Gestures.Timestamp
+  public static func - (lhs: Gestures.Timestamp, rhs: Gestures.Timestamp) -> Swift.Duration
+  public static func += (lhs: inout Gestures.Timestamp, rhs: Swift.Duration)
+  public static func -= (lhs: inout Gestures.Timestamp, rhs: Swift.Duration)
+  public static func == (a: Gestures.Timestamp, b: Gestures.Timestamp) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct UptimeTimeSource : Gestures.TimeSourceImpl, Swift.Sendable {
+  public init()
+  public var _duration: Swift.Duration {
+    get
+  }
+}
 extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
@@ -216,3 +294,4 @@ extension Gestures.GestureTraitCollection : Swift.CustomDebugStringConvertible {
 extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
 extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}
+extension Gestures.Timestamp : Swift.BitwiseCopyable {}
