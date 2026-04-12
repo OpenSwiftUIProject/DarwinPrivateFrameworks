@@ -39,18 +39,22 @@ extension GestureNodeMatcher: Comparable {
 
 // MARK: - GestureNodeMatcher + NestedCustomStringConvertible
 
-@_spi(Private)
 extension GestureNodeMatcher: NestedCustomStringConvertible {
-    public var label: String {
+    package func populateNestedDescription(_ nested: inout NestedDescription) {
+        nested.options.formUnion([.hideTypeName, .compact])
+        nested.customPrefix = ""
+        nested.customSuffix = ""
         switch self {
-        case let .id(id): "\(id)"
-        case let .tag(tag): "\(tag)"
-        case let .traits(collection, position): "\(collection), position: \(position)"
-        case let .any(position): "any, position: \(position)"
+        case let .id(id):
+            nested.append(id)
+        case let .tag(tag):
+            nested.append(tag)
+        case let .traits(collection, position):
+            nested.append(collection)
+            nested.append(position, label: "position")
+        case let .any(position):
+            nested.append("any")
+            nested.append(position, label: "position")
         }
     }
-
-    public var description: String { label }
-
-    public var debugDescription: String { label }
 }

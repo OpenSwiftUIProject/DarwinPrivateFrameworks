@@ -5,7 +5,7 @@
 //  Audited for 9126.1.5
 //  Status: Complete
 
-import OrderedCollections
+package import OrderedCollections
 
 // MARK: - GestureRelationType
 
@@ -71,7 +71,7 @@ package struct RelationMap: Sendable {
         self.relations = [:]
     }
 
-    init(relations: OrderedDictionary<GestureNodeMatcher, Set<RelationDefinition>>) {
+    package init(relations: OrderedDictionary<GestureNodeMatcher, Set<RelationDefinition>>) {
         self.relations = relations
     }
 
@@ -95,7 +95,7 @@ package struct RelationMap: Sendable {
         add(definition, for: relation.target)
     }
 
-    mutating func removeRelation(_ relation: GestureRelation) {
+    package mutating func removeRelation(_ relation: GestureRelation) {
         let definition = RelationDefinition(
             type: relation.type,
             direction: relation.direction,
@@ -120,7 +120,7 @@ package struct RelationMap: Sendable {
     }
 }
 
-// MARK: - RelationMap + Sequence [TBA]
+// MARK: - RelationMap + Sequence
 
 extension RelationMap: Sequence {
     package func makeIterator() -> some IteratorProtocol {
@@ -128,21 +128,14 @@ extension RelationMap: Sequence {
     }
 }
 
-// MARK: - RelationMap + NestedCustomStringConvertible [TBA]
+// MARK: - RelationMap + NestedCustomStringConvertible
 
 extension RelationMap: NestedCustomStringConvertible {
-    package var label: String { "RelationMap" }
-
-    package var description: String {
-        if relations.isEmpty {
-            return "\(label) {}"
+    package func populateNestedDescription(_ nested: inout NestedDescription) {
+        nested.options.formUnion(.hideTypeName)
+        for (matcher, definition) in relations {
+            nested.append("\(matcher)", label: "\(definition)")
         }
-        let entries = relations.map { "\($0.key): \($0.value)" }.joined(separator: ", ")
-        return "\(label) {\(entries)}"
-    }
-
-    package var debugDescription: String {
-        description
     }
 }
 
@@ -164,10 +157,11 @@ package struct RelationDefinition: Hashable, Sendable, CustomStringConvertible {
     }
 
     package var description: String {
-        if let role {
-            "\(type) \(direction) (\(role))"
-        } else {
-            "\(type) \(direction)"
+        let dir = switch direction {
+        case .outgoing: "out"
+        case .incoming: "in"
         }
+        let roleStr = if let role { "\(role)" } else { "dynamic" }
+        return "\(type)[\(dir)]=\(roleStr)"
     }
 }

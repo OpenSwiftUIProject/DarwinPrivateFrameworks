@@ -95,22 +95,25 @@ public struct GestureTrait: Hashable, Identifiable, Sendable {
     }
 }
 
-@_spi(Private)
 extension GestureTrait: NestedCustomStringConvertible {
     public var label: String {
         TraitLabelStore.shared.label(for: id.rawValue)
     }
 
-    public var description: String {
+    package func populateNestedDescription(_ nested: inout NestedDescription) {
+        nested.options.formUnion([.hideTypeName, .compact])
+        nested.customPrefix = ""
+        nested.customSuffix = ""
+        nested.options.formUnion(.hideIdentity)
         if attributes.isEmpty {
-            return label
+            nested.append(label)
+        } else {
+            nested.customPrefix = label + " {"
+            nested.customSuffix = "}"
+            for (key, value) in attributes {
+                nested.append("\(key.label): \(value)")
+            }
         }
-        let attrs = attributes.map { "\($0.key.label): \($0.value)" }.joined(separator: ", ")
-        return "\(label) {\(attrs)}"
-    }
-
-    public var debugDescription: String {
-        description
     }
 }
 
@@ -173,32 +176,25 @@ extension GestureTraitCollection: Sequence {
 
 // MARK: - GestureTraitCollection + CustomStringConvertible
 
-@_spi(Private)
 extension GestureTraitCollection: NestedCustomStringConvertible {
-    public var label: String { "GestureTraitCollection" }
-
-    public var description: String {
-        "[\(_traits.values.map(\.description).joined(separator: ", "))]"
-    }
-
-    public var debugDescription: String {
-        description
+    package func populateNestedDescription(_ nested: inout NestedDescription) {
+        nested.options.formUnion([.hideTypeName, .compact])
+        nested.customPrefix = ""
+        nested.customSuffix = ""
+        nested.append(_traits.values)
     }
 }
 
 // MARK: - GestureTraitCollection + Mergeable
 
-@_spi(Private)
 extension GestureTraitCollection: Mergeable {
-    public mutating func merge(_ other: GestureTraitCollection) {
+    package mutating func merge(_ other: GestureTraitCollection) {
         _traits.merge(other._traits) { $1 }
     }
 }
 
 import Synchronization
-#if canImport(os)
 import os
-#endif
 
 // MARK: - TraitLabelStore
 
@@ -207,7 +203,6 @@ private final class TraitLabelStore {
 
     private static let counter = Atomic(0)
 
-    #if canImport(os)
     private var labels: [Int: String] = [:]
     private let lock: OSAllocatedUnfairLock = .init()
 
@@ -224,22 +219,4 @@ private final class TraitLabelStore {
             labels[rawValue]
         } ?? ""
     }
-
-    #else
-    private let labels: Mutex<[Int: String]> = .init([:])
-
-    func register(_ label: String) -> Int {
-        let (_, id) = Self.counter.add(1, ordering: .relaxed)
-        labels.withLock {
-            $0[id] = label
-        }
-        return id
-    }
-
-    package func label(for rawValue: Int) -> String {
-        labels.withLock {
-            $0[rawValue]
-        } ?? ""
-    }
-    #endif
 }

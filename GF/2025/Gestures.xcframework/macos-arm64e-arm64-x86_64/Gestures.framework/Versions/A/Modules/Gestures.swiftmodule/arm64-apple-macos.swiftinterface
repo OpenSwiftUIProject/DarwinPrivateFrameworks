@@ -54,6 +54,11 @@ public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable 
     get
   }
 }
+extension Gestures.GestureTrait {
+  public var label: Swift.String {
+    get
+  }
+}
 public struct GestureTraitID : Swift.Hashable, Swift.Sendable {
   public let rawValue: Swift.Int
   public init(_ label: Swift.String)
@@ -204,4 +209,10 @@ extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
     get
   }
 }
+extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
+extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
+extension Gestures.GestureTraitCollection : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}

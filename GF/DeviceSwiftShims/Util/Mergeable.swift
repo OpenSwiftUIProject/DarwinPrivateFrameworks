@@ -7,7 +7,6 @@
 
 // MARK: - Mergeable
 
-@_spi(Private)
-public protocol Mergeable {
+package protocol Mergeable {
     mutating func merge(_ other: Self)
 }
