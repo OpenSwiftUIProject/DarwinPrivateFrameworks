@@ -8,6 +8,74 @@ public import Swift
 public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
+public enum GestureOutput<Value> {
+  case empty(Gestures.GestureOutputEmptyReason, metadata: Gestures.GestureOutputMetadata?)
+  case value(Value, metadata: Gestures.GestureOutputMetadata?)
+  case finalValue(Value, metadata: Gestures.GestureOutputMetadata?)
+}
+extension Gestures.GestureOutput : Swift.Sendable where Value : Swift.Sendable {
+}
+extension Gestures.GestureOutput {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var value: Value? {
+    get
+  }
+  #endif
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public var isFinal: Swift.Bool {
+    get
+  }
+}
+public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
+  case noData
+  case filtered
+  case timeUpdate
+  public static func == (a: Gestures.GestureOutputEmptyReason, b: Gestures.GestureOutputEmptyReason) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureOutputMetadata : Swift.Sendable {
+  public var updatesToSchedule: [Gestures.UpdateRequest]
+  public var updatesToCancel: [Gestures.UpdateRequest]
+  public var traceAnnotation: Gestures.UpdateTraceAnnotation?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(updatesToSchedule: [Gestures.UpdateRequest] = [], updatesToCancel: [Gestures.UpdateRequest] = [], traceAnnotation: Gestures.UpdateTraceAnnotation? = nil)
+  #endif
+}
+public struct UpdateTraceAnnotation : Swift.Sendable {
+  public var value: Swift.String
+  public init(value: Swift.String)
+}
+public enum GestureOutputStatus : Swift.Hashable, Swift.Sendable {
+  case empty
+  case value
+  case finalValue
+  public static func == (a: Gestures.GestureOutputStatus, b: Gestures.GestureOutputStatus) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureOutputStatusCombiner : Swift.Sendable {
+  public var combine: @Sendable ([Gestures.GestureOutputStatus]) throws -> Gestures.GestureOutputStatus
+  public init(combine: @escaping @Sendable ([Gestures.GestureOutputStatus]) throws -> Gestures.GestureOutputStatus)
+}
+public struct GestureOutputArrayCombiner<A> : Swift.Sendable where A : Swift.Sendable {
+  public let statusCombiner: Gestures.GestureOutputStatusCombiner
+  public init(statusCombiner: Gestures.GestureOutputStatusCombiner)
+}
+public struct GestureOutputCombiner<each A, B> : Swift.Sendable where repeat each A : Swift.Sendable, B : Swift.Sendable {
+  public let combineValues: (@Sendable (repeat each A) throws -> B)?
+  public let combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?
+  public let statusCombiner: Gestures.GestureOutputStatusCombiner
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(combineValues: (@Sendable (repeat each A) throws -> B)?, combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?, statusCombiner: Gestures.GestureOutputStatusCombiner)
+  #endif
+}
 public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable {
   public var id: Gestures.GestureTraitID
   public var attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue]
@@ -128,6 +196,71 @@ extension Swift.Array where Element == Gestures.GestureRelation {
     get
   }
 }
+public enum GesturePhase<Value> : Swift.Sendable where Value : Swift.Sendable {
+  case idle
+  case possible
+  case blocked(value: Value, blockedBy: Gestures.GestureNodeID)
+  case active(value: Value)
+  case ended(value: Value)
+  case failed(reason: Gestures.GestureFailureReason)
+}
+extension Gestures.GesturePhase {
+  public var isIdle: Swift.Bool {
+    get
+  }
+  public var isPossible: Swift.Bool {
+    get
+  }
+  public var isActive: Swift.Bool {
+    get
+  }
+  public var isBlocked: Swift.Bool {
+    get
+  }
+  public var isEnded: Swift.Bool {
+    get
+  }
+  public var isFailed: Swift.Bool {
+    get
+  }
+  public var isTerminal: Swift.Bool {
+    get
+  }
+  public var isRecognized: Swift.Bool {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var value: Value? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var failureReason: Gestures.GestureFailureReason? {
+    get
+  }
+  #endif
+  public func mapValue<T>(_ transform: (Value) -> T) -> Gestures.GesturePhase<T> where T : Swift.Sendable
+}
+extension Gestures.GesturePhase : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+public enum GestureFailureReason : Swift.Sendable {
+  case excluded(by: Gestures.GestureNodeID)
+  case failureDependency(on: Gestures.GestureNodeID)
+  case custom(any Swift.Error)
+  case disabled
+  case removedFromContainer
+  case activationDenied
+  case aborted
+  case coordinatorChanged
+}
+extension Gestures.GestureFailureReason : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
 public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
   case id(Gestures.GestureNodeID)
   case tag(Gestures.GestureTag)
@@ -234,6 +367,18 @@ public struct GestureUpdateDriverToken : Swift.Hashable, Swift.Sendable {
     get
   }
 }
+public struct UpdateRequest : Swift.Hashable, Swift.Sendable, Swift.Identifiable {
+  public let id: Swift.UInt32
+  public let creationTime: Gestures.Timestamp
+  public let targetTime: Gestures.Timestamp
+  public let tag: Swift.String?
+  public static func == (a: Gestures.UpdateRequest, b: Gestures.UpdateRequest) -> Swift.Bool
+  public typealias ID = Swift.UInt32
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public protocol TimeScheduler : AnyObject, Gestures.TimeSource {
   #if compiler(>=5.3) && $NonescapableTypes
   func schedule(after duration: Swift.Duration, handler: @escaping () -> Swift.Void, cancelHandler: (() -> Swift.Void)?) -> Gestures.TimeSchedulerToken
@@ -287,6 +432,10 @@ public struct UptimeTimeSource : Gestures.TimeSourceImpl, Swift.Sendable {
     get
   }
 }
+extension Gestures.GestureOutput : Swift.CustomStringConvertible {}
+extension Gestures.GestureOutput : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureOutputMetadata : Swift.CustomStringConvertible {}
+extension Gestures.GestureOutputMetadata : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
