@@ -40,7 +40,7 @@ public struct GestureTrait: Hashable, Identifiable, Sendable {
             attrs[.pointCount] = .int(pointCount)
         }
         if let minimumDuration {
-            attrs[.minimumDuration] = .double(Double(minimumDuration))
+            attrs[.minimumDuration] = .double(minimumDuration.asTimeInterval())
         }
         if let maximumMovement {
             attrs[.maximumMovement] = .double(maximumMovement)

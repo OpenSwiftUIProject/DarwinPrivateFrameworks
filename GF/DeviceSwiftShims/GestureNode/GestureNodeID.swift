@@ -1,6 +1,6 @@
 //
 //  GestureNodeID.swift
-//  OpenGestures
+//  Gestures
 //
 //  Audited for 9126.1.5
 //  Status: Complete
