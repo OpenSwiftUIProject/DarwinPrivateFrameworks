@@ -5,7 +5,6 @@
 ## This compiles the DeviceSwiftShims Swift files against the Gestures xcframework
 ## to produce a .swiftinterface, then transforms it into the template used by update.sh:
 ##   1. Strip the compiler header comments (update.sh generates per-platform headers)
-##   2. Remove `Gestures.` module prefix from extension type names
 
 # A `realpath` alternative using the default C implementation.
 filepath() {
@@ -13,6 +12,7 @@ filepath() {
 }
 
 SCRIPT_DIR="$(dirname "$(filepath "$0")")"
+PACKAGE_DIR="$(dirname "${SCRIPT_DIR}")"
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2025}
 FRAMEWORK_ROOT="${SCRIPT_DIR}/${VERSION}"
 SHIMS_DIR="${SCRIPT_DIR}/DeviceSwiftShims"
@@ -27,16 +27,27 @@ if [ "${SWIFT_VERSION}" != "${EXPECTED_SWIFT_VERSION}" ]; then
     exit 1
 fi
 
+# Build package dependencies (OrderedCollections etc.) via SPM
+swift build --package-path "${PACKAGE_DIR}" --target _GesturesDeviceSwiftShims 2>/dev/null
+if [ $? -ne 0 ]; then
+    echo "Error: failed to build package dependencies"
+    exit 1
+fi
+
+# Locate the SPM modules directory for import search paths
+BUILD_BIN_PATH=$(swift build --package-path "${PACKAGE_DIR}" --show-bin-path 2>/dev/null)
+MODULES_DIR="${BUILD_BIN_PATH}/Modules"
+
 TMPDIR_WORK=$(mktemp -d)
 trap "rm -rf ${TMPDIR_WORK}" EXIT
 
 GENERATED="${TMPDIR_WORK}/generated.swiftinterface"
 
-# Resolve the iOS Simulator SDK version for the -target flag
-IOS_SDK_VERSION=$(xcrun --sdk iphonesimulator --show-sdk-version)
+# Use macOS SDK to match the host-built SPM modules
+MACOS_SDK_VERSION=$(xcrun --sdk macosx --show-sdk-version)
 
-# Compile DeviceSwiftShims against the simulator xcframework to emit a swiftinterface
-xcrun --sdk iphonesimulator swiftc \
+# Compile DeviceSwiftShims against the macOS xcframework to emit a swiftinterface
+xcrun --sdk macosx swiftc \
     -emit-module-interface-path "${GENERATED}" \
     -emit-module-path "${TMPDIR_WORK}/module.swiftmodule" \
     -module-name Gestures \
@@ -46,8 +57,9 @@ xcrun --sdk iphonesimulator swiftc \
     -Osize \
     -enable-upcoming-feature InternalImportsByDefault \
     -enable-experimental-feature Extern \
-    -target "arm64-apple-ios${IOS_SDK_VERSION}-simulator" \
-    -F "${FRAMEWORK_ROOT}/Gestures.xcframework/ios-arm64-x86_64-simulator/" \
+    -target "arm64-apple-macos${MACOS_SDK_VERSION}" \
+    -F "${FRAMEWORK_ROOT}/Gestures.xcframework/macos-arm64e-arm64-x86_64/" \
+    -I "${MODULES_DIR}" \
     $(find "${SHIMS_DIR}" -name '*.swift') \
     2>/dev/null
 
@@ -56,11 +68,8 @@ if [ ! -f "${GENERATED}" ]; then
     exit 1
 fi
 
-# Transform:
-#   1. Strip the compiler header comments (update.sh generates per-platform headers)
-#   2. Remove `Gestures.` module prefix from extension declarations
+# Strip the compiler header comments (update.sh generates per-platform headers)
 sed -e '/^\/\/ swift-/d' \
-    -e 's/extension Gestures\./extension /g' \
     "${GENERATED}" > "${TEMPLATE_PATH}"
 
 echo "Generated: ${TEMPLATE_PATH}"

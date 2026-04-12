@@ -50,6 +50,11 @@ public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable 
     get
   }
 }
+extension Gestures.GestureTrait {
+  public var label: Swift.String {
+    get
+  }
+}
 public struct GestureTraitID : Swift.Hashable, Swift.Sendable {
   public let rawValue: Swift.Int
   public init(_ label: Swift.String)
@@ -75,6 +80,73 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
+public enum GestureRelationType : Swift.Hashable, Swift.Sendable {
+  case exclusion
+  case activeExclusion
+  case failureRequirement
+  public static func == (a: Gestures.GestureRelationType, b: Gestures.GestureRelationType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureRelationRole : Swift.Hashable, Swift.Sendable {
+  case regular
+  case blocking
+  public static func == (a: Gestures.GestureRelationRole, b: Gestures.GestureRelationRole) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureRelationDirection : Swift.Hashable, Swift.Sendable {
+  case outgoing
+  case incoming
+  public static func == (a: Gestures.GestureRelationDirection, b: Gestures.GestureRelationDirection) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct GestureRelation : Swift.Equatable, Swift.Sendable {
+  public var type: Gestures.GestureRelationType
+  public var direction: Gestures.GestureRelationDirection
+  public var role: Gestures.GestureRelationRole?
+  public var target: Gestures.GestureNodeMatcher
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, role: Gestures.GestureRelationRole?, target: Gestures.GestureNodeMatcher)
+  #endif
+  public static func == (a: Gestures.GestureRelation, b: Gestures.GestureRelation) -> Swift.Bool
+}
+extension Swift.Array where Element == Gestures.GestureRelation {
+  public static var `default`: [Gestures.GestureRelation] {
+    get
+  }
+}
+public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
+  case id(Gestures.GestureNodeID)
+  case tag(Gestures.GestureTag)
+  case traits(Gestures.GestureTraitCollection, position: Gestures.GestureNodeMatcher.RelativePosition)
+  case any(position: Gestures.GestureNodeMatcher.RelativePosition)
+  public enum RelativePosition : Swift.Hashable, Swift.Sendable {
+    case any
+    case above
+    case below
+    public static func == (a: Gestures.GestureNodeMatcher.RelativePosition, b: Gestures.GestureNodeMatcher.RelativePosition) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: Gestures.GestureNodeMatcher, b: Gestures.GestureNodeMatcher) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Gestures.GestureNodeMatcher : Swift.Comparable {
+  public static func < (lhs: Gestures.GestureNodeMatcher, rhs: Gestures.GestureNodeMatcher) -> Swift.Bool
+}
 @frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
   public let rawValue: Swift.String
   public init(rawValue: Swift.String)
@@ -91,17 +163,17 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
     get
   }
 }
-extension GFGesturePhase : Swift.CustomStringConvertible {
+extension Gestures.GFGesturePhase : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GFGestureRelationType : Swift.CustomStringConvertible {
+extension Gestures.GFGestureRelationType : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GFGestureRelationRole : Swift.CustomStringConvertible {
+extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
@@ -128,9 +200,15 @@ public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
   public typealias Element = Gestures.GestureNodeOptions
   public typealias RawValue = Swift.Int
 }
-extension GestureNodeOptions : Swift.CustomStringConvertible {
+extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-extension GestureNodeID : Swift.BitwiseCopyable {}
+extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
+extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
+extension Gestures.GestureTraitCollection : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}
