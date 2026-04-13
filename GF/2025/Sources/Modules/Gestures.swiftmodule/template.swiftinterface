@@ -4,12 +4,10 @@ public import Swift
 public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
-public enum GestureOutput<Value> {
+public enum GestureOutput<Value> : Swift.Sendable where Value : Swift.Sendable {
   case empty(Gestures.GestureOutputEmptyReason, metadata: Gestures.GestureOutputMetadata?)
   case value(Value, metadata: Gestures.GestureOutputMetadata?)
   case finalValue(Value, metadata: Gestures.GestureOutputMetadata?)
-}
-extension Gestures.GestureOutput : Swift.Sendable where Value : Swift.Sendable {
 }
 extension Gestures.GestureOutput {
   #if compiler(>=5.3) && $NonescapableTypes
@@ -35,11 +33,6 @@ public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
   }
 }
 public struct GestureOutputMetadata : Swift.Sendable {
-  public var traceAnnotation: Gestures.UpdateTraceAnnotation?
-}
-public struct UpdateTraceAnnotation : Swift.Sendable {
-  public var value: Swift.String
-  public init(value: Swift.String)
 }
 public enum GestureOutputStatus : Swift.Hashable, Swift.Sendable {
   case empty
