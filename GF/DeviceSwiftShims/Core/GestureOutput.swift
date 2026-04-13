@@ -64,11 +64,11 @@ public enum GestureOutputEmptyReason: Hashable, Sendable {
 // MARK: - GestureOutputMetadata
 
 public struct GestureOutputMetadata: Sendable {
-    public var updatesToSchedule: [UpdateRequest]
-    public var updatesToCancel: [UpdateRequest]
+    package var updatesToSchedule: [UpdateRequest]
+    package var updatesToCancel: [UpdateRequest]
     public var traceAnnotation: UpdateTraceAnnotation?
 
-    public init(
+    package init(
         updatesToSchedule: [UpdateRequest] = [],
         updatesToCancel: [UpdateRequest] = [],
         traceAnnotation: UpdateTraceAnnotation? = nil

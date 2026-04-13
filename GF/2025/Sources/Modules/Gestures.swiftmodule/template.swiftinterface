@@ -35,12 +35,7 @@ public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
   }
 }
 public struct GestureOutputMetadata : Swift.Sendable {
-  public var updatesToSchedule: [Gestures.UpdateRequest]
-  public var updatesToCancel: [Gestures.UpdateRequest]
   public var traceAnnotation: Gestures.UpdateTraceAnnotation?
-  #if compiler(>=5.3) && $NonescapableTypes
-  public init(updatesToSchedule: [Gestures.UpdateRequest] = [], updatesToCancel: [Gestures.UpdateRequest] = [], traceAnnotation: Gestures.UpdateTraceAnnotation? = nil)
-  #endif
 }
 public struct UpdateTraceAnnotation : Swift.Sendable {
   public var value: Swift.String
@@ -363,17 +358,8 @@ public struct GestureUpdateDriverToken : Swift.Hashable, Swift.Sendable {
     get
   }
 }
-public struct UpdateRequest : Swift.Hashable, Swift.Sendable, Swift.Identifiable {
-  public let id: Swift.UInt32
-  public let creationTime: Gestures.Timestamp
-  public let targetTime: Gestures.Timestamp
-  public let tag: Swift.String?
-  public static func == (a: Gestures.UpdateRequest, b: Gestures.UpdateRequest) -> Swift.Bool
-  public typealias ID = Swift.UInt32
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
+@_hasMissingDesignatedInitializers final public class UpdateScheduler {
+  @objc deinit
 }
 public protocol TimeScheduler : AnyObject, Gestures.TimeSource {
   #if compiler(>=5.3) && $NonescapableTypes
