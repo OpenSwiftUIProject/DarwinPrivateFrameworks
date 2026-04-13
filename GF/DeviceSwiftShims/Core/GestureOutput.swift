@@ -114,42 +114,43 @@ package struct UpdateTraceAnnotation: Sendable {
     }
 }
 
-// MARK: - GestureOutputStatus [TBA]
 
-public enum GestureOutputStatus: Hashable, Sendable {
+// MARK: - GestureOutputStatusCombiner
+
+package struct GestureOutputStatusCombiner: Sendable {
+    package var combine: @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus
+
+    package init(combine: @escaping @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus) {
+        self.combine = combine
+    }
+}
+
+// MARK: - GestureOutputStatus
+
+package enum GestureOutputStatus: Hashable, Sendable {
     case empty
     case value
     case finalValue
 }
 
-// MARK: - GestureOutputStatusCombiner [TBA]
+// MARK: - GestureOutputArrayCombiner
 
-public struct GestureOutputStatusCombiner: Sendable {
-    public var combine: @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus
+package struct GestureOutputArrayCombiner<A: Sendable>: Sendable {
+    package let statusCombiner: GestureOutputStatusCombiner
 
-    public init(combine: @escaping @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus) {
-        self.combine = combine
-    }
-}
-
-// MARK: - GestureOutputArrayCombiner [TBA]
-
-public struct GestureOutputArrayCombiner<A: Sendable>: Sendable {
-    public let statusCombiner: GestureOutputStatusCombiner
-
-    public init(statusCombiner: GestureOutputStatusCombiner) {
+    package init(statusCombiner: GestureOutputStatusCombiner) {
         self.statusCombiner = statusCombiner
     }
 }
 
-// MARK: - GestureOutputCombiner [TBA]
+// MARK: - GestureOutputCombiner
 
-public struct GestureOutputCombiner<each A: Sendable, B: Sendable>: Sendable {
-    public let combineValues: (@Sendable (repeat each A) throws -> B)?
-    public let combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?
-    public let statusCombiner: GestureOutputStatusCombiner
+package struct GestureOutputCombiner<each A: Sendable, B: Sendable>: Sendable {
+    package let combineValues: (@Sendable (repeat each A) throws -> B)?
+    package let combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?
+    package let statusCombiner: GestureOutputStatusCombiner
 
-    public init(
+    package init(
         combineValues: (@Sendable (repeat each A) throws -> B)?,
         combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?,
         statusCombiner: GestureOutputStatusCombiner
