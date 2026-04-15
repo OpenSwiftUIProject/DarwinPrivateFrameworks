@@ -274,6 +274,19 @@ extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
     get
   }
 }
+public protocol LocationContaining {
+  var location: CoreFoundation.CGPoint { get }
+}
+extension CoreFoundation.CGPoint : Gestures.LocationContaining {
+  public var location: CoreFoundation.CGPoint {
+    get
+  }
+}
+extension Swift.Never : Gestures.LocationContaining {
+  public var location: CoreFoundation.CGPoint {
+    get
+  }
+}
 @frozen public struct GestureNodeID : Swift.Hashable, Swift.Comparable, Swift.Sendable, Swift.CustomStringConvertible {
   package let rawValue: Swift.UInt32
   public static func < (lhs: Gestures.GestureNodeID, rhs: Gestures.GestureNodeID) -> Swift.Bool
@@ -381,6 +394,93 @@ public struct UptimeTimeSource : Gestures.TimeSourceImpl, Swift.Sendable {
     get
   }
 }
+public protocol Event : Swift.Identifiable {
+  var id: Gestures.EventID { get }
+  var phase: Gestures.EventPhase { get }
+  var timestamp: Gestures.Timestamp { get }
+}
+extension Swift.Never : Gestures.Event {
+  public var id: Gestures.EventID {
+    get
+  }
+  public var phase: Gestures.EventPhase {
+    get
+  }
+}
+public enum EventPhase : Swift.Hashable, Swift.Sendable {
+  case began
+  case active
+  case ended
+  case failed
+  public static func == (a: Gestures.EventPhase, b: Gestures.EventPhase) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol ScrollEvent : Gestures.SpatialEvent {
+  var delta: CoreFoundation.CGVector { get }
+  var acceleratedDelta: CoreFoundation.CGVector { get }
+}
+extension Swift.Never : Gestures.ScrollEvent {
+  public var delta: CoreFoundation.CGVector {
+    get
+  }
+  public var acceleratedDelta: CoreFoundation.CGVector {
+    get
+  }
+}
+public struct ConcreteScrollEvent : Gestures.ScrollEvent, Swift.Sendable {
+  public var id: Gestures.EventID
+  public var phase: Gestures.EventPhase
+  public var timestamp: Gestures.Timestamp
+  public var location: CoreFoundation.CGPoint
+  public var delta: CoreFoundation.CGVector
+  public var acceleratedDelta: CoreFoundation.CGVector
+  public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint, delta: CoreFoundation.CGVector, acceleratedDelta: CoreFoundation.CGVector)
+  public typealias ID = Gestures.EventID
+}
+public struct TouchEvent : Gestures.SpatialEvent, Swift.Sendable {
+  public var id: Gestures.EventID
+  public var phase: Gestures.EventPhase
+  public var timestamp: Gestures.Timestamp
+  public var location: CoreFoundation.CGPoint
+  public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint)
+  public typealias ID = Gestures.EventID
+}
+public struct MouseEvent : Gestures.SpatialEvent, Swift.Sendable {
+  public let id: Gestures.EventID
+  public let phase: Gestures.EventPhase
+  public let timestamp: Gestures.Timestamp
+  public let location: CoreFoundation.CGPoint
+  public let button: Gestures.MouseEvent.Button
+  public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint, button: Gestures.MouseEvent.Button)
+  public struct Button : Swift.RawRepresentable, Swift.Sendable {
+    public let rawValue: Swift.Int
+    public init(rawValue: Swift.Int)
+    public static let primary: Gestures.MouseEvent.Button
+    public static let secondary: Gestures.MouseEvent.Button
+    public static let tertiary: Gestures.MouseEvent.Button
+    public typealias RawValue = Swift.Int
+  }
+  public typealias ID = Gestures.EventID
+}
+public struct EventID : Swift.Hashable, Swift.CustomStringConvertible, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: Gestures.EventID, b: Gestures.EventID) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol SpatialEvent : Gestures.Event, Gestures.LocationContaining {
+}
+extension Swift.Never : Gestures.SpatialEvent {
+}
 extension Gestures.GestureOutput : Swift.CustomStringConvertible {}
 extension Gestures.GestureOutput : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureOutputMetadata : Swift.CustomStringConvertible {}
@@ -393,3 +493,9 @@ extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
 extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}
 extension Gestures.Timestamp : Swift.BitwiseCopyable {}
+extension Gestures.ConcreteScrollEvent : Swift.CustomStringConvertible {}
+extension Gestures.ConcreteScrollEvent : Swift.CustomDebugStringConvertible {}
+extension Gestures.TouchEvent : Swift.CustomStringConvertible {}
+extension Gestures.TouchEvent : Swift.CustomDebugStringConvertible {}
+extension Gestures.MouseEvent : Swift.CustomStringConvertible {}
+extension Gestures.MouseEvent : Swift.CustomDebugStringConvertible {}
