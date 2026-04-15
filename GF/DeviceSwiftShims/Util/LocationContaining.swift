@@ -7,18 +7,31 @@
 
 import CoreGraphics
 
-package protocol LocationContaining {
+// MARK: - LocationContaining
+
+public protocol LocationContaining {
     var location: CGPoint { get }
 }
 
+// MARK: - CGPoint + LocationContaining
+
 extension CGPoint: LocationContaining {
-    package var location: CGPoint {
+    public var location: CGPoint {
         self
     }
 }
 
+// MARK: - Never + LocationContaining
+
 extension Never: LocationContaining {
-    package var location: CGPoint {
+    public var location: CGPoint {
         _gesturesUnreachableCode()
     }
+}
+
+// MARK: - IdentifiableLocation [WIP]
+
+package struct IdentifiableLocation<ID> where ID: Hashable {
+    package var id: ID
+    package var location: CGPoint
 }
