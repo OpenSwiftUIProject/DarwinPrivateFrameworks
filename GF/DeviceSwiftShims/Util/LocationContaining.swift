@@ -29,9 +29,26 @@ extension Never: LocationContaining {
     }
 }
 
-// MARK: - IdentifiableLocation [WIP]
+// MARK: - IdentifiableLocation
 
-package struct IdentifiableLocation<ID> where ID: Hashable {
+package struct IdentifiableLocation<ID>: Identifiable where ID: Hashable {
     package var id: ID
     package var location: CGPoint
+}
+
+extension IdentifiableLocation: LocationContaining {}
+
+extension IdentifiableLocation: NestedCustomStringConvertible {}
+
+extension IdentifiableLocation: VectorContaining {
+    package typealias VectorType = CGPoint
+
+    package var vector: CGPoint {
+        get { location }
+        set { location = newValue }
+    }
+}
+
+extension IdentifiableLocation: ThresholdAdjustable {
+    package typealias Threshold = Double
 }
