@@ -78,6 +78,33 @@ generate_framework() {
     cd ${path}/Modules/${framework_name}.swiftmodule
 }
 
+generate_macos_framework() {
+    local framework_name=$1
+    local arch_name=$2
+
+    local path="${FRAMEWORK_ROOT}/${framework_name}.xcframework/${arch_name}/${framework_name}.framework"
+    rm -rf ${path}
+    mkdir -p ${path}/Versions/A/Resources
+
+    cd ${path}/Versions
+    ln -sfn A Current
+
+    cp ${FRAMEWORK_ROOT}/tbds/${arch_name}/${framework_name}.tbd ${path}/Versions/A/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/Versions/A/
+    cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/Versions/A/
+    cp ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/Versions/A/Resources/
+
+    update_version_in_header "${path}/Versions/A/Headers/AGVersion.h" "${VERSION}"
+
+    cd ${path}
+    ln -sf Versions/Current/Headers Headers
+    ln -sf Versions/Current/Modules Modules
+    ln -sf Versions/Current/Resources Resources
+    ln -sf Versions/Current/${framework_name}.tbd ${framework_name}.tbd
+
+    cd ${path}/Versions/A/Modules/${framework_name}.swiftmodule
+}
+
 generate_xcframework() {
     local framework_name=$1
 
@@ -98,7 +125,7 @@ generate_framework $framework_name ios-arm64-arm64e
 cd ../
 rm -r ./$framework_name.swiftmodule
 
-generate_framework $framework_name macos-arm64e-arm64-x86_64
+generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
