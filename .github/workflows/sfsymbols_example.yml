@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'SF/**'
+      - 'SFSymbols/**'
       - 'Example/SFSymbolsExample/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
@@ -16,7 +16,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'SF/**'
+      - 'SFSymbols/**'
       - 'Example/SFSymbolsExample/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
