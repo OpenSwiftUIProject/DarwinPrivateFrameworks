@@ -31,7 +31,7 @@ case "$PLATFORM_NAME" in
     "MacOSX")
         echo "Setting up MacOSX SFSymbols framework..."
 
-        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SF/2024/SFSymbols.xcframework/macos-arm64e-arm64-x86_64/SFSymbols.framework"
+        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SFSymbols/2024/SFSymbols.xcframework/macos-arm64e-arm64-x86_64/SFSymbols.framework"
 
         if [ -d "$REPOSITORY_FRAMEWORK_PATH/Headers" ]; then
             cp -R "$REPOSITORY_FRAMEWORK_PATH/Headers" "$SDK_FRAMEWORK_PATH/"
@@ -57,7 +57,7 @@ case "$PLATFORM_NAME" in
     "iPhoneSimulator")
         echo "Setting up iPhoneSimulator SFSymbols framework..."
 
-        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SF/2024/SFSymbols.xcframework/ios-arm64-x86_64-simulator/SFSymbols.framework"
+        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SFSymbols/2024/SFSymbols.xcframework/ios-arm64-x86_64-simulator/SFSymbols.framework"
 
         if [ -d "$REPOSITORY_FRAMEWORK_PATH/Headers" ]; then
             cp -R "$REPOSITORY_FRAMEWORK_PATH/Headers" "$SDK_FRAMEWORK_PATH/"
@@ -83,7 +83,7 @@ case "$PLATFORM_NAME" in
     "iPhoneOS")
         echo "Setting up iPhoneOS SFSymbols framework..."
 
-        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SF/2024/SFSymbols.xcframework/ios-arm64-arm64e/SFSymbols.framework"
+        REPOSITORY_FRAMEWORK_PATH="$REPO_ROOT/SFSymbols/2024/SFSymbols.xcframework/ios-arm64-arm64e/SFSymbols.framework"
 
         if [ -d "$REPOSITORY_FRAMEWORK_PATH/Headers" ]; then
             cp -R "$REPOSITORY_FRAMEWORK_PATH/Headers" "$SDK_FRAMEWORK_PATH/"

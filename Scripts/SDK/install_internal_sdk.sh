@@ -279,7 +279,7 @@ echo "Installing RenderBox framework..."
 "$REPO_ROOT/Scripts/SDK/install_rb.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 echo "Installing SFSymbols framework..."
-"$REPO_ROOT/Scripts/SDK/install_sf.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
+"$REPO_ROOT/Scripts/SDK/install_sfsymbols.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"
 
 echo "Installing Gestures framework..."
 "$REPO_ROOT/Scripts/SDK/install_gf.sh" "$INTERNAL_SDK_PATH" "$PLATFORM"

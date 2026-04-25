@@ -35,8 +35,10 @@ This generates `Example.xcworkspace` — open it in Xcode to build and run the e
 | AGExample_2024 | AttributeGraph (2024) | iOS, macOS, visionOS |
 | RBExample_2024 | RenderBox | iOS, macOS, visionOS |
 | CoreUIExample_2024 | CoreUI | iOS, macOS, visionOS |
+| CoreSVGExample_2024 | CoreSVG | iOS, macOS |
 | BLSExample_2024 | BacklightServices | iOS, visionOS |
 | SFSymbolsExample_2024 | SFSymbols | iOS, macOS |
+| GFExample_2025 | Gestures | iOS, macOS |
 
 ## Regenerating
 

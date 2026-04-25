@@ -13,6 +13,10 @@ let defaultInfoPlist: [String: Plist.Value] = [
     "UILaunchScreen": [:],
 ]
 
+let sharedResources: ResourceFileElements = [
+    "Resources/Assets.xcassets",
+]
+
 // MARK: - Project
 
 let project = Project(
@@ -31,7 +35,7 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["AGExample/**"],
-            resources: ["AGExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "AttributeGraph"),
             ],
@@ -52,7 +56,7 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["RBExample/**"],
-            resources: ["RBExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "RenderBox"),
             ],
@@ -71,9 +75,27 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["CoreUIExample/**"],
-            resources: ["CoreUIExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "CoreUI"),
+            ],
+            settings: .settings(base: baseSettings)
+        ),
+        // MARK: CoreSVGExample
+        .target(
+            name: "CoreSVGExample",
+            destinations: [.iPhone, .iPad, .mac],
+            product: .app,
+            bundleId: "\(bundleIdPrefix).CoreSVGExample",
+            deploymentTargets: .multiplatform(
+                iOS: "18.0",
+                macOS: "15.0"
+            ),
+            infoPlist: .extendingDefault(with: defaultInfoPlist),
+            sources: ["CoreSVGExample/**"],
+            resources: sharedResources,
+            dependencies: [
+                .external(name: "CoreSVG"),
             ],
             settings: .settings(base: baseSettings)
         ),
@@ -89,7 +111,7 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["BLSExample/**"],
-            resources: ["BLSExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "BacklightServices"),
             ],
@@ -107,7 +129,7 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["GFExample/**"],
-            resources: ["GFExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "Gestures"),
             ],
@@ -125,7 +147,7 @@ let project = Project(
             ),
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["SFSymbolsExample/**"],
-            resources: ["SFSymbolsExample/Assets.xcassets"],
+            resources: sharedResources,
             dependencies: [
                 .external(name: "SFSymbols"),
             ],

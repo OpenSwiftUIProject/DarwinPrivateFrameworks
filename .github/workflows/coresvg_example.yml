@@ -1,11 +1,11 @@
-name: RBExample
+name: CoreSVGExample
 
 on:
   push:
     branches: [main]
     paths:
-      - 'RB/**'
-      - 'Example/RBExample/**'
+      - 'CoreSVG/**'
+      - 'Example/CoreSVGExample/**'
       - 'Example/Resources/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
@@ -13,12 +13,12 @@ on:
       - 'Example/.mise.toml'
       - 'Package.swift'
       - '.github/actions/build-example/**'
-      - '.github/workflows/rb_example.yml'
+      - '.github/workflows/coresvg_example.yml'
   pull_request:
     branches: [main]
     paths:
-      - 'RB/**'
-      - 'Example/RBExample/**'
+      - 'CoreSVG/**'
+      - 'Example/CoreSVGExample/**'
       - 'Example/Resources/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
@@ -26,11 +26,11 @@ on:
       - 'Example/.mise.toml'
       - 'Package.swift'
       - '.github/actions/build-example/**'
-      - '.github/workflows/rb_example.yml'
+      - '.github/workflows/coresvg_example.yml'
 
 jobs:
   build:
-    name: Build RBExample (${{ matrix.platform }})
+    name: Build CoreSVGExample (${{ matrix.platform }})
     strategy:
       fail-fast: false
       matrix:
@@ -46,6 +46,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/build-example
         with:
-          scheme: RBExample
+          scheme: CoreSVGExample
           destination: ${{ matrix.destination }}
           xcode-version: "16.4"

@@ -176,7 +176,7 @@ let package = Package(
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
-        .binaryTarget(name: "SFSymbols", path: "SF/2024/SFSymbols.xcframework"),
+        .binaryTarget(name: "SFSymbols", path: "SFSymbols/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
         .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
         .target(

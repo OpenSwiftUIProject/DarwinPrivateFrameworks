@@ -33,7 +33,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `Examples/`: Contains example projects demonstrating usage of the private frameworks.
 - `GF/`: Contains the `Gestures` framework.
 - `RB/`: Contains the `RenderBox` framework.
-- `SF/`: Contains the `SFSymbols` framework.
+- `SFSymbols/`: Contains the `SFSymbols` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
 
 ## Update

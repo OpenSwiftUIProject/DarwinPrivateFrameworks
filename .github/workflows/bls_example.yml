@@ -6,6 +6,7 @@ on:
     paths:
       - 'BLS/**'
       - 'Example/BLSExample/**'
+      - 'Example/Resources/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
       - 'Example/Tuist/**'
@@ -18,6 +19,7 @@ on:
     paths:
       - 'BLS/**'
       - 'Example/BLSExample/**'
+      - 'Example/Resources/**'
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
       - 'Example/Tuist/**'
