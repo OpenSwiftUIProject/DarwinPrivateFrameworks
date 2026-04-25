@@ -1,0 +1,49 @@
+name: CoreSVGExample
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'CoreSVG/**'
+      - 'Example/CoreSVGExample/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/.mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/coresvg_example.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'CoreSVG/**'
+      - 'Example/CoreSVGExample/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/.mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/coresvg_example.yml'
+
+jobs:
+  build:
+    name: Build CoreSVGExample (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: iOS
+            destination: "generic/platform=iOS"
+          - platform: iOS Simulator
+            destination: "generic/platform=iOS Simulator"
+          - platform: macOS
+            destination: "platform=macOS"
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-example
+        with:
+          scheme: CoreSVGExample
+          destination: ${{ matrix.destination }}
+          xcode-version: "16.4"

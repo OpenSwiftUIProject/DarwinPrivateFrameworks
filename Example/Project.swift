@@ -77,6 +77,24 @@ let project = Project(
             ],
             settings: .settings(base: baseSettings)
         ),
+        // MARK: CoreSVGExample
+        .target(
+            name: "CoreSVGExample",
+            destinations: [.iPhone, .iPad, .mac],
+            product: .app,
+            bundleId: "\(bundleIdPrefix).CoreSVGExample",
+            deploymentTargets: .multiplatform(
+                iOS: "18.0",
+                macOS: "15.0"
+            ),
+            infoPlist: .extendingDefault(with: defaultInfoPlist),
+            sources: ["CoreSVGExample/**"],
+            resources: ["CoreSVGExample/Assets.xcassets"],
+            dependencies: [
+                .external(name: "CoreSVG"),
+            ],
+            settings: .settings(base: baseSettings)
+        ),
         // MARK: BLSExample
         .target(
             name: "BLSExample",
