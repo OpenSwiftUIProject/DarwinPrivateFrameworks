@@ -124,7 +124,7 @@ let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM", default: 
 let buildForDarwinPlatform = envBoolValue("BUILD_FOR_DARWIN_PLATFORM")
 #endif
 
-let releaseVersion = envIntValue("TARGET_RELEASE", default: 2025)
+let releaseVersion = envIntValue("TARGET_RELEASE", default: 2024)
 let libraryEvolutionCondition = envBoolValue("LIBRARY_EVOLUTION", default: buildForDarwinPlatform)
 
 
