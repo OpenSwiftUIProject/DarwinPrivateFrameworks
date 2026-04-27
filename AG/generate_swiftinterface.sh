@@ -17,6 +17,18 @@ VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="${SCRIPT_DIR}/${VERSION}"
 SHIMS_DIR="${SCRIPT_DIR}/DeviceSwiftShims"
 TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template.swiftinterface"
+SWIFTPM_SCRATCH_PATH=$(mktemp -d)
+TMPDIR_WORK=""
+
+cleanup() {
+    if [ -n "${SWIFTPM_SCRATCH_PATH}" ]; then
+        rm -rf "${SWIFTPM_SCRATCH_PATH}"
+    fi
+    if [ -n "${TMPDIR_WORK}" ]; then
+        rm -rf "${TMPDIR_WORK}"
+    fi
+}
+trap cleanup EXIT
 
 # Verify Swift compiler version matches the expected version for this framework
 EXPECTED_SWIFT_VERSION="6.1" # 2024 -> 6.1, 2025 -> 6.2
@@ -28,18 +40,19 @@ if [ "${SWIFT_VERSION}" != "${EXPECTED_SWIFT_VERSION}" ]; then
 fi
 
 # Build package dependencies via SPM
-swift build --package-path "${PACKAGE_DIR}" --target _AttributeGraphDeviceSwiftShims 2>/dev/null
+# The command plugin already holds the package build lock. Use a separate
+# scratch path for this nested build so update-xcframeworks does not deadlock.
+swift build --package-path "${PACKAGE_DIR}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --target _AttributeGraphDeviceSwiftShims 2>/dev/null
 if [ $? -ne 0 ]; then
     echo "Error: failed to build package dependencies"
     exit 1
 fi
 
 # Locate the SPM modules directory for import search paths
-BUILD_BIN_PATH=$(swift build --package-path "${PACKAGE_DIR}" --show-bin-path 2>/dev/null)
+BUILD_BIN_PATH=$(swift build --package-path "${PACKAGE_DIR}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --show-bin-path 2>/dev/null)
 MODULES_DIR="${BUILD_BIN_PATH}/Modules"
 
 TMPDIR_WORK=$(mktemp -d)
-trap "rm -rf ${TMPDIR_WORK}" EXIT
 
 GENERATED="${TMPDIR_WORK}/generated.swiftinterface"
 
