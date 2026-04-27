@@ -9,6 +9,7 @@ filepath() {
 
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2025}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
+TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/Gestures.swiftmodule/template.swiftinterface"
 
 IOS_VERSION="26.0"
 MACOS_VERSION="26.0"
@@ -30,7 +31,7 @@ generate_swiftinterface() {
   local name="$1".swiftinterface
   local target="$2"
   generate_swiftinterface_header $target > $name
-  cat template.swiftinterface >> $name
+  cat "${TEMPLATE_PATH}" >> $name
 }
 
 generate_framework() {
@@ -73,7 +74,7 @@ generate_framework $framework_name ios-arm64-x86_64-simulator
 cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-x86_64-simulator/${framework_name}.framework/Modules/${framework_name}.swiftmodule
 generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
 generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
-rm template.swiftinterface
+rm -f template.swiftinterface
 
 generate_macos_framework() {
     local framework_name=$1
@@ -103,4 +104,4 @@ cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/macos-arm64e-arm64-x86_64/${f
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
-rm template.swiftinterface
+rm -f template.swiftinterface

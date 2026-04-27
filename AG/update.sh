@@ -9,6 +9,7 @@ filepath() {
 
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
+TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template.swiftinterface"
 
 # Version mapping logic
 if [ "$VERSION" = "2021" ]; then
@@ -42,7 +43,7 @@ generate_swiftinterface() {
   local name="$1".swiftinterface
   local target="$2"
   generate_swiftinterface_header $target > $name
-  cat template.swiftinterface >> $name
+  cat "${TEMPLATE_PATH}" >> $name
 }
 
 update_version_in_header() {
@@ -118,7 +119,7 @@ generate_xcframework $framework_name
 generate_framework $framework_name ios-arm64-x86_64-simulator
 generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
 generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
-rm template.swiftinterface
+rm -f template.swiftinterface
 
 generate_framework $framework_name ios-arm64-arm64e
 # iPhoneOS platform does not support links Swift API of AttributeGraph
@@ -129,12 +130,12 @@ generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
-rm template.swiftinterface
+rm -f template.swiftinterface
 
 # Add visionOS support if available
 if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
     generate_framework $framework_name xros-arm64-x86_64-simulator
     generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
     generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
-    rm template.swiftinterface
+    rm -f template.swiftinterface
 fi

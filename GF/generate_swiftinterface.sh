@@ -82,6 +82,7 @@ if [ ! -f "${GENERATED}" ]; then
 fi
 
 # Strip the compiler header comments (update.sh generates per-platform headers)
+mkdir -p "$(dirname "${TEMPLATE_PATH}")"
 sed -e '/^\/\/ swift-/d' \
     "${GENERATED}" > "${TEMPLATE_PATH}"
 
