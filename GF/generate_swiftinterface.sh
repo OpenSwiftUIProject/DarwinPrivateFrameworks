@@ -53,14 +53,22 @@ fi
 # scratch path for this nested build so update-xcframeworks does not deadlock.
 SWIFTPM_BUILD_LOG=$(mktemp)
 mkdir -p "${SWIFTPM_CACHE_PATH}"
-if ! swift build --disable-sandbox --package-path "${PACKAGE_DIR}" --cache-path "${SWIFTPM_CACHE_PATH}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --target _GesturesDeviceSwiftShims 2>"${SWIFTPM_BUILD_LOG}"; then
+SWIFTPM_BUILD_FLAGS=(
+    --disable-sandbox
+    --package-path "${PACKAGE_DIR}"
+    --cache-path "${SWIFTPM_CACHE_PATH}"
+    --scratch-path "${SWIFTPM_SCRATCH_PATH}"
+    --skip-update
+    --disable-automatic-resolution
+)
+if ! swift build "${SWIFTPM_BUILD_FLAGS[@]}" --target _GesturesDeviceSwiftShims 2>"${SWIFTPM_BUILD_LOG}"; then
     cat "${SWIFTPM_BUILD_LOG}" >&2
     echo "Error: failed to build package dependencies"
     exit 1
 fi
 
 # Locate the SPM modules directory for import search paths
-if ! BUILD_BIN_PATH=$(swift build --disable-sandbox --package-path "${PACKAGE_DIR}" --cache-path "${SWIFTPM_CACHE_PATH}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --show-bin-path 2>"${SWIFTPM_BUILD_LOG}"); then
+if ! BUILD_BIN_PATH=$(swift build "${SWIFTPM_BUILD_FLAGS[@]}" --show-bin-path 2>"${SWIFTPM_BUILD_LOG}"); then
     cat "${SWIFTPM_BUILD_LOG}" >&2
     echo "Error: failed to locate package build directory"
     exit 1
