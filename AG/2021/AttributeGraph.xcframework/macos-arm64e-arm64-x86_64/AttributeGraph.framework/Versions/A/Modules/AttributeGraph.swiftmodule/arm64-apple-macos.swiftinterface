@@ -170,7 +170,7 @@ extension AttributeGraph.Attribute {
 @_silgen_name("AGGraphSetValue")
 @inline(__always) @inlinable internal func AGGraphSetValue<Value>(_ attribute: AttributeGraph.AnyAttribute, valuePointer: Swift.UnsafePointer<Value>) -> Swift.Bool
 public protocol AttributeBodyVisitor {
-  func visit<Body>(body: Swift.UnsafePointer<Body>) where Body : AttributeGraph._AttributeBody
+  mutating func visit<Body>(body: Swift.UnsafePointer<Body>) where Body : AttributeGraph._AttributeBody
 }
 public protocol ObservedAttribute : AttributeGraph._AttributeBody {
   mutating func destroy()
