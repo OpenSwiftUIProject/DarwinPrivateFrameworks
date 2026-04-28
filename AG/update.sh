@@ -8,8 +8,9 @@ filepath() {
 }
 
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
-FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
-TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template.swiftinterface"
+SCRIPT_DIR="$(dirname "$(filepath "$0")")"
+FRAMEWORK_ROOT="${SCRIPT_DIR}/${VERSION}"
+TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template-${VERSION}.swiftinterface"
 
 # Version mapping logic
 if [ "$VERSION" = "2021" ]; then
@@ -54,9 +55,6 @@ update_version_in_header() {
     sed -i '' "s/#define ATTRIBUTEGRAPH_RELEASE [0-9]\{4\}/#define ATTRIBUTEGRAPH_RELEASE ${version}/g" "$file"
 }
 
-# Regenerate template.swiftinterface from DeviceSwiftShims sources
-DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "$(dirname "$(filepath "$0")")/generate_swiftinterface.sh"
-
 generate_framework() {
     local framework_name=$1
     local arch_name=$2
@@ -76,6 +74,7 @@ generate_framework() {
 
     update_version_in_header "${path}/Headers/AGVersion.h" "${VERSION}"
 
+    mkdir -p ${path}/Modules/${framework_name}.swiftmodule
     cd ${path}/Modules/${framework_name}.swiftmodule
 }
 
@@ -103,6 +102,7 @@ generate_macos_framework() {
     ln -sf Versions/Current/Resources Resources
     ln -sf Versions/Current/${framework_name}.tbd ${framework_name}.tbd
 
+    mkdir -p ${path}/Versions/A/Modules/${framework_name}.swiftmodule
     cd ${path}/Versions/A/Modules/${framework_name}.swiftmodule
 }
 
@@ -116,26 +116,46 @@ generate_xcframework() {
 
 generate_xcframework $framework_name
 
+# Regenerate template.swiftinterface from DeviceSwiftShims sources. This needs a
+# bootstrap xcframework because the shims import the binary AttributeGraph target.
 generate_framework $framework_name ios-arm64-x86_64-simulator
-generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
-generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
-rm -f template.swiftinterface
 
 generate_framework $framework_name ios-arm64-arm64e
 # iPhoneOS platform does not support links Swift API of AttributeGraph
 cd ../
-rm -r ./$framework_name.swiftmodule
+rm -rf ./$framework_name.swiftmodule
+
+generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
+
+if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
+    generate_framework $framework_name xros-arm64-x86_64-simulator
+fi
+
+if ! DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "${SCRIPT_DIR}/generate_swiftinterface.sh"; then
+    echo "Error: failed to regenerate AttributeGraph Swift interface for release ${VERSION}"
+    exit 1
+fi
+
+generate_framework $framework_name ios-arm64-x86_64-simulator
+generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
+generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
+rm -f template*.swiftinterface
+
+generate_framework $framework_name ios-arm64-arm64e
+# iPhoneOS platform does not support links Swift API of AttributeGraph
+cd ../
+rm -rf ./$framework_name.swiftmodule
 
 generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
-rm -f template.swiftinterface
+rm -f template*.swiftinterface
 
 # Add visionOS support if available
 if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
     generate_framework $framework_name xros-arm64-x86_64-simulator
     generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
     generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
-    rm -f template.swiftinterface
+    rm -f template*.swiftinterface
 fi

@@ -561,9 +561,6 @@ extension AttributeGraph.Metadata : Swift.Hashable, Swift.CustomStringConvertibl
   }
   public func forEachField(options: AttributeGraph.Metadata.ApplyOptions, do body: (Swift.UnsafePointer<Swift.Int8>, Swift.Int, any Any.Type) -> Swift.Bool) -> Swift.Bool
 }
-extension AttributeGraph.Signature : Swift.Equatable {
-  public static func == (lhs: AttributeGraph.Signature, rhs: AttributeGraph.Signature) -> Swift.Bool
-}
 extension AttributeGraph.TupleType {
   @_transparent public init(_ types: [any Any.Type]) {
         self.init(count: types.count, elements: types.map(Metadata.init))

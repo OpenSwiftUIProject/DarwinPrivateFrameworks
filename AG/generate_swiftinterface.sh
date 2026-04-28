@@ -16,13 +16,22 @@ PACKAGE_DIR="$(dirname "${SCRIPT_DIR}")"
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2024}
 FRAMEWORK_ROOT="${SCRIPT_DIR}/${VERSION}"
 SHIMS_DIR="${SCRIPT_DIR}/DeviceSwiftShims"
-TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template.swiftinterface"
+TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/AttributeGraph.swiftmodule/template-${VERSION}.swiftinterface"
 SWIFTPM_SCRATCH_PATH=$(mktemp -d)
+SWIFTPM_CACHE_PATH="${PACKAGE_DIR}/.build"
+SWIFTPM_BUILD_LOG=""
+SWIFTC_LOG=""
 TMPDIR_WORK=""
 
 cleanup() {
     if [ -n "${SWIFTPM_SCRATCH_PATH}" ]; then
         rm -rf "${SWIFTPM_SCRATCH_PATH}"
+    fi
+    if [ -n "${SWIFTPM_BUILD_LOG}" ]; then
+        rm -f "${SWIFTPM_BUILD_LOG}"
+    fi
+    if [ -n "${SWIFTC_LOG}" ]; then
+        rm -f "${SWIFTC_LOG}"
     fi
     if [ -n "${TMPDIR_WORK}" ]; then
         rm -rf "${TMPDIR_WORK}"
@@ -42,17 +51,25 @@ fi
 # Build package dependencies via SPM
 # The command plugin already holds the package build lock. Use a separate
 # scratch path for this nested build so update-xcframeworks does not deadlock.
-swift build --package-path "${PACKAGE_DIR}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --target _AttributeGraphDeviceSwiftShims 2>/dev/null
-if [ $? -ne 0 ]; then
+SWIFTPM_BUILD_LOG=$(mktemp)
+mkdir -p "${SWIFTPM_CACHE_PATH}"
+if ! swift build --disable-sandbox --package-path "${PACKAGE_DIR}" --cache-path "${SWIFTPM_CACHE_PATH}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --target _AttributeGraphDeviceSwiftShims 2>"${SWIFTPM_BUILD_LOG}"; then
+    cat "${SWIFTPM_BUILD_LOG}" >&2
     echo "Error: failed to build package dependencies"
     exit 1
 fi
 
 # Locate the SPM modules directory for import search paths
-BUILD_BIN_PATH=$(swift build --package-path "${PACKAGE_DIR}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --show-bin-path 2>/dev/null)
+if ! BUILD_BIN_PATH=$(swift build --disable-sandbox --package-path "${PACKAGE_DIR}" --cache-path "${SWIFTPM_CACHE_PATH}" --scratch-path "${SWIFTPM_SCRATCH_PATH}" --show-bin-path 2>"${SWIFTPM_BUILD_LOG}"); then
+    cat "${SWIFTPM_BUILD_LOG}" >&2
+    echo "Error: failed to locate package build directory"
+    exit 1
+fi
 MODULES_DIR="${BUILD_BIN_PATH}/Modules"
 
 TMPDIR_WORK=$(mktemp -d)
+CLANG_MODULE_CACHE="${TMPDIR_WORK}/ModuleCache"
+mkdir -p "${CLANG_MODULE_CACHE}"
 
 GENERATED="${TMPDIR_WORK}/generated.swiftinterface"
 
@@ -60,6 +77,7 @@ GENERATED="${TMPDIR_WORK}/generated.swiftinterface"
 MACOS_SDK_VERSION=$(xcrun --sdk macosx --show-sdk-version)
 
 # Compile DeviceSwiftShims against the macOS xcframework to emit a swiftinterface
+SWIFTC_LOG=$(mktemp)
 xcrun --sdk macosx swiftc \
     -emit-module-interface-path "${GENERATED}" \
     -emit-module-path "${TMPDIR_WORK}/module.swiftmodule" \
@@ -67,15 +85,18 @@ xcrun --sdk macosx swiftc \
     -enable-library-evolution \
     -swift-version 5 \
     -Osize \
+    -D "ATTRIBUTEGRAPH_RELEASE_${VERSION}" \
     -enable-upcoming-feature InternalImportsByDefault \
     -enable-experimental-feature Extern \
     -target "arm64-apple-macos${MACOS_SDK_VERSION}" \
+    -module-cache-path "${CLANG_MODULE_CACHE}" \
     -F "${FRAMEWORK_ROOT}/AttributeGraph.xcframework/macos-arm64e-arm64-x86_64/" \
     -I "${MODULES_DIR}" \
     $(find "${SHIMS_DIR}" -name '*.swift') \
-    2>/dev/null
+    2>"${SWIFTC_LOG}"
 
 if [ ! -f "${GENERATED}" ]; then
+    cat "${SWIFTC_LOG}" >&2
     echo "Error: failed to generate swiftinterface"
     exit 1
 fi
