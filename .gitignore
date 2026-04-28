@@ -3,6 +3,9 @@
 _Headers
 .DS_Store
 
+AG/*/Sources/Modules/AttributeGraph.swiftmodule/template*.swiftinterface
+GF/*/Sources/Modules/Gestures.swiftmodule/template*.swiftinterface
+
 # Tuist generated (from Example/)
 DarwinPrivateFrameworks.xcodeproj
 Derived/

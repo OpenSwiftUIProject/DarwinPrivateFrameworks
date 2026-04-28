@@ -8,7 +8,9 @@ filepath() {
 }
 
 VERSION=${DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:-2025}
-FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
+SCRIPT_DIR="$(dirname "$(filepath "$0")")"
+FRAMEWORK_ROOT="${SCRIPT_DIR}/${VERSION}"
+TEMPLATE_PATH="${FRAMEWORK_ROOT}/Sources/Modules/Gestures.swiftmodule/template-${VERSION}.swiftinterface"
 
 IOS_VERSION="26.0"
 MACOS_VERSION="26.0"
@@ -30,7 +32,7 @@ generate_swiftinterface() {
   local name="$1".swiftinterface
   local target="$2"
   generate_swiftinterface_header $target > $name
-  cat template.swiftinterface >> $name
+  cat "${TEMPLATE_PATH}" >> $name
 }
 
 generate_framework() {
@@ -49,6 +51,8 @@ generate_framework() {
     cp -rf ${FRAMEWORK_ROOT}/Sources/Headers ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Modules ${path}/
     cp -rf ${FRAMEWORK_ROOT}/Sources/Info.plist ${path}/
+
+    mkdir -p ${path}/Modules/${framework_name}.swiftmodule
 }
 
 generate_xcframework() {
@@ -58,22 +62,6 @@ generate_xcframework() {
     mkdir -p ${path}
     cp ${FRAMEWORK_ROOT}/Info.plist ${path}/
 }
-
-# Regenerate template.swiftinterface from DeviceSwiftShims sources
-DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "$(dirname "$(filepath "$0")")/generate_swiftinterface.sh"
-
-generate_xcframework $framework_name
-
-generate_framework $framework_name ios-arm64-arm64e
-# iPhoneOS platform does not support linking Swift API of Gestures
-cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-arm64e/${framework_name}.framework/Modules
-rm -r ./$framework_name.swiftmodule
-
-generate_framework $framework_name ios-arm64-x86_64-simulator
-cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-x86_64-simulator/${framework_name}.framework/Modules/${framework_name}.swiftmodule
-generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
-generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
-rm template.swiftinterface
 
 generate_macos_framework() {
     local framework_name=$1
@@ -96,11 +84,40 @@ generate_macos_framework() {
     ln -sf Versions/Current/Modules Modules
     ln -sf Versions/Current/Resources Resources
     ln -sf Versions/Current/${framework_name}.tbd ${framework_name}.tbd
+
+    mkdir -p ${path}/Versions/A/Modules/${framework_name}.swiftmodule
 }
+
+generate_xcframework $framework_name
+
+# Regenerate template.swiftinterface from DeviceSwiftShims sources. This needs a
+# bootstrap xcframework because the shims import the binary Gestures target.
+generate_framework $framework_name ios-arm64-arm64e
+cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-arm64e/${framework_name}.framework/Modules
+rm -rf ./$framework_name.swiftmodule
+
+generate_framework $framework_name ios-arm64-x86_64-simulator
+generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
+
+if ! DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "${SCRIPT_DIR}/generate_swiftinterface.sh"; then
+    echo "Error: failed to regenerate Gestures Swift interface for release ${VERSION}"
+    exit 1
+fi
+
+generate_framework $framework_name ios-arm64-arm64e
+# iPhoneOS platform does not support linking Swift API of Gestures
+cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-arm64e/${framework_name}.framework/Modules
+rm -rf ./$framework_name.swiftmodule
+
+generate_framework $framework_name ios-arm64-x86_64-simulator
+cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/ios-arm64-x86_64-simulator/${framework_name}.framework/Modules/${framework_name}.swiftmodule
+generate_swiftinterface x86_64-apple-ios-simulator x86_64-apple-ios${IOS_VERSION}-simulator
+generate_swiftinterface arm64-apple-ios-simulator arm64-apple-ios${IOS_VERSION}-simulator
+rm -f template*.swiftinterface
 
 generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 cd ${FRAMEWORK_ROOT}/${framework_name}.xcframework/macos-arm64e-arm64-x86_64/${framework_name}.framework/Modules/${framework_name}.swiftmodule
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
-rm template.swiftinterface
+rm -f template*.swiftinterface

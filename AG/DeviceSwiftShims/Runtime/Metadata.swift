@@ -59,6 +59,7 @@ extension Metadata: Swift.Hashable, Swift.CustomStringConvertible {
     }
 }
 
+#if ATTRIBUTEGRAPH_RELEASE_2024
 extension Signature: Swift.Equatable {
     public static func == (_ lhs: Signature, _ rhs: Signature) -> Bool {
         return lhs.bytes.0 == rhs.bytes.0 && lhs.bytes.1 == rhs.bytes.1
@@ -73,3 +74,4 @@ extension Signature: Swift.Equatable {
             && lhs.bytes.18 == rhs.bytes.18 && lhs.bytes.19 == rhs.bytes.19
     }
 }
+#endif
