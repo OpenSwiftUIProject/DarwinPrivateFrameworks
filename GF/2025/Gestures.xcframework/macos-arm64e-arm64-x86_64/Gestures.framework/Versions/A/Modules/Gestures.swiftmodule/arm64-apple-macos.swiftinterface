@@ -318,6 +318,90 @@ extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
     get
   }
 }
+public protocol GestureNodeDelegate<Value> : AnyObject, Swift.Sendable {
+  associatedtype Value : Swift.Sendable
+  func gestureNodeShouldActivate(_ node: Gestures.GestureNode<Self.Value>) -> Swift.Bool
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didEnqueuePhase phase: Gestures.GesturePhase<Self.Value>)
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didUpdatePhase newPhase: Gestures.GesturePhase<Self.Value>, oldPhase: Gestures.GesturePhase<Self.Value>)
+  #if compiler(>=5.3) && $NonescapableTypes
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, roleForRelationType type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, relatedNode: Gestures.AnyGestureNode) -> Gestures.GestureRelationRole?
+  #endif
+}
+public protocol GestureNodeContainer : AnyObject, Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func index(of node: Gestures.AnyGestureNode) -> Swift.Int?
+  #endif
+  func isDescendant(of container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
+  func isDeeper(than container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers open class AnyGestureNode : Swift.Identifiable, @unchecked Swift.Sendable {
+  final public let id: Gestures.GestureNodeID
+  public var tag: Gestures.GestureTag?
+  public var traits: Gestures.GestureTraitCollection?
+  open var options: Gestures.GestureNodeOptions
+  weak open var container: (any Gestures.GestureNodeContainer)?
+  open var relations: [Gestures.GestureRelation] {
+    get
+  }
+  open func addRelation(_ relation: Gestures.GestureRelation)
+  open func removeRelation(_ relation: Gestures.GestureRelation)
+  open func addRelations(_ relations: [Gestures.GestureRelation])
+  open func removeRelations(_ relations: [Gestures.GestureRelation])
+  public func startTrackingEvents(with eventIDs: [Gestures.EventID])
+  public func stopTrackingEvents(with eventIDs: [Gestures.EventID])
+  open func update<T>(someValue: T, isFinalUpdate: Swift.Bool) throws
+  open func fail(with error: any Swift.Error) throws
+  final public func abort() throws
+  final public var debugLabel: Swift.String {
+    get
+  }
+  public typealias ID = Gestures.GestureNodeID
+  @objc deinit
+}
+extension Gestures.AnyGestureNode : Swift.Hashable {
+  public static func == (lhs: Gestures.AnyGestureNode, rhs: Gestures.AnyGestureNode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  open var hashValue: Swift.Int {
+    get
+  }
+}
+extension Gestures.AnyGestureNode : Swift.Comparable {
+  public static func < (lhs: Gestures.AnyGestureNode, rhs: Gestures.AnyGestureNode) -> Swift.Bool
+}
+@_inheritsConvenienceInitializers public class GestureNode<Value> : Gestures.AnyGestureNode, @unchecked Swift.Sendable where Value : Swift.Sendable {
+  weak public var delegate: (any Gestures.GestureNodeDelegate<Value>)?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(traits: Gestures.GestureTraitCollection?, tag: Gestures.GestureTag?, relations: [Gestures.GestureRelation])
+  #endif
+  convenience public init()
+  override public var options: Gestures.GestureNodeOptions {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  override public var container: (any Gestures.GestureNodeContainer)? {
+    get
+    set
+  }
+  #endif
+  public var phase: Gestures.GesturePhase<Value> {
+    get
+  }
+  public var latestPhase: Gestures.GesturePhase<Value> {
+    get
+  }
+  override public var relations: [Gestures.GestureRelation] {
+    get
+  }
+  override public func addRelation(_ relation: Gestures.GestureRelation)
+  override public func addRelations(_ relations: [Gestures.GestureRelation])
+  override public func removeRelation(_ relation: Gestures.GestureRelation)
+  override public func removeRelations(_ relations: [Gestures.GestureRelation])
+  public func update(value: Value, isFinalUpdate: Swift.Bool) throws
+  override public func update<T>(someValue: T, isFinalUpdate: Swift.Bool) throws
+  override public func fail(with error: any Swift.Error) throws
+  @objc deinit
+}
 public protocol TimeSource {
   var timestamp: Gestures.Timestamp { get }
 }

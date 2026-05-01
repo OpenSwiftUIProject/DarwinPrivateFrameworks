@@ -75,33 +75,44 @@ package struct RelationMap: Sendable {
         self.relations = relations
     }
 
-    package mutating func add(_ definition: RelationDefinition, for matcher: GestureNodeMatcher) {
-        relations[matcher, default: []].insert(definition)
+    @discardableResult
+    package mutating func add(_ definition: RelationDefinition, for matcher: GestureNodeMatcher) -> Bool {
+        var set = relations[matcher] ?? []
+        let (inserted, _) = set.insert(definition)
+        relations[matcher] = set
+        return inserted
     }
 
-    package mutating func remove(_ definition: RelationDefinition, for matcher: GestureNodeMatcher) {
-        relations[matcher]?.remove(definition)
-        if relations[matcher]?.isEmpty == true {
+    @discardableResult
+    package mutating func remove(_ definition: RelationDefinition, for matcher: GestureNodeMatcher) -> Bool {
+        guard var set = relations[matcher] else { return false }
+        let removed = set.remove(definition) != nil
+        if set.isEmpty {
             relations.removeValue(forKey: matcher)
+        } else {
+            relations[matcher] = set
         }
+        return removed
     }
 
-    package mutating func addRelation(_ relation: GestureRelation) {
+    @discardableResult
+    package mutating func addRelation(_ relation: GestureRelation) -> Bool {
         let definition = RelationDefinition(
             type: relation.type,
             direction: relation.direction,
             role: relation.role
         )
-        add(definition, for: relation.target)
+        return add(definition, for: relation.target)
     }
 
-    package mutating func removeRelation(_ relation: GestureRelation) {
+    @discardableResult
+    package mutating func removeRelation(_ relation: GestureRelation) -> Bool {
         let definition = RelationDefinition(
             type: relation.type,
             direction: relation.direction,
             role: relation.role
         )
-        remove(definition, for: relation.target)
+        return remove(definition, for: relation.target)
     }
 
     package func toRelations() -> [GestureRelation] {
