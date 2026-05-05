@@ -19,6 +19,40 @@ public final class UpdateScheduler {
         self.timeScheduler = timeScheduler
         self.scheduledRequests = scheduledRequests
     }
+
+    package func schedule(
+        _ requests: [UpdateRequest],
+        handler: @escaping (Set<UInt32>) -> Void,
+        cancelHandler: (() -> Void)? = nil
+    ) {
+        for request in requests {
+            let token = timeScheduler.schedule(
+                after: request.targetTime - request.creationTime,
+                handler: { handler([request.id]) },
+                cancelHandler: cancelHandler
+            )
+            scheduledRequests[request] = token
+        }
+    }
+
+    package func cancel(_ requests: [UpdateRequest]) {
+        for request in requests {
+            guard let token = scheduledRequests.removeValue(forKey: request) else {
+                continue
+            }
+            timeScheduler.cancel(token: token)
+        }
+    }
+
+    package func cancelAll() {
+        let requests = scheduledRequests.keys
+        for request in requests {
+            guard let token = scheduledRequests.removeValue(forKey: request) else {
+                continue
+            }
+            timeScheduler.cancel(token: token)
+        }
+    }
 }
 
 @_spi(Private)
@@ -46,6 +80,14 @@ package struct UpdateRequest: Hashable, Identifiable, CustomStringConvertible {
         self.creationTime = creationTime
         self.targetTime = targetTime
         self.tag = tag
+    }
+
+    package static func == (lhs: UpdateRequest, rhs: UpdateRequest) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    package func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 
     package var description: String {

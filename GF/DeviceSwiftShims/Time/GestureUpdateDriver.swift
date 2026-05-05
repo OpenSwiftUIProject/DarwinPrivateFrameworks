@@ -5,6 +5,8 @@
 //  Audited for 9126.1.5
 //  Status: Complete
 
+import Foundation
+
 // MARK: - GestureUpdateDriver
 
 /// Protocol for driving gesture update cycles.
@@ -22,9 +24,6 @@ public struct GestureUpdateDriverToken: Hashable, Sendable {
         self.value = value
     }
 }
-
-#if canImport(Darwin)
-import Foundation
 
 // MARK: - RunLoopUpdateDriver
 
@@ -73,5 +72,3 @@ package final class RunLoopUpdateDriver: GestureUpdateDriver, @unchecked Sendabl
         CFRunLoopRemoveObserver(CFRunLoopGetMain(), runLoopObserver, .commonModes)
     }
 }
-
-#endif

@@ -35,6 +35,17 @@ extension GestureOutput {
         default: false
         }
     }
+
+    package var metadata: GestureOutputMetadata? {
+        switch self {
+        case let .empty(_, metadata):
+            metadata
+        case let .value(_, metadata):
+            metadata
+        case let .finalValue(_, metadata):
+            metadata
+        }
+    }
 }
 
 // MARK: - GestureOutput + NestedCustomStringConvertible
@@ -92,13 +103,12 @@ extension GestureOutputMetadata: NestedCustomStringConvertible {}
 // MARK: - UpdateTraceAnnotation
 
 package struct UpdateTraceAnnotation: Sendable {
-    package var value: String
+    public var value: String
 
-    package init(value: String) {
+    public init(value: String) {
         self.value = value
     }
 }
-
 
 // MARK: - GestureOutputStatusCombiner
 

@@ -402,6 +402,83 @@ extension Gestures.AnyGestureNode : Swift.Comparable {
   override public func fail(with error: any Swift.Error) throws
   @objc deinit
 }
+public protocol GestureComponent : Swift.Sendable {
+  associatedtype Value : Swift.Sendable
+  mutating func update(context: Gestures.GestureComponentContext) throws -> Gestures.GestureOutput<Self.Value>
+  mutating func reset()
+  #if compiler(>=5.3) && $NonescapableTypes
+  func traits() -> Gestures.GestureTraitCollection?
+  #endif
+  func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
+}
+extension Gestures.CompositeGestureComponent {
+  public mutating func update(context: Gestures.GestureComponentContext) throws -> Gestures.GestureOutput<Self.Upstream.Value>
+}
+public struct GestureComponentContext : @unchecked Swift.Sendable {
+  public var startTime: Gestures.Timestamp
+  public var currentTime: Gestures.Timestamp
+  public var durationSinceStart: Swift.Duration {
+    get
+  }
+}
+public protocol StatefulGestureComponent : Gestures.GestureComponent {
+  associatedtype State : Gestures.GestureComponentState
+  var state: Self.State { get set }
+}
+extension Gestures.StatefulGestureComponent {
+  public mutating func reset()
+}
+extension Gestures.CompositeGestureComponent where Self : Gestures.StatefulGestureComponent {
+  public mutating func reset()
+}
+public protocol GestureComponentState : Swift.Sendable {
+  init()
+}
+public protocol CompositeGestureComponent : Gestures.GestureComponent {
+  associatedtype Upstream : Gestures.GestureComponent
+  var upstream: Self.Upstream { get set }
+}
+extension Gestures.CompositeGestureComponent {
+  public mutating func reset()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func traits() -> Gestures.GestureTraitCollection?
+  #endif
+  public func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
+}
+@_hasMissingDesignatedInitializers final public class GestureComponentController<Component> : Gestures.AnyGestureComponentController, @unchecked Swift.Sendable where Component : Gestures.GestureComponent {
+  public init(component: Component, timeScheduler: any Gestures.TimeScheduler)
+  convenience public init(component: Component)
+  #if compiler(>=5.3) && $NonescapableTypes
+  override final public var traits: Gestures.GestureTraitCollection? {
+    get
+  }
+  #endif
+  override final public var timeSource: any Gestures.TimeSource {
+    get
+  }
+  override final public func canHandleEvents<E>(ofType: E.Type, count: Swift.Int) -> Swift.Bool where E : Gestures.Event
+  override final public func handleEvents<E>(_ events: [E]) throws where E : Gestures.Event
+  override final public func reset()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class AnyGestureComponentController : @unchecked Swift.Sendable {
+  weak open var node: Gestures.AnyGestureNode?
+  #if compiler(>=5.3) && $NonescapableTypes
+  open var traits: Gestures.GestureTraitCollection? {
+    get
+  }
+  #endif
+  open var timeSource: any Gestures.TimeSource {
+    get
+  }
+  open func canHandleEvents<E>(ofType: E.Type, count: Swift.Int) -> Swift.Bool where E : Gestures.Event
+  open func canHandleEvent<E>(_ event: E) -> Swift.Bool where E : Gestures.Event
+  open func handleEvents<E>(_ events: [E]) throws where E : Gestures.Event
+  open func reset()
+  @objc deinit
+}
+public protocol DiscreteComponent : Gestures.GestureComponent {
+}
 public protocol TimeSource {
   var timestamp: Gestures.Timestamp { get }
 }
