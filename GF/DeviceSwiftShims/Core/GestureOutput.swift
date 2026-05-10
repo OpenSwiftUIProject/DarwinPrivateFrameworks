@@ -29,6 +29,13 @@ extension GestureOutput {
         }
     }
 
+    package var emptyReason: GestureOutputEmptyReason? {
+        if case let .empty(reason, _) = self {
+            return reason
+        }
+        return nil
+    }
+
     public var isFinal: Bool {
         switch self {
         case .finalValue: true
@@ -37,13 +44,37 @@ extension GestureOutput {
     }
 
     package var metadata: GestureOutputMetadata? {
-        switch self {
-        case let .empty(_, metadata):
-            metadata
-        case let .value(_, metadata):
-            metadata
-        case let .finalValue(_, metadata):
-            metadata
+        get {
+            switch self {
+            case let .empty(_, metadata):
+                metadata
+            case let .value(_, metadata):
+                metadata
+            case let .finalValue(_, metadata):
+                metadata
+            }
+        }
+        set {
+            switch self {
+            case let .empty(reason, _):
+                self = .empty(reason, metadata: .combineUpdateRequests(metadata, newValue))
+            case let .value(value, _):
+                self = .value(value, metadata: .combineUpdateRequests(metadata, newValue))
+            case let .finalValue(value, _):
+                self = .finalValue(value, metadata: .combineUpdateRequests(metadata, newValue))
+            }
+        }
+    }
+
+    package static func value(
+        _ value: Value,
+        isFinal: Bool,
+        metadata: GestureOutputMetadata? = nil
+    ) -> Self {
+        if isFinal {
+            return .finalValue(value, metadata: metadata)
+        } else {
+            return .value(value, metadata: metadata)
         }
     }
 }
@@ -52,17 +83,13 @@ extension GestureOutput {
 
 extension GestureOutput: NestedCustomStringConvertible {
     package func populateNestedDescription(_ nested: inout NestedDescription) {
-        let metadata: GestureOutputMetadata?
         switch self {
-        case let .empty(reason, m):
-            nested.append(reason, label: "emptyReason")
-            metadata = m
-        case let .value(v, m):
-            nested.append(v, label: "value")
-            metadata = m
-        case let .finalValue(v, m):
-            nested.append(v, label: "finalValue")
-            metadata = m
+        case .empty:
+            nested.append(emptyReason, label: "emptyReason")
+        case .value:
+            nested.append(value, label: "value")
+        case .finalValue:
+            nested.append(value, label: "finalValue")
         }
         if let metadata {
             nested.append(metadata, label: "metadata")
@@ -93,6 +120,31 @@ public struct GestureOutputMetadata: Sendable {
         self.updatesToSchedule = updatesToSchedule
         self.updatesToCancel = updatesToCancel
         self.traceAnnotation = traceAnnotation
+    }
+
+    package static func combineUpdateRequests(
+        _ first: GestureOutputMetadata?,
+        _ second: GestureOutputMetadata?
+    ) -> GestureOutputMetadata? {
+        switch (first, second) {
+        case (nil, nil):
+            return nil
+        case let (metadata?, nil):
+            return GestureOutputMetadata(
+                updatesToSchedule: metadata.updatesToSchedule,
+                updatesToCancel: metadata.updatesToCancel
+            )
+        case let (nil, metadata?):
+            return GestureOutputMetadata(
+                updatesToSchedule: metadata.updatesToSchedule,
+                updatesToCancel: metadata.updatesToCancel
+            )
+        case let (first?, second?):
+            return GestureOutputMetadata(
+                updatesToSchedule: first.updatesToSchedule + second.updatesToSchedule,
+                updatesToCancel: first.updatesToCancel + second.updatesToCancel
+            )
+        }
     }
 }
 

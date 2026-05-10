@@ -34,7 +34,8 @@ extension DiscreteGate: DiscreteComponent {}
 extension DiscreteGate: ValueTransformingComponent {
     package mutating func transform(
         _ value: Value,
-        isFinal: Bool
+        isFinal: Bool,
+        context: GestureComponentContext
     ) throws -> GestureOutput<Value> {
         if isFinal {
             return .finalValue(value, metadata: nil)

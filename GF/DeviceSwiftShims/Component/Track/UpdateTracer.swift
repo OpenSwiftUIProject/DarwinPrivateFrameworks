@@ -5,7 +5,9 @@
 //  Audited for 9126.1.5
 //  Status: Complete
 
+#if canImport(os)
 import os
+#endif
 
 // MARK: - UpdateTracer
 

@@ -8,35 +8,18 @@ public import Swift
 public import _Concurrency
 public import _StringProcessing
 public import _SwiftConcurrencyShims
-public enum GestureOutput<Value> : Swift.Sendable where Value : Swift.Sendable {
-  case empty(Gestures.GestureOutputEmptyReason, metadata: Gestures.GestureOutputMetadata?)
-  case value(Value, metadata: Gestures.GestureOutputMetadata?)
-  case finalValue(Value, metadata: Gestures.GestureOutputMetadata?)
+public protocol LocationContaining {
+  var location: CoreFoundation.CGPoint { get }
 }
-extension Gestures.GestureOutput {
-  #if compiler(>=5.3) && $NonescapableTypes
-  public var value: Value? {
-    get
-  }
-  #endif
-  public var isEmpty: Swift.Bool {
-    get
-  }
-  public var isFinal: Swift.Bool {
+extension CoreFoundation.CGPoint : Gestures.LocationContaining {
+  public var location: CoreFoundation.CGPoint {
     get
   }
 }
-public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
-  case noData
-  case filtered
-  case timeUpdate
-  public static func == (a: Gestures.GestureOutputEmptyReason, b: Gestures.GestureOutputEmptyReason) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
+extension Swift.Never : Gestures.LocationContaining {
+  public var location: CoreFoundation.CGPoint {
     get
   }
-}
-public struct GestureOutputMetadata : Swift.Sendable {
 }
 public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable {
   public var id: Gestures.GestureTraitID
@@ -114,6 +97,46 @@ public struct GestureTraitCollection : Swift.Hashable, Swift.Sendable {
   public var hashValue: Swift.Int {
     get
   }
+}
+@frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
+  public let rawValue: Swift.String
+  public init(rawValue: Swift.String)
+  public init(stringLiteral value: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: Gestures.GestureTag, b: Gestures.GestureTag) -> Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
+  case id(Gestures.GestureNodeID)
+  case tag(Gestures.GestureTag)
+  case traits(Gestures.GestureTraitCollection, position: Gestures.GestureNodeMatcher.RelativePosition)
+  case any(position: Gestures.GestureNodeMatcher.RelativePosition)
+  public enum RelativePosition : Swift.Hashable, Swift.Sendable {
+    case any
+    case above
+    case below
+    public static func == (a: Gestures.GestureNodeMatcher.RelativePosition, b: Gestures.GestureNodeMatcher.RelativePosition) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: Gestures.GestureNodeMatcher, b: Gestures.GestureNodeMatcher) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension Gestures.GestureNodeMatcher : Swift.Comparable {
+  public static func < (lhs: Gestures.GestureNodeMatcher, rhs: Gestures.GestureNodeMatcher) -> Swift.Bool
 }
 public enum GestureRelationType : Swift.Hashable, Swift.Sendable {
   case exclusion
@@ -223,73 +246,42 @@ extension Gestures.GestureFailureReason : Swift.CustomStringConvertible {
     get
   }
 }
-public enum GestureNodeMatcher : Swift.Hashable, Swift.Sendable {
-  case id(Gestures.GestureNodeID)
-  case tag(Gestures.GestureTag)
-  case traits(Gestures.GestureTraitCollection, position: Gestures.GestureNodeMatcher.RelativePosition)
-  case any(position: Gestures.GestureNodeMatcher.RelativePosition)
-  public enum RelativePosition : Swift.Hashable, Swift.Sendable {
-    case any
-    case above
-    case below
-    public static func == (a: Gestures.GestureNodeMatcher.RelativePosition, b: Gestures.GestureNodeMatcher.RelativePosition) -> Swift.Bool
-    public func hash(into hasher: inout Swift.Hasher)
-    public var hashValue: Swift.Int {
-      get
-    }
+public enum GestureOutput<Value> : Swift.Sendable where Value : Swift.Sendable {
+  case empty(Gestures.GestureOutputEmptyReason, metadata: Gestures.GestureOutputMetadata?)
+  case value(Value, metadata: Gestures.GestureOutputMetadata?)
+  case finalValue(Value, metadata: Gestures.GestureOutputMetadata?)
+}
+extension Gestures.GestureOutput {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var value: Value? {
+    get
   }
-  public static func == (a: Gestures.GestureNodeMatcher, b: Gestures.GestureNodeMatcher) -> Swift.Bool
+  #endif
+  public var isEmpty: Swift.Bool {
+    get
+  }
+  public var isFinal: Swift.Bool {
+    get
+  }
+}
+public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
+  case noData
+  case filtered
+  case timeUpdate
+  public static func == (a: Gestures.GestureOutputEmptyReason, b: Gestures.GestureOutputEmptyReason) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
 }
-extension Gestures.GestureNodeMatcher : Swift.Comparable {
-  public static func < (lhs: Gestures.GestureNodeMatcher, rhs: Gestures.GestureNodeMatcher) -> Swift.Bool
+public struct GestureOutputMetadata : Swift.Sendable {
 }
-@frozen public struct GestureTag : Swift.Hashable, Swift.Sendable, Swift.ExpressibleByStringLiteral, Swift.CustomStringConvertible {
-  public let rawValue: Swift.String
-  public init(rawValue: Swift.String)
-  public init(stringLiteral value: Swift.String)
-  public var description: Swift.String {
-    get
-  }
-  public static func == (a: Gestures.GestureTag, b: Gestures.GestureTag) -> Swift.Bool
-  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
-  public typealias StringLiteralType = Swift.String
-  public typealias UnicodeScalarLiteralType = Swift.String
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-extension Gestures.GFGesturePhase : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension Gestures.GFGestureRelationType : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
-  public var description: Swift.String {
-    get
-  }
-}
-public protocol LocationContaining {
-  var location: CoreFoundation.CGPoint { get }
-}
-extension CoreFoundation.CGPoint : Gestures.LocationContaining {
-  public var location: CoreFoundation.CGPoint {
-    get
-  }
-}
-extension Swift.Never : Gestures.LocationContaining {
-  public var location: CoreFoundation.CGPoint {
-    get
-  }
+public protocol GestureNodeContainer : AnyObject, Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func index(of node: Gestures.AnyGestureNode) -> Swift.Int?
+  #endif
+  func isDescendant(of container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
+  func isDeeper(than container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
 }
 @frozen public struct GestureNodeID : Swift.Hashable, Swift.Comparable, Swift.Sendable, Swift.CustomStringConvertible {
   package let rawValue: Swift.UInt32
@@ -302,6 +294,15 @@ extension Swift.Never : Gestures.LocationContaining {
   public var hashValue: Swift.Int {
     get
   }
+}
+public protocol GestureNodeDelegate<Value> : AnyObject, Swift.Sendable {
+  associatedtype Value : Swift.Sendable
+  func gestureNodeShouldActivate(_ node: Gestures.GestureNode<Self.Value>) -> Swift.Bool
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didEnqueuePhase phase: Gestures.GesturePhase<Self.Value>)
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didUpdatePhase newPhase: Gestures.GesturePhase<Self.Value>, oldPhase: Gestures.GesturePhase<Self.Value>)
+  #if compiler(>=5.3) && $NonescapableTypes
+  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, roleForRelationType type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, relatedNode: Gestures.AnyGestureNode) -> Gestures.GestureRelationRole?
+  #endif
 }
 public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.Int
@@ -317,22 +318,6 @@ extension Gestures.GestureNodeOptions : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
-}
-public protocol GestureNodeDelegate<Value> : AnyObject, Swift.Sendable {
-  associatedtype Value : Swift.Sendable
-  func gestureNodeShouldActivate(_ node: Gestures.GestureNode<Self.Value>) -> Swift.Bool
-  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didEnqueuePhase phase: Gestures.GesturePhase<Self.Value>)
-  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didUpdatePhase newPhase: Gestures.GesturePhase<Self.Value>, oldPhase: Gestures.GesturePhase<Self.Value>)
-  #if compiler(>=5.3) && $NonescapableTypes
-  func gestureNode(_ node: Gestures.GestureNode<Self.Value>, roleForRelationType type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, relatedNode: Gestures.AnyGestureNode) -> Gestures.GestureRelationRole?
-  #endif
-}
-public protocol GestureNodeContainer : AnyObject, Swift.Sendable {
-  #if compiler(>=5.3) && $NonescapableTypes
-  func index(of node: Gestures.AnyGestureNode) -> Swift.Int?
-  #endif
-  func isDescendant(of container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
-  func isDeeper(than container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
 }
 @_hasMissingDesignatedInitializers open class AnyGestureNode : Swift.Identifiable, @unchecked Swift.Sendable {
   final public let id: Gestures.GestureNodeID
@@ -421,6 +406,8 @@ public struct GestureComponentContext : @unchecked Swift.Sendable {
     get
   }
 }
+public protocol DiscreteComponent : Gestures.GestureComponent {
+}
 public protocol StatefulGestureComponent : Gestures.GestureComponent {
   associatedtype State : Gestures.GestureComponentState
   var state: Self.State { get set }
@@ -477,8 +464,6 @@ extension Gestures.CompositeGestureComponent {
   open func reset()
   @objc deinit
 }
-public protocol DiscreteComponent : Gestures.GestureComponent {
-}
 public protocol TimeSource {
   var timestamp: Gestures.Timestamp { get }
 }
@@ -489,6 +474,15 @@ extension Swift.Never : Gestures.TimeSource {
 }
 public protocol TimeSourceImpl : Gestures.TimeSource {
   var _duration: Swift.Duration { get }
+}
+@_hasMissingDesignatedInitializers final public class UpdateScheduler {
+  @objc deinit
+}
+public struct UptimeTimeSource : Gestures.TimeSourceImpl, Swift.Sendable {
+  public init()
+  public var _duration: Swift.Duration {
+    get
+  }
 }
 public protocol GestureUpdateDriver : Swift.Sendable {
   func register(_ handler: @escaping () -> Swift.Void) -> Gestures.GestureUpdateDriverToken
@@ -502,9 +496,6 @@ public struct GestureUpdateDriverToken : Swift.Hashable, Swift.Sendable {
   public var hashValue: Swift.Int {
     get
   }
-}
-@_hasMissingDesignatedInitializers final public class UpdateScheduler {
-  @objc deinit
 }
 public protocol TimeScheduler : AnyObject, Gestures.TimeSource {
   #if compiler(>=5.3) && $NonescapableTypes
@@ -553,31 +544,30 @@ final public class DispatchTimeScheduler : @unchecked Swift.Sendable, Gestures.T
     get
   }
 }
-public struct UptimeTimeSource : Gestures.TimeSourceImpl, Swift.Sendable {
-  public init()
-  public var _duration: Swift.Duration {
+public struct MouseEvent : Gestures.SpatialEvent, Swift.Sendable {
+  public let id: Gestures.EventID
+  public let phase: Gestures.EventPhase
+  public let timestamp: Gestures.Timestamp
+  public let location: CoreFoundation.CGPoint
+  public let button: Gestures.MouseEvent.Button
+  public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint, button: Gestures.MouseEvent.Button)
+  public struct Button : Swift.RawRepresentable, Swift.Sendable {
+    public let rawValue: Swift.Int
+    public init(rawValue: Swift.Int)
+    public static let primary: Gestures.MouseEvent.Button
+    public static let secondary: Gestures.MouseEvent.Button
+    public static let tertiary: Gestures.MouseEvent.Button
+    public typealias RawValue = Swift.Int
+  }
+  public typealias ID = Gestures.EventID
+}
+public struct EventID : Swift.Hashable, Swift.CustomStringConvertible, Swift.Sendable {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public var description: Swift.String {
     get
   }
-}
-public protocol Event : Swift.Identifiable {
-  var id: Gestures.EventID { get }
-  var phase: Gestures.EventPhase { get }
-  var timestamp: Gestures.Timestamp { get }
-}
-extension Swift.Never : Gestures.Event {
-  public var id: Gestures.EventID {
-    get
-  }
-  public var phase: Gestures.EventPhase {
-    get
-  }
-}
-public enum EventPhase : Swift.Hashable, Swift.Sendable {
-  case began
-  case active
-  case ended
-  case failed
-  public static func == (a: Gestures.EventPhase, b: Gestures.EventPhase) -> Swift.Bool
+  public static func == (a: Gestures.EventID, b: Gestures.EventID) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
@@ -613,30 +603,25 @@ public struct TouchEvent : Gestures.SpatialEvent, Swift.Sendable {
   public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint)
   public typealias ID = Gestures.EventID
 }
-public struct MouseEvent : Gestures.SpatialEvent, Swift.Sendable {
-  public let id: Gestures.EventID
-  public let phase: Gestures.EventPhase
-  public let timestamp: Gestures.Timestamp
-  public let location: CoreFoundation.CGPoint
-  public let button: Gestures.MouseEvent.Button
-  public init(id: Gestures.EventID, phase: Gestures.EventPhase, timestamp: Gestures.Timestamp, location: CoreFoundation.CGPoint, button: Gestures.MouseEvent.Button)
-  public struct Button : Swift.RawRepresentable, Swift.Sendable {
-    public let rawValue: Swift.Int
-    public init(rawValue: Swift.Int)
-    public static let primary: Gestures.MouseEvent.Button
-    public static let secondary: Gestures.MouseEvent.Button
-    public static let tertiary: Gestures.MouseEvent.Button
-    public typealias RawValue = Swift.Int
-  }
-  public typealias ID = Gestures.EventID
+public protocol Event : Swift.Identifiable {
+  var id: Gestures.EventID { get }
+  var phase: Gestures.EventPhase { get }
+  var timestamp: Gestures.Timestamp { get }
 }
-public struct EventID : Swift.Hashable, Swift.CustomStringConvertible, Swift.Sendable {
-  public let rawValue: Swift.Int
-  public init(rawValue: Swift.Int)
-  public var description: Swift.String {
+extension Swift.Never : Gestures.Event {
+  public var id: Gestures.EventID {
     get
   }
-  public static func == (a: Gestures.EventID, b: Gestures.EventID) -> Swift.Bool
+  public var phase: Gestures.EventPhase {
+    get
+  }
+}
+public enum EventPhase : Swift.Hashable, Swift.Sendable {
+  case began
+  case active
+  case ended
+  case failed
+  public static func == (a: Gestures.EventPhase, b: Gestures.EventPhase) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
@@ -646,21 +631,38 @@ public protocol SpatialEvent : Gestures.Event, Gestures.LocationContaining {
 }
 extension Swift.Never : Gestures.SpatialEvent {
 }
-extension Gestures.GestureOutput : Swift.CustomStringConvertible {}
-extension Gestures.GestureOutput : Swift.CustomDebugStringConvertible {}
-extension Gestures.GestureOutputMetadata : Swift.CustomStringConvertible {}
-extension Gestures.GestureOutputMetadata : Swift.CustomDebugStringConvertible {}
+extension Gestures.GFGesturePhase : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Gestures.GFGestureRelationType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension CoreFoundation.CGPoint : Swift.Sendable {}
+extension CoreFoundation.CGVector : Swift.Sendable {}
 extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
 extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureOutput : Swift.CustomStringConvertible {}
+extension Gestures.GestureOutput : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureOutputMetadata : Swift.CustomStringConvertible {}
+extension Gestures.GestureOutputMetadata : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}
 extension Gestures.Timestamp : Swift.BitwiseCopyable {}
+extension Gestures.MouseEvent : Swift.CustomStringConvertible {}
+extension Gestures.MouseEvent : Swift.CustomDebugStringConvertible {}
 extension Gestures.ConcreteScrollEvent : Swift.CustomStringConvertible {}
 extension Gestures.ConcreteScrollEvent : Swift.CustomDebugStringConvertible {}
 extension Gestures.TouchEvent : Swift.CustomStringConvertible {}
 extension Gestures.TouchEvent : Swift.CustomDebugStringConvertible {}
-extension Gestures.MouseEvent : Swift.CustomStringConvertible {}
-extension Gestures.MouseEvent : Swift.CustomDebugStringConvertible {}
