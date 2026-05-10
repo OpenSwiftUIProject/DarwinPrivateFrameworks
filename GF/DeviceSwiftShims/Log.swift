@@ -17,16 +17,19 @@ private func logPreferencesChangedCallback(
     Log.invalidateLoggingPreferencesCache()
 }
 
+
+// MARK: - LoggingEnabledState
+
+package enum LoggingEnabledState: Int, AtomicRepresentable, Hashable, Sendable {
+    case unknown
+    case enabled
+    case disabled
+}
+
 // MARK: - Log
 
 package enum Log {
-    private enum DefaultsCacheState: UInt {
-        case unknown = 0
-        case enabled = 1
-        case disabled = 2
-    }
-
-    private static let defaultsCacheState = Atomic(DefaultsCacheState.unknown.rawValue)
+    private static let defaultsCacheState = Atomic(LoggingEnabledState.unknown)
     private static let observerRegistered = Atomic<UInt8>(0)
 
     package static let subsystem = "com.apple.Gestures"
@@ -47,22 +50,20 @@ package enum Log {
         if isEnvironmentLoggingEnabled {
             return true
         }
-        switch DefaultsCacheState(rawValue: defaultsCacheState.load(ordering: .acquiring)) {
+        switch defaultsCacheState.load(ordering: .acquiring) {
         case .unknown:
             break
         case .enabled:
             return true
         case .disabled:
             return false
-        case nil:
-            preconditionFailure("Invalid logging defaults cache state")
         }
         guard let defaults = UserDefaults(suiteName: subsystem) else {
             return false
         }
         let isEnabled = defaults.bool(forKey: "LoggingEnabled")
         defaultsCacheState.store(
-            (isEnabled ? DefaultsCacheState.enabled : DefaultsCacheState.disabled).rawValue,
+            isEnabled ? .enabled : .disabled,
             ordering: .releasing
         )
         registerLoggingPreferencesObserver()
@@ -70,7 +71,7 @@ package enum Log {
     }
 
     fileprivate static func invalidateLoggingPreferencesCache() {
-        defaultsCacheState.store(DefaultsCacheState.unknown.rawValue, ordering: .releasing)
+        defaultsCacheState.store(.unknown, ordering: .releasing)
     }
 
     private static func registerLoggingPreferencesObserver() {
