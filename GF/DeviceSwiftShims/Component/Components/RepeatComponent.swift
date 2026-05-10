@@ -77,14 +77,13 @@ extension RepeatComponent: GestureComponent {
         guard let value = output.value else {
             return .empty(output.emptyReason!, metadata: output.metadata)
         }
-        var newOutput = Self.makeExpirationOutputForNonEmptyOutput(
+        let newOutput = Self.makeExpirationOutputForNonEmptyOutput(
             output,
             repeatComponent: &self,
             value: value,
             context: context
         )
-        newOutput.metadata = output.metadata ?? GestureOutputMetadata()
-        return newOutput
+        return newOutput.copyWithCombinedMetadata(output.metadata ?? GestureOutputMetadata())
     }
 
     private static func makeExpirationOutputForNonEmptyOutput(

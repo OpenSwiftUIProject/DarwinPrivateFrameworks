@@ -24,13 +24,11 @@ extension ValueTransformingComponent {
         case let .empty(reason, metadata):
             return .empty(reason, metadata: metadata)
         case let .value(value, metadata):
-            var output = try transform(value, isFinal: false, context: context)
-            output.metadata = metadata
-            return output
+            let output = try transform(value, isFinal: false, context: context)
+            return output.copyWithCombinedMetadata(metadata)
         case let .finalValue(value, metadata):
-            var output = try transform(value, isFinal: false, context: context)
-            output.metadata = metadata
-            return output
+            let output = try transform(value, isFinal: true, context: context)
+            return output.copyWithCombinedMetadata(metadata)
         }
     }
 }

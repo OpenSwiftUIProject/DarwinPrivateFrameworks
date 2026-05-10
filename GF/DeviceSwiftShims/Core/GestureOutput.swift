@@ -44,25 +44,24 @@ extension GestureOutput {
     }
 
     package var metadata: GestureOutputMetadata? {
-        get {
-            switch self {
-            case let .empty(_, metadata):
-                metadata
-            case let .value(_, metadata):
-                metadata
-            case let .finalValue(_, metadata):
-                metadata
-            }
+        switch self {
+        case let .empty(_, metadata):
+            metadata
+        case let .value(_, metadata):
+            metadata
+        case let .finalValue(_, metadata):
+            metadata
         }
-        set {
-            switch self {
-            case let .empty(reason, _):
-                self = .empty(reason, metadata: .combineUpdateRequests(metadata, newValue))
-            case let .value(value, _):
-                self = .value(value, metadata: .combineUpdateRequests(metadata, newValue))
-            case let .finalValue(value, _):
-                self = .finalValue(value, metadata: .combineUpdateRequests(metadata, newValue))
-            }
+    }
+
+    package func copyWithCombinedMetadata(_ other: GestureOutputMetadata?) -> Self {
+        switch self {
+        case let .empty(reason, metadata):
+            return .empty(reason, metadata: .combineUpdateRequests(metadata, other))
+        case let .value(value, metadata):
+            return .value(value, metadata: .combineUpdateRequests(metadata, other))
+        case let .finalValue(value, metadata):
+            return .finalValue(value, metadata: .combineUpdateRequests(metadata, other))
         }
     }
 
