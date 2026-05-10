@@ -12,8 +12,8 @@ public protocol GestureComponent: Sendable {
     associatedtype Value: Sendable
     mutating func update(context: GestureComponentContext) throws -> GestureOutput<Value>
     mutating func reset()
-    func traits() -> GestureTraitCollection?
-    func capacity<E: Event>(for eventType: E.Type) -> Int
+    mutating func traits() -> GestureTraitCollection?
+    mutating func capacity<E: Event>(for eventType: E.Type) -> Int
 }
 
 // MARK: - GestureComponent + Tracing

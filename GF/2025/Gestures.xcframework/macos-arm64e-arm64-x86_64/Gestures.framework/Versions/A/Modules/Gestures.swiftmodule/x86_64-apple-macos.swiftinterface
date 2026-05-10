@@ -392,9 +392,9 @@ public protocol GestureComponent : Swift.Sendable {
   mutating func update(context: Gestures.GestureComponentContext) throws -> Gestures.GestureOutput<Self.Value>
   mutating func reset()
   #if compiler(>=5.3) && $NonescapableTypes
-  func traits() -> Gestures.GestureTraitCollection?
+  mutating func traits() -> Gestures.GestureTraitCollection?
   #endif
-  func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
+  mutating func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
 }
 extension Gestures.CompositeGestureComponent {
   public mutating func update(context: Gestures.GestureComponentContext) throws -> Gestures.GestureOutput<Self.Upstream.Value>
@@ -428,9 +428,9 @@ public protocol CompositeGestureComponent : Gestures.GestureComponent {
 extension Gestures.CompositeGestureComponent {
   public mutating func reset()
   #if compiler(>=5.3) && $NonescapableTypes
-  public func traits() -> Gestures.GestureTraitCollection?
+  public mutating func traits() -> Gestures.GestureTraitCollection?
   #endif
-  public func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
+  public mutating func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
 }
 @_hasMissingDesignatedInitializers final public class GestureComponentController<Component> : Gestures.AnyGestureComponentController, @unchecked Swift.Sendable where Component : Gestures.GestureComponent {
   public init(component: Component, timeScheduler: any Gestures.TimeScheduler)
@@ -652,10 +652,10 @@ extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomDebugStringConvertible {}
-extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
-extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureOutput : Swift.CustomStringConvertible {}
 extension Gestures.GestureOutput : Swift.CustomDebugStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomStringConvertible {}
+extension Gestures.GestureNodeMatcher : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureOutputMetadata : Swift.CustomStringConvertible {}
 extension Gestures.GestureOutputMetadata : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureNodeID : Swift.BitwiseCopyable {}

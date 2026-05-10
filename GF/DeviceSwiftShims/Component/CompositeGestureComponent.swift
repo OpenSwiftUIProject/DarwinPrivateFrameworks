@@ -18,11 +18,11 @@ extension CompositeGestureComponent {
         upstream.reset()
     }
 
-    public func traits() -> GestureTraitCollection? {
+    public mutating func traits() -> GestureTraitCollection? {
         upstream.traits()
     }
 
-    public func capacity<E: Event>(for eventType: E.Type) -> Int {
+    public mutating func capacity<E: Event>(for eventType: E.Type) -> Int {
         upstream.capacity(for: eventType)
     }
 }

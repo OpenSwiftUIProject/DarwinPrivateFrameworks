@@ -54,6 +54,17 @@ extension GestureOutput {
         }
     }
 
+    package func copyClearingMetadata() -> Self {
+        switch self {
+        case let .empty(reason, _):
+            return .empty(reason, metadata: nil)
+        case let .value(value, _):
+            return .value(value, metadata: nil)
+        case let .finalValue(value, _):
+            return .finalValue(value, metadata: nil)
+        }
+    }
+
     package func copyWithCombinedMetadata(_ other: GestureOutputMetadata?) -> Self {
         switch self {
         case let .empty(reason, metadata):
@@ -161,48 +172,3 @@ package struct UpdateTraceAnnotation: Sendable {
     }
 }
 
-// MARK: - GestureOutputStatusCombiner
-
-package struct GestureOutputStatusCombiner: Sendable {
-    package var combine: @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus
-
-    package init(combine: @escaping @Sendable ([GestureOutputStatus]) throws -> GestureOutputStatus) {
-        self.combine = combine
-    }
-}
-
-// MARK: - GestureOutputStatus
-
-package enum GestureOutputStatus: Hashable, Sendable {
-    case empty
-    case value
-    case finalValue
-}
-
-// MARK: - GestureOutputArrayCombiner
-
-package struct GestureOutputArrayCombiner<A: Sendable>: Sendable {
-    package let statusCombiner: GestureOutputStatusCombiner
-
-    package init(statusCombiner: GestureOutputStatusCombiner) {
-        self.statusCombiner = statusCombiner
-    }
-}
-
-// MARK: - GestureOutputCombiner
-
-package struct GestureOutputCombiner<each A: Sendable, B: Sendable>: Sendable {
-    package let combineValues: (@Sendable (repeat each A) throws -> B)?
-    package let combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?
-    package let statusCombiner: GestureOutputStatusCombiner
-
-    package init(
-        combineValues: (@Sendable (repeat each A) throws -> B)?,
-        combineOptionals: (@Sendable (repeat (each A)?) throws -> B)?,
-        statusCombiner: GestureOutputStatusCombiner
-    ) {
-        self.combineValues = combineValues
-        self.combineOptionals = combineOptionals
-        self.statusCombiner = statusCombiner
-    }
-}

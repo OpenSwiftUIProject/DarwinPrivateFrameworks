@@ -188,13 +188,17 @@ extension GestureTraitCollection: NestedCustomStringConvertible {
 // MARK: - GestureTraitCollection + Mergeable
 
 extension GestureTraitCollection: Mergeable {
-    package mutating func merge(_ other: GestureTraitCollection) {
-        _traits.merge(other._traits) { $1 }
+    package func merging(_ other: GestureTraitCollection) -> GestureTraitCollection {
+        var result = self
+        result._traits.merge(other._traits) { $1 }
+        return result
     }
 }
 
 import Synchronization
+#if canImport(os)
 import os
+#endif
 
 // MARK: - TraitLabelStore
 
@@ -203,6 +207,7 @@ private final class TraitLabelStore {
 
     private static let counter = Atomic(0)
 
+    #if canImport(os)
     private var labels: [Int: String] = [:]
     private let lock: OSAllocatedUnfairLock = .init()
 
@@ -219,4 +224,22 @@ private final class TraitLabelStore {
             labels[rawValue]
         } ?? ""
     }
+
+    #else
+    private let labels: Mutex<[Int: String]> = .init([:])
+
+    func register(_ label: String) -> Int {
+        let (_, id) = Self.counter.add(1, ordering: .relaxed)
+        labels.withLock {
+            $0[id] = label
+        }
+        return id
+    }
+
+    package func label(for rawValue: Int) -> String {
+        labels.withLock {
+            $0[rawValue]
+        } ?? ""
+    }
+    #endif
 }

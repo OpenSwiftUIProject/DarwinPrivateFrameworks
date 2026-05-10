@@ -8,5 +8,11 @@
 // MARK: - Mergeable
 
 package protocol Mergeable {
-    mutating func merge(_ other: Self)
+    func merging(_ other: Self) -> Self
+}
+
+extension Mergeable {
+    package mutating func merge(_ other: Self) {
+        self = merging(other)
+    }
 }
