@@ -1,0 +1,5 @@
+[tools]
+tuist = "4.193.0"
+
+[env]
+DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE = "2025"
