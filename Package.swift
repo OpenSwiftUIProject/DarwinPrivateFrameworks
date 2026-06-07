@@ -144,28 +144,35 @@ if libraryEvolutionCondition {
 }
 
 let platforms: [SupportedPlatform] = switch releaseVersion {
+    case 2025: [.iOS(.v26), .macOS(.v26), .macCatalyst(.v26), .tvOS(.v26), .watchOS(.v26), .visionOS(.v26)]
     case 2024: [.iOS(.v18), .macOS(.v15), .macCatalyst(.v18), .tvOS(.v18), .watchOS(.v10), .visionOS(.v2)]
-    case 2021: [.iOS(.v15), .macOS(.v12), .macCatalyst(.v15), .tvOS(.v15), .watchOS(.v7)]
     default: []
+}
+
+var products: [PackageDescription.Product] = [
+    .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
+    .library(name: "RenderBox", targets: ["RenderBox"]),
+    .library(name: "CoreUI", targets: ["CoreUI"]),
+    .library(name: "BacklightServices", targets: ["BacklightServices"]),
+    .library(name: "SFSymbols", targets: ["SFSymbols"]),
+    .library(name: "CoreSVG", targets: ["CoreSVG"]),
+]
+
+if releaseVersion >= 2025 {
+    products.append(
+        .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"])
+    )
 }
 
 let package = Package(
     name: "DarwinPrivateFrameworks",
     platforms: platforms,
-    products: [
-        .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
-        .library(name: "RenderBox", targets: ["RenderBox"]),
-        .library(name: "CoreUI", targets: ["CoreUI"]),
-        .library(name: "BacklightServices", targets: ["BacklightServices"]),
-        .library(name: "SFSymbols", targets: ["SFSymbols"]),
-        .library(name: "CoreSVG", targets: ["CoreSVG"]),
-        .library(name: "Gestures", targets: ["Gestures", "_GesturesDeviceSwiftShims"]),
-    ],
+    products: products,
     dependencies: [
-        .package(url: "https://github.com/apple/swift-collections", from: "1.1.0"),
+        .package(url: "https://github.com/apple/swift-collections", from: "1.5.1"),
     ],
     targets: [
-        .binaryTarget(name: "AttributeGraph", path: "AG/\(releaseVersion)/AttributeGraph.xcframework"),
+        .binaryTarget(name: "AttributeGraph", path: "AG/2024/AttributeGraph.xcframework"),
         .target(
             name: "_AttributeGraphDeviceSwiftShims",
             dependencies: ["AttributeGraph"],
