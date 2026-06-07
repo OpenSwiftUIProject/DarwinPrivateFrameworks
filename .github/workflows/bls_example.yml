@@ -46,4 +46,4 @@ jobs:
         with:
           scheme: BLSExample
           destination: ${{ matrix.destination }}
-          xcode-version: "16.4"
+          xcode-version: "26.3"

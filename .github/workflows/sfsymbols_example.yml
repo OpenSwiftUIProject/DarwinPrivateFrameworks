@@ -48,4 +48,4 @@ jobs:
         with:
           scheme: SFSymbolsExample
           destination: ${{ matrix.destination }}
-          xcode-version: "16.4"
+          xcode-version: "26.3"

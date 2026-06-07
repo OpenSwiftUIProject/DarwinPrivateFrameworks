@@ -40,7 +40,7 @@ cleanup() {
 trap cleanup EXIT
 
 # Verify Swift compiler version matches the expected version for this framework
-EXPECTED_SWIFT_VERSION="6.1" # 2024 -> 6.1, 2025 -> 6.2
+EXPECTED_SWIFT_VERSION="6.2"
 SWIFT_VERSION=$(xcrun swiftc --version 2>&1 | grep -o 'Swift version [0-9]*\.[0-9]*' | head -1 | awk '{print $3}')
 if [ "${SWIFT_VERSION}" != "${EXPECTED_SWIFT_VERSION}" ]; then
     echo "Error: expected Swift ${EXPECTED_SWIFT_VERSION} but found Swift ${SWIFT_VERSION}"
