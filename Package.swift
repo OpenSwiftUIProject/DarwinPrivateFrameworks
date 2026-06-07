@@ -146,6 +146,7 @@ if libraryEvolutionCondition {
 let platforms: [SupportedPlatform] = switch releaseVersion {
     case 2025: [.iOS(.v26), .macOS(.v26), .macCatalyst(.v26), .tvOS(.v26), .watchOS(.v26), .visionOS(.v26)]
     case 2024: [.iOS(.v18), .macOS(.v15), .macCatalyst(.v18), .tvOS(.v18), .watchOS(.v10), .visionOS(.v2)]
+    case 2021: [.iOS(.v15), .macOS(.v12), .macCatalyst(.v15), .tvOS(.v15), .watchOS(.v7)]
     default: []
 }
 
