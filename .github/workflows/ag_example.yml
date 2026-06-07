@@ -10,7 +10,7 @@ on:
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
       - 'Example/Tuist/**'
-      - 'Example/.mise.toml'
+      - 'Example/mise.toml'
       - 'Package.swift'
       - '.github/actions/build-example/**'
       - '.github/workflows/ag_example.yml'
@@ -23,7 +23,7 @@ on:
       - 'Example/Project.swift'
       - 'Example/Tuist.swift'
       - 'Example/Tuist/**'
-      - 'Example/.mise.toml'
+      - 'Example/mise.toml'
       - 'Package.swift'
       - '.github/actions/build-example/**'
       - '.github/workflows/ag_example.yml'
@@ -48,4 +48,4 @@ jobs:
         with:
           scheme: AGExample
           destination: ${{ matrix.destination }}
-          xcode-version: "16.4"
+          xcode-version: "26.3"
