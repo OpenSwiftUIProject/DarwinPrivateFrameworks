@@ -14,7 +14,7 @@ public var private_symbol_order: [String] { get }
 public var private_name_aliases: [String : String] { get }
 
 public struct Availability {
-    public enum Platform: RawRepresentable {
+    public enum Platform: Swift.RawRepresentable, Swift.Hashable, Swift.Equatable {
         case sfSymbols
         case macOS
         case macCatalyst
@@ -29,13 +29,11 @@ public struct Availability {
             get
         }
     }
-    let earliestYear: SFSymbols.Version
-    let platformLookup: [SFSymbols.Version : [SFSymbols.Availability.Platform : SFSymbols.Version]]
 
     public func earliestSupportedRelease(for: SFSymbols.Availability.Platform) -> SFSymbols.Version?
 }
 
-public struct Version: Codable, Hashable, Equatable, Comparable {
+public struct Version: Swift.Codable, Swift.Hashable, Swift.Equatable, Swift.Comparable, Swift.CustomStringConvertible {
     public enum DecodingError: Error {
         case invalidVersionString(Swift.String)
     }
@@ -48,19 +46,13 @@ public struct Version: Codable, Hashable, Equatable, Comparable {
     public init(major: Swift.Int, minor: Swift.Int, patch: Swift.Int)
     public init?(string: Swift.String)
 
-    public var hashValue: Swift.Int {
-        get
-    }
-    public var description: Swift.String {
-        get
-    }
+    public var hashValue: Swift.Int { get }
+    public var description: Swift.String { get }
 
     public func hash(into: inout Swift.Hasher)
     public func encode(to: Swift.Encoder) throws
 
-    static public var sfSymbolsHost: SFSymbols.Version {
-        get
-    }
+    static public var sfSymbolsHost: SFSymbols.Version { get }
 
     static public func < (_: SFSymbols.Version, _: SFSymbols.Version) -> Swift.Bool
     static public func == (_: SFSymbols.Version, _: SFSymbols.Version) -> Swift.Bool
@@ -68,12 +60,33 @@ public struct Version: Codable, Hashable, Equatable, Comparable {
 
 public struct SymbolMetadataStore {
     static public var system: SymbolMetadataStore { get set }
-
+    
+    public init()
+    
+    public var customSymbols: [SFSymbols.CustomSymbol]
+    
+    public var categories: [SFSymbols.SymbolCategory] { get }
     public var localizationOverrideBundle : Foundation.Bundle? { get set }
     public var localizationOverrideTableName : Swift.String? { get set }
     
     public func modernSystemName(forAlias: Swift.String) -> Swift.String?
     public func availability(forSystemName: Swift.String) -> SFSymbols.Availability?
+    public func symbolMetadata(forSystemName: Swift.String) -> SFSymbols.SymbolMetadata?
+    public func symbolMetadata(for: SFSymbols.SymbolKey) -> SFSymbols.SymbolMetadata?
+    
+    public func load(from: Foundation.URL, decryptor: @escaping (_: Foundation.Data) throws -> Foundation.Data) throws
+    public func load(from: Foundation.URL) throws
+}
+
+public struct SymbolCategory {
+    public struct Key: Swift.Hashable, Swift.RawRepresentable {
+        public let rawValue: Swift.String
+
+        static public var all: SFSymbols.SymbolCategory.Key { get }
+    }
+    public let key: SFSymbols.SymbolCategory.Key
+    public let iconName: Swift.String
+    public let localizedTitle: Swift.String
 }
 
 public struct SystemSymbolCSVRow: Swift.Equatable {
@@ -117,4 +130,56 @@ public enum RenderingMode: Swift.Hashable, Swift.Equatable, Swift.RawRepresentab
 public struct Crypton {
     static public func decryptObfuscatedFontTable(tableTag: Swift.UInt32, from: CoreText.CTFont) -> Foundation.Data?
     static public func encryptObfuscateFontTable(tableTag: Swift.UInt32, from: CoreText.CTFont) -> Foundation.Data?
+}
+
+public struct Alias {
+    public let name: Swift.String
+    public let availability: SFSymbols.Availability?
+}
+
+public struct SymbolMetadata {
+    public var accessLevel: SFSymbols.AccessLevel { get }
+    public var additionalCSVColumns: [Swift.String : Swift.String] { get }
+    public var aliases: [SFSymbols.Alias] { get }
+    public var csvRow: SFSymbols.SystemSymbolCSVRow? { get }
+    public var defaultRenderingMode: SFSymbols.RenderingMode? { get }
+    public var functions: [Swift.String] { get }
+    public var glyphOrder: Swift.Int? { get }
+    public var key: SFSymbols.SymbolKey { get }
+    public var localeSuffix: Swift.String? { get }
+    public var mirrorForRTL: Swift.Bool { get }
+    public var name: Swift.String { get }
+    public var privateScalar: Swift.Unicode.Scalar? { get }
+    public var publicScalars: [Swift.Unicode.Scalar] { get }
+    public var tags: Swift.Set<Swift.String> { get }
+    public var useRestrictionsDescription: Swift.String? { get }
+    public var useRestrictionsLocalizedDescription: Swift.String? { get }
+
+    public func availability(for: SFSymbols.SymbolFeature) -> SFSymbols.Availability?
+    public func string(for: SFSymbols.SymbolProperty) -> Swift.String?
+}
+
+public enum SymbolKey: Swift.Hashable, Swift.Equatable {
+    case systemPrivateScalar(Swift.Unicode.Scalar)
+    case customUUID(Foundation.UUID)
+}
+
+public struct SymbolFeature: Swift.RawRepresentable, Swift.Hashable, Swift.Equatable {
+    public let rawValue: Swift.String
+
+    static var hierarchical: SFSymbols.SymbolFeature { get }
+    static var monochrome: SFSymbols.SymbolFeature { get }
+    static var multicolor: SFSymbols.SymbolFeature { get }
+    static var name: SFSymbols.SymbolFeature { get }
+}
+
+public struct SymbolProperty: Swift.RawRepresentable, Swift.Hashable, Swift.Equatable {
+    public let rawValue: Swift.String
+}
+
+public struct CustomSymbol {
+    public let uuid: Foundation.UUID
+    public var name: Swift.String
+
+    public init(uuid: Foundation.UUID, name: Swift.String)
 }
