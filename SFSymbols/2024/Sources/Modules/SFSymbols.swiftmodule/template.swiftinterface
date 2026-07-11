@@ -13,13 +13,67 @@ public var private_nofill_to_fill: [String : String] { get }
 public var private_symbol_order: [String] { get }
 public var private_name_aliases: [String : String] { get }
 
+public struct Availability {
+    public enum Platform: RawRepresentable {
+        case sfSymbols
+        case macOS
+        case macCatalyst
+        case iOS
+        case watchOS
+        case tvOS
+        case visionOS
+
+        public init?(rawValue: Swift.String)
+
+        public var rawValue: Swift.String {
+            get
+        }
+    }
+    let earliestYear: SFSymbols.Version
+    let platformLookup: [SFSymbols.Version : [SFSymbols.Availability.Platform : SFSymbols.Version]]
+
+    public func earliestSupportedRelease(for: SFSymbols.Availability.Platform) -> SFSymbols.Version?
+}
+
+public struct Version: Codable, Hashable, Equatable, Comparable {
+    public enum DecodingError: Error {
+        case invalidVersionString(Swift.String)
+    }
+    
+    public let major: Swift.Int
+    public let minor: Swift.Int
+    public let patch: Swift.Int
+
+    public init(from: Swift.Decoder) throws
+    public init(major: Swift.Int, minor: Swift.Int, patch: Swift.Int)
+    public init?(string: Swift.String)
+
+    public var hashValue: Swift.Int {
+        get
+    }
+    public var description: Swift.String {
+        get
+    }
+
+    public func hash(into: inout Swift.Hasher)
+    public func encode(to: Swift.Encoder) throws
+
+    static public var sfSymbolsHost: SFSymbols.Version {
+        get
+    }
+
+    static public func < (_: SFSymbols.Version, _: SFSymbols.Version) -> Swift.Bool
+    static public func == (_: SFSymbols.Version, _: SFSymbols.Version) -> Swift.Bool
+}
 
 public struct SymbolMetadataStore {
     static public var system: SymbolMetadataStore { get set }
 
     public var localizationOverrideBundle : Foundation.Bundle? { get set }
     public var localizationOverrideTableName : Swift.String? { get set }
+    
     public func modernSystemName(forAlias: Swift.String) -> Swift.String?
+    public func availability(forSystemName: Swift.String) -> SFSymbols.Availability?
 }
 
 public struct SystemSymbolCSVRow: Swift.Equatable {
