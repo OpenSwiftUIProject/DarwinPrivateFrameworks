@@ -39,7 +39,13 @@ struct SymbolDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(spacing: 16) {
-                        Image(systemName: symbol.name)
+                        Group {
+                            if symbol.isPrivate {
+                                Image(_internalSystemName: symbol.name)
+                            } else {
+                                Image(systemName: symbol.name)
+                            }
+                        }
                             .font(.system(size: 72))
                             .frame(height: 84)
                             .accessibilityHidden(true)
@@ -94,7 +100,13 @@ struct SymbolDetailsView: View {
                     if let filledSymbolName = symbol.filledSymbolName {
                         DetailSection(title: "Filled Variant") {
                             HStack(spacing: 12) {
-                                Image(systemName: filledSymbolName)
+                                Group {
+                                    if symbol.isPrivate {
+                                        Image(_internalSystemName: filledSymbolName)
+                                    } else {
+                                        Image(systemName: filledSymbolName)
+                                    }
+                                }
                                     .font(.title2)
                                     .frame(width: 32)
 
