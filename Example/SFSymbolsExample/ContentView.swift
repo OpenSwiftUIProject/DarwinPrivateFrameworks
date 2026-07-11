@@ -9,20 +9,64 @@ import SFSymbols
 import SwiftUI
 
 struct ContentView: View {
+    @State private var searchText = ""
+    @State private var symbolScope = SymbolScope.publicSymbols
+    @State private var selectedSymbol: SymbolCatalog.Item?
+
+    private let catalog = SymbolCatalog.system
+    private let gridColumns = [
+        GridItem(.adaptive(minimum: 120), spacing: 12),
+    ]
+
     var body: some View {
-        VStack {
-            Section("Public") {
-                Text("Symbols count: \(SFSymbols.symbol_order.count)")
-                Text("Name alias count: \(SFSymbols.name_aliases.count)")
-                Text("No-fill-to-fill count: \(SFSymbols.nofill_to_fill.count)")
+        let matchingSymbols = catalog.symbols(
+            matching: searchText,
+            scope: symbolScope
+        )
+
+        NavigationStack {
+            ScrollView {
+                if matchingSymbols.isEmpty {
+                    ContentUnavailableView(
+                        "No Symbols Found",
+                        systemImage: "magnifyingglass",
+                        description: Text("Try another name or search scope.")
+                    )
+                    .frame(maxWidth: .infinity, minHeight: 300)
+                } else {
+                    LazyVGrid(columns: gridColumns, spacing: 12) {
+                        ForEach(matchingSymbols) { symbol in
+                            Button {
+                                selectedSymbol = symbol
+                            } label: {
+                                SymbolTile(symbol: symbol)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                    .padding()
+                }
             }
-            
-            Divider()
-            
-            Section("Private") {
-                Text("Symbols count: \(SFSymbols.private_symbol_order.count)")
-                Text("Name alias count: \(SFSymbols.private_name_aliases.count)")
-                Text("No-fill-to-fill count: \(SFSymbols.private_nofill_to_fill.count)")
+            .navigationTitle("SF Symbols")
+            .searchable(text: $searchText, prompt: "Search names and aliases")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Picker("Symbol scope", selection: $symbolScope) {
+                        ForEach(SymbolScope.allCases) { scope in
+                            Text(scope.title).tag(scope)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+                
+                ToolbarItem(placement: .status) {
+                    Text("Showing \(matchingSymbols.count) of \(catalog.count(for: symbolScope)) symbols")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .sheet(item: $selectedSymbol) { symbol in
+                SymbolDetailsView(symbol: symbol)
             }
         }
     }
