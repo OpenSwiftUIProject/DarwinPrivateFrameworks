@@ -48,4 +48,4 @@ jobs:
         with:
           scheme: GFExample
           destination: ${{ matrix.destination }}
-          xcode-version: "26.3"
+          xcode-version: "26.6"
