@@ -39,7 +39,9 @@ jobs:
             destination: "generic/platform=iOS"
           - platform: iOS Simulator
             destination: "generic/platform=iOS Simulator"
-    runs-on: macos-15
+    runs-on:
+      - macos-15
+      - xcode-26.6
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/build-example
