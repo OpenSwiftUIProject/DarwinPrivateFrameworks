@@ -21,9 +21,9 @@ generate_swiftinterface_header() {
     local target="$1"
     local result=""
     result+="// swift-interface-format-version: 1.0\n"
-    result+="// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.16.112 clang-1800.1.29)\n"
+    result+="// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\n"
     result+="// swift-module-flags: -target $target -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name Gestures\n"
-    result+="// swift-module-flags-ignorable:  -interface-compiler-version 6.2"
+    result+="// swift-module-flags-ignorable:  -interface-compiler-version 6.3.3"
 
     echo -e $result
 }

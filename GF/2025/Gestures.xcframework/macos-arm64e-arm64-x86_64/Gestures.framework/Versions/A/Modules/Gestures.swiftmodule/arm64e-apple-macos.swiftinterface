@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.16.112 clang-1800.1.29)
+// swift-compiler-version: Apple Swift version 6.3.3 effective-5.10 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)
 // swift-module-flags: -target arm64e-apple-macos26.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -Osize -enable-upcoming-feature InternalImportsByDefault -enable-experimental-feature Extern -module-name Gestures
-// swift-module-flags-ignorable: -interface-compiler-version 6.2
+// swift-module-flags-ignorable: -interface-compiler-version 6.3.3
 public import Dispatch
 @_exported public import Gestures
 public import Swift
@@ -25,12 +25,8 @@ public struct GestureTrait : Swift.Hashable, Swift.Identifiable, Swift.Sendable 
   public var id: Gestures.GestureTraitID
   public var attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue]
   public init(id: Gestures.GestureTraitID, attributes: [Gestures.GestureTrait.AttributeKey : Gestures.GestureTrait.AttributeValue] = [:])
-  #if compiler(>=5.3) && $NonescapableTypes
   public static func tap(tapCount: Swift.Int? = nil, pointCount: Swift.Int? = nil) -> Gestures.GestureTrait
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public static func longPress(pointCount: Swift.Int? = nil, minimumDuration: Swift.Duration? = nil, maximumMovement: Swift.Double? = nil) -> Gestures.GestureTrait
-  #endif
   public static func pan() -> Gestures.GestureTrait
   public struct AttributeKey : Swift.Hashable, Swift.Sendable, Swift.CustomStringConvertible {
     public let rawValue: Swift.Int
@@ -171,9 +167,7 @@ public struct GestureRelation : Swift.Equatable, Swift.Sendable {
   public var direction: Gestures.GestureRelationDirection
   public var role: Gestures.GestureRelationRole?
   public var target: Gestures.GestureNodeMatcher
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, role: Gestures.GestureRelationRole?, target: Gestures.GestureNodeMatcher)
-  #endif
   public static func == (a: Gestures.GestureRelation, b: Gestures.GestureRelation) -> Swift.Bool
 }
 extension Swift.Array where Element == Gestures.GestureRelation {
@@ -214,16 +208,12 @@ extension Gestures.GesturePhase {
   public var isRecognized: Swift.Bool {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   public var value: Value? {
     get
   }
-  #endif
-  #if compiler(>=5.3) && $NonescapableTypes
   public var failureReason: Gestures.GestureFailureReason? {
     get
   }
-  #endif
   public func mapValue<T>(_ transform: (Value) -> T) -> Gestures.GesturePhase<T> where T : Swift.Sendable
 }
 extension Gestures.GesturePhase : Swift.CustomStringConvertible {
@@ -252,11 +242,9 @@ public enum GestureOutput<Value> : Swift.Sendable where Value : Swift.Sendable {
   case finalValue(Value, metadata: Gestures.GestureOutputMetadata?)
 }
 extension Gestures.GestureOutput {
-  #if compiler(>=5.3) && $NonescapableTypes
   public var value: Value? {
     get
   }
-  #endif
   public var isEmpty: Swift.Bool {
     get
   }
@@ -277,9 +265,7 @@ public enum GestureOutputEmptyReason : Swift.Hashable, Swift.Sendable {
 public struct GestureOutputMetadata : Swift.Sendable {
 }
 public protocol GestureNodeContainer : AnyObject, Swift.Sendable {
-  #if compiler(>=5.3) && $NonescapableTypes
   func index(of node: Gestures.AnyGestureNode) -> Swift.Int?
-  #endif
   func isDescendant(of container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
   func isDeeper(than container: any Gestures.GestureNodeContainer, referenceNode: Gestures.AnyGestureNode) -> Swift.Bool
 }
@@ -300,9 +286,7 @@ public protocol GestureNodeDelegate<Value> : AnyObject, Swift.Sendable {
   func gestureNodeShouldActivate(_ node: Gestures.GestureNode<Self.Value>) -> Swift.Bool
   func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didEnqueuePhase phase: Gestures.GesturePhase<Self.Value>)
   func gestureNode(_ node: Gestures.GestureNode<Self.Value>, didUpdatePhase newPhase: Gestures.GesturePhase<Self.Value>, oldPhase: Gestures.GesturePhase<Self.Value>)
-  #if compiler(>=5.3) && $NonescapableTypes
   func gestureNode(_ node: Gestures.GestureNode<Self.Value>, roleForRelationType type: Gestures.GestureRelationType, direction: Gestures.GestureRelationDirection, relatedNode: Gestures.AnyGestureNode) -> Gestures.GestureRelationRole?
-  #endif
 }
 public struct GestureNodeOptions : Swift.OptionSet, Swift.Sendable {
   public let rawValue: Swift.Int
@@ -355,20 +339,16 @@ extension Gestures.AnyGestureNode : Swift.Comparable {
 }
 @_inheritsConvenienceInitializers public class GestureNode<Value> : Gestures.AnyGestureNode, @unchecked Swift.Sendable where Value : Swift.Sendable {
   weak public var delegate: (any Gestures.GestureNodeDelegate<Value>)?
-  #if compiler(>=5.3) && $NonescapableTypes
   public init(traits: Gestures.GestureTraitCollection?, tag: Gestures.GestureTag?, relations: [Gestures.GestureRelation])
-  #endif
   convenience public init()
   override public var options: Gestures.GestureNodeOptions {
     get
     set
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   override public var container: (any Gestures.GestureNodeContainer)? {
     get
     set
   }
-  #endif
   public var phase: Gestures.GesturePhase<Value> {
     get
   }
@@ -391,9 +371,7 @@ public protocol GestureComponent : Swift.Sendable {
   associatedtype Value : Swift.Sendable
   mutating func update(context: Gestures.GestureComponentContext) throws -> Gestures.GestureOutput<Self.Value>
   mutating func reset()
-  #if compiler(>=5.3) && $NonescapableTypes
   mutating func traits() -> Gestures.GestureTraitCollection?
-  #endif
   mutating func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
 }
 extension Gestures.CompositeGestureComponent {
@@ -427,19 +405,15 @@ public protocol CompositeGestureComponent : Gestures.GestureComponent {
 }
 extension Gestures.CompositeGestureComponent {
   public mutating func reset()
-  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func traits() -> Gestures.GestureTraitCollection?
-  #endif
   public mutating func capacity<E>(for eventType: E.Type) -> Swift.Int where E : Gestures.Event
 }
 @_hasMissingDesignatedInitializers final public class GestureComponentController<Component> : Gestures.AnyGestureComponentController, @unchecked Swift.Sendable where Component : Gestures.GestureComponent {
   public init(component: Component, timeScheduler: any Gestures.TimeScheduler)
   convenience public init(component: Component)
-  #if compiler(>=5.3) && $NonescapableTypes
   override final public var traits: Gestures.GestureTraitCollection? {
     get
   }
-  #endif
   override final public var timeSource: any Gestures.TimeSource {
     get
   }
@@ -450,11 +424,9 @@ extension Gestures.CompositeGestureComponent {
 }
 @_hasMissingDesignatedInitializers open class AnyGestureComponentController : @unchecked Swift.Sendable {
   weak open var node: Gestures.AnyGestureNode?
-  #if compiler(>=5.3) && $NonescapableTypes
   open var traits: Gestures.GestureTraitCollection? {
     get
   }
-  #endif
   open var timeSource: any Gestures.TimeSource {
     get
   }
@@ -498,9 +470,7 @@ public struct GestureUpdateDriverToken : Swift.Hashable, Swift.Sendable {
   }
 }
 public protocol TimeScheduler : AnyObject, Gestures.TimeSource {
-  #if compiler(>=5.3) && $NonescapableTypes
   func schedule(after duration: Swift.Duration, handler: @escaping () -> Swift.Void, cancelHandler: (() -> Swift.Void)?) -> Gestures.TimeSchedulerToken
-  #endif
   func cancel(token: Gestures.TimeSchedulerToken)
 }
 public struct TimeSchedulerToken : Swift.Hashable, Swift.Sendable {
@@ -519,9 +489,7 @@ final public class DispatchTimeScheduler : @unchecked Swift.Sendable, Gestures.T
   final public var timestamp: Gestures.Timestamp {
     get
   }
-  #if compiler(>=5.3) && $NonescapableTypes
   final public func schedule(after duration: Swift.Duration, handler: @escaping () -> Swift.Void, cancelHandler: (() -> Swift.Void)? = nil) -> Gestures.TimeSchedulerToken
-  #endif
   final public func cancel(token: Gestures.TimeSchedulerToken)
   @objc deinit
 }
@@ -646,8 +614,6 @@ extension Gestures.GFGestureRelationRole : Swift.CustomStringConvertible {
     get
   }
 }
-extension CoreFoundation.CGPoint : Swift.Sendable {}
-extension CoreFoundation.CGVector : Swift.Sendable {}
 extension Gestures.GestureTrait : Swift.CustomStringConvertible {}
 extension Gestures.GestureTrait : Swift.CustomDebugStringConvertible {}
 extension Gestures.GestureTraitCollection : Swift.CustomStringConvertible {}
