@@ -32,7 +32,12 @@ runs:
         tuist generate --no-open
     - name: Install xcbeautify
       shell: bash
-      run: brew install xcbeautify
+      run: |
+        if command -v xcbeautify >/dev/null 2>&1; then
+          echo "xcbeautify is already installed"
+        else
+          brew install xcbeautify
+        fi
     - name: Build
       shell: bash
       run: |
