@@ -157,6 +157,7 @@ var products: [PackageDescription.Product] = [
     .library(name: "BacklightServices", targets: ["BacklightServices"]),
     .library(name: "SFSymbols", targets: ["SFSymbols"]),
     .library(name: "CoreSVG", targets: ["CoreSVG"]),
+    .library(name: "FeatureFlags", targets: ["FeatureFlags"]),
 ]
 
 if releaseVersion >= 2025 {
@@ -185,6 +186,7 @@ let package = Package(
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SFSymbols/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
+        .binaryTarget(name: "FeatureFlags", path: "FeatureFlags/2024/FeatureFlags.xcframework"),
         .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),
         .target(
             name: "_GesturesDeviceSwiftShims",

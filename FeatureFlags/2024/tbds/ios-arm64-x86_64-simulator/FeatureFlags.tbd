@@ -1,0 +1,45 @@
+{
+  "main_library": {
+    "current_versions": [
+      {
+        "version": "97"
+      }
+    ],
+    "exported_symbols": [
+      {
+        "data": {
+          "global": [
+            "_$s12FeatureFlags02isA7EnabledySbAA0aB3Key_pF",
+            "_$s12FeatureFlags0aB3KeyMp",
+            "_$s12FeatureFlags0aB3KeyP6domains12StaticStringVvgTj",
+            "_$s12FeatureFlags0aB3KeyP6domains12StaticStringVvgTq",
+            "_$s12FeatureFlags0aB3KeyP7features12StaticStringVvgTj",
+            "_$s12FeatureFlags0aB3KeyP7features12StaticStringVvgTq",
+            "_$s12FeatureFlags0aB3KeyTL"
+          ]
+        }
+      }
+    ],
+    "install_names": [
+      {
+        "name": "/System/Library/PrivateFrameworks/FeatureFlags.framework/FeatureFlags"
+      }
+    ],
+    "swift_abi": [
+      {
+        "abi": 7
+      }
+    ],
+    "target_info": [
+      {
+        "min_deployment": "18.5",
+        "target": "x86_64-ios-simulator"
+      },
+      {
+        "min_deployment": "18.5",
+        "target": "arm64-ios-simulator"
+      }
+    ]
+  },
+  "tapi_tbd_version": 5
+}

@@ -74,7 +74,7 @@ if [ $# -eq 0 ]; then
     echo "  $0 AttributeGraph RenderBox CoreUI SFSymbols"
     echo "  $0 all"
     echo ""
-    echo "Frameworks: AttributeGraph (or AG), RenderBox (or RB), CoreUI, SFSymbols"
+    echo "Frameworks: AttributeGraph (or AG), RenderBox (or RB), CoreUI, SFSymbols, FeatureFlags"
     echo ""
     echo "To specify version, set DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE:"
     echo "  DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=2021 $0 all"
@@ -83,7 +83,7 @@ fi
 
 # Check if "all" was specified
 if [ "$1" = "all" ]; then
-    frameworks=("AttributeGraph" "RenderBox" "CoreUI" "SFSymbols")
+    frameworks=("AttributeGraph" "RenderBox" "CoreUI" "SFSymbols" "FeatureFlags")
 else
     frameworks=("$@")
 fi
