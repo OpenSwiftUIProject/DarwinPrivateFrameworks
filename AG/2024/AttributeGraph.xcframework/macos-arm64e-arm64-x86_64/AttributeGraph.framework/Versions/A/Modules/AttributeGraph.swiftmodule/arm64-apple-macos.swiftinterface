@@ -251,7 +251,7 @@ public func withUnsafeMutablePointerToEnumCase<T>(of value: Swift.UnsafeMutableP
 @_silgen_name("AGGraphWithUpdate")
 @inline(__always) @inlinable internal func AGGraphWithUpdate(_ attribute: AttributeGraph.AnyAttribute, body: () -> Swift.Void)
 @frozen @propertyWrapper @dynamicMemberLookup public struct WeakAttribute<Value> {
-  internal var base: AttributeGraph.AnyWeakAttribute
+  public var base: AttributeGraph.AnyWeakAttribute
   public init(base: AttributeGraph.AnyWeakAttribute)
   public init()
   public init(_ attribute: AttributeGraph.Attribute<Value>)
