@@ -135,6 +135,24 @@ let project = Project(
             ],
             settings: .settings(base: baseSettings)
         ),
+        // MARK: FeatureFlagsExample
+        .target(
+            name: "FeatureFlagsExample",
+            destinations: [.iPhone, .iPad, .mac],
+            product: .app,
+            bundleId: "\(bundleIdPrefix).FeatureFlagsExample",
+            deploymentTargets: .multiplatform(
+                iOS: "18.5",
+                macOS: "15.0"
+            ),
+            infoPlist: .extendingDefault(with: defaultInfoPlist),
+            sources: ["FeatureFlagsExample/**"],
+            resources: sharedResources,
+            dependencies: [
+                .external(name: "FeatureFlags"),
+            ],
+            settings: .settings(base: baseSettings)
+        ),
         // MARK: SFSymbolsExample
         .target(
             name: "SFSymbolsExample",

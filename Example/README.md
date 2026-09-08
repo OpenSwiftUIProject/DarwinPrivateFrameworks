@@ -39,6 +39,10 @@ This generates `Example.xcworkspace` — open it in Xcode to build and run the e
 | BLSExample_2024 | BacklightServices | iOS, visionOS |
 | SFSymbolsExample_2024 | SFSymbols | iOS, macOS |
 | GFExample_2025 | Gestures | iOS, macOS |
+| FeatureFlagsExample | FeatureFlags | iOS, macOS |
+
+`FeatureFlagsExample` queries the system `SwiftUI.gestureContainer` flag and
+displays its enabled state. Use Refresh to query the flag again.
 
 ## Regenerating
 

@@ -8,8 +8,9 @@
 |[![BLSExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml)|
 |[![GFExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml)|
 |[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
+|[![FeatureFlagsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml)|
 
-This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `Gestures`, and `SFSymbols`.
+This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `Gestures`, `SFSymbols`, and `FeatureFlags`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], and visionOS Simulator platforms.
 
@@ -32,6 +33,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `BLS/`: Contains the `BacklightServices` framework.
 - `Examples/`: Contains example projects demonstrating usage of the private frameworks.
 - `GF/`: Contains the `Gestures` framework.
+- `FeatureFlags/`: Contains the `FeatureFlags` Swift framework.
 - `RB/`: Contains the `RenderBox` framework.
 - `SFSymbols/`: Contains the `SFSymbols` framework.
 - `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.

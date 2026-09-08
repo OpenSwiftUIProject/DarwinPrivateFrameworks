@@ -37,6 +37,8 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // CoreSVG
         try run(context: context, command: "CoreSVG/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "CoreSVG/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // FeatureFlags
+        try run(context: context, command: "FeatureFlags/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         #if compiler(>=6.2)
         // Gestures
         try run(context: context, command: "GF/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2025"])

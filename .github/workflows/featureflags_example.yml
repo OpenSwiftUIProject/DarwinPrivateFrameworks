@@ -1,0 +1,53 @@
+name: FeatureFlagsExample
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'FeatureFlags/**'
+      - 'Example/FeatureFlagsExample/**'
+      - 'Example/Resources/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/featureflags_example.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'FeatureFlags/**'
+      - 'Example/FeatureFlagsExample/**'
+      - 'Example/Resources/**'
+      - 'Example/Project.swift'
+      - 'Example/Tuist.swift'
+      - 'Example/Tuist/**'
+      - 'Example/mise.toml'
+      - 'Package.swift'
+      - '.github/actions/build-example/**'
+      - '.github/workflows/featureflags_example.yml'
+
+jobs:
+  build:
+    name: Build FeatureFlagsExample (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: iOS
+            destination: "generic/platform=iOS"
+          - platform: iOS Simulator
+            destination: "generic/platform=iOS Simulator"
+          - platform: macOS
+            destination: "platform=macOS"
+    runs-on:
+      - macos-15
+      - xcode-26.6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/build-example
+        with:
+          scheme: FeatureFlagsExample
+          destination: ${{ matrix.destination }}
+          xcode-version: "26.6"

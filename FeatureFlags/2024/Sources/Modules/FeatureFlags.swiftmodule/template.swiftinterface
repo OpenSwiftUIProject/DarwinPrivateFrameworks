@@ -1,0 +1,8 @@
+public import Swift
+
+public protocol FeatureFlagsKey {
+    var domain: Swift.StaticString { get }
+    var feature: Swift.StaticString { get }
+}
+
+public func isFeatureEnabled(_ key: any FeatureFlags.FeatureFlagsKey) -> Swift.Bool
