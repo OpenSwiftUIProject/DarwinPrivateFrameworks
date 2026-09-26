@@ -147,7 +147,7 @@ AGSubgraphRef AGGraphGetAttributeSubgraph(AGAttribute attribute) AG_SWIFT_NAME(g
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
-_Nullable AGSubgraphRef AGGraphGetAttributeSubgraph2(AGAttribute attribute) AG_SWIFT_NAME(getter:AGAttribute.subgraph2(self:));
+_Nullable AGSubgraphRef AGGraphGetAttributeSubgraph2(AGAttribute attribute) AG_SWIFT_NAME(getter:AGAttribute.subgraphOrNil(self:));
 
 AG_EXPORT
 AG_REFINED_FOR_SWIFT
