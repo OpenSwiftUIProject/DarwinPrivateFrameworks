@@ -1,5 +1,6 @@
 #include <RenderBox/RBAnimation.h>
 #include <RenderBox/RBBase.h>
+#include <RenderBox/RBBlendMode.h>
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBColorMode.h>
 #include <RenderBox/RBColorSpace.h>
