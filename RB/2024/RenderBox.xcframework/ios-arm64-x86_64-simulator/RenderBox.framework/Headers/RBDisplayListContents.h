@@ -17,6 +17,10 @@ RB_ASSUME_NONNULL_BEGIN
 
 struct _RBDrawingState;
 
+typedef NSString *RBDisplayListRenderKey NS_TYPED_EXTENSIBLE_ENUM;
+
+RB_EXPORT RBDisplayListRenderKey const RBDisplayListRenderRasterizationScale RB_SWIFT_NAME(RBDisplayListRenderKey.rasterizationScale);
+
 @protocol RBDisplayListContents <NSObject, RBEncodable, RBDecodable>
 
 @required
