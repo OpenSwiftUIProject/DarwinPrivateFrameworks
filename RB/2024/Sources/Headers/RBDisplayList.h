@@ -57,7 +57,7 @@ RB_ASSUME_NONNULL_BEGIN
 - (void)drawInRect:(CGRect)rect alpha:(float)alpha blendMode:(int)mode flags:(unsigned int)flags operation:(id /* block */)operation;
 - (void)drawInState:(struct _RBDrawingState *)state;
 - (void)renderInContext:(CGContextRef)context options:(nullable id)options;
-- (nullable id<RBDisplayListContents>)moveContents;
+- (id<RBDisplayListContents>)moveContents;
 - (void)setIdentifier:(unsigned int)identifier namespace:(nullable NSUUID *)ns;
 - (void)beginRecordingXML;
 - (void)addAffineTransformStyle:(CGAffineTransform)style;
