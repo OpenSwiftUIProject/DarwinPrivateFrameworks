@@ -10,6 +10,8 @@
 #include <RenderBox/RBDisplayList.h>
 #include <RenderBox/RBDisplayListContents.h>
 #include <RenderBox/RBDisplayListInterpolator.h>
+#include <RenderBox/RBDisplayListPredicate.h>
+#include <RenderBox/RBDisplayListTransform.h>
 #include <RenderBox/RBDrawableStatistics.h>
 #include <RenderBox/RBEncodable.h>
 #include <RenderBox/RBEncoderDelegate.h>
