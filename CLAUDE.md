@@ -45,19 +45,22 @@ Env keys are searched with domain prefixes `DARWINPRIVATEFRAMEWORKS_` and `OPENS
 
 ## Commit And PR Titles
 
-Use the same format for commit messages and PR titles:
+Use [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+for commit messages and PR titles, the same as OpenSwiftUI:
 
 ```text
-[Type] [Framework] Normal commit message
-[Type] Normal commit message
+<type>(<Framework>)[!]: <description>
+<type>[!]: <description>
 ```
 
-- `Type` must be one of `[Feature]`, `[Optimize]`, `[Bug Fix]`, or `[CI]`.
-- `Framework` is optional. When included, it must align with the changed top-level framework folder, such as `[GF]` or `[CoreUI]`. Use `[All]` only when the change applies across all frameworks.
-- The remaining text is the normal commit message summary.
+- `type` is one of `feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `build`, `ci`, `style`, or `chore`.
+- Use the framework as the scope when the change targets one framework. The scope must align with the changed top-level framework folder, such as `RB` or `CoreUI`. Use `All` only when the change applies across all frameworks. For a script area, use its folder name, such as `XR`.
+- Omit the scope for changes that do not belong to one framework, such as shared CI or documentation.
+- Mark breaking changes with `!` before `:`.
 
 Examples:
 
-- `[Feature] [GF] Add GestureComponent API`
-- `[Feature] [GF] Add GesutureNode API`
-- `[CI] Document commit title format`
+- `feat(GF): add GestureComponent API`
+- `fix(RB): make moveContents nonnull`
+- `feat(All): add visionOS device and Simulator slices`
+- `ci: document commit title format`
