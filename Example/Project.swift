@@ -79,7 +79,7 @@ let project = Project(
         // MARK: CoreSVGExample
         .target(
             name: "CoreSVGExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).CoreSVGExample",
             deploymentTargets: deploymentTargets2024,
@@ -130,7 +130,7 @@ let project = Project(
         // MARK: FeatureFlagsExample
         .target(
             name: "FeatureFlagsExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).FeatureFlagsExample",
             deploymentTargets: deploymentTargets2024,
@@ -145,7 +145,7 @@ let project = Project(
         // MARK: SFSymbolsExample
         .target(
             name: "SFSymbolsExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).SFSymbolsExample",
             deploymentTargets: deploymentTargets2024,
