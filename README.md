@@ -22,7 +22,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 > Using private frameworks in App Store apps will result in rejection and will crash your app in future OS update.
 
 > [!WARNING]
-> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**. Other system versions are not guaranteed to work.
+> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**, and the visionOS Simulator support on **visionOS 2.5 with Xcode 26.6**. Other system versions are not guaranteed to work.
 >
 > Please resolve any compatibility issues yourself. Contributions are welcome!
 
@@ -94,7 +94,7 @@ Scripts/SDK/install_internal_sdk.sh iPhoneSimulator
 # For iOS Device
 Scripts/SDK/install_internal_sdk.sh iPhoneOS
 
-# For visionOS Simulator
+# For visionOS Simulator (legacy, see the visionOS section below)
 Scripts/SDK/install_internal_sdk.sh XRSimulator
 ```
 
@@ -130,6 +130,44 @@ import AttributeGraph
 ```
 
 ![](Screenshots/import_framework.png)
+
+## visionOS Simulator Support
+
+The public visionOS Simulator SDK marks `UIScreen`, `UIWindow.screen`, and
+`UIDevice.orientation` unavailable. UIKit implements them at runtime. Projects
+that use these APIs on visionOS can generate a compiler virtual file system
+overlay. The overlay replaces only `UIScreen.h`, `UIWindow.h`, and `UIDevice.h`
+of the selected Xcode SDK:
+
+```shell
+export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+Scripts/XR/install_xr_uikit_overlay.sh
+```
+
+The script writes `~/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml`
+together with the patched headers and a `manifest.json` that records the Xcode
+and SDK builds. Pass `--output <dir>` to use a different directory. Add the
+overlay to the consuming project:
+
+```xcconfig
+OTHER_CFLAGS[sdk=xrsimulator*] = $(inherited) -ivfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml
+OTHER_SWIFT_FLAGS[sdk=xrsimulator*] = $(inherited) -vfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml
+```
+
+The SDK inside Xcode stays unchanged, and the private frameworks come from the
+xcframeworks as usual. Run the script again after switching Xcode. The overlay
+supports the visionOS Simulator SDK only.
+
+Pass `--sdk` to also write `XRSimulator.additions.sdk`, a UIKit-only additions SDK
+for projects that prefer the `ADDITIONAL_SDKS` build setting:
+
+```xcconfig
+ADDITIONAL_SDKS[sdk=xrsimulator*] = $(inherited) $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/XRSimulator.additions.sdk
+```
+
+The legacy `install_internal_sdk.sh XRSimulator` path copies the whole SDK into
+Xcode and patches the same headers there. Prefer the overlay for new setups.
+The private frameworks come from the xcframeworks on every path.
 
 [^1]: The Swift API of AttributeGraph is not available on iOS platform.
 
