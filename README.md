@@ -163,38 +163,39 @@ import AttributeGraph
 
 ![](Screenshots/import_framework.png)
 
-## visionOS Simulator Support
+## visionOS Support
 
-The public visionOS Simulator SDK marks `UIScreen`, `UIWindow.screen`, and
+The public visionOS SDKs mark `UIScreen`, `UIWindow.screen`, and
 `UIDevice.orientation` unavailable. UIKit implements them at runtime. Projects
 that use these APIs on visionOS can generate a compiler virtual file system
 overlay. The overlay replaces only `UIScreen.h`, `UIWindow.h`, and `UIDevice.h`
-of the selected Xcode SDK:
+of the visionOS and visionOS Simulator SDKs in the selected Xcode:
 
 ```shell
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 Scripts/XR/install_xr_uikit_overlay.sh
 ```
 
-The script writes `~/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml`
+The script writes `~/Library/Developer/OpenSwiftUI/XR/overlay.yaml`
 together with the patched headers and a `manifest.json` that records the Xcode
 and SDK builds. Pass `--output <dir>` to use a different directory. Add the
 overlay to the consuming project:
 
 ```xcconfig
-OTHER_CFLAGS[sdk=xrsimulator*] = $(inherited) -ivfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml
-OTHER_SWIFT_FLAGS[sdk=xrsimulator*] = $(inherited) -vfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/overlay.yaml
+OTHER_CFLAGS[sdk=xros*] = $(inherited) -ivfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XR/overlay.yaml
+OTHER_SWIFT_FLAGS[sdk=xros*] = $(inherited) -vfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XR/overlay.yaml
+OTHER_CFLAGS[sdk=xrsimulator*] = $(inherited) -ivfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XR/overlay.yaml
+OTHER_SWIFT_FLAGS[sdk=xrsimulator*] = $(inherited) -vfsoverlay $(HOME)/Library/Developer/OpenSwiftUI/XR/overlay.yaml
 ```
 
 The SDK inside Xcode stays unchanged, and the private frameworks come from the
-xcframeworks as usual. Run the script again after switching Xcode. The overlay
-supports the visionOS Simulator SDK only.
+xcframeworks as usual. Run the script again after switching Xcode.
 
-Pass `--sdk` to also write `XRSimulator.additions.sdk`, a UIKit-only additions SDK
-for projects that prefer the `ADDITIONAL_SDKS` build setting:
+Pass `--sdk` to also write `XRSimulator.additions.sdk`, a UIKit-only visionOS
+Simulator additions SDK for projects that prefer the `ADDITIONAL_SDKS` build setting:
 
 ```xcconfig
-ADDITIONAL_SDKS[sdk=xrsimulator*] = $(inherited) $(HOME)/Library/Developer/OpenSwiftUI/XRSimulator/XRSimulator.additions.sdk
+ADDITIONAL_SDKS[sdk=xrsimulator*] = $(inherited) $(HOME)/Library/Developer/OpenSwiftUI/XR/XRSimulator.additions.sdk
 ```
 
 The legacy `install_internal_sdk.sh XRSimulator` path copies the whole SDK into
