@@ -17,6 +17,13 @@ let sharedResources: ResourceFileElements = [
     "Resources/Assets.xcassets",
 ]
 
+// The 2024 release artifacts come from iOS 18.5, macOS 15.5, and visionOS 2.5.
+let deploymentTargets2024 = DeploymentTargets.multiplatform(
+    iOS: "18.5",
+    macOS: "15.5",
+    visionOS: "2.5"
+)
+
 // MARK: - Project
 
 let project = Project(
@@ -28,11 +35,7 @@ let project = Project(
             destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).AGExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.0",
-                macOS: "15.0",
-                visionOS: "2.0"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["AGExample/**"],
             resources: sharedResources,
@@ -49,11 +52,7 @@ let project = Project(
             destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).RBExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.0",
-                macOS: "15.0",
-                visionOS: "2.0"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["RBExample/**"],
             resources: sharedResources,
@@ -68,11 +67,7 @@ let project = Project(
             destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).CoreUIExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.0",
-                macOS: "15.0",
-                visionOS: "2.0"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["CoreUIExample/**"],
             resources: sharedResources,
@@ -84,13 +79,10 @@ let project = Project(
         // MARK: CoreSVGExample
         .target(
             name: "CoreSVGExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).CoreSVGExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.0",
-                macOS: "15.0"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["CoreSVGExample/**"],
             resources: sharedResources,
@@ -138,13 +130,10 @@ let project = Project(
         // MARK: FeatureFlagsExample
         .target(
             name: "FeatureFlagsExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).FeatureFlagsExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.5",
-                macOS: "15.0"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["FeatureFlagsExample/**"],
             resources: sharedResources,
@@ -156,13 +145,10 @@ let project = Project(
         // MARK: SFSymbolsExample
         .target(
             name: "SFSymbolsExample",
-            destinations: [.iPhone, .iPad, .mac],
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
             product: .app,
             bundleId: "\(bundleIdPrefix).SFSymbolsExample",
-            deploymentTargets: .multiplatform(
-                iOS: "18.5",
-                macOS: "15.5"
-            ),
+            deploymentTargets: deploymentTargets2024,
             infoPlist: .extendingDefault(with: defaultInfoPlist),
             sources: ["SFSymbolsExample/**"],
             resources: sharedResources,

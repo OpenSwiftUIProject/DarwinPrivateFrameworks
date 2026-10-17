@@ -1,0 +1,34 @@
+//
+//  RBLayerDelegate.h
+//  RenderBox
+
+#pragma once
+
+#include <RenderBox/RBBase.h>
+
+#if RB_OBJC_FOUNDATION
+
+#include <RenderBox/RBDisplayList.h>
+#include <RenderBox/RBDevice.h>
+#include <Foundation/Foundation.h>
+#include <QuartzCore/QuartzCore.h>
+
+RB_ASSUME_NONNULL_BEGIN
+
+@class RBLayer;
+
+@protocol RBLayerDelegate <CALayerDelegate>
+
+@required
+
+@optional
+
+- (void)RBLayer:(RBLayer *)layer draw:(RBDisplayList *)inDisplayList;
+- (nullable RBDevice *)RBLayerDefaultDevice:(RBLayer *)layer;
+
+@end
+
+RB_ASSUME_NONNULL_END
+
+#endif /* RB_OBJC_FOUNDATION */
+

@@ -14,9 +14,11 @@ FRAMEWORK_ROOT="$(dirname $(filepath $0))/$VERSION"
 if [ "$VERSION" = "2024" ]; then
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"
+    XROS_VERSION="2.0"
 else
     IOS_VERSION="18.0"
     MACOS_VERSION="15.0"
+    XROS_VERSION="2.0"
 fi
 
 framework_name=SFSymbols
@@ -104,4 +106,14 @@ generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 generate_swiftinterface x86_64-apple-macos x86_64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64-apple-macos arm64-apple-macos${MACOS_VERSION}
 generate_swiftinterface arm64e-apple-macos arm64e-apple-macos${MACOS_VERSION}
+rm template.swiftinterface
+
+generate_framework $framework_name xros-arm64-x86_64-simulator
+generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
+generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
+rm template.swiftinterface
+
+generate_framework $framework_name xros-arm64-arm64e
+generate_swiftinterface arm64e-apple-xros arm64e-apple-xros${XROS_VERSION}
+generate_swiftinterface arm64-apple-xros arm64-apple-xros${XROS_VERSION}
 rm template.swiftinterface

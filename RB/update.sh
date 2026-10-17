@@ -83,3 +83,6 @@ generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 if [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simulator" ]; then
     generate_framework $framework_name xros-arm64-x86_64-simulator
 fi
+if [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-arm64e" ]; then
+    generate_framework $framework_name xros-arm64-arm64e
+fi

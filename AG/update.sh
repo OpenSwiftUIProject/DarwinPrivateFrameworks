@@ -131,6 +131,10 @@ if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simu
     generate_framework $framework_name xros-arm64-x86_64-simulator
 fi
 
+if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-arm64e" ]; then
+    generate_framework $framework_name xros-arm64-arm64e
+fi
+
 if ! DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE=${VERSION} "${SCRIPT_DIR}/generate_swiftinterface.sh"; then
     echo "Error: failed to regenerate AttributeGraph Swift interface for release ${VERSION}"
     exit 1
@@ -157,5 +161,13 @@ if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-x86_64-simu
     generate_framework $framework_name xros-arm64-x86_64-simulator
     generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
     generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
+    rm -f template*.swiftinterface
+fi
+
+# Unlike iOS, the visionOS device binary exports the Swift API.
+if [ -n "$XROS_VERSION" ] && [ -d "${FRAMEWORK_ROOT}/tbds/xros-arm64-arm64e" ]; then
+    generate_framework $framework_name xros-arm64-arm64e
+    generate_swiftinterface arm64e-apple-xros arm64e-apple-xros${XROS_VERSION}
+    generate_swiftinterface arm64-apple-xros arm64-apple-xros${XROS_VERSION}
     rm -f template*.swiftinterface
 fi

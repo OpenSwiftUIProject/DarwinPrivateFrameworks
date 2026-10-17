@@ -31,15 +31,14 @@ This generates `Example.xcworkspace` — open it in Xcode to build and run the e
 
 | Target | Framework | Platforms |
 |--------|-----------|-----------|
-| AGExample_2021 | AttributeGraph (2021) | iOS, macOS |
-| AGExample_2024 | AttributeGraph (2024) | iOS, macOS, visionOS |
-| RBExample_2024 | RenderBox | iOS, macOS, visionOS |
-| CoreUIExample_2024 | CoreUI | iOS, macOS, visionOS |
-| CoreSVGExample_2024 | CoreSVG | iOS, macOS |
-| BLSExample_2024 | BacklightServices | iOS, visionOS |
-| SFSymbolsExample_2024 | SFSymbols | iOS, macOS |
-| GFExample_2025 | Gestures | iOS, macOS |
-| FeatureFlagsExample | FeatureFlags | iOS, macOS |
+| AGExample | AttributeGraph | iOS, macOS, visionOS |
+| RBExample | RenderBox | iOS, macOS, visionOS |
+| CoreUIExample | CoreUI | iOS, macOS, visionOS |
+| CoreSVGExample | CoreSVG | iOS, macOS, visionOS |
+| BLSExample | BacklightServices | iOS, visionOS |
+| SFSymbolsExample | SFSymbols | iOS, macOS, visionOS |
+| GFExample | Gestures | iOS, macOS |
+| FeatureFlagsExample | FeatureFlags | iOS, macOS, visionOS |
 
 `FeatureFlagsExample` queries the system `SwiftUI.gestureContainer` flag and
 displays its enabled state. Use Refresh to query the flag again.

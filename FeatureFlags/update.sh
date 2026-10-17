@@ -59,6 +59,16 @@ generate_framework() {
                 write_interface "$modules" "$arch-apple-ios-simulator" "$arch-apple-ios18.5-simulator"
             done
             ;;
+        xros-arm64-x86_64-simulator)
+            for arch in arm64 x86_64; do
+                write_interface "$modules" "$arch-apple-xros-simulator" "$arch-apple-xros2.5-simulator"
+            done
+            ;;
+        xros-arm64-arm64e)
+            for arch in arm64 arm64e; do
+                write_interface "$modules" "$arch-apple-xros" "$arch-apple-xros2.0"
+            done
+            ;;
     esac
 }
 
@@ -67,3 +77,5 @@ cp "$FRAMEWORK_ROOT/Info.plist" "$OUTPUT_ROOT/Info.plist"
 generate_framework macos-arm64e-arm64-x86_64
 generate_framework ios-arm64-arm64e
 generate_framework ios-arm64-x86_64-simulator
+generate_framework xros-arm64-x86_64-simulator
+generate_framework xros-arm64-arm64e

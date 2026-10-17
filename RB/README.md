@@ -14,15 +14,18 @@ After making change to Sources, run `update.sh` to update the xcframework.
     - Copy from iOS Simulator and change the arch information on target_info in tbd file.
 - iOS Simulator: 
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22A3351/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/RenderBox.framework`
-    - `xcrun tapi stubify ./RenderBox.framework`
+    - `xcrun tapi stubify --no-compact ./RenderBox.framework`
 
 - macOS's tbd is from macOS 15.0 SDK (bundled with Xcode 16.0)
     - `/Applications/Xcode-16.0.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk/System/Library/PrivateFrameworks/RenderBox.framework`
-    - `xcrun tapi stubify ./RenderBox.framework`
+    - `xcrun tapi stubify --no-compact ./RenderBox.framework`
 
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/RenderBox.framework`
-    - `xcrun tapi stubify ./RenderBox.framework`
+    - `xcrun tapi stubify --no-compact ./RenderBox.framework`
+- visionOS:
+    - `dyld_shared_cache_arm64e` from the visionOS 2.5 (22O473) Apple Vision Pro firmware. See [Device tbd Files](../README.md#device-tbd-files).
+    - `Scripts/generate_device_tbd.sh xros <dyld_shared_cache_arm64e> RenderBox`
 
 ### Update RenderBox
 

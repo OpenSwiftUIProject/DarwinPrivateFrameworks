@@ -1,0 +1,33 @@
+#include <RenderBox/RBAnimation.h>
+#include <RenderBox/RBBase.h>
+#include <RenderBox/RBBlendMode.h>
+#include <RenderBox/RBColor.h>
+#include <RenderBox/RBColorMode.h>
+#include <RenderBox/RBColorSpace.h>
+#include <RenderBox/RBDecodable.h>
+#include <RenderBox/RBDecoderDelegate.h>
+#include <RenderBox/RBDevice.h>
+#include <RenderBox/RBDisplayList.h>
+#include <RenderBox/RBDisplayListContents.h>
+#include <RenderBox/RBDisplayListInterpolator.h>
+#include <RenderBox/RBDisplayListPredicate.h>
+#include <RenderBox/RBDisplayListTransform.h>
+#include <RenderBox/RBDrawableStatistics.h>
+#include <RenderBox/RBEncodable.h>
+#include <RenderBox/RBEncoderDelegate.h>
+#include <RenderBox/RBEncoderSet.h>
+#include <RenderBox/RBImageRenderer.h>
+#include <RenderBox/RBLayer.h>
+#include <RenderBox/RBLayerDelegate.h>
+#include <RenderBox/RBPath.h>
+#include <RenderBox/RBPathCallbacks.h>
+#include <RenderBox/RBPathStorage.h>
+#include <RenderBox/RBSymbolAnimator.h>
+#include <RenderBox/RBSymbolAnimatorObserver.h>
+#include <RenderBox/RBSwiftSupport.h>
+#include <RenderBox/RBTargetConditionals.h>
+#include <RenderBox/RBUUID.h>
+#include <RenderBox/RBVersion.h>
+
+RB_EXPORT double RenderBoxVersionNumber;
+RB_EXPORT const unsigned char RenderBoxVersionString[];

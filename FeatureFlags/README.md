@@ -24,8 +24,14 @@ flag.
 ## Sources
 
 - macOS stub: macOS 15.5 SDK in Xcode 16.4, FeatureFlags version 97.
-- Simulator stub: `tapi stubify` output from the iOS 18.5 Simulator runtime,
+- Simulator stub: `tapi stubify --no-compact` output from the iOS 18.5 Simulator runtime,
   FeatureFlags version 97.
+- visionOS Simulator stub: `tapi stubify --no-compact` output from the visionOS 2.5
+  Simulator runtime (`22O473`). It exports the same symbols as the iOS
+  Simulator stub.
+- visionOS stub: `Scripts/generate_device_tbd.sh xros <dyld_shared_cache_arm64e>
+  FeatureFlags` output from the visionOS 2.5 (22O473) Apple Vision Pro firmware.
+  See [Device tbd Files](../README.md#device-tbd-files).
 - Device stub: the simulator export list with arm64/arm64e iOS targets, following
   the existing SFSymbols device stub pattern. SwiftUICore 6.5.4 imports the same
   protocol and function symbols.
@@ -37,8 +43,10 @@ flag.
 - macOS 15.0: arm64, arm64e, x86_64.
 - iOS 18.0: arm64, arm64e.
 - iOS Simulator 18.5: arm64, x86_64.
+- visionOS Simulator 2.5: arm64, x86_64.
+- visionOS 2.0: arm64, arm64e.
 
-Mac Catalyst, tvOS, watchOS, and visionOS slices are not included.
+Mac Catalyst, tvOS, and watchOS slices are not included.
 
 ## Update
 
