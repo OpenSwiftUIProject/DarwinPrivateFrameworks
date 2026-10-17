@@ -26,6 +26,9 @@ flag.
 - macOS stub: macOS 15.5 SDK in Xcode 16.4, FeatureFlags version 97.
 - Simulator stub: `tapi stubify` output from the iOS 18.5 Simulator runtime,
   FeatureFlags version 97.
+- visionOS Simulator stub: `tapi stubify` output from the visionOS 2.5
+  Simulator runtime (`22O473`). It exports the same symbols as the iOS
+  Simulator stub.
 - Device stub: the simulator export list with arm64/arm64e iOS targets, following
   the existing SFSymbols device stub pattern. SwiftUICore 6.5.4 imports the same
   protocol and function symbols.
@@ -37,8 +40,9 @@ flag.
 - macOS 15.0: arm64, arm64e, x86_64.
 - iOS 18.0: arm64, arm64e.
 - iOS Simulator 18.5: arm64, x86_64.
+- visionOS Simulator 2.5: arm64, x86_64.
 
-Mac Catalyst, tvOS, watchOS, and visionOS slices are not included.
+Mac Catalyst, tvOS, watchOS, and visionOS device slices are not included.
 
 ## Update
 
