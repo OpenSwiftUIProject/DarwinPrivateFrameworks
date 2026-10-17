@@ -10,7 +10,7 @@
 |[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
 |[![FeatureFlagsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml)|
 
-This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `Gestures`, `SFSymbols`, and `FeatureFlags`.
+This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `CoreSVG`, `Gestures`, `SFSymbols`, and `FeatureFlags`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], visionOS Simulator, and visionOS platforms.
 
@@ -22,21 +22,23 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 > Using private frameworks in App Store apps will result in rejection and will crash your app in future OS update.
 
 > [!WARNING]
-> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**, and the visionOS support on **visionOS 2.5 with Xcode 26.6**. Other system versions are not guaranteed to work.
+> The scripts and xcframework code have only been tested on **macOS 15.5, iOS 18.5, and visionOS 2.5**. Other system versions are not guaranteed to work.
 >
 > Please resolve any compatibility issues yourself. Contributions are welcome!
 
 ## Structure
 
 - `AG/`: Contains the `AttributeGraph` framework.
-- `CoreUI/`: Contains the `CoreUI` framework.
 - `BLS/`: Contains the `BacklightServices` framework.
-- `Examples/`: Contains example projects demonstrating usage of the private frameworks.
-- `GF/`: Contains the `Gestures` framework.
+- `CoreSVG/`: Contains the `CoreSVG` framework.
+- `CoreUI/`: Contains the `CoreUI` framework.
 - `FeatureFlags/`: Contains the `FeatureFlags` Swift framework.
+- `GF/`: Contains the `Gestures` framework.
 - `RB/`: Contains the `RenderBox` framework.
 - `SFSymbols/`: Contains the `SFSymbols` framework.
-- `Plugins/UpdateModule/`: Contains the `UpdateModule` plugin for updating the frameworks.
+- `Example/`: Contains example projects demonstrating usage of the private frameworks.
+- `Scripts/`: Contains scripts that generate tbd files, install internal SDKs, and write the visionOS UIKit header overlay.
+- `Plugins/UpdateXCFrameworks/`: Contains the `UpdateXCFrameworks` plugin for updating the frameworks.
 
 ## Update
 
@@ -93,7 +95,7 @@ For Swift Package Manager projects, add the dependency as a normal package depen
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks.git", from: "0.0.2"),
+    .package(url: "https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks.git", from: "0.0.7"),
 ]
 ```
 
@@ -130,6 +132,9 @@ Scripts/SDK/install_internal_sdk.sh iPhoneOS
 Scripts/SDK/install_internal_sdk.sh XRSimulator
 ```
 
+The installer has no visionOS device SDK. For visionOS devices, use the UIKit
+header overlay in [visionOS Support](#visionos-support).
+
 2. Choose the corresponding Internal SDK as the Base SDK in your Xcode project settings.
 
 ![](Screenshots/base_sdk.png)
@@ -139,7 +144,7 @@ Scripts/SDK/install_internal_sdk.sh XRSimulator
 > - **Xcode < 16.3**: You can use the auto-detected "Internal SDK" (eg. macOS Internal SDK which corresponds to `macosx.internal`), or manually enter the full canonical name (e.g. `macosx15.5.internal`).
 > - **Xcode ≥ 16.3**: You must use the full canonical name for all platforms due to Xcode's stricter SDK detection:
 >
-> For example:
+> For example, with Xcode 16.4:
 > - macOS: `macosx15.5.internal`
 > - iOS Simulator: `iphonesimulator18.5.internal`
 > - iOS Device: `iphoneos18.5.internal`
@@ -202,6 +207,6 @@ The legacy `install_internal_sdk.sh XRSimulator` path copies the whole SDK into
 Xcode and patches the same headers there. Prefer the overlay for new setups.
 The private frameworks come from the xcframeworks on every path.
 
-[^1]: The Swift API of AttributeGraph is not available on iOS platform.
+[^1]: The Swift API of AttributeGraph is not available on iOS devices.
 
 [^2]: The installer currently includes AttributeGraph, RenderBox, CoreUI, BacklightServices, SFSymbols, and Gestures (platform-dependent). For visionOS, the script also enables UIScreen support by removing API availability restrictions.
