@@ -18,12 +18,12 @@ mkdir -p 2024/tbds/{ios-arm64-arm64e,ios-arm64-x86_64-simulator,xros-arm64-x86_6
 # 3. Extract tbd files from simulators
 # For iOS Simulator
 cp -r "/Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/<FrameworkName>.framework" /tmp/<FrameworkName>_ios_simulator.framework
-cd /tmp && xcrun tapi stubify ./<FrameworkName>_ios_simulator.framework
+cd /tmp && xcrun tapi stubify --no-compact ./<FrameworkName>_ios_simulator.framework
 cp /tmp/<FrameworkName>_ios_simulator.framework/<FrameworkName>.tbd <path>/2024/tbds/ios-arm64-x86_64-simulator/
 
 # For visionOS Simulator
 cp -r "/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/<FrameworkName>.framework" /tmp/<FrameworkName>_xros_simulator.framework
-cd /tmp && xcrun tapi stubify ./<FrameworkName>_xros_simulator.framework
+cd /tmp && xcrun tapi stubify --no-compact ./<FrameworkName>_xros_simulator.framework
 cp /tmp/<FrameworkName>_xros_simulator.framework/<FrameworkName>.tbd <path>/2024/tbds/xros-arm64-x86_64-simulator/
 
 # 4. Get iOS device tbd from GitHub
@@ -77,7 +77,7 @@ The framework supports:
 
 ## Notes
 
-- The `xcrun tapi stubify` command is used to generate .tbd files from framework binaries
+- The `xcrun tapi stubify --no-compact` command generates multi-line .tbd files from framework binaries
 - The 2024 version corresponds to iOS 18.5, macOS 15.5, and visionOS 2.5
 - Always create a symlink named `latest` pointing to the current version directory
 - **Swift frameworks** require a `template.swiftinterface` file for proper module interface generation (see AttributeGraph for example)

@@ -12,12 +12,12 @@ After making changes to Sources or tbds, run `update.sh` to update the xcframewo
     - copy from ios-arm64-x86_64-simulator
 - iOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/SFSymbols.framework`
-    - `xcrun tapi stubify ./SFSymbols.framework`
+    - `xcrun tapi stubify --no-compact ./SFSymbols.framework`
 - macOS's tbd is from macOS 15.5 SDK (bundled with Xcode 16.4)
     - `/Applications/Xcode-16.4.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/PrivateFrameworks/SFSymbols.framework/Versions/A/SFSymbols.tbd`
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/SFSymbols.framework`
-    - `xcrun tapi stubify ./SFSymbols.framework`
+    - `xcrun tapi stubify --no-compact ./SFSymbols.framework`
 
 ### Supported Platforms
 

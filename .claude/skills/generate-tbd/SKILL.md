@@ -9,7 +9,7 @@ Generate TBD files for the specified frameworks from the given platform runtime 
 
 This command will:
 1. Copy each framework from the platform runtime to a temporary location
-2. Generate TBD files using `xcrun tapi stubify`
+2. Generate TBD files using `xcrun tapi stubify --no-compact`
 3. Copy TBD and Info.plist files to the appropriate directories
 4. Convert Info.plist files to XML format
 5. Update the generation scripts (update.sh) to include platform support
@@ -48,7 +48,7 @@ The command will execute the script at `Scripts/generate_tbd.sh` with the provid
 
 1. For each framework:
    - Copy from `{runtime}/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/{framework}.framework`
-   - Generate TBD using `xcrun tapi stubify`
+   - Generate TBD using `xcrun tapi stubify --no-compact`
    - Create directory structure based on platform:
      - iOS: `{framework_dir}/2024/tbds/ios-arm64-x86_64-simulator/`
      - visionOS: `{framework_dir}/2024/tbds/xros-arm64-x86_64-simulator/`

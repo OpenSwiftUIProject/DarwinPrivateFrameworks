@@ -98,7 +98,7 @@ process_framework() {
     # Generate TBD using tapi
     echo "  - Generating TBD file..."
     cd /tmp
-    xcrun tapi stubify "./${framework_name}-${PLATFORM}.framework"
+    xcrun tapi stubify --no-compact "./${framework_name}-${PLATFORM}.framework"
     cd - > /dev/null
     
     # Create target directory
@@ -213,7 +213,7 @@ update_readme() {
     echo "" >> "$readme"
     echo "- ${platform_name} Simulator:" >> "$readme"
     echo "    - \`${PRIVATE_FRAMEWORKS}/<framework>.framework\`" >> "$readme"
-    echo "    - \`xcrun tapi stubify ./<framework>.framework\`" >> "$readme"
+    echo "    - \`xcrun tapi stubify --no-compact ./<framework>.framework\`" >> "$readme"
 }
 
 # Process each framework

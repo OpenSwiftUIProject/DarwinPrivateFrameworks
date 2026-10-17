@@ -13,11 +13,11 @@ After making changes to Sources or tbds, run `update.sh` to update the xcframewo
 
 - iOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/BacklightServices.framework`
-    - `xcrun tapi stubify ./BacklightServices.framework`
+    - `xcrun tapi stubify --no-compact ./BacklightServices.framework`
 
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/BacklightServices.framework`
-    - `xcrun tapi stubify ./BacklightServices.framework`
+    - `xcrun tapi stubify --no-compact ./BacklightServices.framework`
 
 ### Supported Platforms
 

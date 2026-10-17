@@ -17,19 +17,19 @@ After making change to Sources, run `update.sh` to update the xcframework.
 
 - iOS's tbd is from
     - DeviceSupport + iPhone16,1_18.5_(22F76)
-    - `xcrun tapi stubify ./AttributeGraph.framework` with Xcode 16.0
+    - `xcrun tapi stubify --no-compact ./AttributeGraph.framework` with Xcode 16.0
     - Empty result -> copy from ios-arm64-x86_64-simulator and remove the Swift symbol part
 
 - iOS Simulator: 
     - `/Library/Developer/CoreSimulator/Volumes/iOS_22F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 18.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AttributeGraph.framework`
-    - `xcrun tapi stubify ./AttributeGraph.framework`
+    - `xcrun tapi stubify --no-compact ./AttributeGraph.framework`
 
 - macOS's tbd is from macOS 15.5 SDK (bundled with Xcode 16.4)
     - `/Applications/Xcode-16.4.0.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk/System/Library/PrivateFrameworks/AttributeGraph.framework/AttributeGraph.tbd`
 
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AttributeGraph.framework`
-    - `xcrun tapi stubify ./AttributeGraph.framework`
+    - `xcrun tapi stubify --no-compact ./AttributeGraph.framework`
 
 @_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.
 

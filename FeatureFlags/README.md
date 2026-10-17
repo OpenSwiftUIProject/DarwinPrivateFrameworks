@@ -24,9 +24,9 @@ flag.
 ## Sources
 
 - macOS stub: macOS 15.5 SDK in Xcode 16.4, FeatureFlags version 97.
-- Simulator stub: `tapi stubify` output from the iOS 18.5 Simulator runtime,
+- Simulator stub: `tapi stubify --no-compact` output from the iOS 18.5 Simulator runtime,
   FeatureFlags version 97.
-- visionOS Simulator stub: `tapi stubify` output from the visionOS 2.5
+- visionOS Simulator stub: `tapi stubify --no-compact` output from the visionOS 2.5
   Simulator runtime (`22O473`). It exports the same symbols as the iOS
   Simulator stub.
 - Device stub: the simulator export list with arm64/arm64e iOS targets, following
