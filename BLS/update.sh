@@ -41,5 +41,6 @@ generate_xcframework $framework_name
 generate_framework $framework_name ios-arm64-x86_64-simulator
 generate_framework $framework_name ios-arm64-arm64e
 generate_framework $framework_name xros-arm64-x86_64-simulator
+generate_framework $framework_name xros-arm64-arm64e
 
 echo "BacklightServices.xcframework has been generated successfully!"

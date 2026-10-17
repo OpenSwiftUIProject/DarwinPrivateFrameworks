@@ -30,6 +30,9 @@ After making change to Sources, run `update.sh` to update the xcframework.
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AttributeGraph.framework`
     - `xcrun tapi stubify --no-compact ./AttributeGraph.framework`
+- visionOS:
+    - `dyld_shared_cache_arm64e` from the visionOS 2.5 (22O473) Apple Vision Pro firmware. See [Device tbd Files](../README.md#device-tbd-files).
+    - `Scripts/generate_device_tbd.sh xros <dyld_shared_cache_arm64e> AttributeGraph`
 
 @_transparent in swiftinterface file is needed since all extension symbol is stripped on this release.
 

@@ -67,3 +67,4 @@ generate_framework $framework_name ios-arm64-x86_64-simulator
 generate_framework $framework_name ios-arm64-arm64e
 generate_macos_framework $framework_name macos-arm64e-arm64-x86_64
 generate_framework $framework_name xros-arm64-x86_64-simulator
+generate_framework $framework_name xros-arm64-arm64e

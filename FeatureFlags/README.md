@@ -29,6 +29,9 @@ flag.
 - visionOS Simulator stub: `tapi stubify --no-compact` output from the visionOS 2.5
   Simulator runtime (`22O473`). It exports the same symbols as the iOS
   Simulator stub.
+- visionOS stub: `Scripts/generate_device_tbd.sh xros <dyld_shared_cache_arm64e>
+  FeatureFlags` output from the visionOS 2.5 (22O473) Apple Vision Pro firmware.
+  See [Device tbd Files](../README.md#device-tbd-files).
 - Device stub: the simulator export list with arm64/arm64e iOS targets, following
   the existing SFSymbols device stub pattern. SwiftUICore 6.5.4 imports the same
   protocol and function symbols.
@@ -41,8 +44,9 @@ flag.
 - iOS 18.0: arm64, arm64e.
 - iOS Simulator 18.5: arm64, x86_64.
 - visionOS Simulator 2.5: arm64, x86_64.
+- visionOS 2.0: arm64, arm64e.
 
-Mac Catalyst, tvOS, watchOS, and visionOS device slices are not included.
+Mac Catalyst, tvOS, and watchOS slices are not included.
 
 ## Update
 

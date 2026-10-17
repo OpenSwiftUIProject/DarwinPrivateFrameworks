@@ -12,7 +12,7 @@
 
 This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `Gestures`, `SFSymbols`, and `FeatureFlags`.
 
-The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], and visionOS Simulator platforms.
+The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], visionOS Simulator, and visionOS platforms.
 
 > [!CAUTION]
 > These private frameworks are **ONLY** for research and educational purposes.
@@ -22,7 +22,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 > Using private frameworks in App Store apps will result in rejection and will crash your app in future OS update.
 
 > [!WARNING]
-> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**, and the visionOS Simulator support on **visionOS 2.5 with Xcode 26.6**. Other system versions are not guaranteed to work.
+> The scripts and xcframework code have only been tested on **macOS 15.5 and iOS 18.5**, and the visionOS support on **visionOS 2.5 with Xcode 26.6**. Other system versions are not guaranteed to work.
 >
 > Please resolve any compatibility issues yourself. Contributions are welcome!
 
@@ -47,6 +47,38 @@ To update the xcframework, run the following commands:
 ```shell
 swift package update-xcframeworks --allow-writing-to-package-directory
 ```
+
+### Device tbd Files
+
+The visionOS device tbd files come from the dyld shared cache of a device
+firmware. Use [ipsw](https://github.com/blacktop/ipsw) to download the firmware
+and extract the cache:
+
+```shell
+brew install blacktop/tap/ipsw
+
+# Download the visionOS 2.5 (22O473) Apple Vision Pro firmware (about 10.4 GB).
+ipsw download ipsw --device RealityDevice14,1 --build 22O473 -o <firmware-dir>
+
+# Extract the arm64e dyld shared cache. ipsw decrypts the AEA disk image.
+ipsw extract --dyld -a arm64e -o <cache-dir> <firmware-dir>/<firmware>.ipsw
+```
+
+The cache is in `<cache-dir>/22O473__RealityDevice14,1/dyld_shared_cache_arm64e`.
+Generate the tbd files from it, then run the update command above:
+
+```shell
+Scripts/generate_device_tbd.sh xros "<cache>" AttributeGraph RenderBox CoreUI BacklightServices CoreSVG SFSymbols FeatureFlags
+```
+
+The script extracts each framework with `ipsw dyld extract`, writes its tbd
+with `xcrun tapi stubify --no-compact`, and adds the arm64 target next to the
+arm64e target of the cache. The output goes to
+`<Framework>/2024/tbds/xros-arm64-arm64e/`.
+
+Download the whole firmware. `ipsw download ipsw --dyld` cannot extract the
+cache remotely from this firmware, because its file system image is not in a
+separate cryptex.
 
 ## Usage
 

@@ -18,6 +18,9 @@ After making changes to Sources or tbds, run `update.sh` to update the xcframewo
 - visionOS Simulator:
     - `/Library/Developer/CoreSimulator/Volumes/xrOS_22O473/Library/Developer/CoreSimulator/Profiles/Runtimes/xrOS 2.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/SFSymbols.framework`
     - `xcrun tapi stubify --no-compact ./SFSymbols.framework`
+- visionOS:
+    - `dyld_shared_cache_arm64e` from the visionOS 2.5 (22O473) Apple Vision Pro firmware. See [Device tbd Files](../README.md#device-tbd-files).
+    - `Scripts/generate_device_tbd.sh xros <dyld_shared_cache_arm64e> SFSymbols`
 
 ### Supported Platforms
 
@@ -25,3 +28,4 @@ After making changes to Sources or tbds, run `update.sh` to update the xcframewo
 - iOS (arm64, arm64e)
 - iOS Simulator (arm64, x86_64)
 - visionOS Simulator (arm64, x86_64)
+- visionOS (arm64, arm64e)

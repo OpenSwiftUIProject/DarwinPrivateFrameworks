@@ -112,3 +112,8 @@ generate_framework $framework_name xros-arm64-x86_64-simulator
 generate_swiftinterface x86_64-apple-xros-simulator x86_64-apple-xros${XROS_VERSION}-simulator
 generate_swiftinterface arm64-apple-xros-simulator arm64-apple-xros${XROS_VERSION}-simulator
 rm template.swiftinterface
+
+generate_framework $framework_name xros-arm64-arm64e
+generate_swiftinterface arm64e-apple-xros arm64e-apple-xros${XROS_VERSION}
+generate_swiftinterface arm64-apple-xros arm64-apple-xros${XROS_VERSION}
+rm template.swiftinterface
