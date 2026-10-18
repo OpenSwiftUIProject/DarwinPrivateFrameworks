@@ -10,7 +10,7 @@ usage() {
     echo "Usage: $0 <sdk_path>"
     echo "  sdk_path: Path to a writable XRSimulator SDK copy, for example XRSimulator.Internal.sdk"
     echo ""
-    echo "Removes the visionOS restrictions from UIScreen.h, UIWindow.screen, and UIDevice.orientation in that SDK."
+    echo "Removes the visionOS restrictions from UIScreen.h, UIWindow.screen, UIDevice.orientation, and UIViewController.setNeedsStatusBarAppearanceUpdate in that SDK."
 }
 
 if [[ $# -ne 1 ]]; then
