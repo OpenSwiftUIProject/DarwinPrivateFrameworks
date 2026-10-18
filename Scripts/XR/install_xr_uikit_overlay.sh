@@ -1,9 +1,11 @@
 #!/bin/bash
 #
 # Generate a clang and swift virtual file system overlay that replaces the
-# UIScreen.h, UIWindow.h, and UIDevice.h headers of the selected visionOS and
-# visionOS Simulator SDKs with copies that allow UIScreen, UIWindow.screen, and
-# UIDevice.orientation on visionOS. The SDKs inside Xcode stay untouched.
+# UIScreen.h, UIWindow.h, UIDevice.h, and UIViewController.h headers of the
+# selected visionOS and visionOS Simulator SDKs with copies that allow UIScreen,
+# UIWindow.screen, UIDevice.orientation, and
+# UIViewController.setNeedsStatusBarAppearanceUpdate on visionOS.
+# The SDKs inside Xcode stay untouched.
 #
 # Consume the overlay from a project with:
 #   OTHER_CFLAGS[sdk=xros*] = $(inherited) -ivfsoverlay <output>/overlay.yaml
@@ -25,7 +27,7 @@ GENERATOR_ID="DarwinPrivateFrameworks/Scripts/XR/install_xr_uikit_overlay.sh"
 SDK_NAME="XRSimulator.additions.sdk"
 # Each entry is <platform name>:<xcrun SDK name>.
 OVERLAY_SDKS=(XRSimulator:xrsimulator XROS:xros)
-PATCHED_HEADERS=(UIScreen.h UIWindow.h UIDevice.h)
+PATCHED_HEADERS=(UIScreen.h UIWindow.h UIDevice.h UIViewController.h)
 WITH_SDK=0
 FORCE=0
 

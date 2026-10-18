@@ -170,11 +170,12 @@ import AttributeGraph
 
 ## visionOS Support
 
-The public visionOS SDKs mark `UIScreen`, `UIWindow.screen`, and
-`UIDevice.orientation` unavailable. UIKit implements them at runtime. Projects
-that use these APIs on visionOS can generate a compiler virtual file system
-overlay. The overlay replaces only `UIScreen.h`, `UIWindow.h`, and `UIDevice.h`
-of the visionOS and visionOS Simulator SDKs in the selected Xcode:
+The public visionOS SDKs mark `UIScreen`, `UIWindow.screen`,
+`UIDevice.orientation`, and `UIViewController.setNeedsStatusBarAppearanceUpdate`
+unavailable. Projects that use these APIs on visionOS can generate a compiler
+virtual file system overlay. The overlay replaces only `UIScreen.h`,
+`UIWindow.h`, `UIDevice.h`, and `UIViewController.h` of the visionOS and visionOS
+Simulator SDKs in the selected Xcode:
 
 ```shell
 export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer

@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Remove the visionOS availability restrictions that block UIScreen use in a
-# UIKit headers directory: every restriction in UIScreen.h, the UIWindow.screen
-# property in UIWindow.h, and the UIDevice.orientation property in UIDevice.h.
+# Remove selected visionOS availability restrictions in a UIKit headers directory:
+# every restriction in UIScreen.h, UIWindow.screen, UIDevice.orientation, and
+# UIViewController.setNeedsStatusBarAppearanceUpdate.
 # The directory must be a writable copy; the script never touches an SDK inside
 # Xcode on its own.
 
@@ -10,8 +10,8 @@ set -euo pipefail
 
 usage() {
     echo "Usage: $0 <uikit-headers-dir>"
-    echo "Remove the visionOS restrictions from UIScreen.h, UIWindow.screen, and UIDevice.orientation in place."
-    echo "The directory must contain UIScreen.h, UIWindow.h, and UIDevice.h."
+    echo "Remove the visionOS restrictions from UIScreen.h, UIWindow.screen, UIDevice.orientation, and UIViewController.setNeedsStatusBarAppearanceUpdate in place."
+    echo "The directory must contain UIScreen.h, UIWindow.h, UIDevice.h, and UIViewController.h."
 }
 
 if [[ $# -ne 1 ]]; then
@@ -23,8 +23,9 @@ HEADERS_DIR="$1"
 UISCREEN_H="$HEADERS_DIR/UIScreen.h"
 UIWINDOW_H="$HEADERS_DIR/UIWindow.h"
 UIDEVICE_H="$HEADERS_DIR/UIDevice.h"
+UIVIEWCONTROLLER_H="$HEADERS_DIR/UIViewController.h"
 
-for header in "$UISCREEN_H" "$UIWINDOW_H" "$UIDEVICE_H"; do
+for header in "$UISCREEN_H" "$UIWINDOW_H" "$UIDEVICE_H" "$UIVIEWCONTROLLER_H"; do
     if [[ ! -f "$header" ]]; then
         echo "Error: Missing header: $header" >&2
         exit 1
@@ -71,10 +72,10 @@ if [[ "$after" -ne 0 ]]; then
 fi
 echo "Patched UIScreen.h: removed visionos restrictions on $before lines"
 
-# Remove visionos from the API_UNAVAILABLE list of exactly one property
+# Remove visionos from the API_UNAVAILABLE list of exactly one
 # declaration. $2 is a regular expression for the declaration up to the name,
 # $3 is the name used in messages.
-enable_property() {
+enable_declaration() {
     local header="$1" declaration="$2" name="$3"
     local pattern="${declaration}[^;]*${VISIONOS_PATTERN}"
     local count
@@ -97,5 +98,6 @@ enable_property() {
     echo "Patched $(basename "$header"): enabled $name on visionOS"
 }
 
-enable_property "$UIWINDOW_H" 'UIScreen \*screen\b' "UIWindow.screen"
-enable_property "$UIDEVICE_H" 'UIDeviceOrientation orientation\b' "UIDevice.orientation"
+enable_declaration "$UIWINDOW_H" 'UIScreen \*screen\b' "UIWindow.screen"
+enable_declaration "$UIDEVICE_H" 'UIDeviceOrientation orientation\b' "UIDevice.orientation"
+enable_declaration "$UIVIEWCONTROLLER_H" '^[[:space:]]*-[[:space:]]*\(void\)[[:space:]]*setNeedsStatusBarAppearanceUpdate\b' "UIViewController.setNeedsStatusBarAppearanceUpdate"
