@@ -23,6 +23,7 @@
 #include <RenderBox/RBPathCallbacks.h>
 #include <RenderBox/RBPathStorage.h>
 #include <RenderBox/RBSymbolAnimator.h>
+#include <RenderBox/RBSymbolAnimation.h>
 #include <RenderBox/RBSymbolAnimatorObserver.h>
 #include <RenderBox/RBSwiftSupport.h>
 #include <RenderBox/RBTargetConditionals.h>
