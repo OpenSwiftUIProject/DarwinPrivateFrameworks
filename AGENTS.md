@@ -32,6 +32,7 @@ Env keys are searched with domain prefixes `DARWINPRIVATEFRAMEWORKS_` and `OPENS
 | `CoreUI/` | CoreUI | 2024 only |
 | `BLS/` | BacklightServices | 2024 only |
 | `SFSymbols/` | SFSymbols | 2024 only |
+| `Symbols/` | Symbols | 2024 public interface and Private SPI |
 | `CoreSVG/` | CoreSVG | 2024 only |
 | `Scripts/` | Build/install scripts | SDK installation, framework generation |
 | `Plugins/` | UpdateXCFrameworks | SPM command plugin |

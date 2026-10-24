@@ -10,7 +10,7 @@
 |[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
 |[![FeatureFlagsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml)|
 
-This project contains private frameworks for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `CoreSVG`, `Gestures`, `SFSymbols`, and `FeatureFlags`.
+This project contains private frameworks and framework interfaces for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `CoreSVG`, `Gestures`, `SFSymbols`, `Symbols`, and `FeatureFlags`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], visionOS Simulator, and visionOS platforms.
 
@@ -36,6 +36,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `GF/`: Contains the `Gestures` framework.
 - `RB/`: Contains the `RenderBox` framework.
 - `SFSymbols/`: Contains the `SFSymbols` framework.
+- `Symbols/`: Contains the public Symbols interface and its `Private` SPI.
 - `Example/`: Contains example projects demonstrating usage of the private frameworks.
 - `Scripts/`: Contains scripts that generate tbd files, install internal SDKs, and write the visionOS UIKit header overlay.
 - `Plugins/UpdateXCFrameworks/`: Contains the `UpdateXCFrameworks` plugin for updating the frameworks.

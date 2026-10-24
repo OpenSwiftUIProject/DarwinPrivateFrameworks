@@ -156,6 +156,8 @@ var products: [PackageDescription.Product] = [
     .library(name: "CoreUI", targets: ["CoreUI"]),
     .library(name: "BacklightServices", targets: ["BacklightServices"]),
     .library(name: "SFSymbols", targets: ["SFSymbols"]),
+    // The Symbols SPI uses RenderBox's symbol animation types.
+    .library(name: "Symbols", targets: ["Symbols", "RenderBox"]),
     .library(name: "CoreSVG", targets: ["CoreSVG"]),
     .library(name: "FeatureFlags", targets: ["FeatureFlags"]),
 ]
@@ -185,6 +187,7 @@ let package = Package(
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SFSymbols/2024/SFSymbols.xcframework"),
+        .binaryTarget(name: "Symbols", path: "Symbols/2024/Symbols.xcframework"),
         .binaryTarget(name: "CoreSVG", path: "CoreSVG/2024/CoreSVG.xcframework"),
         .binaryTarget(name: "FeatureFlags", path: "FeatureFlags/2024/FeatureFlags.xcframework"),
         .binaryTarget(name: "Gestures", path: "GF/2025/Gestures.xcframework"),

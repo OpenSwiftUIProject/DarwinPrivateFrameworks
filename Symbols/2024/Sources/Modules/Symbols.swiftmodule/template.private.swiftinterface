@@ -1,0 +1,132 @@
+import RenderBox
+
+extension Symbols.SymbolEffectConfiguration {
+    @_spi(Private) public enum Effect: Swift.Hashable {
+        case pulse(Symbols.PulseSymbolEffect)
+        case bounce(Symbols.BounceSymbolEffect)
+        case variableColor(Symbols.VariableColorSymbolEffect)
+        case scale(Symbols.ScaleSymbolEffect)
+        case appear(Symbols.AppearSymbolEffect)
+        case disappear(Symbols.DisappearSymbolEffect)
+        case replace(Symbols.ReplaceSymbolEffect)
+        case automatic(Symbols.AutomaticSymbolEffect)
+        case wiggle(Symbols.WiggleSymbolEffect)
+        case rotate(Symbols.RotateSymbolEffect)
+        case breathe(Symbols.BreatheSymbolEffect)
+        case magicReplace(Symbols.MagicReplaceSymbolEffect)
+
+        public static func == (a: Symbols.SymbolEffectConfiguration.Effect, b: Symbols.SymbolEffectConfiguration.Effect) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int { get }
+    }
+
+    @_spi(Private) public init(effect: Symbols.SymbolEffectConfiguration.Effect)
+    @_spi(Private) public var effect: Symbols.SymbolEffectConfiguration.Effect { get set }
+    @_spi(Private) public var rbAnimation: RenderBox.RBSymbolAnimation? { get }
+    @_spi(Private) public var rbOptions: [RenderBox.RBSymbolAnimation.OptionKey: Any] { get }
+    @_spi(Private) public func rbOptions(with options: Symbols.SymbolEffectOptions) -> [RenderBox.RBSymbolAnimation.OptionKey: Any]
+}
+
+extension Symbols.PulseSymbolEffect {
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.BounceSymbolEffect {
+    @_spi(Private) public var isUp: Swift.Bool? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.VariableColorSymbolEffect {
+    @_spi(Private) public var isReversing: Swift.Bool? { get set }
+    @_spi(Private) public var isIterative: Swift.Bool? { get set }
+    @_spi(Private) public var hasReveal: Swift.Bool? { get set }
+}
+
+extension Symbols.ScaleSymbolEffect {
+    @_spi(Private) public var isUp: Swift.Bool? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.AppearSymbolEffect {
+    @_spi(Private) public var isUp: Swift.Bool? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.DisappearSymbolEffect {
+    @_spi(Private) public var isUp: Swift.Bool? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.ReplaceSymbolEffect {
+    @_spi(Private) public enum ReplaceStyle: Swift.Hashable {
+        case downUp
+        case upUp
+        case offUp
+
+        public static func == (a: Symbols.ReplaceSymbolEffect.ReplaceStyle, b: Symbols.ReplaceSymbolEffect.ReplaceStyle) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int { get }
+    }
+
+    @_spi(Private) public var style: Symbols.ReplaceSymbolEffect.ReplaceStyle? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.WiggleSymbolEffect {
+    @_spi(Private) public enum WiggleStyle: Swift.Hashable {
+        case rotational(Swift.Bool)
+        case linear(Swift.Double)
+        case localized(Swift.Bool)
+
+        public static func == (a: Symbols.WiggleSymbolEffect.WiggleStyle, b: Symbols.WiggleSymbolEffect.WiggleStyle) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int { get }
+    }
+
+    @_spi(Private) public var style: Symbols.WiggleSymbolEffect.WiggleStyle? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.RotateSymbolEffect {
+    @_spi(Private) public var isClockwise: Swift.Bool? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+extension Symbols.BreatheSymbolEffect {
+    @_spi(Private) public enum BreatheStyle: Swift.Hashable {
+        case dim
+        case scale
+
+        public static func == (a: Symbols.BreatheSymbolEffect.BreatheStyle, b: Symbols.BreatheSymbolEffect.BreatheStyle) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int { get }
+    }
+
+    @_spi(Private) public var style: Symbols.BreatheSymbolEffect.BreatheStyle? { get set }
+    @_spi(Private) public var isLayered: Swift.Bool? { get set }
+}
+
+@_spi(Private) public struct MagicReplaceSymbolEffect: Symbols.SymbolEffect {
+    public var fallback: Symbols.ReplaceSymbolEffect { get set }
+    public var configuration: Symbols.SymbolEffectConfiguration { get }
+    public static var replace: Symbols.ReplaceSymbolEffect { get }
+    public static func == (a: Symbols.MagicReplaceSymbolEffect, b: Symbols.MagicReplaceSymbolEffect) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int { get }
+}
+
+extension Symbols.SymbolEffectOptions {
+    @_spi(Private) public enum RepeatOption: Swift.Hashable {
+        case count(Swift.Int)
+        case indefinite
+
+        public static func == (a: Symbols.SymbolEffectOptions.RepeatOption, b: Symbols.SymbolEffectOptions.RepeatOption) -> Swift.Bool
+        public func hash(into hasher: inout Swift.Hasher)
+        public var hashValue: Swift.Int { get }
+    }
+
+    @_spi(Private) public var speed: Swift.Double { get set }
+    @_spi(Private) public var `repeat`: Symbols.SymbolEffectOptions.RepeatOption? { get set }
+    @_spi(Private) public var prefersContinuous: Swift.Bool { get set }
+    @_spi(Private) public var repeatDelay: Swift.Double? { get set }
+}
