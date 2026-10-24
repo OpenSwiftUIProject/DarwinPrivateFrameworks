@@ -34,6 +34,8 @@ struct UpdateXCFrameworksCommand: CommandPlugin {
         // SFSymbols
         try run(context: context, command: "SFSymbols/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "SFSymbols/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
+        // Symbols
+        try run(context: context, command: "Symbols/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         // CoreSVG
         try run(context: context, command: "CoreSVG/reset.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
         try run(context: context, command: "CoreSVG/update.sh", environment: ["DARWINPRIVATEFRAMEWORKS_TARGET_RELEASE": "2024"])
