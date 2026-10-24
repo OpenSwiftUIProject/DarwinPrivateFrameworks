@@ -6,6 +6,7 @@
 
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
+#include <RenderBox/RBSymbolAnimation.h>
 
 #if RB_OBJC_FOUNDATION
 
@@ -26,7 +27,7 @@ struct _RBSymbolUpdate;
 @property (nonatomic) double variableValue;
 @property (nonatomic) RBColor opacities;
 @property (nonatomic, getter=isHidden) BOOL hidden;
-@property (nonatomic) int scaleLevel;
+@property (nonatomic) RBSymbolScaleLevel scaleLevel;
 @property (nonatomic) CGPoint anchorPoint;
 @property (nonatomic) CGPoint position;
 @property (nonatomic) CGSize size;
@@ -42,14 +43,14 @@ struct _RBSymbolUpdate;
 @property (readonly, nonatomic) CGRect boundingRect;
 
 /* instance methods */
-- (unsigned int)addAnimation:(unsigned int)animation options:(nullable id)options;
+- (unsigned int)addAnimation:(RBSymbolAnimation)animation options:(nullable id)options RB_SWIFT_NAME(addAnimation(_:options:));
 - (struct _RBSymbolUpdate *)beginUpdateWithRenderingMode:(unsigned int)mode;
 - (void)endUpdate:(struct _RBSymbolUpdate *)update;
 - (void)removeAllAnimations;
-- (void)removeAnimation:(unsigned int)animation;
+- (void)removeAnimation:(RBSymbolAnimation)animation RB_SWIFT_NAME(removeAnimation(_:));
 - (struct _RBSymbolUpdate *)beginUpdateWithRenderingMode:(unsigned int)mode position:(nullable const CGPoint *)position size:(nullable const CGSize *)size flags:(unsigned int)flags;
 - (void)cancelAllAnimations;
-- (void)cancelAnimation:(unsigned int)animation;
+- (void)cancelAnimation:(RBSymbolAnimation)animation RB_SWIFT_NAME(cancelAnimation(_:));
 - (void)cancelAnimationWithID:(unsigned int)animationID;
 - (RBColor)colorForStyle:(unsigned int)style;
 - (nullable id)copyDebugDescriptionForUpdate:(struct _RBSymbolUpdate *)update;
