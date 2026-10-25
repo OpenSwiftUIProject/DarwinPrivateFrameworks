@@ -7,6 +7,8 @@
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBSymbolAnimation.h>
+#include <RenderBox/RBSymbolRenderingMode.h>
+#include <RenderBox/RBSymbolUpdate.h>
 
 #if RB_OBJC_FOUNDATION
 
@@ -17,12 +19,11 @@
 RB_ASSUME_NONNULL_BEGIN
 
 @class CUINamedVectorGlyph;
-struct _RBSymbolUpdate;
 
 @interface RBSymbolAnimator : NSObject
 
 @property (retain, nonatomic, nullable) CUINamedVectorGlyph *glyph;
-@property (nonatomic) unsigned int renderingMode;
+@property (nonatomic) RBSymbolRenderingMode renderingMode;
 @property (nonatomic) BOOL flipsRightToLeft;
 @property (nonatomic) double variableValue;
 @property (nonatomic) RBColor opacities;
@@ -44,16 +45,16 @@ struct _RBSymbolUpdate;
 
 /* instance methods */
 - (unsigned int)addAnimation:(RBSymbolAnimation)animation options:(nullable id)options RB_SWIFT_NAME(addAnimation(_:options:));
-- (struct _RBSymbolUpdate *)beginUpdateWithRenderingMode:(unsigned int)mode;
-- (void)endUpdate:(struct _RBSymbolUpdate *)update;
+- (RBSymbolUpdate)beginUpdateWithRenderingMode:(RBSymbolRenderingMode)mode;
+- (void)endUpdate:(RBSymbolUpdate)update;
 - (void)removeAllAnimations;
 - (void)removeAnimation:(RBSymbolAnimation)animation RB_SWIFT_NAME(removeAnimation(_:));
-- (struct _RBSymbolUpdate *)beginUpdateWithRenderingMode:(unsigned int)mode position:(nullable const CGPoint *)position size:(nullable const CGSize *)size flags:(unsigned int)flags;
+- (RBSymbolUpdate)beginUpdateWithRenderingMode:(RBSymbolRenderingMode)mode position:(nullable const CGPoint *)position size:(nullable const CGSize *)size flags:(RBSymbolUpdateFlags)flags;
 - (void)cancelAllAnimations;
 - (void)cancelAnimation:(RBSymbolAnimation)animation RB_SWIFT_NAME(cancelAnimation(_:));
 - (void)cancelAnimationWithID:(unsigned int)animationID;
 - (RBColor)colorForStyle:(unsigned int)style;
-- (nullable id)copyDebugDescriptionForUpdate:(struct _RBSymbolUpdate *)update;
+- (nullable id)copyDebugDescriptionForUpdate:(RBSymbolUpdate)update;
 - (void)removeAnimationWithID:(unsigned int)animationID;
 - (void)setColor:(RBColor)color forStyle:(unsigned int)style;
 - (void)setPriority:(float)priority ofAnimationWithID:(unsigned int)animationID;

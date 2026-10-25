@@ -13,6 +13,7 @@
 #include <RenderBox/RBDisplayListPredicate.h>
 #include <RenderBox/RBDisplayListTransform.h>
 #include <RenderBox/RBDrawableStatistics.h>
+#include <RenderBox/RBDrawingState.h>
 #include <RenderBox/RBEncodable.h>
 #include <RenderBox/RBEncoderDelegate.h>
 #include <RenderBox/RBEncoderSet.h>
@@ -25,6 +26,8 @@
 #include <RenderBox/RBSymbolAnimator.h>
 #include <RenderBox/RBSymbolAnimation.h>
 #include <RenderBox/RBSymbolAnimatorObserver.h>
+#include <RenderBox/RBSymbolRenderingMode.h>
+#include <RenderBox/RBSymbolUpdate.h>
 #include <RenderBox/RBSwiftSupport.h>
 #include <RenderBox/RBTargetConditionals.h>
 #include <RenderBox/RBUUID.h>

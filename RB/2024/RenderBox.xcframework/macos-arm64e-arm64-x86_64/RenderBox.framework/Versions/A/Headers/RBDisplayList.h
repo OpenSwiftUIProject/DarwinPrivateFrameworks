@@ -7,6 +7,7 @@
 #include <RenderBox/RBBase.h>
 #include <RenderBox/RBColor.h>
 #include <RenderBox/RBColorSpace.h>
+#include <RenderBox/RBDrawingState.h>
 
 #if RB_OBJC_FOUNDATION
 
@@ -113,6 +114,12 @@ RB_ASSUME_NONNULL_BEGIN
 - (nullable NSData *)encodedDataForDelegate:(nullable id)delegate error:(NSError *_Nullable *_Nullable)error;
 
 @end
+
+RB_EXTERN_C_BEGIN
+
+RB_EXPORT RBDrawingState RBDisplayListGetState(RBDisplayList *list) RB_SWIFT_NAME(getter:RBDisplayList.state(self:));
+
+RB_EXTERN_C_END
 
 RB_ASSUME_NONNULL_END
 
