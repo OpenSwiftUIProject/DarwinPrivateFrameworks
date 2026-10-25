@@ -78,6 +78,15 @@ RBPath RBPathMakeRoundedRect(CGRect rect, CGFloat cornerWidth, CGFloat cornerHei
 RB_EXPORT
 RBPath RBPathMakeUnevenRoundedRect(CGRect rect, CGFloat topLeftRadius, CGFloat bottomLeftRadius, CGFloat bottomRightRadius, CGFloat topRightRadius, RBPathRoundedCornerStyle style, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.init(roundedRect:topLeftRadius:bottomLeftRadius:bottomRightRadius:topRightRadius:style:transform:));
 
+// MARK: - Path Transformation
+
+RB_EXPORT
+RBPath RBPathCopyTransformedPath(RBPath path, const CGAffineTransform *transform) RB_SWIFT_NAME(RBPath.copy(self:transform:));
+
+static RB_INLINE bool RBPathIsNull(RBPath path) RB_SWIFT_NAME(getter:RBPath.isNull(self:)) {
+    return path.storage == RBPathNull.storage && path.callbacks == RBPathNull.callbacks;
+}
+
 // MARK: - Path Operation
 
 RB_EXPORT
