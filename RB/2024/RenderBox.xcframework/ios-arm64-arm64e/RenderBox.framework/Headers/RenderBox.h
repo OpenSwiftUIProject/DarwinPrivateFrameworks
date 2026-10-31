@@ -30,6 +30,7 @@
 #include <RenderBox/RBSymbolUpdate.h>
 #include <RenderBox/RBSwiftSupport.h>
 #include <RenderBox/RBTargetConditionals.h>
+#include <RenderBox/RBTransition.h>
 #include <RenderBox/RBUUID.h>
 #include <RenderBox/RBVersion.h>
 
