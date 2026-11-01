@@ -1,0 +1,30 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios, arm64e-ios ]
+install-name:    '/System/Library/PrivateFrameworks/CoreMaterial.framework/CoreMaterial'
+current-version: 1.0.0
+compatibility-version: 1.0.0
+exports:
+  - targets:         [ arm64-ios, arm64e-ios ]
+    symbols:         [ _MTCoreMaterialRecipePlatformContentUltraThinLight,
+                       _MTCoreMaterialRecipePlatformContentUltraThinDark,
+                       _MTCoreMaterialRecipePlatformContentThinLight,
+                       _MTCoreMaterialRecipePlatformContentThinDark,
+                       _MTCoreMaterialRecipePlatformContentLight,
+                       _MTCoreMaterialRecipePlatformContentDark,
+                       _MTCoreMaterialRecipePlatformContentThickLight,
+                       _MTCoreMaterialRecipePlatformContentThickDark,
+                       _MTCoreMaterialRecipePlatformChromeLight,
+                       _MTCoreMaterialRecipePlatformChromeDark,
+                       _MTCoreMaterialVisualStyleCategoryFill,
+                       _MTCoreMaterialVisualStyleCategoryStroke,
+                       _MTCoreMaterialVisualStylePrimary,
+                       _MTCoreMaterialVisualStyleSecondary,
+                       _MTCoreMaterialVisualStyleTertiary,
+                       _MTCoreMaterialVisualStyleQuaternary,
+                       _MTCoreMaterialVisualStyleSeparator,
+                       _kMTDictionaryRepresentationOptionsIncludeOptimizationsKey,
+                       _kMTDictionaryRepresentationOptionsReduceTransparencyKey,
+                       _kMTDictionaryRepresentationOptionsBundleKey,
+                       _MTVisualStylingCreateDictionaryRepresentation ]
+...

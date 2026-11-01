@@ -10,7 +10,7 @@
 |[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
 |[![FeatureFlagsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/featureflags_example.yml)|
 
-This project contains private frameworks and framework interfaces for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `BacklightServices`, `CoreSVG`, `Gestures`, `SFSymbols`, `Symbols`, and `FeatureFlags`.
+This project contains private frameworks and framework interfaces for Darwin platforms, including `AttributeGraph`, `RenderBox`, `CoreUI`, `CoreMaterial`, `BacklightServices`, `CoreSVG`, `Gestures`, `SFSymbols`, `Symbols`, and `FeatureFlags`.
 
 The frameworks are provided as xcframeworks available for macOS, iOS Simulator, iOS[^1], visionOS Simulator, and visionOS platforms.
 
@@ -32,6 +32,7 @@ The frameworks are provided as xcframeworks available for macOS, iOS Simulator, 
 - `BLS/`: Contains the `BacklightServices` framework.
 - `CoreSVG/`: Contains the `CoreSVG` framework.
 - `CoreUI/`: Contains the `CoreUI` framework.
+- `CoreMaterial/`: Contains the CoreMaterial recipe and visual-style interfaces.
 - `FeatureFlags/`: Contains the `FeatureFlags` Swift framework.
 - `GF/`: Contains the `Gestures` framework.
 - `RB/`: Contains the `RenderBox` framework.

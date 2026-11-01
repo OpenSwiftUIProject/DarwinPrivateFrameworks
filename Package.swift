@@ -154,6 +154,7 @@ var products: [PackageDescription.Product] = [
     .library(name: "AttributeGraph", targets: ["AttributeGraph", "_AttributeGraphDeviceSwiftShims"]),
     .library(name: "RenderBox", targets: ["RenderBox"]),
     .library(name: "CoreUI", targets: ["CoreUI"]),
+    .library(name: "CoreMaterial", targets: ["CoreMaterial"]),
     .library(name: "BacklightServices", targets: ["BacklightServices"]),
     .library(name: "SFSymbols", targets: ["SFSymbols"]),
     // The Symbols SPI uses RenderBox's symbol animation types.
@@ -185,6 +186,7 @@ let package = Package(
         ),
         .binaryTarget(name: "RenderBox", path: "RB/2024/RenderBox.xcframework"),
         .binaryTarget(name: "CoreUI", path: "CoreUI/2024/CoreUI.xcframework"),
+        .binaryTarget(name: "CoreMaterial", path: "CoreMaterial/2024/CoreMaterial.xcframework"),
         .binaryTarget(name: "BacklightServices", path: "BLS/2024/BacklightServices.xcframework"),
         .binaryTarget(name: "SFSymbols", path: "SFSymbols/2024/SFSymbols.xcframework"),
         .binaryTarget(name: "Symbols", path: "Symbols/2024/Symbols.xcframework"),

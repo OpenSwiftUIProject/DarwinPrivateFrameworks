@@ -1,0 +1,51 @@
+//
+//  CoreMaterial.h
+//  CoreMaterial
+//
+//  Audited for 1.0
+//  Status: WIP
+
+#pragma once
+
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NSString *MTCoreMaterialRecipe NS_TYPED_EXTENSIBLE_ENUM;
+
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentUltraThinLight;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentUltraThinDark;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentThinLight;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentThinDark;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentLight;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentDark;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentThickLight;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentThickDark;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformChromeLight;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformChromeDark;
+
+typedef NSString *MTCoreMaterialVisualStyleCategory NS_TYPED_EXTENSIBLE_ENUM;
+
+FOUNDATION_EXPORT MTCoreMaterialVisualStyleCategory const MTCoreMaterialVisualStyleCategoryFill;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyleCategory const MTCoreMaterialVisualStyleCategoryStroke;
+
+typedef NSString *MTCoreMaterialVisualStyle NS_TYPED_EXTENSIBLE_ENUM;
+
+FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStylePrimary;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStyleSecondary;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStyleTertiary;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStyleQuaternary;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStyleSeparator;
+
+FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsIncludeOptimizationsKey;
+FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsReduceTransparencyKey;
+FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsBundleKey;
+
+FOUNDATION_EXPORT NSDictionary<NSString *, id> *_Nullable MTVisualStylingCreateDictionaryRepresentation(
+    MTCoreMaterialRecipe recipe,
+    MTCoreMaterialVisualStyleCategory category,
+    MTCoreMaterialVisualStyle style,
+    NSDictionary<NSString *, id> *options
+);
+
+NS_ASSUME_NONNULL_END
