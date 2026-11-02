@@ -23,11 +23,16 @@ FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContent
 FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentThickDark;
 FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformChromeLight;
 FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformChromeDark;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentGlass;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentGlassDarker;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentGlassLighter;
+FOUNDATION_EXPORT MTCoreMaterialRecipe const MTCoreMaterialRecipePlatformContentGlassUltraDarker;
 
 typedef NSString *MTCoreMaterialVisualStyleCategory NS_TYPED_EXTENSIBLE_ENUM;
 
 FOUNDATION_EXPORT MTCoreMaterialVisualStyleCategory const MTCoreMaterialVisualStyleCategoryFill;
 FOUNDATION_EXPORT MTCoreMaterialVisualStyleCategory const MTCoreMaterialVisualStyleCategoryStroke;
+FOUNDATION_EXPORT MTCoreMaterialVisualStyleCategory const MTCoreMaterialVisualStyleCategoryOverlay;
 
 typedef NSString *MTCoreMaterialVisualStyle NS_TYPED_EXTENSIBLE_ENUM;
 
@@ -41,6 +46,11 @@ FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsIncludeOptim
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsReduceTransparencyKey;
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsBundleKey;
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsFiltersRepresentationV2Key;
+
+FOUNDATION_EXPORT NSDictionary<NSString *, id> *_Nullable MTMaterialCreateDictionaryRepresentation(
+    MTCoreMaterialRecipe recipe,
+    NSDictionary<NSString *, id> *options
+);
 
 FOUNDATION_EXPORT NSDictionary<NSString *, id> *_Nullable MTVisualStylingCreateDictionaryRepresentation(
     MTCoreMaterialRecipe recipe,
