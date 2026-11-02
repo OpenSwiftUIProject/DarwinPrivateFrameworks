@@ -28,7 +28,19 @@ generate_framework() {
         mkdir -p "$contents"
         cp "$FRAMEWORK_ROOT/Sources/Info.plist" "$contents/Info.plist"
     fi
-    cp "$FRAMEWORK_ROOT/tbds/$slice/CoreMaterial.tbd" "$contents/CoreMaterial.tbd"
+    # Keep the complete exports and allow clients to link through this package.
+    python3 - "$FRAMEWORK_ROOT/tbds/$slice/CoreMaterial.tbd" "$contents/CoreMaterial.tbd" <<'PYTHON'
+import json
+import sys
+
+source, destination = sys.argv[1:]
+with open(source) as file:
+    stub = json.load(file)
+stub["main_library"].pop("allowable_clients", None)
+with open(destination, "w") as file:
+    json.dump(stub, file, indent=2)
+    file.write("\n")
+PYTHON
     cp -R "$FRAMEWORK_ROOT/Sources/Headers" "$contents/Headers"
     cp -R "$FRAMEWORK_ROOT/Sources/Modules" "$contents/Modules"
 }

@@ -5,6 +5,7 @@
 |[![AGExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/ag_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/ag_example.yml)|
 |[![RBExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/rb_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/rb_example.yml)|
 |[![CoreUIExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/coreui_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/coreui_example.yml)|
+|[![CoreMaterialExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/corematerial_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/corematerial_example.yml)|
 |[![BLSExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/bls_example.yml)|
 |[![GFExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/gf_example.yml)|
 |[![SFSymbolsExample](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml/badge.svg)](https://github.com/OpenSwiftUIProject/DarwinPrivateFrameworks/actions/workflows/sfsymbols_example.yml)|
@@ -72,11 +73,12 @@ The cache is in `<cache-dir>/22O473__RealityDevice14,1/dyld_shared_cache_arm64e`
 Generate the tbd files from it, then run the update command above:
 
 ```shell
-Scripts/generate_device_tbd.sh xros "<cache>" AttributeGraph RenderBox CoreUI BacklightServices CoreSVG SFSymbols FeatureFlags
+Scripts/generate_device_tbd.sh xros "<cache>" AttributeGraph RenderBox CoreUI CoreMaterial BacklightServices CoreSVG SFSymbols FeatureFlags
 ```
 
 The script extracts each framework with `ipsw dyld extract`, writes its tbd
-with `xcrun tapi stubify --no-compact`, and adds the arm64 target next to the
+with `xcrun tapi stubify --no-compact`, restores any missing Objective-C ivar
+exports from the binary's export trie, and adds the arm64 target next to the
 arm64e target of the cache. The output goes to
 `<Framework>/2024/tbds/xros-arm64-arm64e/`.
 

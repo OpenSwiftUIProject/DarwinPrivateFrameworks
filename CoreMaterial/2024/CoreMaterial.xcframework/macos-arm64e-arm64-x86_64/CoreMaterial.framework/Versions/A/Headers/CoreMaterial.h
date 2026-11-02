@@ -40,6 +40,7 @@ FOUNDATION_EXPORT MTCoreMaterialVisualStyle const MTCoreMaterialVisualStyleSepar
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsIncludeOptimizationsKey;
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsReduceTransparencyKey;
 FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsBundleKey;
+FOUNDATION_EXPORT NSString *const kMTDictionaryRepresentationOptionsFiltersRepresentationV2Key;
 
 FOUNDATION_EXPORT NSDictionary<NSString *, id> *_Nullable MTVisualStylingCreateDictionaryRepresentation(
     MTCoreMaterialRecipe recipe,

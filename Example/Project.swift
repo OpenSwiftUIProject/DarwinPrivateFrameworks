@@ -76,6 +76,21 @@ let project = Project(
             ],
             settings: .settings(base: baseSettings)
         ),
+        // MARK: CoreMaterialExample
+        .target(
+            name: "CoreMaterialExample",
+            destinations: [.iPhone, .iPad, .mac, .appleVision],
+            product: .app,
+            bundleId: "\(bundleIdPrefix).CoreMaterialExample",
+            deploymentTargets: deploymentTargets2024,
+            infoPlist: .extendingDefault(with: defaultInfoPlist),
+            sources: ["CoreMaterialExample/**"],
+            resources: sharedResources,
+            dependencies: [
+                .external(name: "CoreMaterial"),
+            ],
+            settings: .settings(base: baseSettings)
+        ),
         // MARK: CoreSVGExample
         .target(
             name: "CoreSVGExample",
