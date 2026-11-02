@@ -3,7 +3,8 @@
 # Generate device tbd files from the dyld shared cache of a device firmware.
 #
 # The script extracts each framework from the cache with ipsw, writes its tbd
-# with `tapi stubify --no-compact`, and adds the arm64 target. The cache holds
+# with `tapi stubify --no-compact`, restores ObjC ivar exports from the export
+# trie when needed, and adds the arm64 target. The cache holds
 # arm64e binaries, but third-party apps link the arm64 slice.
 #
 # Requirements: ipsw (https://github.com/blacktop/ipsw), Xcode, python3.
@@ -86,14 +87,86 @@ for framework_name in "$@"; do
     mkdir -p "$target_dir"
     # Add the arm64 target after each arm64e target and keep the
     # `tapi stubify --no-compact` layout.
-    python3 - "$framework/$framework_name.tbd" "$target_dir/$framework_name.tbd" <<'PYTHON'
+    python3 - "$framework/$framework_name.tbd" "$target_dir/$framework_name.tbd" "$binary" <<'PYTHON'
 import json
+import struct
 import sys
 
-source, destination = sys.argv[1], sys.argv[2]
+source, destination, binary = sys.argv[1:]
 with open(source) as file:
     stub = json.load(file)
 library = stub["main_library"]
+
+# Cache symbol tables can omit the leading underscore on ObjC ivars.
+# TAPI then omits those ivars, although the export trie has their correct names.
+with open(binary, "rb") as file:
+    data = file.read()
+if data[:4] != b"\xcf\xfa\xed\xfe":
+    raise ValueError("Expected a little-endian 64-bit Mach-O binary")
+command_count, = struct.unpack_from("<I", data, 16)
+position = 32
+trie = None
+for _ in range(command_count):
+    command, size = struct.unpack_from("<II", data, position)
+    if command == 0x80000033:  # LC_DYLD_EXPORTS_TRIE
+        offset, length = struct.unpack_from("<II", data, position + 8)
+        trie = data[offset:offset + length]
+    elif command in (0x22, 0x80000022):  # LC_DYLD_INFO / LC_DYLD_INFO_ONLY
+        offset, length = struct.unpack_from("<II", data, position + 40)
+        if length:
+            trie = data[offset:offset + length]
+    position += size
+if not trie:
+    raise ValueError("Mach-O binary has no export trie")
+
+def read_uleb(position):
+    value = shift = 0
+    while True:
+        byte = trie[position]
+        position += 1
+        value |= (byte & 0x7f) << shift
+        if not byte & 0x80:
+            return value, position
+        shift += 7
+
+ivar_prefix = "_OBJC_IVAR_$_"
+ivar_exports = {}
+
+def read_node(position, prefix):
+    terminal_size, position = read_uleb(position)
+    if terminal_size and prefix.startswith(ivar_prefix):
+        flags, _ = read_uleb(position)
+        ivar_exports[prefix[len(ivar_prefix):]] = flags
+    position += terminal_size
+    child_count = trie[position]
+    position += 1
+    for _ in range(child_count):
+        end = trie.index(0, position)
+        suffix = trie[position:end].decode()
+        child, position = read_uleb(end + 1)
+        read_node(child, prefix + suffix)
+
+read_node(0, "")
+export_groups = library["exported_symbols"]
+declared_ivars = {
+    name
+    for group in export_groups
+    for name in group.get("data", {}).get("objc_ivar", [])
+}
+missing_ivars = ivar_exports.keys() - declared_ivars
+if missing_ivars:
+    for name in missing_ivars:
+        if ivar_exports[name] != 0:
+            raise ValueError(f"Unsupported ObjC ivar export flags: {name}")
+    group = next((group for group in export_groups if "targets" not in group), None)
+    if group is None:
+        group = {}
+        export_groups.append(group)
+    ivars = group.setdefault("data", {}).setdefault("objc_ivar", [])
+    ivars.extend(sorted(missing_ivars))
+    ivars.sort()
+    print(f"  - Restored {len(missing_ivars)} ObjC ivar exports from the export trie")
+
 targets = []
 for info in library["target_info"]:
     targets.append(info)
