@@ -231,6 +231,7 @@
             "_RBDrawingStateSetCTM",
             "_RBPathCopyInterpolatedPath",
             "_RBPathGetBoundingRect",
+            "_RBPathGetLength",
             "_RBDrawingStateClipLayer",
             "_RBLayerCopyImageColorMode",
             "_RBDisplayListContentsXMLDictionary",
