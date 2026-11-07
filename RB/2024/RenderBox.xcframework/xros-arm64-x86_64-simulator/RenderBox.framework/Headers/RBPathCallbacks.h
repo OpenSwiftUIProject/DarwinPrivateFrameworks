@@ -33,10 +33,10 @@ typedef struct RB_SWIFT_NAME(RBPath.Callbacks) RBPathCallbacks {
     bool (* _Nullable isEqual)(const void *object, const void *otherObject);
     bool (* _Nullable isEmpty)(const void *object);
     bool (* _Nullable isSingleElement)(const void *object);
-    uint32_t (* _Nullable bezierOrder)(const void *object);
+    size_t (* _Nullable bezierOrder)(const void *object);
     CGRect (* _Nullable boundingRect)(const void *object);
     CGPathRef _Nullable (* _Nullable cgPath)(const void *object);
-    const struct RBPathCallbacks * _Nullable (* _Nullable next)(const void *object);
+    RBPath (* _Nullable next)(const void *object);
 } RBPathCallbacks;
 
 /// Extended callbacks structure with additional extended callbacks argument
@@ -48,10 +48,10 @@ typedef struct RB_SWIFT_NAME(RBPath.CallbacksExtended) RBPathCallbacksExtended {
     bool (* _Nullable isEqual)(const void *object, const void *otherObject, const struct RBPathCallbacksExtended *extended);
     bool (* _Nullable isEmpty)(const void *object, const struct RBPathCallbacksExtended *extended);
     bool (* _Nullable isSingleElement)(const void *object, const struct RBPathCallbacksExtended *extended);
-    uint32_t (* _Nullable bezierOrder)(const void *object, const struct RBPathCallbacksExtended *extended);
+    size_t (* _Nullable bezierOrder)(const void *object, const struct RBPathCallbacksExtended *extended);
     CGRect (* _Nullable boundingRect)(const void *object, const struct RBPathCallbacksExtended *extended);
     CGPathRef _Nullable (* _Nullable cgPath)(const void *object, const struct RBPathCallbacksExtended *extended);
-    const struct RBPathCallbacksExtended * _Nullable (* _Nullable next)(const void *object, const struct RBPathCallbacksExtended *extended);
+    RBPath (* _Nullable next)(const void *object, const struct RBPathCallbacksExtended *extended);
 } RBPathCallbacksExtended;
 
 /// Global callbacks for CGPath-backed paths
