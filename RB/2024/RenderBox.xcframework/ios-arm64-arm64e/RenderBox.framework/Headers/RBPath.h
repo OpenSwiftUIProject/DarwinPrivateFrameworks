@@ -121,8 +121,8 @@ typedef struct RBPathLineShape {
 
 typedef struct RBPathStrokeStyle {
     CGFloat lineWidth;
-    int32_t lineCap;
-    int32_t lineJoin;
+    CGLineCap lineCap;
+    CGLineJoin lineJoin;
     CGFloat miterLimit;
     CGFloat dashPhase;
     uint64_t dashCount;
