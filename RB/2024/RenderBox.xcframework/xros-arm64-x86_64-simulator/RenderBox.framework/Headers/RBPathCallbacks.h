@@ -56,7 +56,12 @@ typedef struct RB_SWIFT_NAME(RBPath.CallbacksExtended) RBPathCallbacksExtended {
 
 /// Global callbacks for CGPath-backed paths
 RB_EXPORT
-const RBPathCallbacks RBPathCGPathCallbacks RB_SWIFT_NAME(RBPathCallbacks.cgPath);
+const RBPathCallbacks RBPathCGPathCallbacks RB_REFINED_FOR_SWIFT;
+
+static RB_INLINE const RBPathCallbacks *_RBPathCallbacksGetCGPath(void)
+    RB_SWIFT_NAME(getter:RBPathCallbacks.cgPath()) {
+    return &RBPathCGPathCallbacks;
+}
 
 RB_EXTERN_C_END
 
