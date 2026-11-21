@@ -251,10 +251,10 @@ RB_EXPORT
 RBPath RBPathCopyInterpolatedPath(RBPath path, RBPath other, float fraction) RB_SWIFT_NAME(RBPath.interpolated(self:to:fraction:));
 
 RB_EXPORT
-CFDataRef RBPathCopyData(RBPath path) RB_SWIFT_NAME(getter:RBPath.data(self:));
+CFDataRef _Nullable RBPathCopyData(RBPath path) RB_SWIFT_NAME(getter:RBPath.data(self:));
 
 RB_EXPORT
-RBPath RBPathMakeWithData(CFDataRef data) RB_SWIFT_NAME(RBPath.init(data:));
+RBPath RBPathMakeWithData(CFDataRef _Nullable data) RB_SWIFT_NAME(RBPath.init(data:));
 
 RB_EXPORT
 CFStringRef RBPathCopyDebugDescription(RBPath path) RB_SWIFT_NAME(getter:RBPath.debugDescription(self:));
