@@ -10,6 +10,8 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
+RB_IMPLICIT_BRIDGING_ENABLED
+
 RB_EXTERN_C_BEGIN
 
 typedef float RBColorComponent;
@@ -41,6 +43,8 @@ RB_EXPORT RBColor RBColorFromCGColor2(CGColorRef color, size_t componentCount) R
 RB_EXPORT CGColorRef _Nullable RBColorCopyCGColor(RBColor color, RBColorSpace rbColorSpace) CF_RETURNS_RETAINED RB_SWIFT_NAME(RBColor.cgColor(self:colorSpace:));
 
 RB_EXTERN_C_END
+
+RB_IMPLICIT_BRIDGING_DISABLED
 
 RB_ASSUME_NONNULL_END
 

@@ -13,6 +13,8 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
+RB_IMPLICIT_BRIDGING_ENABLED
+
 RB_EXTERN_C_BEGIN
 
 /// Flags for path callbacks
@@ -64,6 +66,8 @@ static RB_INLINE const RBPathCallbacks *_RBPathCallbacksGetCGPath(void)
 }
 
 RB_EXTERN_C_END
+
+RB_IMPLICIT_BRIDGING_DISABLED
 
 RB_ASSUME_NONNULL_END
 

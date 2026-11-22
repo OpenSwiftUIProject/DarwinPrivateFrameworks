@@ -10,6 +10,8 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
+RB_IMPLICIT_BRIDGING_ENABLED
+
 RB_EXTERN_C_BEGIN
 
 /// Path element type for path enumeration
@@ -274,5 +276,7 @@ RB_EXPORT
 uint64_t RBPathContainsPoints(RBPath path, uint64_t count, const CGPoint *points, bool eoFill, const CGAffineTransform * _Nullable transform) RB_SWIFT_NAME(RBPath.containsPoints(self:count:points:eoFill:transform:));
 
 RB_EXTERN_C_END
+
+RB_IMPLICIT_BRIDGING_DISABLED
 
 RB_ASSUME_NONNULL_END
