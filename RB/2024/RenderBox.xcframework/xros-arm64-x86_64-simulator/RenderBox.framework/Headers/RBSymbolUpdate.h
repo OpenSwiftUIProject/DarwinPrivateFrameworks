@@ -16,6 +16,8 @@
 
 RB_ASSUME_NONNULL_BEGIN
 
+RB_IMPLICIT_BRIDGING_ENABLED
+
 typedef RB_OPTIONS(uint32_t, RBSymbolUpdateFlags) {
     RBSymbolUpdateFlagsSwapAxes = 1 << 0,
     RBSymbolUpdateFlagsFlipX = 1 << 1,
@@ -69,5 +71,7 @@ RB_EXPORT void RBSymbolUpdateLayerDraw(RBSymbolUpdateLayer layer, RBDrawingState
 RB_EXTERN_C_END
 
 #endif /* RB_OBJC_FOUNDATION */
+
+RB_IMPLICIT_BRIDGING_DISABLED
 
 RB_ASSUME_NONNULL_END
