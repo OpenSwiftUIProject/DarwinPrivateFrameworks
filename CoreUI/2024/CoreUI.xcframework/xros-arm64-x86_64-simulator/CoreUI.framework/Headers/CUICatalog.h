@@ -13,8 +13,10 @@
 #import <CoreUI/CUINamedImage.h>
 #import <CoreUI/CUINamedVectorGlyph.h>
 #import <CoreUI/CUINamedVectorImage.h>
+#import <CoreUI/CUIStyleEffectConfiguration.h>
 #import <CoreUI/CUITypes.h>
 #import <Foundation/Foundation.h>
+#import <TargetConditionals.h>
 
 CUI_ASSUME_NONNULL_BEGIN
 
@@ -118,6 +120,15 @@ CUI_ASSUME_NONNULL_BEGIN
 // MARK: - Utility
 
 - (BOOL)containsLookupForName:(NSString *)name;
+#if TARGET_OS_OSX
+- (BOOL)hasCustomizedAppearanceForWidget:(NSString *)widget;
+- (nullable CGColorRef)equivalentForegroundColorForStylePresetWithName:(nullable NSString *)name
+                                                    styleConfiguration:(CUIStyleEffectConfiguration *)configuration
+                                                   baseForegroundColor:(nullable CGColorRef)color CF_RETURNS_NOT_RETAINED;
+- (nullable id)compositingFilterForStylePresetWithName:(nullable NSString *)name
+                                     styleConfiguration:(CUIStyleEffectConfiguration *)configuration
+                                        foregroundColor:(nullable CGColorRef)color;
+#endif
 - (NSArray<NSString *> *)appearanceNames;
 - (nullable NSArray<NSString *> *)allImageNames;
 - (void)clearCachedImageResources;
